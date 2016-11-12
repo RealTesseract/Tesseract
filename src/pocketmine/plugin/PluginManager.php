@@ -243,11 +243,6 @@ class PluginManager{
 								continue;
 							}
 
-							if($compatiblegeniapi === false){
-								$this->server->getLogger()->error("Could not load plugin '{$description->getName()}': Incompatible GeniAPI version");
-								continue;
-							}
-
 							$plugins[$name] = $file;
 
 							$softDependencies[$name] = (array) $description->getSoftDepend();
