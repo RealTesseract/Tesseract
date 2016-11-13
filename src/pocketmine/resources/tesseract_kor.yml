@@ -2,7 +2,7 @@
 
 #Version 파일의 버전
 config:
- version: 23
+ version: 24
 
 level:
  #날씨 시스템을 켜는 경우 설정하세요
@@ -113,4 +113,4 @@ dserver:
 
 inventory:
  #모루와 관련된 문제가 있는 경우 true로 설정하세요. 인벤토리 처리를 vanila fashion (기본 방식)으로 치트 방지나 확인 없이 진행합니다.
- allow-cheats: false
+ allow-cheats: true

@@ -2,7 +2,7 @@
 
 #Version of this file
 config:
- version: 23
+ version: 24
 
 level:
  #Set if weather is enabled (rain may cause lag to older devices)
@@ -112,5 +112,7 @@ dserver:
  server-list: ""
 
 inventory:
- #Set this to true if you have problems with anvils. This will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
+ #Set this to true if you have problems with anvils. 
+ #This will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
+ #If enchants do not work on PE or Windows 10, please enable cheats.
  allow-cheats: false
