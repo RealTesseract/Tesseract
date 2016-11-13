@@ -1,8 +1,8 @@
-#Cài đặt Genisys cho server (Genisys VN Version)
+#Cài đặt Tesseract cho server (Tesseract VN Version)
 
 #Phiên bản file cài đặt
 config:
- version: 22
+ version: 23
 
 level:
  #Chỉnh nếu muốn bật/tắt thời tiết (true/false)

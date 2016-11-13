@@ -1,8 +1,8 @@
-#Genisys Advanced Configuration File
+#The advanced config for Tesseract
 
 #Version of this file
 config:
- version: 22
+ version: 23
 
 level:
  #Set if weather is enabled (rain may cause lag to older devices)

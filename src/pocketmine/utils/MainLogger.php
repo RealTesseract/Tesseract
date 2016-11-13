@@ -101,7 +101,7 @@ class MainLogger extends \AttachableThreadedLogger{
 	}
 
 	public function notice($message, $name = "NOTICE"){
-		$this->send($message, \LogLevel::NOTICE, $name, TextFormat::AQUA);
+		$this->send(TextFormat::BOLD . $message, \LogLevel::NOTICE, $name, TextFormat::GOLD);
 	}
 
 	public function info($message, $name = "INFO"){
@@ -218,7 +218,7 @@ class MainLogger extends \AttachableThreadedLogger{
 			}
 		}
 
-		$message = TextFormat::toANSI(TextFormat::GREEN . "[Tesseract] " . TextFormat::RESET . $color . "[" . $threadName . "/" . $prefix . "]:" . " " . $message . TextFormat::RESET);
+		$message = TextFormat::toANSI(TextFormat::BOLD . TextFormat::GREEN . "[Tesseract] " . TextFormat::RESET . $color . "[" . $threadName . "/" . $prefix . "]:" . " " . $message . TextFormat::RESET);
 		//$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s") . "] ". TextFormat::RESET . $color ."<".$prefix . ">" . " " . $message . TextFormat::RESET);
 		$cleanMessage = TextFormat::clean($message);
 

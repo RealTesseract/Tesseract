@@ -1,8 +1,8 @@
-#Genisys進階設定檔案
+#Tesseract進階設定檔案
 
 #設定檔案版本
 config:
- version: 22
+ version: 23
 
 level:
  #設定是否變換天氣

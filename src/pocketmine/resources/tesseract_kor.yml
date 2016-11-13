@@ -1,8 +1,8 @@
-#Genisys 고급 구성 파일
+#Tesseract 고급 구성 파일
 
 #Version 파일의 버전
 config:
- version: 22
+ version: 23
 
 level:
  #날씨 시스템을 켜는 경우 설정하세요

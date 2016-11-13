@@ -75,7 +75,7 @@ namespace pocketmine {
 	const VERSION = ""; //will be set by CI to a git hash
 	const API_VERSION = "2.1.0";
 	const CODENAME = "Crystal";
-	const MINECRAFT_VERSION = "v0.16.0.5 alpha";
+	const MINECRAFT_VERSION = "v0.16.1 alpha";
 	const MINECRAFT_VERSION_NETWORK = "0.16.0.5";
 
 	/*
