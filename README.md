@@ -4,7 +4,8 @@ The new advanced server software based on PocketMine-MP !
 
 Introduction
 -------------
-Tesseract is a fork of **[Genisys](https://github.com/iTXTech/Genisys)** and **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)* most of the original code was written by **PocketMine Team** and **iTX Technologies**.<br>
+Tesseract is a fork of **[Genisys](https://github.com/iTXTech/Genisys)** and **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** most of the original code was written by PocketMine Team and iTX Technologies.<br>
+
 Some of the extended functionality that Tesseract offers:
 
 * Optional Xbox Live authentication
