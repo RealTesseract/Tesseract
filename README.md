@@ -1,16 +1,24 @@
-# Tesseract 
+Tesseract 
+-------------
 The new advanced server software based on PocketMine-MP !
 
+Introduction
+-------------
+Tesseract is a fork of **[Genisys](https://github.com/iTXTech/Genisys)** and **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)* most of the original code was written by **PocketMine Team** and **iTX Technologies**.<br>
+Some of the extended functionality that Tesseract offers:
 
-### Credits to :
-*[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)*
+* Optional Xbox Live authentication
+* Support for Windows 10 Edition Beta
 
-*[Genisys](http://github.com/iTXTech/Genisys/)*
+However, Tesseract still has a long way to go. We welcome contributions.
 
-*[Elywing](https://github.com/H4PM/Elywing)*
+Tools
+-------------
+* **[DevTools](https://github.com/PocketMine/DevTools)** - **Plugin and server development tools plugin**
 
-### License:
-	
+Licence
+-------------
+
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
@@ -24,7 +32,8 @@ The new advanced server software based on PocketMine-MP !
 	You should have received a copy of the GNU Lesser General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-## Third-party Libraries/Protocols Used
+Third-party Libraries/Protocols Used
+-------------
 * __[PHP Sockets](http://php.net/manual/en/book.sockets.php)__
 * __[PHP mbstring](http://php.net/manual/en/book.mbstring.php)__
 * __[PHP SQLite3](http://php.net/manual/en/book.sqlite3.php)__
