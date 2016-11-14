@@ -1,11 +1,11 @@
-# ![Tesseract](http://image.noelshack.com/minis/2016/46/1479153234-tesseract.png)
-
+# Tesseract, The new advanced server software
 
 
 ### Credits to:
-
 *[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)*
+
 *[Genisys](http://github.com/iTXTech/Genisys/)*
+
 *[Elywing](https://github.com/H4PM/Elywing)*
 
 ### License:
