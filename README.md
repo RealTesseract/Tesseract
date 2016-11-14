@@ -1,4 +1,5 @@
-# Tesseract, The new advanced server software
+# Tesseract 
+The new advanced server software
 
 
 ### Credits to:
