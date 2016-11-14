@@ -4,7 +4,9 @@ The new advanced server software based on PocketMine-MP !
 
 ### Credits to :
 *[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)*
+
 *[Genisys](http://github.com/iTXTech/Genisys/)*
+
 *[Elywing](https://github.com/H4PM/Elywing)*
 
 ### License:
