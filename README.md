@@ -9,15 +9,13 @@ Tesseract is a fork of **[Genisys](https://github.com/iTXTech/Genisys)** and **[
 Some of the extended functionality that Tesseract offers:
 
 * Optional Xbox Live authentication
-* Support for Windows 10 Edition Beta
-
-However, Tesseract still has a long way to go. We welcome contributions.
+* Support for Windows 10 Edition
 
 Tools
 -------------
 * **[DevTools](https://github.com/PocketMine/DevTools)** - **Plugin and server development tools plugin**
 
-Licence
+License
 -------------
 
 	This program is free software: you can redistribute it and/or modify
