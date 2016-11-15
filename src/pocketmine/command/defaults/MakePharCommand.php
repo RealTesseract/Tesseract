@@ -13,8 +13,8 @@ class MakePharCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
 			$name,
-			"Creates a Tesseract Phar",
-			"/makephar (nogz)"
+			"Creates a phar of your server",
+			"/makephar"
 		);
 		$this->setPermission("pocketmine.command.makephar");
 	}
@@ -26,7 +26,7 @@ class MakePharCommand extends VanillaCommand{
          $Path = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "Tesseract";
           if(!file_exists($Path)) @mkdir($Path);
 		$server = $sender->getServer();
-		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "Tesseract" . DIRECTORY_SEPARATOR . $server->getName() . "_" . $server->getPocketMineVersion() . ".phar";
+		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "Tesseract" . DIRECTORY_SEPARATOR . $server->getName() . "" . $server->getPocketMineVersion() . ".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar file already exists, overwriting...");
 			@unlink($pharPath);
