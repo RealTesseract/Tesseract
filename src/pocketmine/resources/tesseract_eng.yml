@@ -55,7 +55,7 @@ server:
  allow-iron-golem: false
  #This setting decided if spawning Snow Golems are allowed
  allow-snow-golem: false
- #This setting decides if the server.log file will be made/written. Recommended that it stays at default (false)
+ #This setting decides if the server.log file will not be made/written. Recommended that it stays at default (false)
  disable-log: false
  #This setting decides if anti-fly detection will be enabled in the server
  anti-fly: true
