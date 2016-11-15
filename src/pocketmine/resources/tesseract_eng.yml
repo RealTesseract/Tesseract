@@ -5,114 +5,121 @@ config:
  version: 24
 
 level:
- #Set if weather is enabled (rain may cause lag to older devices)
+ #This settting decides if weather is enabled in game (rain may cause lag to older devices)
  weather: true
- #Weather random duration
+ #This setting controls a random timer for weather durations (requires weather: true)
+ #The ranges that are set must follow the min-max range (min less than max (min < max))
  weather-random-duration-min: 6000
  weather-random-duration-max: 12000
- #Random lightning interval，default as 10s, 0 = disable
+ #This setting controls the interval of lightning strikes in game，default 200 as 10s, 0 = disable
  lightning-time: 200
- #Set if lightning strikes have fire afterwards
+ #This setting will decide if lightning strikes have fire after they strike
  lightning-fire: false
- #Set if fire should spread (trees, etc.)
+ #This setting will decide if fire should spread after it is set on burnable materials (leaves, trees, etc.)
  fire-spread: false
 
 player:
- #Set if hunger is enabled
+ #This setting decides if hunger will be enabled in game
+ #If set to false, hunger wont drop
  hunger: true
- #Choose if experience is enabled
+ #This setting decides if experience will be enalbed
+ #If set to false, then exp bottles wont drop exp dots, and exp level wont go up
  experience: true
- #Choose if to keep a player's inventory after they die
+ #This setting decides if the inventory of a player will be kept after they die
  keep-inventory: false
- #Clear the inventory of a player upon them changing their gamemode
+ #This setting decides if the inventory of a player will be cleared upon them changing their gamemode
  auto-clear-inventory : true
- #Choose if to keep a player's experience after they die
+ #This setting will decide if the experience of a player will be kept after they die
  keep-experience: false
- #If players crash when joining, change this to less than 10. disable=-1
+ #Radius of chunks in worlds, possibly for rendering, if players crash by too much processing, set this below 10. disable=-1
  chunk-radius: -1
 
 nether:
- #Choose if the nether is allowed. The level of nether will generate automatically
+ #Choose if the nether is allowed/loaded into the game. The level of nether will generate automatically even if false
  allow-nether: true
- #The name of nether's level
+ #The name of nether's level will be set here
  level-name: "nether"
 
 server:
- #Choose if spawning iron golem is allowed
+ #This setting decides if spawning Iron Golems are allowed
  allow-iron-golem: false
- #Choose if spawning snow golem is allowed
+ #This setting decided if spawning Snow Golems are allowd
  allow-snow-golem: false
- #Choose if server.log is disabled
+ #This setting decides if the server.log file will be made/written. Recommended that it stays at default (false)
  disable-log: false
- #Choose if to enable anti-fly
+ #This setting decides if anti-fly detection will be enabled in the server
  anti-fly: true
- #Choose if async chunks request is enabled
+ #This setting decides if the async chunks request will be enabled upon server loading/rebooting
  async-chunk-request: true
- #Choose how to remind players when someone joins the game
+ #This setting chooses how to remind players when someone joins the game
  #0 = Message, 1 = Tip, 2 = Popup
  player-msg-type: 0
  login-msg: "§3@player joined the game"
  logout-msg: "§3@player left the game"
- #Choose if movement check is enabled (no more pull backs when moving fast)
+ #This setting decides if movement checks are enabled (no more pull backs when moving fast)
  check-movement: true
- #Set if limited creative is enabled (cannot drop items from hotbar, cannot open chests, and so on)
+ #This setting decides if limited creative is enabled in game
+ #If set to true true, then players cannot drop items from hotbar, cannot open chests, and so on
  limited-creative: true
- #Set if add DestroyBlockParticle
+ #This setting decides if block particles upon destroying a block will spawn (may cause lag to older devices)
  destroy-block-particle: true
- #Set if splash potions are enabled
+ #This setting decides if splash potions will be allowed to be thrown
+ #If set to false, then they will not be visible when thrown (wont splash either)
  allow-splash-potion: true
- #Set if Advanced Command Selector is enabled
+ #THis setting decides if Advanced Command Selector is enabled (recommended it is set to default (false))
  advanced-command-selector: false
 
 enchantment:
- #Choose if anvils are enabled
+ #This setting decides if Anvilss are allowed to be used in game
+ #If the below setting is false, then anvils will not show the anvil gui
  enable-anvil: true
- #Choose if enchantment tables are enabled
+ #This setting decides if Enchantment Tables are allowed to be used in game
+ #If the below setting is false, then enchanting tables will not show the enchant table gui
  enable-enchanting-table: true
- #Choose if to count bookshelves (may cause server lag)
- #If this option is false, the server will use a random count (0~15)
+ #This setting decides if bookshelves are counted as entities (may cause server lag)
+ #If this option is false, the server will use a random count (recommended and the values range from 0~15)
  count-bookshelf: false
 
 redstone:
  ################################################
- ####Choose if the redstone system is enabled####
+ ####Decide if the redstone system is enabled####
  ################################################
  #If it is false, the redstone system won't work#
  ################################################
  enable: false
- #Choose if frequency pulses are enabled
+ #This setting decides if redstone frequency pulses are enabled in game
  frequency-pulse: false
- #Set the frequency of pulse. Default = 1s
+ #This srtting sets the frequency of restone pulses (requires frequency-pulse: true). Default = 1s
  pulse-frequency: 1
 
 dserver:
- #The count of all multi-server unified
+ #This setting decides if the server counts all multi-servers combined (recommended set to false)
  enable: false
- #Update Query automatically
+ #This setting decides if the server will automatically update the Query
  query-auto-update: false
- #Update Query periodically
+ #This setting decides if the server Query ticks update
  query-tick-update: true
- #The max players' on the MOTD
+ #This setting displays the # of max players on MOTD. 0 = Default
  motd-max-players: 0
- #The max players' on the Query. 0=Default
+ #This setting displays the # of max players on Query. 0 = Default
  query-max-players: 0
- #Show the number of all players on MOTD
+ #This setting decides if the server shows the # of all players on MOTD
  motd-all-players: false
- #Show the number of all players on Query
+ #This setting shows the number of all players on Query
  query-all-players: false
- #Show the number of online players on MOTD
+ #This setting shows the number of online players on MOTD
  motd-players: false
- #Show the number of online players on Query
+ #This setting shows the number of online players on Query
  query-players: false
- #Update Frequency. 20=1s
+ #This setting decides the interval for query/motd updating. 20=1s
  time: 40
- #Auto-retry # of times when server fails
+ #This setting decides the # of times the server retries when the server fails to load. 0 = Disable, 3 = Default
  retry-times: 3
- #the server list，Separate by ';'，e.g. 1.example.com:19132;2.example.com:19133
+ #This setting displays the server list，Separate by ';'，e.g. 1.example.com:19132;2.example.com:19133
  server-list: ""
 
 inventory:
- #Set this to true if you have problems with anvils. 
+ #Set this setting to true if you have problems with anvils. 
  #This will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
  #If enchants do not work on PE or Windows 10, please enable cheats.
  allow-cheats: true
