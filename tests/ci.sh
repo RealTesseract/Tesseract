@@ -1,5 +1,4 @@
 #!/bin/bash
-chmod a+x .travis-phing.sh
 mkdir plugins
 curl -fsSL https://github.com/PocketMine/DevTools/releases/download/v1.11.0/DevTools_v1.11.0.phar -o plugins/DevTools.phar
 echo Running lint...
