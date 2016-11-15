@@ -53,7 +53,7 @@ nether:
 server:
  #This setting decides if spawning Iron Golems are allowed
  allow-iron-golem: false
- #This setting decided if spawning Snow Golems are allowd
+ #This setting decided if spawning Snow Golems are allowed
  allow-snow-golem: false
  #This setting decides if the server.log file will be made/written. Recommended that it stays at default (false)
  disable-log: false
@@ -80,7 +80,7 @@ server:
  advanced-command-selector: false
 
 enchantment:
- #This setting decides if Anvilss are allowed to be used in game
+ #This setting decides if Anvils are allowed to be used in game
  #If the below setting is false, then anvils will not show the anvil gui
  enable-anvil: true
  #This setting decides if Enchantment Tables are allowed to be used in game
