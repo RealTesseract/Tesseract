@@ -1522,7 +1522,7 @@ abstract class Entity extends Location implements Metadatable{
 
 		foreach($blocksaround = $this->getBlocksAround() as $block){
 			$block->onEntityCollide($this);
-			if($this->getLevel()->getServer()->redstoneEnabled and !$this->isPlayer){
+			if($this->isPlayer){
 				if($block instanceof PressurePlate){
 					$this->activatedPressurePlates[Level::blockHash($block->x, $block->y, $block->z)] = $block;
 				}
@@ -1530,7 +1530,7 @@ abstract class Entity extends Location implements Metadatable{
 			$block->addVelocityToEntity($this, $vector);
 		}
 
-		if($this->getLevel()->getServer()->redstoneEnabled and !$this->isPlayer){
+		if($this->isPlayer){
 			/** @var \pocketmine\block\PressurePlate $block * */
 			foreach($this->activatedPressurePlates as $key => $block){
 				if(!isset($blocksaround[$key])) $block->checkActivation();
@@ -1748,12 +1748,10 @@ abstract class Entity extends Location implements Metadatable{
 			}
 		}
 
-		if($this->getLevel()->getServer()->redstoneEnabled){
 			/** @var \pocketmine\block\PressurePlate $block * */
 			foreach($this->activatedPressurePlates as $key => $block){
 				$block->checkActivation();
 			}
-		}
 
 		$this->activatedPressurePlates = [];
 
