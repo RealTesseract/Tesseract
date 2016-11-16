@@ -49,7 +49,9 @@ player:
  chunk-radius: -1
 
 server:
- #This setting decides if the server.log file will not be made/written. Recommended that it stays at default (false)
+ #This setting decides if the server.log file will not be made/written.
+ #You can set to True since it can help with disk space on a hosted server through computer
+ #But it is suggested to turn it on if you have players online, so you can see what console sees basically
  disable-log: false
  #This setting decides if anti-fly detection will be enabled in the server
  anti-fly: true
