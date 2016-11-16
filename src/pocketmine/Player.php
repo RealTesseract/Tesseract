@@ -337,7 +337,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function getItemInHand(){
 		return $this->inventory->getItemInHand();
 	}
-
+ 
 	public function getLeaveMessage(){
 		return new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.left", [
 			$this->getDisplayName()
@@ -1499,19 +1499,15 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected function checkBlockCollision(){
 		foreach($blocksaround = $this->getBlocksAround() as $block){
 			$block->onEntityCollide($this);
-			if($this->getServer()->redstoneEnabled){
 				if($block instanceof PressurePlate){
 					$this->activatedPressurePlates[Level::blockHash($block->x, $block->y, $block->z)] = $block;
 				}
-			}
 		}
 
-		if($this->getServer()->redstoneEnabled){
 			/** @var \pocketmine\block\PressurePlate $block * */
 			foreach($this->activatedPressurePlates as $key => $block){
 				if(!isset($blocksaround[$key])) $block->checkActivation();
 			}
-		}
 	}
 
 	protected function checkNearEntities($tickDiff){

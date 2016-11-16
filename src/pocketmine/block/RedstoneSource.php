@@ -47,7 +47,6 @@ class RedstoneSource extends Flowable{
 	}
 
 	public function canCalc(){
-		return $this->getLevel()->getServer()->redstoneEnabled;
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
@@ -115,7 +114,6 @@ class RedstoneSource extends Flowable{
 	}
 
 	public function activate(array $ignore = []){
-		if($this->canCalc()){
 			$this->activated = true;
 			/** @var Door $block */
 
@@ -128,10 +126,8 @@ class RedstoneSource extends Flowable{
 				}
 			}
 		}
-	}
 
 	public function deactivate(array $ignore = []){
-		if($this->canCalc()){
 			$this->activated = false;
 			/** @var Door $block */
 
@@ -154,7 +150,7 @@ class RedstoneSource extends Flowable{
 				$block = $this->getSide(Vector3::SIDE_DOWN, 2);
 				$this->deactivateBlock($block);
 			}
-		}
+		
 	}
 
 	public function checkPower(Block $block, array $ignore = [], $ignoreWire = false){

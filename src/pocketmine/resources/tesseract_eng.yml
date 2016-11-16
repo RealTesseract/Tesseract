@@ -12,7 +12,7 @@
 
 #Version of this file
 config:
- version: 24
+ version: 25
 
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
@@ -27,6 +27,10 @@ level:
  lightning-fire: false
  #This setting will decide if fire should spread after it is set on burnable materials (leaves, trees, etc.)
  fire-spread: false
+ #Choose if the nether is allowed/loaded into the game. The level of nether will generate automatically even if false
+ allow-nether: true
+ #The name of nether's level will be set here
+ level-name: "nether"
 
 player:
  #This setting decides if hunger will be enabled in game
@@ -44,17 +48,7 @@ player:
  #Radius of chunks in worlds, possibly for rendering, if players crash by too much processing, set this below 10. disable=-1
  chunk-radius: -1
 
-nether:
- #Choose if the nether is allowed/loaded into the game. The level of nether will generate automatically even if false
- allow-nether: true
- #The name of nether's level will be set here
- level-name: "nether"
-
 server:
- #This setting decides if spawning Iron Golems are allowed
- allow-iron-golem: false
- #This setting decided if spawning Snow Golems are allowed
- allow-snow-golem: false
  #This setting decides if the server.log file will not be made/written. Recommended that it stays at default (false)
  disable-log: false
  #This setting decides if anti-fly detection will be enabled in the server
@@ -89,18 +83,6 @@ enchantment:
  #This setting decides if bookshelves are counted as entities (may cause server lag)
  #If this option is false, the server will use a random count (recommended and the values range from 0~15)
  count-bookshelf: false
-
-redstone:
- ################################################
- ####Decide if the redstone system is enabled####
- ################################################
- #If it is false, the redstone system won't work#
- ################################################
- enable: false
- #This setting decides if redstone frequency pulses are enabled in game
- frequency-pulse: false
- #This setting sets the frequency of restone pulses (requires frequency-pulse: true). Default = 1s
- pulse-frequency: 1
 
 dserver:
  #This setting decides if the server counts all multi-servers combined (recommended set to false)
