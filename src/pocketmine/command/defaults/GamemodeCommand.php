@@ -80,7 +80,7 @@ class GamemodeCommand extends VanillaCommand{
 				Command::broadcastCommandMessage($sender, "Set own game mode to " . Server::getGamemodeString($sender->getGamemode()));
 			}else{
 				$target->sendMessage(new TranslationContainer("gameMode.changed"));
-				Command::broadcastCommandMessage($sender, $target->getName() . "'s game mode to " . $target->getGamemode());
+				Command::broadcastCommandMessage($sender, "Set " . $target->getName() . "'s game mode to " . Server::getGamemodeString($target->getGamemode()));
 			}
 		}
 		return true;

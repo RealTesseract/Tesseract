@@ -553,13 +553,13 @@ class Server{
 	public static function getGamemodeString($mode){
 		switch((int) $mode){
 			case Player::SURVIVAL:
-				return "%gameMode.survival";
+				return "Survival Mode";
 			case Player::CREATIVE:
-				return "%gameMode.creative";
+				return "Creative Mode";
 			case Player::ADVENTURE:
-				return "%gameMode.adventure";
+				return "Adventure Mode";
 			case Player::SPECTATOR:
-				return "%gameMode.spectator";
+				return "Spectator Mode";
 		}
 
 		return "UNKNOWN";
