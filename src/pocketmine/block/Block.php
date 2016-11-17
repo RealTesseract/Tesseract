@@ -579,7 +579,7 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * @return string
 	 */
-	public function getName() : string{
+	public function getName(){
 		return "Unknown";
 	}
 
