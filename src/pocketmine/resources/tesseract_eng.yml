@@ -62,7 +62,9 @@ server:
  player-msg-type: 0
  login-msg: "§3@player joined the game"
  logout-msg: "§3@player left the game"
- #This setting decides if movement checks are enabled (no more pull backs when moving fast)
+ #This setting decides if movement checks are enabled (no more pull backs when moving)
+ #However having a very high level for speed to move will still pull you back
+ #Values that are very high will produce pull back (i.e.: 500+)
  check-movement: true
  #This setting decides if limited creative is enabled in game
  #If set to true true, then players cannot drop items from hotbar, cannot open chests, and so on
