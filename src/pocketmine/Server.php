@@ -172,6 +172,8 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
 
+use WingProxy\WingProxy;
+
 /**
  * The class that manages everything
  */
@@ -364,9 +366,12 @@ class Server{
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
+	public $WingProxyConfig = [];
 
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
+	
+	private $WingProxy = null;
 	/**
 	 * @return string
 	 */
@@ -1599,14 +1604,23 @@ class Server{
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
+		
+		$this->WingProxyConfig = [		
+ 			"enabled" => $this->getAdvancedProperty("WingProxy.enabled", false),		
+ 			"server-ip" => $this->getAdvancedProperty("WingProxy.server-ip", "127.0.0.1"),		
+ 			"server-port" => $this->getAdvancedProperty("WingProxy.server-port", 10305),		
+ 			"isMainServer" => $this->getAdvancedProperty("WingProxy.is-main-server", true),		
+ 			"password" => $this->getAdvancedProperty("WingProxy.server-password", "123456"),		
+ 			"description" => $this->getAdvancedProperty("WingProxy.description", "A WingProxy client"),		
+ 			"disable-rak" => $this->getAdvancedProperty("WingProxy.disable-rak", false),		
+ 		];
 	}
 	
 	/**
-	 * @deprecated Use SynapsePM plugin instead
-	 * @return bool
+	 * API for checking if PROXY is enabled
 	 */
-	public function isSynapseEnabled() : bool {
-		return $this->getSynapse() !== null;
+	public function isProxyEnabled() : bool {
+		return (bool) $this->WingProxyConfig["enabled"];
 	}
 
 	/**
@@ -1875,6 +1889,11 @@ class Server{
 
 			$this->network->registerInterface(new RakLibInterface($this));
 
+				if(!$this->WingProxyConfig["enabled"] or ($this->WingProxyConfig["enabled"] and !$this->WingProxyConfig["disable-rak"])){		
+ 				$this->network->registerInterface(new RakLibInterface($this));		
+ 			}else{		
+ 				$this->logger->notice("RakLib has been disabled by WingProxy disable-rak option");		
+ 			}
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
 			$this->enablePlugins(PluginLoadOrder::STARTUP);
@@ -1978,14 +1997,9 @@ class Server{
 	 * @deprecated Use SynapsePM plugin instead
 	 * @return Synapse|null
 	 */
-	public function getSynapse(){
-		$plugin = $this->pluginManager->getPlugin('SynapsePM');
-		if ($plugin === null or $plugin->isDisabled()) {
-			return null;
-		}
-		return $plugin->getSynapse();
+	public function getProxy(){
+		return $this->WingProxy;
 	}
-
 	/**
 	 * @param string        $message
 	 * @param Player[]|null $recipients
@@ -2327,6 +2341,11 @@ class Server{
 				$this->network->unregisterInterface($interface);
 			}
 
+			if($this->isProxyEnabled()){		
+ 				$this->getLogger()->debug("Disconnecting from Proxy");		
+ 				$this->WingProxy->shutdown();		
+ 			}		
+ 
 			//$this->memoryManager->doObjectCleanup();
 
 			gc_collect_cycles();
@@ -2794,6 +2813,10 @@ class Server{
 
 		Timings::$connectionTimer->startTiming();
 		$this->network->processInterfaces();
+		
+		if($this->isProxyEnabled()){		
+ 			$this->WingProxy->tick();		
+ 		}
 
 		if($this->rcon !== null){
 			$this->rcon->check();
