@@ -57,7 +57,7 @@ WingProxy:
  is-main-server: true
  proxy-password: 32bitlongkey
  #A description for this client
- description: "A Synapse client"
+ description: "A WingProxy client"
  #Disable RakLib means that players can only join via the proxy
  proxy-only: false
  
