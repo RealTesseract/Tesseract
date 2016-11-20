@@ -1610,9 +1610,9 @@ class Server{
  			"server-ip" => $this->getAdvancedProperty("WingProxy.server-ip", "127.0.0.1"),		
  			"server-port" => $this->getAdvancedProperty("WingProxy.server-port", 10305),		
  			"isMainServer" => $this->getAdvancedProperty("WingProxy.is-main-server", true),		
- 			"password" => $this->getAdvancedProperty("WingProxy.server-password", "123456"),		
+ 			"password" => $this->getAdvancedProperty("WingProxy.proxy-password", "123456"),		
  			"description" => $this->getAdvancedProperty("WingProxy.description", "A WingProxy client"),		
- 			"disable-rak" => $this->getAdvancedProperty("WingProxy.disable-rak", false),		
+ 			"disable-rak" => $this->getAdvancedProperty("WingProxy.proxy-only", false),		
  		];
 	}
 	

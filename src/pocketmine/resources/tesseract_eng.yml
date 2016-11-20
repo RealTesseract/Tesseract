@@ -12,7 +12,7 @@
 
 #Version of this file
 config:
- version: 25
+ version: 26
 
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
@@ -48,6 +48,20 @@ player:
  #Radius of chunks in worlds, possibly for rendering, if players crash by too much processing, set this below 10. disable=-1
  chunk-radius: -1
 
+WingProxy:
+ #If you are going to use WingProxy, this option should be turned on!
+ enabled: false
+ server-ip: 127.0.0.1
+ server-port: 15058
+ #If this server is the main server, set it as true
+ is-main-server: true
+ proxy-password: 32bitlongkey
+ #A description for this client
+ description: "A Synapse client"
+ #Disable RakLib means that players can only join via the proxy
+ proxy-only: false
+ 
+ 
 server:
  #This setting decides if the server.log file will not be made/written.
  #You can set to True since it can help with disk space on a hosted server through computer
