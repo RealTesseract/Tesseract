@@ -71,7 +71,7 @@ class WingProxy{
 		return $this->clientData;
 	}
 
-	public function getGenisysServer(){
+	public function getServerInstance(){
 		return $this->server;
 	}
 
