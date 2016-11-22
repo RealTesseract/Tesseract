@@ -11,7 +11,7 @@ before_script:
  - echo | pecl install channel://pecl.php.net/yaml-2.0.0RC7
 
 script:
- - ./tests/ci.sh
+ - ./_ignore_/ci.sh
 
 notifications:
   email: false
