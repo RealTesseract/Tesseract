@@ -237,7 +237,7 @@ class CrashDump{
 		$this->data["general"]["zend"] = zend_version();
 		$this->data["general"]["php_os"] = PHP_OS;
 		$this->data["general"]["os"] = Utils::getOS();
-		$this->addLine("Genisys version: " . \pocketmine\GIT_COMMIT . " [Protocol " . Info::CURRENT_PROTOCOL . "; API " . API_VERSION . "]");
+		$this->addLine("Tesseract version: " . \pocketmine\GIT_COMMIT . " [Protocol " . Info::CURRENT_PROTOCOL . "; API " . API_VERSION . "]");
 		$this->addLine("uname -a: " . php_uname("a"));
 		$this->addLine("PHP version: " . phpversion());
 		$this->addLine("Zend version: " . zend_version());
