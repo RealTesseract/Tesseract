@@ -2,19 +2,19 @@
 
 /*
  *
- *    _______                                _
- *   |__   __|                              | |
- *      | | ___  ___ ___  ___ _ __ __ _  ___| |_
- *      | |/ _ \/ __/ __|/ _ \  __/ _` |/ __| __|
- *      | |  __/\__ \__ \  __/ | | (_| | (__| |_
- *      |_|\___||___/___/\___|_|  \__,_|\___|\__|
- *
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author Tessetact Team
+ * @author Pocketmine Team
+ * @link http://www.pocketmine.net
  * 
  *
 */
@@ -23,190 +23,81 @@ namespace pocketmine\block;
 
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
-use pocketmine\block\Block;
+use pocketmine\item\Item;
 
 class Sponge extends Solid{
-	
+
 	protected $id = self::SPONGE;
-	
+	protected $absorbRange = 6;
+
 	public function __construct($meta = 0){
-        $this->meta = $meta;
+		$this->meta = $meta;
 	}
-	
-	public function getHardness(){
+
+	public function getHardness() {
 		return 0.6;
 	}
-	
-	
-	public function getName(){
-     if($this->meta == 0){
-		return "Sponge";
-     }else{
-          return "Wet Sponge";
+
+	public function absorbWater($block = null){
+		if ($block == null) $block = $this;
+		$range = $this->absorbRange / 2;
+		for ($xx = -$range; $xx <= $range; $xx++){
+			for ($yy = -$range; $yy <= $range; $yy++){
+				for ($zz = -$range; $zz <= $range; $zz++){
+					$block = $this->getLevel()->getBlock(new Vector3($this->x + $xx, $this->y + $yy, $this->z + $zz));
+					if ($block->getId() === Block::WATER) $this->getLevel()->setBlock($block, Block::get(Block::AIR), true, true);
+					if ($block->getId() === Block::STILL_WATER) $this->getLevel()->setBlock($block, Block::get(Block::AIR), true, true);
+				}
+			}
+		}
 	}
-}
-	
-  public function onUpdate($type){
-  	if($type == Level::BLOCK_UPDATE_NORMAL){
-  		if($this->meta == 0){
-  			$block = $this;
-  		$water = false;
-    $i = 0;
-    $t = 1;
-    $c = 1;
-  		while($i < 16 && $c != 3){
-  			if($c == 1){
-  			 		$vec = [
-  		new Vector3($block->x + 1,$block->y,$block->z),
-  		 new Vector3($block->x,$block->y,$block->z + 1),
-  		 new Vector3($block->x - 1,$block->y,$block->z),
-  		 new Vector3($block->x,$block->y,$block->z - 1),
-  		 new Vector3($block->x + 1,$block->y,$block->z + 1),
-  		 new Vector3($block->x - 1,$block->y,$block->z - 1),
-  		 new Vector3($block->x + 1,$block->y,$block->z - 1),
-  		 new Vector3($block->x - 1,$block->y,$block->z + 1)
-  		];
-  			 $up = $this->getLevel()->getBlock(new Vector3($vec[$i]->x,$vec[$i]->y + $t,$vec[$i]->z));
-  			 $down = $this->getLevel()->getBlock(new Vector3($vec[$i]->x,$vec[$i]->y - $t,$vec[$i]->z));
-  			 $center = $this->getLevel()->getBlock(new Vector3($vec[$i]->x,$vec[$i]->y,$vec[$i]->z));
-  			if($up->getId() == self::WATER){
-  				$this->getLevel()->setBlock($up,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($down->getId() == self::WATER){
-  				$this->getLevel()->setBlock($down,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($center->getId() == self::WATER){
-  				$this->getLevel()->setBlock($center,new Block(self::AIR));
-  				$water = true;
-  			}
-			
-  			if($up->getId() == self::STILL_WATER){
-  				$this->getLevel()->setBlock($up,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($down->getId() == self::STILL_WATER){
-  				$this->getLevel()->setBlock($down,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($center->getId() == self::STILL_WATER){
-  				$this->getLevel()->setBlock($center,new Block(self::AIR));
-  				$water = true;
-  			}
-			
-  			$i++;
-  			if($i == 8){
-  				$i = 0;
-  				$u = new Vector3($block->x,$block->y - 1,$block->z);
-  				$d = new Vector3($block->x,$block->y + 1,$block->z);
-  				if($this->getLevel()->getBlock($u)->getId() == self::WATER){
-  					$this->getLevel()->setBlock($u,new Block(self::AIR));
-  					$water = true;
-  				}
-  				if($this->getLevel()->getBlock($d)->getId() == self::WATER){
-  					$this->getLevel()->setBlock($d,new Block(self::AIR));
-  					$water = true;
-  				}
-				
-  				if($this->getLevel()->getBlock($u)->getId() == self::STILL_WATER){
-  					$this->getLevel()->setBlock($u,new Block(self::AIR));
-  					$water = true;
-  				}
-  				if($this->getLevel()->getBlock($d)->getId() == self::STILL_WATER){
-  					$this->getLevel()->setBlock($d,new Block(self::AIR));
-  					$water = true;
-  				}
-				
-  				$t++;
-  				if($t == 3){
-  				$c++;
-  				$t = 1;	
-  				}
-  				}
-  			}else if($c == 2){
-  				 		$vec = [
-  		new Vector3($block->x + 2,$block->y,$block->z),
-  		 new Vector3($block->x,$block->y,$block->z + 2),
-  		 new Vector3($block->x - 2,$block->y,$block->z),
-  		 new Vector3($block->x,$block->y,$block->z - 2),
-  		 new Vector3($block->x + 2,$block->y,$block->z + 2),
-  		 new Vector3($block->x - 2,$block->y,$block->z - 2),
-  		 new Vector3($block->x + 2,$block->y,$block->z - 2),
-  		 new Vector3($block->x - 2,$block->y,$block->z + 2),
-  		 new Vector3($block->x - 2,$block->y,$block->z + 1),
-  		 new Vector3($block->x - 1,$block->y,$block->z + 2),
-  		 new Vector3($block->x + 2,$block->y,$block->z - 1),
-  		 new Vector3($block->x + 1,$block->y,$block->z - 2),
-  		 new Vector3($block->x - 1,$block->y,$block->z - 2),
-  		 new Vector3($block->x + 1,$block->y,$block->z + 2),
-  		 new Vector3($block->x - 2,$block->y,$block->z - 1),
-  		 new Vector3($block->x + 2,$block->y,$block->z + 1)
-  		];
-  			 $up = $this->getLevel()->getBlock(new Vector3($vec[$i]->x,$vec[$i]->y + $t,$vec[$i]->z));
-  			 $down = $this->getLevel()->getBlock(new Vector3($vec[$i]->x,$vec[$i]->y - $t,$vec[$i]->z));
-  			 $center = $this->getLevel()->getBlock(new Vector3($vec[$i]->x,$vec[$i]->y,$vec[$i]->z));
-  			if($up->getId() == self::WATER){
-  				$this->getLevel()->setBlock($up,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($down->getId() == self::WATER){
-  				$this->getLevel()->setBlock($down,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($center->getId() == self::WATER){
-  				$this->getLevel()->setBlock($center,new Block(self::AIR));
-  				$water = true;
-  			}
-			
-			
-  			if($up->getId() == self::STILL_WATER){
-  				$this->getLevel()->setBlock($up,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($down->getId() == self::STILL_WATER){
-  				$this->getLevel()->setBlock($down,new Block(self::AIR));
-  				$water = true;
-  			}
-  			if($center->getId() == self::STILL_WATER){
-  				$this->getLevel()->setBlock($center,new Block(self::AIR));
-  				$water = true;
-  			}
-			
-  			$i++;
-  			if($i == 16){
-  				$i = 0;
-  				$u = new Vector3($block->x,$block->y - 2,$block->z);
-  				$d = new Vector3($block->x,$block->y + 2,$block->z);
-  				if($this->getLevel()->getBlock($u)->getId() == self::WATER){
-  					$this->getLevel()->setBlock($u,new Block(self::AIR));
-  					$water = true;
-  				}
-  				if($this->getLevel()->getBlock($d)->getId() == self::WATER){
-  					$this->getLevel()->setBlock($d,new Block(self::AIR));
-  					$water = true;
-  				}
-				
-				
-  				if($this->getLevel()->getBlock($u)->getId() == self::STILL_WATER){
-  					$this->getLevel()->setBlock($u,new Block(self::AIR));
-  					$water = true;
-  				}
-  				if($this->getLevel()->getBlock($d)->getId() == self::STILL_WATER){
-  					$this->getLevel()->setBlock($d,new Block(self::AIR));
-  					$water = true;
-  				}
-				
-  				$t++;
-  				if($t == 4) $c++;
-  				}
-  			}
-  		}
-  		if($water){
-  			$this->getLevel()->setBlock($block,new Block(self::SPONGE,1));
-  		}
-  	 }
-  	 return $type;
-  	}
- }
+
+	public function onUpdate($type){
+		if ($this->meta == 0) {
+			if($type === Level::BLOCK_UPDATE_NORMAL){
+				$blockAbove = $this->getSide(Vector3::SIDE_UP)->getId();
+				$blockBeneath = $this->getSide(Vector3::SIDE_DOWN)->getId();
+				$blockNorth = $this->getSide(Vector3::SIDE_NORTH)->getId();
+				$blockSouth = $this->getSide(Vector3::SIDE_SOUTH)->getId();
+				$blockEast = $this->getSide(Vector3::SIDE_EAST)->getId();
+				$blockWest = $this->getSide(Vector3::SIDE_WEST)->getId();
+
+				if($blockAbove === Block::WATER ||
+					$blockBeneath === Block::WATER ||
+					$blockNorth === Block::WATER ||
+					$blockSouth === Block::WATER ||
+					$blockEast === Block::WATER ||
+					$blockWest === Block::WATER){
+					$this->absorbWater($this);
+					$this->getLevel()->setBlock($this, Block::get(Block::SPONGE, 1), true, true);
+					return Level::BLOCK_UPDATE_NORMAL;
+				}
+				if($blockAbove === Block::STILL_WATER ||
+					$blockBeneath === Block::STILL_WATER ||
+					$blockNorth === Block::STILL_WATER ||
+					$blockSouth === Block::STILL_WATER ||
+					$blockEast === Block::STILL_WATER ||
+					$blockWest === Block::STILL_WATER){
+					$this->absorbWater($this);
+					$this->getLevel()->setBlock($this, Block::get(Block::SPONGE, 1), true, true);
+					return Level::BLOCK_UPDATE_NORMAL;
+				}
+			}
+			return false;
+		}
+	}
+
+	public function getName() : string{
+		static $names = [
+			0 => "Sponge",
+			1 => "Wet Sponge",
+		];
+		return $names[$this->meta & 0x0f];
+	}
+
+	public function getDrops(Item $item) : array {
+		return [
+			[$this->id, $this->meta & 0x0f, 1],
+		];
+	}
 }
