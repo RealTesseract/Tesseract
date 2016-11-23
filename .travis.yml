@@ -20,8 +20,8 @@ script:
  - ./ci.sh
  - cd /home/travis/build/TesseractTeam
  - cd /home/travis/build/TesseractTeam/Tesseract
- - mv /home/travis/build/TesseractTeam/Tesseract*.phar /home/travis/build/TesseractTeam/Tesseract/
+ - mv /home/travis/build/TesseractTeam/Tesseract/plugins/Tesseract/Tesseract*.phar /home/travis/build/TesseractTeam/Tesseract/
  - git remote set-url origin https://TesseractTeam:$PASSWORD@github.com/TesseractTeam/Tesseract.git
  - git add Tesseract*.phar
  - git commit -m "Build Complete for $TRAVIS_COMMIT [skip ci]"
- - git push origin travis-buold
+ - git push origin travis-build
