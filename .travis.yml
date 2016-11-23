@@ -15,7 +15,6 @@ before_script:
  - git remote set-url origin https://TesseractTeam:$PASSWORD@github.com/TesseractTeam/Tesseract.git
  - git config --global user.email "travis@travis.com"
  - git config --global user.name "Travis"
- - git rm AutoWhitelist*.phar
 
 script:
  - ./ci.sh
