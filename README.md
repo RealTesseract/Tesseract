@@ -1,6 +1,6 @@
 Tesseract 
 -------------
-__Travis-CI Build:__ [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)<br><br>
+__Travis-CI Build:__   [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)<br><br>
 The new advanced server software based on PocketMine-MP!
 
 Introduction
