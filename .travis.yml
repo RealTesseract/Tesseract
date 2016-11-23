@@ -3,6 +3,9 @@ sudo: true
 language: php
 php:
  - 7.0
+ 
+notifications: 
+ email: false
 
 before_script:
  - phpenv config-rm xdebug.ini
@@ -11,17 +14,6 @@ before_script:
  - pecl install channel://pecl.php.net/weakref-0.3.2
  - echo | pecl install channel://pecl.php.net/yaml-2.0.0RC7
  - chmod 777 ci.sh
- - git checkout -qf master
- - git remote set-url origin https://TesseractTeam:$PASSWORD@github.com/TesseractTeam/Tesseract.git
- - git config --global user.email "travis@travis.com"
- - git config --global user.name "Travis"
 
 script:
  - ./ci.sh
- - cd /home/travis/build/TesseractTeam
- - cd /home/travis/build/TesseractTeam/Tesseract
- - mv /home/travis/build/TesseractTeam/Tesseract/plugins/Tesseract/Tesseract*.phar /home/travis/build/TesseractTeam/Tesseract/
- - git remote set-url origin https://TesseractTeam:$PASSWORD@github.com/TesseractTeam/Tesseract.git
- - git add Tesseract*.phar
- - git commit -m "Build Complete for $TRAVIS_COMMIT [skip ci]"
- - git push origin travis-build
