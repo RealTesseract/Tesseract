@@ -1,4 +1,6 @@
-+<?php
+<?php
+
+ namespace pocketmine\level\particle;
 
 /*
  *
@@ -18,8 +20,6 @@
  *
  *
 */
- 
- namespace pocketmine\level\particle;
  
  use pocketmine\math\Vector3;
  

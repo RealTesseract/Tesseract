@@ -1617,12 +1617,12 @@ class Server{
 	}
 	
 	/**
-	 * API for checking if PROXY is enabled
+	  * API for checking if PROXY is enabled
 	 */
 	public function isProxyEnabled() : bool {
 		return (bool) $this->WingProxyConfig["enabled"];
-	}
-
+	} 
+	
 	/**
 	 * @return int
 	 *
@@ -1894,6 +1894,7 @@ class Server{
  			}else{		
  				$this->logger->notice("RakLib has been disabled by WingProxy disable-rak option");		
  			}
+			
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
 			$this->enablePlugins(PluginLoadOrder::STARTUP);
@@ -1997,9 +1998,11 @@ class Server{
 	 * @deprecated Use SynapsePM plugin instead
 	 * @return Synapse|null
 	 */
+	 
 	public function getProxy(){
 		return $this->WingProxy;
 	}
+	
 	/**
 	 * @param string        $message
 	 * @param Player[]|null $recipients
@@ -2345,7 +2348,7 @@ class Server{
  				$this->getLogger()->debug("Disconnecting from Proxy");		
  				$this->WingProxy->shutdown();		
  			}		
- 
+ 			
 			//$this->memoryManager->doObjectCleanup();
 
 			gc_collect_cycles();
@@ -2817,7 +2820,7 @@ class Server{
 		if($this->isProxyEnabled()){		
  			$this->WingProxy->tick();		
  		}
-
+		
 		if($this->rcon !== null){
 			$this->rcon->check();
 		}
