@@ -1,12 +1,4 @@
-Tesseract 
--------------
-##Builds
-
-__Travis-CI Build:__<br>
-[![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)
-
-
-Introduction
+Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** and **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** most of the original code was written by PocketMine Team and iTX Technologies.<br>
@@ -14,6 +6,11 @@ Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** and 
 Tools
 -------------
 * **[DevTools](https://github.com/PocketMine/DevTools)** - **Plugin and server development tools plugin**
+
+##Builds
+
+__Travis-CI Build:__<br>
+[![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)
 
 License
 -------------
