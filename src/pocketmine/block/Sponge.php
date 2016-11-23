@@ -81,6 +81,20 @@ class Sponge extends Solid{
   				$this->getLevel()->setBlock($center,new Block(self::AIR));
   				$water = true;
   			}
+			
+  			if($up->getId() == self::STILL_WATER){
+  				$this->getLevel()->setBlock($up,new Block(self::AIR));
+  				$water = true;
+  			}
+  			if($down->getId() == self::STILL_WATER){
+  				$this->getLevel()->setBlock($down,new Block(self::AIR));
+  				$water = true;
+  			}
+  			if($center->getId() == self::STILL_WATER){
+  				$this->getLevel()->setBlock($center,new Block(self::AIR));
+  				$water = true;
+  			}
+			
   			$i++;
   			if($i == 8){
   				$i = 0;
@@ -94,6 +108,16 @@ class Sponge extends Solid{
   					$this->getLevel()->setBlock($d,new Block(self::AIR));
   					$water = true;
   				}
+				
+  				if($this->getLevel()->getBlock($u)->getId() == self::STILL_WATER){
+  					$this->getLevel()->setBlock($u,new Block(self::AIR));
+  					$water = true;
+  				}
+  				if($this->getLevel()->getBlock($d)->getId() == self::STILL_WATER){
+  					$this->getLevel()->setBlock($d,new Block(self::AIR));
+  					$water = true;
+  				}
+				
   				$t++;
   				if($t == 3){
   				$c++;
@@ -134,6 +158,21 @@ class Sponge extends Solid{
   				$this->getLevel()->setBlock($center,new Block(self::AIR));
   				$water = true;
   			}
+			
+			
+  			if($up->getId() == self::STILL_WATER){
+  				$this->getLevel()->setBlock($up,new Block(self::AIR));
+  				$water = true;
+  			}
+  			if($down->getId() == self::STILL_WATER){
+  				$this->getLevel()->setBlock($down,new Block(self::AIR));
+  				$water = true;
+  			}
+  			if($center->getId() == self::STILL_WATER){
+  				$this->getLevel()->setBlock($center,new Block(self::AIR));
+  				$water = true;
+  			}
+			
   			$i++;
   			if($i == 16){
   				$i = 0;
@@ -147,6 +186,17 @@ class Sponge extends Solid{
   					$this->getLevel()->setBlock($d,new Block(self::AIR));
   					$water = true;
   				}
+				
+				
+  				if($this->getLevel()->getBlock($u)->getId() == self::STILL_WATER){
+  					$this->getLevel()->setBlock($u,new Block(self::AIR));
+  					$water = true;
+  				}
+  				if($this->getLevel()->getBlock($d)->getId() == self::STILL_WATER){
+  					$this->getLevel()->setBlock($d,new Block(self::AIR));
+  					$water = true;
+  				}
+				
   				$t++;
   				if($t == 4) $c++;
   				}
