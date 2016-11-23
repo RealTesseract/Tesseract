@@ -1889,11 +1889,14 @@ class Server{
 
 			$this->network->registerInterface(new RakLibInterface($this));
 
+			/**
+			* Error Raklib console lol !
 				if(!$this->WingProxyConfig["enabled"] or ($this->WingProxyConfig["enabled"] and !$this->WingProxyConfig["disable-rak"])){		
  				$this->network->registerInterface(new RakLibInterface($this));		
  			}else{		
  				$this->logger->notice("RakLib has been disabled by WingProxy disable-rak option");		
  			}
+			*/
 			
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
