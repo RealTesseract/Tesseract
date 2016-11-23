@@ -71,6 +71,10 @@ class WingProxy{
 		return $this->clientData;
 	}
 
+	public function getTesseractServer(){
+		return $this->server;
+	}
+	
 	public function getServerInstance(){
 		return $this->server;
 	}
@@ -173,7 +177,7 @@ class WingProxy{
 			$pid = ord($buffer{1});
 			$start++;
 		}
-		if(($data = $this->getGenisysServer()->getNetwork()->getPacket($pid)) === null){
+		if(($data = $this->getTesseractServer()->getNetwork()->getPacket($pid)) === null){
 			return null;
 		}
 		$data->setBuffer($buffer, $start);

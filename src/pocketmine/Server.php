@@ -371,7 +371,9 @@ class Server{
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
 	
+	/** @var WingProxy */
 	private $WingProxy = null;
+	
 	/**
 	 * @return string
 	 */
@@ -1887,16 +1889,11 @@ class Server{
 
 			$this->queryRegenerateTask = new QueryRegenerateEvent($this, 5);
 
-			$this->network->registerInterface(new RakLibInterface($this));
-
-			/**
-			* Error Raklib console lol !
-				if(!$this->WingProxyConfig["enabled"] or ($this->WingProxyConfig["enabled"] and !$this->WingProxyConfig["disable-rak"])){		
- 				$this->network->registerInterface(new RakLibInterface($this));		
- 			}else{		
- 				$this->logger->notice("RakLib has been disabled by WingProxy disable-rak option");		
- 			}
-			*/
+			if(!$this->WingProxyConfig["enabled"] or ($this->WingProxyConfig["enabled"] and !$this->WingProxyConfig["disable-rak"])){
+				$this->network->registerInterface(new RakLibInterface($this));
+			}else{
+				$this->logger->notice("RakLib has been disabled by WingProxy.disable-rak option");
+			}
 			
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
@@ -1983,6 +1980,10 @@ class Server{
 				$this,
 				"updateDServerInfo"
 			]), $this->dserverConfig["timer"]);
+			
+			if($this->isProxyEnabled()){
+				$this->WingProxy = new WingProxy($this, $this->WingProxyConfig);
+			}
 
 			if($cfgVer > $advVer){
 				$this->logger->notice("Your tesseract.yml needs update");
@@ -1998,12 +1999,16 @@ class Server{
 	}
 
 	/**
-	 * @deprecated Use SynapsePM plugin instead
-	 * @return Synapse|null
+	 * @return WingProxy
 	 */
 	 
 	public function getProxy(){
 		return $this->WingProxy;
+	}
+
+	//@Deprecated
+	public function transferPlayer(Player $player, $address, $port = 19132){
+		$this->logger->error("Use WingProxy instead");
 	}
 	
 	/**

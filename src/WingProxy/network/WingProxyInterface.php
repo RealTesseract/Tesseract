@@ -34,7 +34,7 @@ class WingProxyInterface{
 		$this->ip = $ip;
 		$this->port = $port;
 		$this->registerPackets();
-		$this->client = new WingProxyClient($server->getLogger(), $server->getGenisysServer()->getLoader(), $port, $ip);
+		$this->client = new WingProxyClient($server->getLogger(), $server->getTesseractServer()->getLoader(), $port, $ip);
 	}
 
 	public function getWingProxy(){
