@@ -57,21 +57,8 @@ class Chicken extends Animal{
 	}
 	
 	public function getDrops(){
-		$drops = [];
-		if ($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player) {
-			
-				switch (\mt_rand(0, 2)) {
-					case 0:
-						$drops[] = ItemItem::get(ItemItem::RAW_CHICKEN, 0, 1);
-						break;
-					case 1:
-						$drops[] = ItemItem::get(ItemItem::FEATHER, 0, 1);
-						break;
-					case 2:
-						$drops[] = ItemItem::get(ItemItem::FEATHER, 0, 2);
-						break;
-				}
-		}
+		$drops = array(ItemItem::get(ItemItem::RAW_CHICKEN, 0, mt_rand(1, 2)));
+		$drops[] = ItemItem::get(ItemItem::FEATHER, 0, mt_rand(1, 2));
 		return $drops;
 	}
 }
