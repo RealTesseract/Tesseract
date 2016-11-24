@@ -167,8 +167,8 @@ class Guardian extends WaterAnimal implements Ageable{
 	}
 
 	public function getDrops(){
-		$drops = [ItemItem::get(ItemItem::PRISMARINE_SHARD,0,mt_rand(1,2))];
-		//TO-DO: Add fishes by rarity as drops.
+		$drops = array(ItemItem::get(ItemItem::PRISMARINE_SHARD, 0, mt_rand(1, 2)));
+		$drops[] = ItemItem::get(ItemItem::RAW_FISH, 0, mt_rand(0, 1));
 		return $drops;
 	}
 }
