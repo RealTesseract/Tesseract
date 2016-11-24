@@ -13,7 +13,7 @@ __Travis-CI Build:__<br>
 [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)
 
 __Jenkins Build:__<br>
-[![Jenkins](http://jenkins.tesseractteam.tk:8080/buildStatus/icon?job=Tesseract)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
+[![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
 License
 -------------
