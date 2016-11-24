@@ -11,8 +11,10 @@ Tools
 
 __Travis-CI Build:__<br>
 [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)
-<br><br>__Jenkins Repo:__<br>
-__[Download phars](http://jenkins.tesseractteam.tk:8080/job/Tesseract/)__
+
+__Jenkins Build:__<br>
+[![Jenkins](http://jenkins.tesseractteam.tk:8080/buildStatus/icon?job=Tesseract)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
+
 License
 -------------
 
