@@ -23,6 +23,8 @@ namespace pocketmine\entity;
 
 use pocketmine\Player;
 use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\item\Item as ItemItem;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 
 class Witch extends Monster{
 	const NETWORK_ID = 45;
@@ -56,7 +58,8 @@ class Witch extends Monster{
 	}
 	
 	public function getDrops(){
-		//TODO
-		return [];
+		$drops = array(ItemItem::get(ItemItem::GLASS_BOTTLE, 0, mt_rand(0, 1)));
+		$drops[] = ItemItem::get(ItemItem::NETHER_WART, 0, mt_rand(0, 1));
+		return $drops;
 	}
 }
