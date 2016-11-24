@@ -9,9 +9,6 @@ Tools
 
 ##Builds
 
-__Travis-CI Build:__<br>
-[![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)
-
 __Jenkins Build:__<br>
 [![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
