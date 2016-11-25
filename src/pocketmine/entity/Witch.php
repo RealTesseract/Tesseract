@@ -56,10 +56,4 @@ class Witch extends Monster{
 		$player->dataPacket($pk);
 		parent::spawnTo($player);
 	}
-	
-	public function getDrops(){
-		$drops = array(ItemItem::get(ItemItem::GLASS_BOTTLE, 0, mt_rand(0, 1)));
-		$drops[] = ItemItem::get(ItemItem::NETHER_WART, 0, mt_rand(0, 1));
-		return $drops;
-	}
 }
