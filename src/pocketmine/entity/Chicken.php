@@ -57,8 +57,13 @@ class Chicken extends Animal{
 	}
 	
 	public function getDrops(){
-		$drops = array(ItemItem::get(ItemItem::RAW_CHICKEN, 0, mt_rand(1, 2)));
-		$drops[] = ItemItem::get(ItemItem::FEATHER, 0, mt_rand(1, 2));
+		$cause = $this->lastDamageCause;
+		$drops = [];
+		if($cause instanceof EntityDamageByEntityEvent and $cause->getDamager() instanceof Player){
+			$lootingL = $cause->getDamager()->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
+			$drops[] = ItemItem::get(ItemItem::RAW_CHICKEN, 0, mt_rand(0, 1 + $lootingL));
+			$drops[] = ItemItem::get(ItemItem::FEATHER, 0, mt_rand(1, 2 + $lootingL));
+		}
 		return $drops;
 	}
 }
