@@ -99,6 +99,8 @@ use pocketmine\utils\Binary;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\MainLogger;
 
+use pocketmine\network\protocol\CameraPacket;
+
 class Network {
 
 	public static $BATCH_THRESHOLD = 512;
@@ -383,5 +385,7 @@ class Network {
 		$this->registerPacket(ProtocolInfo::TEXT_PACKET, TextPacket::class);
 		$this->registerPacket(ProtocolInfo::UPDATE_BLOCK_PACKET, UpdateBlockPacket::class);
 		$this->registerPacket(ProtocolInfo::USE_ITEM_PACKET, UseItemPacket::class);
+		
+		$this->registerPacket(ProtocolInfo::CAMERA_PACKET, CameraPacket::class);
 	}
 }
