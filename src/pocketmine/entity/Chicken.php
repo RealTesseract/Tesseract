@@ -22,9 +22,11 @@
 namespace pocketmine\entity;
 
 use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\Player;
+use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\Player;
 use pocketmine\item\Item as ItemItem;
+use pocketmine\item\enchantment\Enchantment;
 
 class Chicken extends Animal{
 	const NETWORK_ID = 10;
