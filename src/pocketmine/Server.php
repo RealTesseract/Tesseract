@@ -178,6 +178,7 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
 
+//TODO use pocketmine\level\generator\ender\Ender;
 
 /**
  * The class that manages everything
@@ -1891,6 +1892,7 @@ class Server{
 			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
+			//TODO Generator::addGenerator(Ender::class, "ender");
 			Generator::addGenerator(Void::class, "void");
 			Generator::addGenerator(Normal2::class, "normal2");
 
