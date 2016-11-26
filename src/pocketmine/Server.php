@@ -1878,6 +1878,8 @@ class Server{
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
 			$this->enablePlugins(PluginLoadOrder::STARTUP);
+			
+			$this->network->registerInterface(new RakLibInterface($this));
 
 			LevelProviderManager::addProvider($this, Anvil::class);
 			LevelProviderManager::addProvider($this, McRegion::class);
