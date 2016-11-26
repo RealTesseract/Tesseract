@@ -178,11 +178,10 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
 
-<<<<<<< HEAD
 //TODO use pocketmine\level\generator\ender\Ender;
-=======
+
 use WingProxy\WingProxy;
->>>>>>> parent of 605cc62... Remove WingProxy to test Multicraft fixes
+
 
 /**
  * The class that manages everything
