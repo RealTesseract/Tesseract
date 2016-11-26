@@ -47,20 +47,6 @@ player:
  keep-experience: false
  #Radius of chunks in worlds, possibly for rendering, if players crash by too much processing, set this below 10. disable=-1
  chunk-radius: -1
-
-WingProxy:
- #If you are going to use WingProxy, this option should be turned on!
- enabled: false
- server-ip: 127.0.0.1
- server-port: 15058
- #If this server is the main server, set it as true
- is-main-server: true
- proxy-password: 32bitlongkey
- #A description for this client
- description: "A WingProxy client"
- #Disable RakLib means that players can only join via the proxy
- proxy-only: false
- 
  
 server:
  #This setting decides if the server.log file will not be made/written.

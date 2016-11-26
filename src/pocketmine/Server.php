@@ -178,7 +178,7 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
 
-use WingProxy\WingProxy;
+//TODO use pocketmine\level\generator\ender\Ender;
 
 /**
  * The class that manages everything
@@ -372,13 +372,9 @@ class Server{
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
-	public $WingProxyConfig = [];
 
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
-	
-	/** @var WingProxy */
-	private $WingProxy = null;
 	
 	/**
 	 * @return string
@@ -1613,23 +1609,7 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		
-		$this->WingProxyConfig = [		
- 			"enabled" => $this->getAdvancedProperty("WingProxy.enabled", false),		
- 			"server-ip" => $this->getAdvancedProperty("WingProxy.server-ip", "127.0.0.1"),		
- 			"server-port" => $this->getAdvancedProperty("WingProxy.server-port", 10305),		
- 			"isMainServer" => $this->getAdvancedProperty("WingProxy.is-main-server", true),		
- 			"password" => $this->getAdvancedProperty("WingProxy.proxy-password", "123456"),		
- 			"description" => $this->getAdvancedProperty("WingProxy.description", "A WingProxy client"),		
- 			"disable-rak" => $this->getAdvancedProperty("WingProxy.proxy-only", false),		
- 		];
 	}
-	
-	/**
-	  * API for checking if PROXY is enabled
-	 */
-	public function isProxyEnabled() : bool {
-		return (bool) $this->WingProxyConfig["enabled"];
-	} 
 	
 	/**
 	 * @return int
@@ -1894,16 +1874,12 @@ class Server{
 			register_shutdown_function([$this, "crashDump"]);
 
 			$this->queryRegenerateTask = new QueryRegenerateEvent($this, 5);
-
-			if(!$this->WingProxyConfig["enabled"] or ($this->WingProxyConfig["enabled"] and !$this->WingProxyConfig["disable-rak"])){
-				$this->network->registerInterface(new RakLibInterface($this));
-			}else{
-				$this->logger->notice("RakLib has been disabled by WingProxy.disable-rak option");
-			}
 			
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
 			$this->enablePlugins(PluginLoadOrder::STARTUP);
+			
+			$this->network->registerInterface(new RakLibInterface($this));
 
 			LevelProviderManager::addProvider($this, Anvil::class);
 			LevelProviderManager::addProvider($this, McRegion::class);
@@ -1918,6 +1894,7 @@ class Server{
 			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
+			//TODO Generator::addGenerator(Ender::class, "ender");
 			Generator::addGenerator(Void::class, "void");
 			Generator::addGenerator(Normal2::class, "normal2");
 
@@ -1986,10 +1963,6 @@ class Server{
 				$this,
 				"updateDServerInfo"
 			]), $this->dserverConfig["timer"]);
-			
-			if($this->isProxyEnabled()){
-				$this->WingProxy = new WingProxy($this, $this->WingProxyConfig);
-			}
 
 			if($cfgVer > $advVer){
 				$this->logger->notice("Your tesseract.yml needs update");
@@ -2004,18 +1977,6 @@ class Server{
 		}
 	}
 
-	/**
-	 * @return WingProxy
-	 */
-	 
-	public function getProxy(){
-		return $this->WingProxy;
-	}
-
-	//@Deprecated
-	public function transferPlayer(Player $player, $address, $port = 19132){
-		$this->logger->error("Use WingProxy instead");
-	}
 	
 	/**
 	 * @param string        $message
@@ -2357,11 +2318,6 @@ class Server{
 				$interface->shutdown();
 				$this->network->unregisterInterface($interface);
 			}
-
-			if($this->isProxyEnabled()){		
- 				$this->getLogger()->debug("Disconnecting from Proxy");		
- 				$this->WingProxy->shutdown();		
- 			}		
  			
 			//$this->memoryManager->doObjectCleanup();
 
@@ -2830,10 +2786,6 @@ class Server{
 
 		Timings::$connectionTimer->startTiming();
 		$this->network->processInterfaces();
-		
-		if($this->isProxyEnabled()){		
- 			$this->WingProxy->tick();		
- 		}
 		
 		if($this->rcon !== null){
 			$this->rcon->check();
