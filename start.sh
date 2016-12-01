@@ -52,6 +52,8 @@ if [ "$POCKETMINE_FILE" == "" ]; then
 		POCKETMINE_FILE="./PocketMine-iTX.phar"
 	elif [ -f ./Tesseract*.phar ]; then
 	    	POCKETMINE_FILE="./Tesseract*.phar"
+	elif [ -f ./Tesseract.phar ]; then
+	    	POCKETMINE_FILE="./Tesseract.phar"
 	elif [ -f ./PocketMine-MP.phar ]; then
 		POCKETMINE_FILE="./PocketMine-MP.phar"
 	elif [ -f ./src/pocketmine/PocketMine.php ]; then
