@@ -1897,12 +1897,6 @@ class Server{
 			register_shutdown_function([$this, "crashDump"]);
 
 			$this->queryRegenerateTask = new QueryRegenerateEvent($this, 5);
-
-			if(!$this->WingProxyConfig["enabled"] or ($this->WingProxyConfig["enabled"] and !$this->WingProxyConfig["disable-rak"])){
-				$this->network->registerInterface(new RakLibInterface($this));
-			}else{
-				$this->logger->notice("RakLib has been disabled by WingProxy.disable-rak option");
-			}
 			
 			$this->pluginManager->loadPlugins($this->pluginPath);
 
