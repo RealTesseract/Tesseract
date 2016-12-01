@@ -2670,8 +2670,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 				switch($packet->action){
 					case PlayerActionPacket::ACTION_START_BREAK:
-						//Fixes fire breaking in creative.
-						if(/*$this->lastBreak !== PHP_INT_MAX or */$pos->distanceSquared($this) > 10000){
+						if($this->lastBreak !== PHP_INT_MAX or $pos->distanceSquared($this) > 10000){
 							break;
 						}
 						$target = $this->level->getBlock($pos);
@@ -2681,6 +2680,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							$side = $target->getSide($packet->face);
 							if($side instanceof Fire){
 								$side->getLevel()->setBlock($side, new Air());
+								break;
 							}
 							$this->lastBreak = microtime(true);
 						}else{
@@ -3550,15 +3550,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 				break;
 			case ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET:
-				if($packet->gamemode !== $this->gamemode){
-					if(!$this->hasPermission("pocketmine.command.gamemode")){
-						$pk = new SetPlayerGameTypePacket();
-						$pk->gamemode = $this->gamemode & 0x01;
-						$this->dataPacket($pk);
-						$this->sendSettings();
-						break;
-					}
-					$this->setGamemode($packet->gamemode, true);
+				if($packet->gamemode !== ($this->gamemode & 0x01)){
+					$pk = new SetPlayerGameTypePacket();
+					$pk->gamemode = $this->gamemode & 0x01;
+					$this->dataPacket($pk);
+					$this->sendSettings();
 				}
 				break;
 			default:
