@@ -1411,8 +1411,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if(!$client){ //Gamemode changed by server, do not send for client changes
 			$pk = new SetPlayerGameTypePacket();
 			$pk->gamemode = $this->gamemode & 0x01;
-			$this->dataPacket($pk);
-			$this->sendSettings();
+			$this->dataPacket($pk);			
 		}else{
 			Command::broadcastCommandMessage($this, new TranslationContainer("commands.gamemode.success.self", [Server::getGamemodeString($gm)]));
 		}
@@ -1427,7 +1426,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk->slots = array_merge(Item::getCreativeItems(), $this->personalCreativeItems);
 			$this->dataPacket($pk);
 		}
-
+		
+		$this->sendSettings();
+		
 		$this->inventory->sendContents($this);
 		$this->inventory->sendContents($this->getViewers());
 		$this->inventory->sendHeldItem($this->hasSpawned);
