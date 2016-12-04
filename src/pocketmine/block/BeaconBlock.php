@@ -32,7 +32,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\tile\Tile;
 use pocketmine\math\Vector3;
 
- class Beacon extends Solid{
+ class BeaconBlock extends Solid{
  
  	protected $id = self::BEACON_BLOCK;
  
