@@ -21,41 +21,42 @@
 
 namespace pocketmine\block;
 
-//use pocketmine\inventory\BeaconInventory;
+use pocketmine\block\Block;
+use pocketmine\block\Solid;
 use pocketmine\item\Item;
 use pocketmine\Player;
-use pocketmine\item\Tool;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\ByteTag;
+use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\StringTag;
+use pocketmine\tile\Tile;
+use pocketmine\math\Vector3;
 
-class BeaconBlock extends Solid{
-
-	protected $id = self::BEACON_BLOCK;
-
-	public function __construct($meta = 0){
-		$this->meta = $meta;
-	}
-
-	/*public function canBeActivated() : bool{
-		return true;
-	}*/
-
-	public function getLightLevel(){
-		return 15;
-	}
-
-	public function getHardness(){
-		return 3;
-	}
-
-	public function getName() : string{
-        return "Beacon Block";
-	}
-
-	/*public function onActivate(Item $item, Player $player = null){
-		if($player instanceof Player){
-			$player->addWindow(new BeaconInventory($this));
-		}
-
-		return true;
-	}*/
-
-}
+ class Beacon extends Solid{
+ 
+ 	protected $id = self::BEACON_BLOCK;
+ 
+ 	public function __construct($meta = 0){
+ 		$this->meta = $meta;
+ 	}
+ 
+ 	public function canBeActivated(){
+ 		return false;
+ 	}
+ 
+ 	public function getName(){
+ 		return "Beacon";
+ 	}
+ 
+ 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
+ 		$this->getLevel()->setBlock($this, $this, true, true);
+ 		$nbt = new CompoundTag("", [
+ 			new StringTag("id", Tile::BEACON),
+ 			new IntTag("x", $block->x),
+ 			new IntTag("y", $block->y),
+ 			new IntTag("z", $block->z)
+ 		]);
+ 		$pot = Tile::createTile(Tile::BEACON, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+ 		return true;
+ 	}
+ }
