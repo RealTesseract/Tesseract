@@ -120,9 +120,6 @@ abstract class Entity extends Location implements Metadatable{
 	 * 58 (float)
 	 * 59 (float) */
 	
-	const DATA_LEAD_HOLDER = 38;
-	const DATA_LEAD = 24;
-	
 	const DATA_FLAG_ONFIRE = 0;
 	const DATA_FLAG_SNEAKING = 1;
 	const DATA_FLAG_RIDING = 2;
@@ -183,9 +180,8 @@ abstract class Entity extends Location implements Metadatable{
 		self::DATA_AIR => [self::DATA_TYPE_SHORT, 400],
 		self::DATA_MAX_AIR => [self::DATA_TYPE_SHORT, 400],
 		self::DATA_NAMETAG => [self::DATA_TYPE_STRING, ""],
-		//self::DATA_SILENT => [self::DATA_TYPE_BYTE, 0],
-		self::DATA_LEAD_HOLDER => [self::DATA_TYPE_LONG, -1],
-		self::DATA_LEAD => [self::DATA_TYPE_BYTE, 0],
+		self::DATA_LEAD_HOLDER_EID => [self::DATA_TYPE_LONG, -1],
+		self::DATA_SCALE => [self::DATA_TYPE_FLOAT, 1],
 	];
 
 	public $passenger = null;
