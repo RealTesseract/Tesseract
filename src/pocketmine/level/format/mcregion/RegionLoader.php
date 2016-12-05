@@ -292,9 +292,21 @@ class RegionLoader{
 
 	protected function createBlank(){
 		fseek($this->filePointer, 0);
-		ftruncate($this->filePointer, 8192);
+		ftruncate($this->filePointer, 0);
 		$this->lastSector = 1;
-		$this->locationTable = array_fill(0, 1024, [0, 0, 0]);
+		$table = "";
+		for($i = 0; $i < 1024; ++$i){
+			$this->locationTable[$i] = [0, 0];
+			$table .= Binary::writeInt(0);
+		}
+
+		$time = time();
+		for($i = 0; $i < 1024; ++$i){
+			$this->locationTable[$i][2] = $time;
+			$table .= Binary::writeInt($time);
+		}
+
+		fwrite($this->filePointer, $table, 4096 * 2);
 	}
 
 	public function getX(){
