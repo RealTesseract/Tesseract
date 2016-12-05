@@ -118,4 +118,4 @@ inventory:
  #Set this setting to true if you have problems with anvils. 
  #This will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
  #If enchants do not work on PE or Windows 10, please enable cheats.
- allow-cheats: true
+ allow-cheats: false
