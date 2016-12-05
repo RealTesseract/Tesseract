@@ -58,4 +58,5 @@
  			new IntTag("z", (int) $this->z)
  		]);
  	}
- 
+ }
+

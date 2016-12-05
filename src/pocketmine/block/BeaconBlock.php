@@ -40,7 +40,7 @@ use pocketmine\math\Vector3;
  		$this->meta = $meta;
  	}
  
- 	public function canBeActivated(){
+ 	public function canBeActivated() : bool{
  		return false;
  	}
  
