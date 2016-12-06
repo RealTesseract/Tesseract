@@ -362,9 +362,7 @@ class Server{
 	public $dserverPlayers = 0;
 	public $dserverAllPlayers = 0;
 	public $anvilEnabled = false;
-	public $antiFly = false;
 	public $asyncChunkRequest = true;
-	public $checkMovement = false;
 	public $keepExperience = false;
 	public $limitedCreative = true;
 	public $chunkRadius = -1;
@@ -1601,9 +1599,7 @@ class Server{
 			"serverList" => explode(";", $this->getAdvancedProperty("dserver.server-list", ""))
 		];
 		$this->getLogger()->setWrite(!$this->getAdvancedProperty("server.disable-log", false));
-		$this->antiFly = $this->getAdvancedProperty("server.anti-fly", true);
 		$this->asyncChunkRequest = $this->getAdvancedProperty("server.async-chunk-request", true);
-		$this->checkMovement = $this->getAdvancedProperty("server.check-movement", true);
 		$this->limitedCreative = $this->getAdvancedProperty("server.limited-creative", true);
 		$this->chunkRadius = $this->getAdvancedProperty("player.chunk-radius", -1);
 		$this->destroyBlockParticle = $this->getAdvancedProperty("server.destroy-block-particle", true);

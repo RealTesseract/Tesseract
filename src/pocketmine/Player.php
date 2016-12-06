@@ -1609,25 +1609,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$distanceSquared = $newPos->distanceSquared($this);
 
 		$revert = false;
-
-		if($this->server->checkMovement){
-			if(($distanceSquared / ($tickDiff ** 2)) > 200){
-				$revert = true;
-			}else{
-				if($this->chunk === null or !$this->chunk->isGenerated()){
-					$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
-					if($chunk === null or !$chunk->isGenerated()){
-						$revert = true;
-						$this->nextChunkOrderRun = 0;
-					}else{
-						if($this->chunk !== null){
-							$this->chunk->removeEntity($this);
-						}
-						$this->chunk = $chunk;
-					}
-				}
-			}
-		}else{
+			{
 			if($this->chunk === null or !$this->chunk->isGenerated()){
 				$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
 				if($chunk === null or !$chunk->isGenerated()){
@@ -1900,34 +1882,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}elseif($this->getLevel()->getWeather()->isRainy()){
 					if($this->getLevel()->canBlockSeeSky($this)){
 						$this->extinguish();
-					}
-				}
-			}
-
-			if($this->server->antiFly){
-				if(!$this->isSpectator() and $this->speed !== null){
-					if($this->onGround){
-						if($this->inAirTicks !== 0){
-							$this->startAirTicks = 5;
-						}
-						$this->inAirTicks = 0;
-					}else{
-						if(!$this->allowFlight and $this->inAirTicks > 10 and !$this->isSleeping() and !$this->isImmobile()){
-							//expectedVelocity here is not calculated correctly
-							//This causes players to fall too fast when bouncing on slime when antiFly is enabled
-							$expectedVelocity = (-$this->gravity) / $this->drag - ((-$this->gravity) / $this->drag) * exp(-$this->drag * ($this->inAirTicks - $this->startAirTicks));
-							$diff = ($this->speed->y - $expectedVelocity) ** 2;
-							if(!$this->hasEffect(Effect::JUMP) and $diff > 0.6 and $expectedVelocity < $this->speed->y and !$this->server->getAllowFlight()){
-								$this->setMotion($this->temporalVector->setComponents(0, $expectedVelocity, 0));
-								/*if($this->inAirTicks < 1000){
-
-								}elseif($this->kick("Flying is not enabled on this server")){
-									$this->timings->stopTiming();
-									return false;
-								}*/
-							}
-						}
-						++$this->inAirTicks;
 					}
 				}
 			}

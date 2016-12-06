@@ -12,7 +12,7 @@
 
 #Version 파일의 버전
 config:
- version: 24
+ version: 25
 
 level:
  #날씨 시스템을 켜는 경우 설정하세요
@@ -54,8 +54,6 @@ server:
  allow-snow-golem: false
  #server.log를 비활성화 하는 경우 고르세요
  disable-log: false
- #자동 비행 방지를 활성화 하는 경우 고르세요
- anti-fly: true
  #비동기 청크 요청을 활성화 하는 경우 고르세요
  async-chunk-request: true
  #플레이어가 참여할 때 뜨는 메시지를 고릅니다
@@ -63,8 +61,6 @@ server:
  player-msg-type: 0
  login-msg: "§3@player님이 게임에 참여했습니다"
  logout-msg: "§3@player님이 게임을 떠났습니다"
- #움직임 확인을 활성화 하는 경우 고르세요 (더 이상 뒤로 당겨지지 않음)
- check-movement: true
  #제한된 크리에이티브를 활성화 하는 경우 설정하세요 (아이템 드롭 불가, 상자 열기 불가 등)
  limited-creative: true
  #블럭 파괴 파티클을 추가하는 경우 설정하세요

@@ -12,7 +12,7 @@
 
 #Version of this file
 config:
- version: 26
+ version: 27
 
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
@@ -53,8 +53,6 @@ server:
  #You can set to True since it can help with disk space on a hosted server through computer
  #But it is suggested to turn it on if you have players online, so you can see what console sees basically
  disable-log: false
- #This setting decides if anti-fly detection will be enabled in the server
- anti-fly: true
  #This setting decides if the async chunks request will be enabled upon server loading/rebooting
  async-chunk-request: true
  #This setting chooses how to remind players when someone joins the game
@@ -62,10 +60,6 @@ server:
  player-msg-type: 0
  login-msg: "§3@player joined the game"
  logout-msg: "§3@player left the game"
- #This setting decides if movement checks are enabled (no more pull backs when moving)
- #However having a very high level for speed to move will still pull you back
- #Values that are very high will produce pull back (i.e.: 500+)
- check-movement: true
  #This setting decides if limited creative is enabled in game
  #If set to true true, then players cannot drop items from hotbar, cannot open chests, and so on
  limited-creative: true
