@@ -9,8 +9,9 @@ DIR="$(cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 # Change Directory
 cd "$DIR"
 
-# Loop starting
-# Don't edit this if you don't know what this does!
+# Choose if you want to loop (auto restart) the server after it is stopped
+# If the server does not automatically restart upon DO_LOOP = "yes", just wait a bit for it to load
+# If you try to restart manually before it loads automatically, RakLib issues will happen (it is a hard process to fix)
 
 DO_LOOP="no"
 
