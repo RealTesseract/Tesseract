@@ -481,9 +481,6 @@ namespace pocketmine {
 		$thread->quit();
 	}
 
-	$killer = new ServerKiller(8);
-	$killer->start();
-
 	$logger->shutdown();
 	$logger->join();
 
