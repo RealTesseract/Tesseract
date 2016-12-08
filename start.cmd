@@ -25,7 +25,7 @@ if exist Tesseract*.phar (
 		        pause
 		        exit 8
 		    )
-	    )
+	      )
 	)
 )
 
