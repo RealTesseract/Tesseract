@@ -124,7 +124,7 @@ LICENSE;
 		echo "[?] " . $this->lang->name_your_server . " (" . self::DEFAULT_NAME . "): ";
 		$server_name = $this->getInput(self::DEFAULT_NAME);
 		$config->set("server-name", $server_name);
-		$config->set("motd", $server_name); //MOTD is now used as server name
+		$config->set("motd", $server_name);
 		echo "[*] " . $this->lang->port_warning . "\n";
 		do{
 			echo "[?] " . $this->lang->server_port . " (" . self::DEFAULT_PORT . "): ";
@@ -150,10 +150,7 @@ LICENSE;
 			}
 		}while(!in_array($type, self::LEVEL_TYPES));
 		$config->set("level-type", $type);
-		
-		/*echo "[*] " . $this->lang->ram_warning . "\n";
-		echo "[?] " . $this->lang->server_ram . " (" . self::DEFAULT_MEMORY . "): ";
-		$config->set("memory-limit", ((int) $this->getInput(self::DEFAULT_MEMORY)) . "M");*/
+
 		echo "[*] " . $this->lang->gamemode_info . "\n";
 		do{
 			echo "[?] " . $this->lang->default_gamemode . ": (" . self::DEFAULT_GAMEMODE . "): ";
@@ -224,13 +221,6 @@ LICENSE;
 			$config->set("enable-rcon", false);
 		}
 
-		/*echo "[*] " . $this->lang->usage_info . "\n";
-		echo "[?] " . $this->lang->usage_disable . " (y/N): ";
-		if(strtolower($this->getInput("n")) === "y"){
-			$config->set("send-usage", false);
-		}else{
-			$config->set("send-usage", true);
-		}*/
 		$config->save();
 
 
