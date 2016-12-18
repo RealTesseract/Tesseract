@@ -1989,9 +1989,6 @@ class Server{
 				"updateDServerInfo"
 			]), $this->dserverConfig["timer"]);
 			
-			if($this->pluginManager->getPlugin('WingProxy') == null){
-				$this->logger->notice("WingProxy is not installed! Please install it from www.github.com/TesseractTeam/WingProxy");
-			}
 
 			if($cfgVer > $advVer){
 				$this->logger->notice("Your tesseract.yml needs update");
