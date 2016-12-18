@@ -2386,7 +2386,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				if($packet->face >= 0 and $packet->face <= 5){ //Use Block, place
 					$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ACTION, false);
 
-					if(!$this->canInteract($blockVector->add(0.5, 0.5, 0.5), 13) or $this->isSpectator()){
+					if($this->isSpectator()){
 
 					}elseif($this->isCreative()){
 						$item = $this->inventory->getItemInHand();
@@ -2636,7 +2636,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 				switch($packet->action){
 					case PlayerActionPacket::ACTION_START_BREAK:
-						if($this->lastBreak !== PHP_INT_MAX or $pos->distanceSquared($this) > 10000){
+						if($this->lastBreak !== PHP_INT_MAX){
 							break;
 						}
 						$target = $this->level->getBlock($pos);
@@ -2944,10 +2944,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$damage = [
 						EntityDamageEvent::MODIFIER_BASE => $item->getModifyAttackDamage($target),
 					];
-
-					if(!$this->canInteract($target, 8)){
-						$cancelled = true;
-					}elseif($target instanceof Player){
+					
+					if($target instanceof Player){
 						if(($target->getGamemode() & 0x01) > 0){
 							break;
 						}elseif($this->server->getConfigBoolean("pvp") !== true or $this->server->getDifficulty() === 0){
