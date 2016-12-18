@@ -151,6 +151,7 @@ use pocketmine\scheduler\DServerTask;
 use pocketmine\scheduler\FileWriteTask;
 use pocketmine\scheduler\SendUsageTask;
 use pocketmine\scheduler\ServerScheduler;
+use pocketmine\tile\Beacon;
 use pocketmine\tile\BrewingStand;
 use pocketmine\tile\Cauldron;
 use pocketmine\tile\Chest;
@@ -2954,6 +2955,7 @@ class Server{
 	}
 
 	private function registerTiles(){
+		Tile::registerTile(Beacon::class);
 		Tile::registerTile(BrewingStand::class);
 		Tile::registerTile(Cauldron::class);
 		Tile::registerTile(Chest::class);
