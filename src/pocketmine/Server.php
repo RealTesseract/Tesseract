@@ -1972,7 +1972,6 @@ class Server{
 
 			if($this->netherEnabled){
 				if(!$this->loadLevel($this->netherName)){
-					//$this->logger->info("正在生成地狱 ".$this->netherName);
 					$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
 				}
 				$this->netherLevel = $this->getLevelByName($this->netherName);
@@ -2034,6 +2033,13 @@ class Server{
 				return "true";
 			break;
 		}
+		    case '$type';
+			if(!extension_loaded($type)){
+				return "false";
+				
+			} else {
+				return "true";
+			}
 	}
 	}
 	
