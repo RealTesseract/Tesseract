@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir plugins
 curl -fsSL https://github.com/TesseractTeam/DevTools/releases/download/1/DevTools.phar
 echo Running lint...
 shopt -s globstar
