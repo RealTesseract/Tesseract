@@ -133,6 +133,7 @@ use pocketmine\network\Network;
 use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\CraftingDataPacket;
 use pocketmine\network\protocol\DataPacket;
+use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\network\protocol\PlayerListPacket;
 use pocketmine\network\query\QueryHandler;
 use pocketmine\network\RakLibInterface;
@@ -366,7 +367,6 @@ class Server{
 	public $keepExperience = false;
 	public $limitedCreative = true;
 	public $chunkRadius = -1;
-	public $destroyBlockParticle = true;
 	public $allowSplashPotion = true;
 	public $fireSpread = false;
 	public $advancedCommandSelector = false;
@@ -445,7 +445,7 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		return \pocketmine\MINECRAFT_VERSION;
+		return ProtocolInfo::MINECRAFT_VERSION;
 	}
 
 	/**
@@ -1556,7 +1556,7 @@ class Server{
     | |  __/\__ \__ \  __/ | | (_| | (__| |_ 
     |_|\___||___/___/\___|_|  \__,_|\___|\__|
     
-	MCPE: §b' . \pocketmine\MINECRAFT_VERSION . '
+	MCPE: §b' . ProtocolInfo::MINECRAFT_VERSION . '
 	';
 	
 		$this->getLogger()->info($string);

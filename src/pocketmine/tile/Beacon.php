@@ -38,10 +38,6 @@
  		parent::saveNBT();
  	}
  
- 	public function getName(){
- 		return "Beacon";
- 	}
- 
  	private function setChanged(){
  		$this->spawnToAll();
  		if($this->chunk instanceof FullChunk){
