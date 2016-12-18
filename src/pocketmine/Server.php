@@ -180,7 +180,6 @@ use pocketmine\utils\VersionString;
 
 //TODO use pocketmine\level\generator\ender\Ender;
 
-use WingProxy\WingProxy;
 
 
 /**
@@ -373,13 +372,9 @@ class Server{
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
-	public $WingProxyConfig = [];
 
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
-	
-	/** @var WingProxy */
-	private $WingProxy = null;
 	
 	/**
 	 * @return string
@@ -1612,22 +1607,13 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		
-		$this->WingProxyConfig = [		
- 			"enabled" => $this->getAdvancedProperty("WingProxy.enabled", false),		
- 			"server-ip" => $this->getAdvancedProperty("WingProxy.server-ip", "127.0.0.1"),		
- 			"server-port" => $this->getAdvancedProperty("WingProxy.server-port", 10305),		
- 			"isMainServer" => $this->getAdvancedProperty("WingProxy.is-main-server", true),		
- 			"password" => $this->getAdvancedProperty("WingProxy.proxy-password", "123456"),		
- 			"description" => $this->getAdvancedProperty("WingProxy.description", "A WingProxy client"),		
- 			"disable-rak" => $this->getAdvancedProperty("WingProxy.proxy-only", false),		
- 		];
 	}
 	
 	/**
 	  * API for checking if PROXY is enabled
 	 */
 	public function isProxyEnabled() : bool {
-		return (bool) $this->WingProxyConfig["enabled"];
+		return $this->getProxy() !== null;
 	} 
 	
 	/**
@@ -1983,8 +1969,8 @@ class Server{
 				"updateDServerInfo"
 			]), $this->dserverConfig["timer"]);
 			
-			if($this->isProxyEnabled()){
-				$this->WingProxy = new WingProxy($this, $this->WingProxyConfig);
+			if($this->pluginManager->getPlugin('WingProxy') == null){
+				$this->logger->notice("WingProxy is not installed! Please install it from www.github.com/TesseractTeam/WingProxy");
 			}
 
 			if($cfgVer > $advVer){
@@ -2005,14 +1991,13 @@ class Server{
 	 */
 	 
 	public function getProxy(){
-		return $this->WingProxy;
+		$plugin = $this->pluginManager->getPlugin('WingProxy');
+ 		if ($plugin === null or $plugin->isDisabled()) {
+ 			return null;
+ 		}
+ 		return $plugin->getProxy();
 	}
 
-	//@Deprecated
-	public function transferPlayer(Player $player, $address, $port = 19132){
-		$this->logger->error("Use WingProxy instead");
-	}
-	
 	/**
 	 * @param string        $message
 	 * @param Player[]|null $recipients
@@ -2353,11 +2338,6 @@ class Server{
 				$interface->shutdown();
 				$this->network->unregisterInterface($interface);
 			}
-
-			if($this->isProxyEnabled()){		
- 				$this->getLogger()->debug("Disconnecting from Proxy");		
- 				$this->WingProxy->shutdown();		
- 			}		
  			
 			//$this->memoryManager->doObjectCleanup();
 
@@ -2826,10 +2806,6 @@ class Server{
 
 		Timings::$connectionTimer->startTiming();
 		$this->network->processInterfaces();
-		
-		if($this->isProxyEnabled()){		
- 			$this->WingProxy->tick();		
- 		}
 		
 		if($this->rcon !== null){
 			$this->rcon->check();
