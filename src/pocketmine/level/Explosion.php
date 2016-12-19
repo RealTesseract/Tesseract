@@ -227,7 +227,7 @@ class Explosion{
 		$pk->radius = $this->size;
 		$pk->records = $send;
 		$this->level->addChunkPacket($source->x >> 4, $source->z >> 4, $pk);
-		
+
 		$this->level->addParticle(new HugeExplodeSeedParticle($source));
 
 		return true;

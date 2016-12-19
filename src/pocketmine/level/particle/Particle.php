@@ -64,11 +64,10 @@ abstract class Particle extends Vector3{
 	const TYPE_NOTE = 36;
 	//37 yet another SpellParticle of some description
 	const TYPE_CARROT = 38;
-	
+
 	/**
 	 * @return DataPacket|DataPacket[]
 	 */
 	abstract public function encode();
 
 }
-

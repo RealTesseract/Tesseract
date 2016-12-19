@@ -143,13 +143,13 @@ class McRegion extends BaseLevelProvider{
 				$extraData->putLInt($key);
 				$extraData->putLShort($value);
 			}
-			
-			$id = $chunk->getBlockIdArray();
- 
-  			$orderedId = str_repeat("\x00", 4096);
- 			$meta = $chunk->getBlockDataArray();
-  			$orderedMeta = str_repeat("\x00", 2048);
 
+			$id = $chunk->getBlockIdArray();
+
+ 			$orderedId = str_repeat("\x00", 4096);
+			$meta = $chunk->getBlockDataArray();
+ 			$orderedMeta = str_repeat("\x00", 2048);
+ 
  			$sections = [];
  			$sectionsCnt = 0;
  			$wasEmpty = true;
@@ -158,9 +158,9 @@ class McRegion extends BaseLevelProvider{
  				if($wasEmpty === true)
  					$empty = true;
  				else
-					$empty = false;
-
-  				for($xx = 0; $xx < 16; $xx++){
+ 					$empty = false;
+ 
+ 				for($xx = 0; $xx < 16; $xx++){
  					for($yy = 0; $yy < 16; $yy++){
  						for($zz = 0; $zz < 16; $zz++){
  							$ny = ($yy + 16 * $s);
@@ -169,29 +169,29 @@ class McRegion extends BaseLevelProvider{
  								$empty = false;
  							$orderedMeta{($xx << 7) | ($zz << 3) | ($yy >> 1)} = $meta{($xx << 10) | ($zz << 6) | ($ny >> 1)};
  						}
-  					}
- 				}
- 					
- 				if($empty === false){
-  					$wasEmpty = false;
-  					$sectionsCnt++;
+ 					}
+				}
+					
+				if($empty === false){
+ 					$wasEmpty = false;
+ 					$sectionsCnt++;
  					$sections[] =
  					chr(0) .// ??
  					$orderedId .
-  					$orderedMeta .
-  					str_repeat("\xff", 2048) .// SkyLight
-  					str_repeat("\xff", 2048);// Blocklight
-  				}
- 					
-  			}
-  
-  			$ordered =
-  				chr($sectionsCnt).
+ 					$orderedMeta .
+ 					str_repeat("\xff", 2048) .// SkyLight
+ 					str_repeat("\xff", 2048);// Blocklight
+ 				}
+					
+ 			}
+ 
+ 			$ordered =
+ 				chr($sectionsCnt).
 				implode('', array_reverse($sections)).
  				pack("C*", ...array_fill(0, 512, 127)).// ??
  				pack('N*', ...array_fill(0, 256, 0)).// ??
  				$extraData->getBuffer().
-  				$tiles;
+ 				$tiles;
 
 			$this->getLevel()->chunkRequestCallback($x, $z, $ordered);
 		}
