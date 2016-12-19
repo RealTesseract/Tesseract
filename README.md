@@ -3,10 +3,6 @@ Tesseract Introduction
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** and **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** most of the original code was written by PocketMine Team and iTX Technologies.<br>
 
-Tools
--------------
-* **[DevTools](https://github.com/PocketMine/DevTools)** - **Plugin and server development tools plugin**
-
 ##Builds
 
 __Jenkins Build:__<br>
