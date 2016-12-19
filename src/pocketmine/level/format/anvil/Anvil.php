@@ -25,14 +25,13 @@ use pocketmine\level\format\FullChunk;
 use pocketmine\level\format\mcregion\McRegion;
 use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\ByteArrayTag;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\tile\Spawnable;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\ChunkException;
-
 
 class Anvil extends McRegion{
 
@@ -76,42 +75,89 @@ class Anvil extends McRegion{
 			throw new ChunkException("Invalid Chunk sent");
 		}
 
-		if($this->getServer()->asyncChunkRequest){
-			$task = new ChunkRequestTask($this->getLevel(), $chunk);
-			$this->getServer()->getScheduler()->scheduleAsyncTask($task);
-		}else{
-			$tiles = "";
+		$tiles = "";
 
-			if(count($chunk->getTiles()) > 0){
-				$nbt = new NBT(NBT::LITTLE_ENDIAN);
-				$list = [];
-				foreach($chunk->getTiles() as $tile){
-					if($tile instanceof Spawnable){
-						$list[] = $tile->getSpawnCompound();
+		if(count($chunk->getTiles()) > 0){
+			$nbt = new NBT(NBT::LITTLE_ENDIAN);
+			$list = [];
+			foreach($chunk->getTiles() as $tile){
+				if($tile instanceof Spawnable){
+					$list[] = $tile->getSpawnCompound();
+				}
+			}
+			$nbt->setData($list);
+			$tiles = $nbt->write(true);
+		}
+
+		$extraData = new BinaryStream();
+		$extraData->putLInt(count($chunk->getBlockExtraDataArray()));
+		foreach($chunk->getBlockExtraDataArray() as $key => $value){
+			$extraData->putLInt($key);
+			$extraData->putLShort($value);
+		}
+
+		$csections = $chunk->getSections();
+		$orderedId = str_repeat("\x00", 4096);
+		$orderedMeta = str_repeat("\x00", 2048);
+
+		$sections = [];
+		$sectionsCnt = 0;
+		$wasEmpty = true;
+
+		for($s = 7; $s >= 0; $s--){
+			$id = $csections[$s]->getIdArray();
+			$meta = $csections[$s]->getDataArray();
+			if($wasEmpty === true)
+				$empty = true;
+			else
+				$empty = false;
+
+			for($xx = 0; $xx < 16; $xx++){
+				for($yy = 0; $yy < 16; $yy++){
+					for($zz = 0; $zz < 16; $zz++){
+						$orderedId{($xx << 8) | ($zz << 4) | $yy} = $cid = $id{($yy << 8) | ($zz << 4) | $xx};
+						$m = 0;
+						if($cid !== "\x00"){
+							if($empty === true)
+								$empty = false;
+
+							$m = ord($meta{($yy << 7) | ($zz << 3) | ($xx >> 1)});
+							if(($xx & 1) === 0)
+								$m &= 0x0f;
+							else
+								$m >>= 4;
+						}
+						$i = ($xx << 7) | ($zz << 3) | ($yy >> 1);
+						if(($yy & 1) === 0)
+							$orderedMeta{$i} = chr((ord($orderedMeta{$i}) & 0xf0) | $m);
+						else
+							$orderedMeta{$i} = chr($m << 4 | (ord($orderedMeta{$i}) & 0x0f));
 					}
 				}
-				$nbt->setData($list);
-				$tiles = $nbt->write(true);
 			}
 
-			$extraData = new BinaryStream();
-			$extraData->putLInt(count($chunk->getBlockExtraDataArray()));
-			foreach($chunk->getBlockExtraDataArray() as $key => $value){
-				$extraData->putLInt($key);
-				$extraData->putLShort($value);
+			if($empty === false){
+				$wasEmpty = false;
+				$sectionsCnt++;
+				$sections[] =
+					chr(0) .// ??
+					$orderedId .
+					$orderedMeta .
+					str_repeat("\xff", 2048) .// SkyLight
+					str_repeat("\xff", 2048);// Blocklight
 			}
 
-			$ordered = $chunk->getBlockIdArray() .
-				$chunk->getBlockDataArray() .
-				$chunk->getBlockSkyLightArray() .
-				$chunk->getBlockLightArray() .
-				pack("C*", ...$chunk->getHeightMapArray()) .
-				pack("N*", ...$chunk->getBiomeColorArray()) .
-				$extraData->getBuffer() .
-				$tiles;
-
-			$this->getLevel()->chunkRequestCallback($x, $z, $ordered, FullChunkDataPacket::ORDER_LAYERED);
 		}
+
+		$ordered =
+			chr($sectionsCnt).
+			implode('', array_reverse($sections)).
+			pack("C*", ...array_fill(0, 512, 127)).// ??
+			pack('N*', ...array_fill(0, 256, 0)).// ??
+			$extraData->getBuffer().
+			$tiles;
+
+		$this->getLevel()->chunkRequestCallback($x, $z, $ordered);
 
 		return null;
 	}
@@ -123,7 +169,7 @@ class Anvil extends McRegion{
 	 * @return RegionLoader
 	 */
 	protected function getRegion($x, $z){
-		return isset($this->regions[$index = Level::chunkHash($x, $z)]) ? $this->regions[$index] : null;
+		return $this->regions[Level::chunkHash($x, $z)] ?? null;
 	}
 
 	/**
