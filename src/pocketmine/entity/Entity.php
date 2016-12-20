@@ -154,6 +154,8 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_FLAG_BREATHING = 30; //hides bubbles if true
 	const DATA_FLAG_CHESTED = 31; //for mules?
 	const DATA_FLAG_STACKABLE = 32; //???
+	const DATA_LEAD_HOLDER = 38; // For BossEventPacket (don't touch !)
+	const DATA_LEAD = 24; // For BossEventPacket (don't touch !)
 
 	const SOUTH = 0;
 	const WEST = 1;
@@ -182,6 +184,8 @@ abstract class Entity extends Location implements Metadatable{
 		self::DATA_MAX_AIR => [self::DATA_TYPE_SHORT, 400],
 		self::DATA_NAMETAG => [self::DATA_TYPE_STRING, ""],
 		self::DATA_LEAD_HOLDER_EID => [self::DATA_TYPE_LONG, -1],
+		self::DATA_LEAD_HOLDER => [self::DATA_TYPE_LONG, -1],  // For BossEventPacket (don't touch !)
+		self::DATA_LEAD => [self::DATA_TYPE_BYTE, 0],  // For BossEventPacket (don't touch !)
 		self::DATA_SCALE => [self::DATA_TYPE_FLOAT, 1],
 	];
 
