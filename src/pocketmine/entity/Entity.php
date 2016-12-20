@@ -96,7 +96,6 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_POTION_COLOR = 8; //int (ARGB!)
 	const DATA_POTION_AMBIENT = 9; //byte
 
-	const DATA_LEAD = 24; //byte
 	/* 27 (byte) player-specific flags
 	 * 28 (int) player "index"? 
 	 * 29 (block coords) bed position */
@@ -187,7 +186,7 @@ abstract class Entity extends Location implements Metadatable{
 		self::DATA_LEAD_HOLDER_EID => [self::DATA_TYPE_LONG, -1],
 		self::DATA_LEAD_HOLDER => [self::DATA_TYPE_LONG, -1],  // For BossEventPacket (don't touch !)
 		self::DATA_LEAD => [self::DATA_TYPE_BYTE, 0],  // For BossEventPacket (don't touch !)
-		self::DATA_SCALE => [self::DATA_TYPE_FLOAT, 1]
+		self::DATA_SCALE => [self::DATA_TYPE_FLOAT, 1],
 	];
 
 	public $passenger = null;
