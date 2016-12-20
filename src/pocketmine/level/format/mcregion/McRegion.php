@@ -101,10 +101,6 @@ class McRegion extends BaseLevelProvider{
 		if(!($chunk instanceof Chunk)){
 			throw new ChunkException("Invalid Chunk sent");
 		}
-		if($this->getServer()->asyncChunkRequest){
-			$task = new ChunkRequestTask($this->getLevel(), $chunk);
-			$this->getServer()->getScheduler()->scheduleAsyncTask($task);
-		}else{
 			$tiles = "";
 			if(count($chunk->getTiles()) > 0){
 				$nbt = new NBT(NBT::LITTLE_ENDIAN);
@@ -172,8 +168,7 @@ class McRegion extends BaseLevelProvider{
  				$tiles;
 			$this->getLevel()->chunkRequestCallback($x, $z, $ordered);
 		}
-		return null;
-	}
+	
 	public function unloadChunks(){
 		foreach($this->chunks as $chunk){
 			$this->unloadChunk($chunk->getX(), $chunk->getZ(), false);
