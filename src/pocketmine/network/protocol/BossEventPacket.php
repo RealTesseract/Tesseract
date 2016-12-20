@@ -35,7 +35,7 @@ class BossEventPacket extends DataPacket{
 
 	public function encode(){
 		$this->reset();
-		$this->putEntityId($this->eid);
+		$this->putVarInt($this->eid);
 		$this->putUnsignedVarInt($this->type);
 	}
 }
