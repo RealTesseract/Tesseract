@@ -49,9 +49,7 @@ if [ "$PHP_BINARY" == "" ]; then
 fi
 
 if [ "$POCKETMINE_FILE" == "" ]; then
-	if [ -f ./PocketMine-iTX.phar ]; then
-		POCKETMINE_FILE="./PocketMine-iTX.phar"
-	elif [ -f ./Tesseract*.phar ]; then
+	if [ -f ./Tesseract*.phar ]; then
 	    	POCKETMINE_FILE="./Tesseract*.phar"
 	elif [ -f ./Tesseract.phar ]; then
 	    	POCKETMINE_FILE="./Tesseract.phar"
