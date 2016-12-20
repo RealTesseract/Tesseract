@@ -37,8 +37,8 @@ class UpdateBlockPacket extends DataPacket{
 	const FLAG_ALL_PRIORITY = (self::FLAG_ALL | self::FLAG_PRIORITY);
 
 	public $x;
-	public $z;
 	public $y;
+	public $z;
 	public $blockId;
 	public $blockData;
 	public $flags;

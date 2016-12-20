@@ -25,8 +25,8 @@ namespace pocketmine\network\protocol;
 
 class LevelSoundEventPacket extends DataPacket{
 	const NETWORK_ID = Info::LEVEL_SOUND_EVENT_PACKET;
-
-	//Thanks to PMMP.
+	
+	//Thanks to PMMP
 	const SOUND_ITEM_USE_ON = 0;
 	const SOUND_HIT = 1;
 	const SOUND_STEP = 2;

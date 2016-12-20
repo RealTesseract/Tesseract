@@ -19,40 +19,29 @@
  *
 */
 
-namespace pocketmine\network\protocol;
+namespace pocketmine\resourcepacks;
 
-#include <rules/DataPacket.h>
+class ResourcePackInfoEntry{
+	protected $packId; //UUID
+	protected $version;
+	protected $uint64; // unknown
 
-
-class UseItemPacket extends DataPacket{
-	const NETWORK_ID = Info::USE_ITEM_PACKET;
-
-	public $x;
-	public $y;
-	public $z;
-	public $face;
-	public $unknown;
-	public $item;
-	public $fx;
-	public $fy;
-	public $fz;
-	public $posX;
-	public $posY;
-	public $posZ;
-	public $slot;
-
-	public function decode(){
-		$this->getBlockCoords($this->x, $this->y, $this->z);
-		$this->unknown = $this->getUnsignedVarInt();
-		$this->face = $this->getVarInt();
-		$this->getVector3f($this->fx, $this->fy, $this->fz);
-		$this->getVector3f($this->posX, $this->posY, $this->posZ);
-		$this->slot = $this->getVarInt();
-		$this->item = $this->getSlot();
+	public function __construct(string $packId, string $version, $uint64){
+		$this->packId = $packId;
+		$this->version = $version;
+		$this->uint64 = $uint64;
 	}
 
-	public function encode(){
+	public function getPackId() : string{
+		return $this->packId;
+	}
 
+	public function getVersion() : string{
+		return $this->version;
+	}
+
+	public function getUint64(){
+		return $this->uint64;
 	}
 
 }

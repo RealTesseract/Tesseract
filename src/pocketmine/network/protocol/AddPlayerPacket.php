@@ -41,7 +41,6 @@ class AddPlayerPacket extends DataPacket{
 	public $speedY;
 	public $speedZ;
 	public $pitch;
-	public $headYaw;
 	public $yaw;
 	public $item;
 	public $metadata = [];
@@ -58,10 +57,12 @@ class AddPlayerPacket extends DataPacket{
 		$this->putEntityId($this->eid); //EntityRuntimeID
 		$this->putVector3f($this->x, $this->y, $this->z);
 		$this->putVector3f($this->speedX, $this->speedY, $this->speedZ);
-		$this->putLFloat($this->pitch);
-		$this->putLFloat($this->headYaw ?? $this->yaw);
+		//TODO: check these are in the right order
 		$this->putLFloat($this->yaw);
+		$this->putLFloat($this->yaw); //TODO headrot
+		$this->putLFloat($this->pitch);
 		$this->putSlot($this->item);
+
 		$meta = Binary::writeMetadata($this->metadata);
 		$this->put($meta);
 	}
