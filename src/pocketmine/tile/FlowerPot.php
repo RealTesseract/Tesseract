@@ -56,11 +56,7 @@ class FlowerPot extends Spawnable{
 	public function setFlowerPotData($item, $data){
 		$this->namedtag->item = new ShortTag("item", (int) $item);
 		$this->namedtag->mData = new IntTag("mData", (int) $data);
-		$this->spawnToAll();
-		if($this->chunk){
-			$this->chunk->setChanged();
-			$this->level->clearChunkCache($this->chunk->getX(), $this->chunk->getZ());
-		}
+        $this->onChanged();
 		return true;
 	}
 
@@ -70,8 +66,8 @@ class FlowerPot extends Spawnable{
 			new IntTag("x", (int) $this->x),
 			new IntTag("y", (int) $this->y),
 			new IntTag("z", (int) $this->z),
-			new ShortTag("item", (int) $this->namedtag["item"]),
-			new IntTag("mData", (int) $this->namedtag["mData"])
+			$this->namedtag->item,
+			$this->namedtag->mData
 		]);
 	}
 }
