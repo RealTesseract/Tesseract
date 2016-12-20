@@ -148,6 +148,7 @@ class Level implements ChunkManager, Metadatable{
 
 	const DIMENSION_NORMAL = 0;
 	const DIMENSION_NETHER = 1;
+	const DIMENSION_END = 2;
 
 	/** @var Tile[] */
 	private $tiles = [];
@@ -230,7 +231,6 @@ class Level implements ChunkManager, Metadatable{
 	private $blockMetadata;
 
 	private $useSections;
-
 	/** @var Position */
 	private $temporalPosition;
 	/** @var Vector3 */
@@ -339,8 +339,9 @@ class Level implements ChunkManager, Metadatable{
 
 	public static function getBlockXYZ($hash, &$x, &$y, &$z){
 		if(PHP_INT_SIZE === 8){
-			$x = ($hash >> 36);
-			$y = (($hash >> 28) & Level::Y_MASK);//it's always positive
+			$x = $hash >> 36;
+			//$x = ($hash >> 35) << 36 >> 36;
+			$y = ($hash >> 28) & Level::Y_MASK; //it's always positive
 			$z = ($hash & 0xFFFFFFF) << 36 >> 36;
 		}else{
 			$hash = explode(":", $hash);
@@ -1501,7 +1502,7 @@ class Level implements ChunkManager, Metadatable{
 	 */
 	public function setBlock(Vector3 $pos, Block $block, bool $direct = false, bool $update = true) : bool{
 		$pos = $pos->floor();
-		if($pos->y < 0 or $pos->y > 127){
+		if($pos->y < 0 or $pos->y >= 127){
 			return false;
 		}
 
@@ -2622,8 +2623,6 @@ class Level implements ChunkManager, Metadatable{
 		if(count($this->chunkSendQueue) > 0){
 			$this->timings->syncChunkSendTimer->startTiming();
 
-			$x = null;
-			$z = null;
 			foreach($this->chunkSendQueue as $index => $players){
 				if(isset($this->chunkSendTasks[$index])){
 					continue;
@@ -3095,10 +3094,7 @@ class Level implements ChunkManager, Metadatable{
 
 	public function doChunkGarbageCollection(){
 		$this->timings->doChunkGC->startTiming();
-
-		$X = null;
-		$Z = null;
-
+		
 		foreach($this->chunks as $index => $chunk){
 			if(!isset($this->unloadQueue[$index])){
 				Level::getXZ($index, $X, $Z);
