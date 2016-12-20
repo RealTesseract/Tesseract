@@ -138,8 +138,6 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 	public function setItem($index, Item $item){
 		$i = $this->getSlotIndex($index);
 
-		$d = NBT::putItemHelper($item, $index);
-
 		if($item->getId() === Item::AIR or $item->getCount() <= 0){
 			if($i >= 0){
 				unset($this->namedtag->Items[$i]);
