@@ -26,7 +26,7 @@ namespace pocketmine\network\protocol;
 
 class PlayerFallPacket extends DataPacket{
 	const NETWORK_ID = Info::PLAYER_FALL_PACKET;
-	publi $fallDistance = -1;
+	public $fallDistance = -1;
 
 	public $unknown; //betting this is fall distance, but let's make sure first
 
