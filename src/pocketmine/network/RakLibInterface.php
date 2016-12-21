@@ -189,7 +189,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 		$this->interface->sendOption("name",
 			"MCPE;" . addcslashes($name, ";") . ";" .
 			ProtocolInfo::CURRENT_PROTOCOL . ";" .
-			\pocketmine\MINECRAFT_VERSION_NETWORK . ";" .
+			ProtocolInfo::MINECRAFT_VERSION_NETWORK . ";" .
 			$poc . ";" .
 			$pc
 		);
