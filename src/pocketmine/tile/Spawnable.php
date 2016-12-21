@@ -20,7 +20,7 @@
 
 namespace pocketmine\tile;
 
-use pocketmine\level\format\Chunk;
+use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\BlockEntityDataPacket;
@@ -48,7 +48,7 @@ abstract class Spawnable extends Tile{
 	 */
 	public abstract function getSpawnCompound();
 	
-	public function __construct(Chunk $chunk, CompoundTag $nbt){
+	public function __construct(FullChunk $chunk, CompoundTag $nbt){
 		parent::__construct($chunk, $nbt);
 		$this->spawnToAll();
 	}
