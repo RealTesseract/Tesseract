@@ -9,7 +9,7 @@ Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** and 
 ##Builds
 
 __Jenkins Build:__<br>
-[![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
+[![Jenkins](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
 License
 -------------
