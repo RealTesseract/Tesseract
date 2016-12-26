@@ -984,7 +984,7 @@ abstract class Entity extends Location implements Metadatable{
 
 		$hasUpdate = false;
 
-		$this->checkBlockCollision();
+		//$this->checkBlockCollision();
 
 		if($this->y <= -16 and $this->isAlive()){
 			$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_VOID, 10);
@@ -1519,7 +1519,7 @@ abstract class Entity extends Location implements Metadatable{
 		return $this->blocksAround;
 	}
 
-	protected function checkBlockCollision(){
+	/*protected function checkBlockCollision(){
 		$vector = new Vector3(0, 0, 0);
 
 		foreach($blocksaround = $this->getBlocksAround() as $block){
@@ -1533,7 +1533,7 @@ abstract class Entity extends Location implements Metadatable{
 		}
 
 		if($this->getLevel()->getServer()->redstoneEnabled and !$this->isPlayer){
-			/** @var \pocketmine\block\PressurePlate $block * */
+			@var \pocketmine\block\PressurePlate $block
 			foreach($this->activatedPressurePlates as $key => $block){
 				if(!isset($blocksaround[$key])) $block->checkActivation();
 			}
@@ -1546,7 +1546,7 @@ abstract class Entity extends Location implements Metadatable{
 			$this->motionY += $vector->y * $d;
 			$this->motionZ += $vector->z * $d;
 		}
-	}
+	}*/
 
 	public function setPositionAndRotation(Vector3 $pos, $yaw, $pitch){
 		if($this->setPosition($pos) === true){
@@ -1750,12 +1750,12 @@ abstract class Entity extends Location implements Metadatable{
 			}
 		}
 
-		if($this->getLevel()->getServer()->redstoneEnabled){
-			/** @var \pocketmine\block\PressurePlate $block * */
+		/*if($this->getLevel()->getServer()->redstoneEnabled){
+			@var \pocketmine\block\PressurePlate $block
 			foreach($this->activatedPressurePlates as $key => $block){
 				$block->checkActivation();
 			}
-		}
+		}*/
 
 		$this->activatedPressurePlates = [];
 

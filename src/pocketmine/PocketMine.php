@@ -482,7 +482,11 @@ namespace pocketmine {
 	$logger->shutdown();
 	$logger->join();
 
-	echo "Server has stopped" . Terminal::$FORMAT_RESET . "\n";
+	//echo "Server has stopped" . Terminal::$FORMAT_RESET . "\n";
+
+	$logger->info(Utils::getThreadCount() . " threads has stopped");//add threads count
+
+	$logger->info("Server has stopped");
 
 	exit(0);
 

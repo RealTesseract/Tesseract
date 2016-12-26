@@ -2,11 +2,13 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *  _______                                _   
+ * |__   __|                              | |  
+ *    | | ___  ___ ___  ___ _ __ __ _  ___| |_ 
+ *    | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|
+ *    | |  __/\__ \__ \  __/ | | (_| | (__| |_ 
+ *    |_|\___||___/___/\___|_|  \__,_|\___|\__|
+ *                                             
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,16 +26,16 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class DoubleSlab extends Solid{
+class EndStoneBricks extends Solid{
 
-	protected $id = self::DOUBLE_SLAB;
+	protected $id = self::END_STONE_BRICKS;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
 	public function getHardness() {
-		return 2;
+		return 0.8;
 	}
 
 	public function getToolType(){
@@ -41,24 +43,13 @@ class DoubleSlab extends Solid{
 	}
 
 	public function getName() : string{
-		static $names = [
-			0 => "Stone",
-			1 => "Sandstone",
-			2 => "Wooden",
-			3 => "Cobblestone",
-			4 => "Brick",
-			5 => "Stone Brick",
-			6 => "Quartz",
-			7 => "Nether Brick",
-			7 => "Purpur",
-		];
-		return "Double " . $names[$this->meta & 0x07] . " Slab";
+		return "End Stone Bricks";
 	}
 
 	public function getDrops(Item $item) : array {
 		if($item->isPickaxe() >= 1){
 			return [
-				[Item::SLAB, $this->meta & 0x07, 2],
+				[Item::ENDSTONE_BRICKS, $this->meta & 0x03, 1],
 			];
 		}else{
 			return [];

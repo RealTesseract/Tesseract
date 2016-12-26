@@ -12,7 +12,7 @@
 
 #Phiên bản file cài đặt
 config:
- version: 25
+ version: 27
 
 level:
  #Chỉnh nếu muốn bật/tắt thời tiết (true/false)

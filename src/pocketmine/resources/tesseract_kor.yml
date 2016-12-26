@@ -12,7 +12,7 @@
 
 #Version 파일의 버전
 config:
- version: 25
+ version: 27
 
 level:
  #날씨 시스템을 켜는 경우 설정하세요

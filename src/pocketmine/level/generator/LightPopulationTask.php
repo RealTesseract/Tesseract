@@ -21,8 +21,7 @@
 
 namespace pocketmine\level\generator;
 
-use pocketmine\level\format\Chunk;
-use pocketmine\level\format\generic\Chunk;
+use pocketmine\level\format\Generic\Chunk;
 use pocketmine\level\Level;
 
 use pocketmine\scheduler\AsyncTask;

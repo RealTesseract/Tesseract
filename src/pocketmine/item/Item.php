@@ -248,6 +248,8 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::PRISMARINE_CRYSTALS] = PrismarineCrystals::class;
 			self::$list[self::NETHER_STAR] = NetherStar::class;
 
+			self::$list[self::CHORUS_FRUIT] = ChorusFruit::class;//add ChorusFruit
+
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){
 					self::$list[$i] = Block::$list[$i];

@@ -204,7 +204,13 @@ interface BlockIds{
 	const RED_SANDSTONE = 179;
 	const RED_SANDSTONE_STAIRS = 180;
 	const DOUBLE_RED_SANDSTONE_SLAB = 181;
+
+	const DOUBLE_PURPUR_SLAB = 181;//add DoublePurpurSlab
+
 	const RED_SANDSTONE_SLAB = 182;
+
+	const PURPUR_SLAB = 182;//add PurpurSlab
+
 	const SPRUCE_FENCE_GATE = 183; const FENCE_GATE_SPRUCE = 183;
 	const BIRCH_FENCE_GATE = 184; const FENCE_GATE_BIRCH = 184;
 	const JUNGLE_FENCE_GATE = 185; const FENCE_GATE_JUNGLE = 185;
@@ -218,6 +224,17 @@ interface BlockIds{
 	const DARK_OAK_DOOR_BLOCK = 197;
 	const GRASS_PATH = 198;
 	const ITEM_FRAME_BLOCK = 199;
+
+	const CHORUS_FLOWER = 200;//add ChorusBlock
+
+	const PURPUR_BLOCK = 201;//add PurpurBlock
+
+	const PURPUR_STAIRS = 203;//add PurpurStairs
+
+	const END_STONE_BRICKS = 206;//add EndStoneBricks
+	const END_ROD = 208;//add EndRod
+
+	const CHORUS_PLANT = 240;//add ChorusPlant
 	
 	const PODZOL = 243;
 	const BEETROOT_BLOCK = 244;

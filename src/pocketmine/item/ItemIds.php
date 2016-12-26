@@ -197,13 +197,15 @@
 	const RAW_MUTTON = 423;
 	const COOKED_MUTTON = 424;
   //const BANNER = 425;
-  //? = 426;
+  //const END_CRYSTAL = 426;
 	const SPRUCE_DOOR = 427;
 	const BIRCH_DOOR = 428;
 	const JUNGLE_DOOR = 429;
 	const ACACIA_DOOR = 430;
 	const DARK_OAK_DOOR = 431;
-  //const CHORUS_FRUIT = 432;
+
+	const CHORUS_FRUIT = 432;//add ChorusFruit
+
   //const POPPED_CHORUS_FRUIT = 433;
   //const DRAGONS_BREATH = 437;
 	const SPLASH_POTION = 438;

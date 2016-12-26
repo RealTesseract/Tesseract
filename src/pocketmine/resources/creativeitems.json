@@ -1818,6 +1818,42 @@
         "nbt": ""
     },
     {
+        "id": 200,
+        "damage": 0,
+        "count": 1,
+        "nbt": ""
+    },
+    {
+        "id": 201,
+        "damage": 0,
+        "count": 1,
+        "nbt": ""
+    },
+    {
+        "id": 203,
+        "damage": 0,
+        "count": 1,
+        "nbt": ""
+    },
+    {
+        "id": 206,
+        "damage": 0,
+        "count": 1,
+        "nbt": ""
+    },
+    {
+        "id": 208,
+        "damage": 0,
+        "count": 1,
+        "nbt": ""
+    },
+    {
+        "id": 240,
+        "damage": 0,
+        "count": 1,
+        "nbt": ""
+    },
+    {
         "id": 391,
         "damage": 0,
         "count": 1,
