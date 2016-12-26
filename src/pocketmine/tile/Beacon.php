@@ -21,7 +21,7 @@
 
  namespace pocketmine\tile;
  
- use pocketmine\level\format\FullChunk;
+ use pocketmine\level\format\Chunk;
  use pocketmine\nbt\tag\CompoundTag;
  use pocketmine\nbt\tag\IntTag;
  use pocketmine\nbt\tag\StringTag;
@@ -30,7 +30,7 @@
  
  class Beacon extends Spawnable{
  
- 	public function __construct(FullChunk $chunk, CompoundTag $nbt){
+ 	public function __construct(Chunk $chunk, CompoundTag $nbt){
  		parent::__construct($chunk, $nbt);
  	}
  
@@ -40,7 +40,7 @@
  
  	private function setChanged(){
  		$this->spawnToAll();
- 		if($this->chunk instanceof FullChunk){
+ 		if($this->chunk instanceof Chunk){
  			$this->chunk->setChanged();
  			$this->level->clearChunkCache($this->chunk->getX(), $this->chunk->getZ());
  		}

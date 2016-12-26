@@ -31,10 +31,10 @@ use pocketmine\entity\Arrow;
 use pocketmine\entity\Attribute;
 use pocketmine\entity\Bat;
 use pocketmine\entity\Blaze;
-use pocketmine\entity\BlazeFireball;
-use pocketmine\entity\BlueWitherSkull;
+//use pocketmine\entity\BlazeFireball;
+//use pocketmine\entity\BlueWitherSkull;
 use pocketmine\entity\Boat;
-use pocketmine\entity\Camera;
+//use pocketmine\entity\Camera;
 use pocketmine\entity\CaveSpider;
 use pocketmine\entity\Chicken;
 use pocketmine\entity\Cow;
@@ -42,19 +42,19 @@ use pocketmine\entity\Creeper;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Egg;
 use pocketmine\entity\Enderman;
-use pocketmine\entity\ElderGuardian;
+//use pocketmine\entity\ElderGuardian;
 use pocketmine\entity\Entity;
 use pocketmine\entity\FallingSand;
 use pocketmine\entity\FishingHook;
 use pocketmine\entity\Ghast;
-use pocketmine\entity\GhastFireball;
-use pocketmine\entity\Guardian;
+//use pocketmine\entity\GhastFireball;
+//use pocketmine\entity\Guardian;
 use pocketmine\entity\Human;
 use pocketmine\entity\Husk;
 use pocketmine\entity\IronGolem;
 use pocketmine\entity\Item as DroppedItem;
 use pocketmine\entity\LavaSlime;
-use pocketmine\entity\LeashKnot;
+//use pocketmine\entity\LeashKnot;
 use pocketmine\entity\Lightning;
 use pocketmine\entity\Minecart;
 use pocketmine\entity\MinecartChest;
@@ -80,8 +80,8 @@ use pocketmine\entity\ThrownExpBottle;
 use pocketmine\entity\ThrownPotion;
 use pocketmine\entity\Villager;
 use pocketmine\entity\Witch;
-use pocketmine\entity\Wither;
-use pocketmine\entity\WitherSkeleton;
+//use pocketmine\entity\Wither;
+//use pocketmine\entity\WitherSkeleton;
 use pocketmine\entity\Wolf;
 use pocketmine\entity\XPOrb;
 use pocketmine\entity\Zombie;
@@ -103,10 +103,11 @@ use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\EnchantmentLevelTable;
 use pocketmine\item\Item;
 use pocketmine\lang\BaseLang;
-use pocketmine\level\format\anvil\Anvil;
+use pocketmine\level\format\region\Anvil;
 use pocketmine\level\format\leveldb\LevelDB;
 use pocketmine\level\format\LevelProviderManager;
-use pocketmine\level\format\mcregion\McRegion;
+use pocketmine\level\format\region\McRegion;
+use pocketmine\level\format\region\PMAnvil;
 use pocketmine\level\generator\biome\Biome;
 use pocketmine\level\generator\Flat;
 use pocketmine\level\generator\Void;
@@ -1214,7 +1215,7 @@ class Server{
 			$generator = Generator::getGenerator($this->getLevelType());
 		}
 
-		if(($provider = LevelProviderManager::getProviderByName($providerName = $this->getProperty("level-settings.default-format", "anvil"))) === null){
+		if(($provider = LevelProviderManager::getProviderByName($providerName = $this->getProperty("level-settings.default-format", "pmanvil"))) === null){
 			$provider = LevelProviderManager::getProviderByName($providerName = "anvil");
 		}
 
@@ -1908,11 +1909,12 @@ class Server{
 			
 			$this->network->registerInterface(new RakLibInterface($this));
 
-			LevelProviderManager::addProvider($this, Anvil::class);
-			LevelProviderManager::addProvider($this, McRegion::class);
+			LevelProviderManager::addProvider(Anvil::class);
+			LevelProviderManager::addProvider(PMAnvil::class);
+			LevelProviderManager::addProvider(McRegion::class);
 			if(extension_loaded("leveldb")){
 				$this->logger->debug($this->getLanguage()->translateString("pocketmine.debug.enable"));
-				LevelProviderManager::addProvider($this, LevelDB::class);
+				LevelProviderManager::addProvider(LevelDB::class);
 			}
 
 
@@ -2952,10 +2954,10 @@ class Server{
 		Entity::registerEntity(Arrow::class);
 		Entity::registerEntity(Bat::class);
 		Entity::registerEntity(Blaze::class);
-		Entity::registerEntity(BlazeFireball::class);
-		Entity::registerEntity(BlueWitherSkull::class);
+		//Entity::registerEntity(BlazeFireball::class);
+		//Entity::registerEntity(BlueWitherSkull::class);
 		Entity::registerEntity(Boat::class);
-		Entity::registerEntity(Camera::class);
+		//Entity::registerEntity(Camera::class);
 		Entity::registerEntity(CaveSpider::class);
 		Entity::registerEntity(Chicken::class);
 		Entity::registerEntity(Cow::class);
@@ -2963,16 +2965,16 @@ class Server{
 		Entity::registerEntity(DroppedItem::class);
 		Entity::registerEntity(Egg::class);
 		Entity::registerEntity(Enderman::class);
-		Entity::registerEntity(ElderGuardian::class);
+		//Entity::registerEntity(ElderGuardian::class);
 		Entity::registerEntity(FallingSand::class);
 		Entity::registerEntity(FishingHook::class);
 		Entity::registerEntity(Ghast::class);
-		Entity::registerEntity(GhastFireball::class);
-		Entity::registerEntity(Guardian::class);
+		//Entity::registerEntity(GhastFireball::class);
+		//Entity::registerEntity(Guardian::class);
 		Entity::registerEntity(Husk::class);
 		Entity::registerEntity(IronGolem::class);
 		Entity::registerEntity(LavaSlime::class); //Magma Cube
-		Entity::registerEntity(LeashKnot::class);
+		//Entity::registerEntity(LeashKnot::class);
 		Entity::registerEntity(Lightning::class);
 		Entity::registerEntity(Minecart::class);
 		Entity::registerEntity(MinecartChest::class);
@@ -2998,8 +3000,8 @@ class Server{
 		Entity::registerEntity(ThrownPotion::class);
 		Entity::registerEntity(Villager::class);
 		Entity::registerEntity(Witch::class);
-		Entity::registerEntity(Wither::class);
-		Entity::registerEntity(WitherSkeleton::class);
+		//Entity::registerEntity(Wither::class);
+		//Entity::registerEntity(WitherSkeleton::class);
 		Entity::registerEntity(Wolf::class);
 		Entity::registerEntity(XPOrb::class);
 		Entity::registerEntity(Zombie::class);
