@@ -133,7 +133,6 @@ use pocketmine\network\Network;
 use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\CraftingDataPacket;
 use pocketmine\network\protocol\DataPacket;
-use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\PlayerListPacket;
 use pocketmine\network\query\QueryHandler;
 use pocketmine\network\RakLibInterface;
@@ -446,7 +445,7 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		return Info::MINECRAFT_VERSION;
+		return \pocketmine\MINECRAFT_VERSION;
 	}
 
 	/**
@@ -1675,9 +1674,9 @@ class Server{
 			}
 			
 			if(\Phar::running(true) === ""){
-			   $packages = "Src";
+			   $packages = "src";
 			} else {
-				$packages = "Phar";
+				$packages = "phar";
 			}
 
 			$this->dataPath = realpath($dataPath) . DIRECTORY_SEPARATOR;
@@ -1688,9 +1687,10 @@ class Server{
 
 			$version = new VersionString($this->getPocketMineVersion());
 			$this->version = $version;
+			$mcpe = $this->getVersion();
 			$code = $this->getCodename();
 		    $api = $this->getApiVersion();
-			$ip = "0.0.0.0";
+			$ip = Utils::getIP();
 			$port = "19132";
 			$proxy = $this->isProxyEnabled();
 			$ssl = $this->isExtensionInstalled("OpenSSL");
@@ -1709,18 +1709,19 @@ class Server{
 §e#§b    |_|\___||___/___/\___|_|  \__,_|\___|\__|
 §e#§b                                             
 §e#                                             
-§e# §bGitHub.com/TesseractTeam/Tesseract
+§e# §bwww.github.com/TesseractTeam/Tesseract
 §e#					   
 §e#  §6-- Loaded: Properties and Configuration. --
 §e#
 §e#  §cVersion: §d$version
+§e#  §cMCPE: §d$mcpe
 §e#  §cIP: §d$ip
 §e#  §cPort: §d$port
 §e#  §cProxy Enabled: §d$proxy
 §e#  §cSSL Extension: §d$ssl
 §e#  §cAuthentication: §d$mode
 §e#
-§e#  §cCode Name: §d$code
+§e#  §cCodename: §d$code
 §e#  §cAPI Version: §d$api
 §e#  §cLanguage: §d$lang
 §e#  §cPackage: §d$package
@@ -1860,7 +1861,7 @@ class Server{
 				@cli_set_process_title($this->getName() . " " . $this->getPocketMineVersion());
 			}
 
-			$this->logger->info(TextFormat::BLUE." Everything seems to be 'okay'. Server started!");
+			$this->logger->info(TextFormat::BLUE." Everything seems to be alright. Server started!");
 			$this->serverID = Utils::getMachineUniqueId($this->getIp() . $this->getPort());
 
 			$this->getLogger()->debug("Server unique id: " . $this->getServerUniqueId());
@@ -2046,10 +2047,10 @@ class Server{
 	
 	public function checkAuthentication(){
 	   if($this->isExtensionInstalled("OpenSSL") == "false"){
-		   return "Offline mode / Insecure";
+		   return "offline mode/insecure";
 		   
 	   } else {
-		   return "Online mode / Secure";
+		   return "online mode/secure";
 	   }
 	}
 	/**

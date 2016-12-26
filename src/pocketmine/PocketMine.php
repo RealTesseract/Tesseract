@@ -73,8 +73,12 @@ namespace pocketmine {
 	use pocketmine\wizard\Installer;
 
 	const VERSION = ""; //will be set by CI to a git hash
-	const API_VERSION = "2.1.0";
+	const API_VERSION = "3.0.0";
 	const CODENAME = "Crystal";
+	
+	//This method should no longer be used, removing soon
+	const MINECRAFT_VERSION = "v1.0.0";
+	const MINECRAFT_VERSION_NETWORK = "1.0.0";
 
 	/*
 	 * Startup code. Do not look at it, it may harm you.
