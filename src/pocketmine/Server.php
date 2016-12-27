@@ -42,6 +42,9 @@ use pocketmine\entity\Creeper;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Egg;
 use pocketmine\entity\Enderman;
+
+//use pocketmine\entity\EnderDragon;
+
 //use pocketmine\entity\ElderGuardian;
 use pocketmine\entity\Entity;
 use pocketmine\entity\FallingSand;
@@ -2965,6 +2968,9 @@ class Server{
 		Entity::registerEntity(DroppedItem::class);
 		Entity::registerEntity(Egg::class);
 		Entity::registerEntity(Enderman::class);
+
+		//Entity::registerEntity(EnderDragon::class);
+
 		//Entity::registerEntity(ElderGuardian::class);
 		Entity::registerEntity(FallingSand::class);
 		Entity::registerEntity(FishingHook::class);
