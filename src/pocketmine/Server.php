@@ -134,6 +134,7 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\CompressBatchedTask;
 use pocketmine\network\Network;
+use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\CraftingDataPacket;
 use pocketmine\network\protocol\DataPacket;
@@ -449,7 +450,7 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		return \pocketmine\MINECRAFT_VERSION;
+		return Info::MINECRAFT_VERSION;
 	}
 
 	/**
@@ -1691,9 +1692,10 @@ class Server{
 
 			$version = new VersionString($this->getPocketMineVersion());
 			$this->version = $version;
-			$mcpe = $this->getVersion();
+			//$mcpe = $this->getVersion();
+			$mcpe = $this->getVersion() . " (Protocol " . Info::CURRENT_PROTOCOL . ")";
 			$code = $this->getCodename();
-		    $api = $this->getApiVersion();
+			$api = $this->getApiVersion();
 			$ip = Utils::getIP();
 			$port = "19132";
 			$proxy = $this->isProxyEnabled();
@@ -1701,10 +1703,9 @@ class Server{
 			$mode = $this->checkAuthentication();
 			$lang = $this->getProperty("settings.language", "eng");
 			$package = $packages;
-			
-				 
+
 			            $this->logger->info("
-§e###############################################################			
+§e###############################################################
 §e#§b  _______                                _   
 §e#§b |__   __|                              | |  
 §e#§b    | | ___  ___ ___  ___ _ __ __ _  ___| |_ 
@@ -1712,7 +1713,7 @@ class Server{
 §e#§b    | |  __/\__ \__ \  __/ | | (_| | (__| |_ 
 §e#§b    |_|\___||___/___/\___|_|  \__,_|\___|\__|
 §e#§b                                             
-§e#                                             
+§e#
 §e# §bwww.github.com/TesseractTeam/Tesseract
 §e#					   
 §e#  §6-- Loaded: Properties and Configuration. --

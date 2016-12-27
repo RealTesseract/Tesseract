@@ -77,8 +77,8 @@ namespace pocketmine {
 	const CODENAME = "Crystal";
 	
 	//This method should no longer be used, removing soon
-	const MINECRAFT_VERSION = "v1.0.0";
-	const MINECRAFT_VERSION_NETWORK = "1.0.0";
+	/*const MINECRAFT_VERSION = "v1.0.0";
+	const MINECRAFT_VERSION_NETWORK = "1.0.0";*/
 
 	/*
 	 * Startup code. Do not look at it, it may harm you.
