@@ -139,7 +139,6 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::GOLD_CHESTPLATE] = GoldChestplate::class;
 			self::$list[self::GOLD_LEGGINGS] = GoldLeggings::class;
 			self::$list[self::GOLD_BOOTS] = GoldBoots::class;
-			self::$list[self::ELYTRA] = Elytra::class;
 			self::$list[self::DIAMOND_HELMET] = DiamondHelmet::class;
 			self::$list[self::DIAMOND_CHESTPLATE] = DiamondChestplate::class;
 			self::$list[self::DIAMOND_LEGGINGS] = DiamondLeggings::class;
