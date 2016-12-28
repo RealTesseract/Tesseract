@@ -21,10 +21,19 @@
 
 namespace pocketmine\plugin;
 
-/**
- * Handles different types of plugins
- */
-interface PluginLoader{
+use pocketmine\command\CommandSender;
+use pocketmine\command\Command;
+use pocketmine\event\Listener;
+use pocketmine\plugin\PluginBase;
+use pocketmine\Server;
+use pocketmine\Player;
+use pocketmine\item\Item;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\StringTag;
+use pocketmine\utils\BlockIterator;
+use pocketmine\item\enchantment\Enchantment;
+
+interface PluginLoader extends PluginBase implements Listener{
 
 	/**
 	 * Loads the plugin contained in $file
