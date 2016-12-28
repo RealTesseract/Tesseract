@@ -79,6 +79,7 @@ use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerToggleFlightEvent;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\event\player\PlayerToggleSprintEvent;
+use pocketmine\event\player\PlayerToggleGlideEvent;
 use pocketmine\event\player\PlayerUseFishingRodEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\event\server\DataPacketSendEvent;
@@ -2788,6 +2789,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 						$this->setSprinting(false);
 						$this->setSneaking(false);
+						$this->setGliding(false);
 
 						$this->extinguish();
 						$this->setDataProperty(self::DATA_AIR, self::DATA_TYPE_SHORT, 400);
@@ -2840,7 +2842,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						}
 						break 2;
 					case PlayerActionPacket::ACTION_STOP_SNEAK:
-						$ev = new PlayerToggleSneakEvent($this, false);
+						 
 						$this->server->getPluginManager()->callEvent($ev);
 						if($ev->isCancelled()){
 							$this->sendData($this);
@@ -2848,6 +2850,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							$this->setSneaking(false);
 						}
 						break 2;
+						case PlayerActionPacket::ACTION_START_GLIDE:
+ 						$ev = new PlayerToggleGlideEvent($this, true);
+ 						$this->server->getPluginManager()->callEvent($ev);
+ 						if($ev->isCancelled()){
+ 							$this->sendData($this);
+ 						}else{
+ 							$this->setGliding(true);
+ 						}
+ 						break 2;
+ 					case PlayerActionPacket::ACTION_STOP_GLIDE:
+ 						$ev = new PlayerToggleGlideEvent($this, false);
+ 						$this->server->getPluginManager()->callEvent($ev);
+ 						if($ev->isCancelled()){
+ 							$this->sendData($this);
+ 						}else{
+ 							$this->setGliding(false);
+ 						}
+ 						break 2;
 					case PlayerActionPacket::ACTION_JUMP:
 						break 2;
 				}
