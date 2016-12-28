@@ -13,9 +13,9 @@ __Jenkins Build:__<br>
 ## Quick Links (Instead of scrolling, click these!)
 
 __[Installation](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#installation)__ <br>
-__[Resources](https://github.com/TesseractTeam/Tesseract/blob/master/README.mdresources)__ <br>
+__[Resources](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#resources)__ <br>
 __[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#acknowledgements)__ <br>
-__[Licence](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#licence)__ <br>
+__[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
 __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
 
 <br>
