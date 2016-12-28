@@ -157,8 +157,9 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_FLAG_MOVING = 29;
 	const DATA_FLAG_BREATHING = 30; //hides bubbles if true
 	const DATA_FLAG_CHESTED = 31; //for mules?
-	const DATA_FLAG_STACKABLE = 32; //???
-
+	const DATA_FLAG_STACKABLE = 32;
+ 	const DATA_FLAG_IDLING = 36; //Thanks pmmp.
+	
 	const SOUTH = 0;
 	const WEST = 1;
 	const NORTH = 2;
@@ -442,6 +443,14 @@ abstract class Entity extends Location implements Metadatable{
 
 	public function isImmobile() : bool{
 		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_IMMOBILE);
+	}
+	public function isGliding(){
+ 		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_IDLING);
+ 	}
+ 
+ 	public function setGliding($value = true){
+		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_FALL_FLYING, (bool) $value);
+		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_IDLING, (bool) $value);
 	}
 	public function setImmobile($value = true) : bool{
 		return $this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_IMMOBILE, $value);
