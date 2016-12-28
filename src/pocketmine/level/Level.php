@@ -2728,7 +2728,8 @@ class Level implements ChunkManager, Metadatable{
 			return false;
 		}
 
-		if($this->provider->getProviderName() == "mcregion"){
+		//Undefined Function getBiomeColor (level\format\generic\GenericChunk.php)
+		/*if($this->provider->getProviderName() == "mcregion"){
 			if($chunk->getBiomeColor(0, 0) == [0, 0, 0]){
 				for($x = 0; $x < 16; ++$x){
 					for($z = 0; $z < 16; ++$z){
@@ -2739,7 +2740,7 @@ class Level implements ChunkManager, Metadatable{
 					}
 				}
 			}
-		}
+		}*/
 
 		$this->chunks[$index] = $chunk;
 		$chunk->initChunk();
