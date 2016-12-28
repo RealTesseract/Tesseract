@@ -25,7 +25,8 @@ __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Te
 
 **Self-installation:**<br>
 Supported platforms: Linux, Windows, OS X, Raspberry Pi, and ODROID <br>
-INSTALLATION WILL BE ADDED SOON<br>
+[Installation](https://github.com/TesseractTeam/Tesseract/wiki/Installation)<br>
+
 __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
 <br>
 
