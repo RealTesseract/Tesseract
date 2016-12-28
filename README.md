@@ -2,7 +2,7 @@
 Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
-Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** and **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** most of the original code was written by PocketMine Team and iTX Technologies.<br>
+<br>
 
 **Notice: Tesseract has been updated to support 1.0 but there are many bugs. Report any issues and we will try to fix them for you**
 
@@ -11,7 +11,42 @@ Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** and 
 __Jenkins Build:__<br>
 [![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
-License
+## Quick Links (Instead of scrolling, click these!)
+
+__[Installation](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#installation)__ <br>
+__[Resources](https://github.com/TesseractTeam/Tesseract/blob/master/README.mdresources)__ <br>
+__[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#acknowledgements)__ <br>
+__[Licence](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#licence)__ <br>
+__[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
+
+<br>
+
+## Installation
+
+**Self-installation:**<br>
+Supported platforms: Linux, Windows, OS X, Raspberry Pi, and ODROID <br>
+INSTALLATION WILL BE ADDED SOON
+__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+<br>
+
+## Resources
+
+**External Links**
+     Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are on windows).
+     Download it 
+*__[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
+__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+<br>
+
+
+## Acknowledgements
+
+- Tesseract is a "spoon" of **[Genisys](https://github.com/iTXTech/Genisys)** 
+- Tesseract is also a "spoon" of **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** 
+- Most of the original code was written by PocketMine Team and iTX Technologies. <br>
+__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)
+
+## License
 -------------
 
 	This program is free software: you can redistribute it and/or modify
@@ -27,7 +62,7 @@ License
 	You should have received a copy of the GNU Lesser General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Third-party Libraries/Protocols Used
+## Third-party Libraries/Protocols Used
 -------------
 * __[PHP Sockets](http://php.net/manual/en/book.sockets.php)__
 * __[PHP mbstring](http://php.net/manual/en/book.mbstring.php)__
