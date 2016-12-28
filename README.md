@@ -3,7 +3,6 @@ Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 <br>
-
 **Notice: Tesseract has been updated to support 1.0 but there are many bugs. Report any issues and we will try to fix them for you**
 
 ##Builds
@@ -36,6 +35,7 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
      Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are on windows).
      Download it 
 *__[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
+
 __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
 <br>
 
