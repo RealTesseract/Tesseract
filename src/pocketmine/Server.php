@@ -2340,6 +2340,10 @@ class Server{
 			$killer->start();
 			$killer->kill();
 		}*/
+		
+		$this->getPluginManager()->callEvent($ev = new ServerShutdownEvent());
+ 		if($ev->isCancelled(true)) return;
+		
 		$this->isRunning = false;
 		if($msg != ""){
 			$this->propertyCache["settings.shutdown-message"] = $msg;
