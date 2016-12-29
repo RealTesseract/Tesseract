@@ -17,12 +17,12 @@
  * @author iTX Technologies
  * @link https://itxtech.org
  *
- */
+*/
 
 namespace pocketmine\block;
 
 interface BlockIds{
-	
+
 	const AIR = 0;
 	const STONE = 1;
 	const GRASS = 2;
@@ -183,13 +183,13 @@ interface BlockIds{
 	const DOUBLE_WOOD_SLAB = 157; const DOUBLE_WOODEN_SLAB = 157; const DOUBLE_WOOD_SLABS = 157; const DOUBLE_WOODEN_SLABS = 157;
 	const WOOD_SLAB = 158; const WOODEN_SLAB = 158; const WOOD_SLABS = 158; const WOODEN_SLABS = 158;
 	const STAINED_CLAY = 159; const STAINED_HARDENED_CLAY = 159;
-	
+
 	const LEAVES2 = 161;
 	const WOOD2 = 162; const TRUNK2 = 162; const LOG2 = 162;
 	const ACACIA_WOOD_STAIRS = 163; const ACACIA_WOODEN_STAIRS = 163;
 	const DARK_OAK_WOOD_STAIRS = 164; const DARK_OAK_WOODEN_STAIRS = 164;
 	const SLIME_BLOCK = 165;
-	
+
 	const IRON_TRAPDOOR = 167;
 	const PRISMARINE_BLOCK = 168;
 	const SEA_LANTERN_BLOCK = 169;
@@ -199,24 +199,18 @@ interface BlockIds{
 	const COAL_BLOCK = 173;
 	const PACKED_ICE = 174;
 	const DOUBLE_PLANT = 175;
-	
+
 	const INVERTED_DAYLIGHT_SENSOR = 178; const DAYLIGHT_SENSOR_INVERTED = 178;
 	const RED_SANDSTONE = 179;
 	const RED_SANDSTONE_STAIRS = 180;
-	const DOUBLE_RED_SANDSTONE_SLAB = 181;
-
-	const DOUBLE_PURPUR_SLAB = 181;//add DoublePurpurSlab
-
-	const RED_SANDSTONE_SLAB = 182;
-
-	const PURPUR_SLAB = 182;//add PurpurSlab
-
+	const DOUBLE_RED_SANDSTONE_SLAB = 181; const DOUBLE_PURPUR_SLAB = 181;
+	const RED_SANDSTONE_SLAB = 182; const PURPUR_SLAB = 182;
 	const SPRUCE_FENCE_GATE = 183; const FENCE_GATE_SPRUCE = 183;
 	const BIRCH_FENCE_GATE = 184; const FENCE_GATE_BIRCH = 184;
 	const JUNGLE_FENCE_GATE = 185; const FENCE_GATE_JUNGLE = 185;
 	const DARK_OAK_FENCE_GATE = 186; const FENCE_GATE_DARK_OAK = 186;
 	const ACACIA_FENCE_GATE = 187; const FENCE_GATE_ACACIA = 187;
-	
+
 	const SPRUCE_DOOR_BLOCK = 193;
 	const BIRCH_DOOR_BLOCK = 194;
 	const JUNGLE_DOOR_BLOCK = 195;
@@ -224,18 +218,16 @@ interface BlockIds{
 	const DARK_OAK_DOOR_BLOCK = 197;
 	const GRASS_PATH = 198;
 	const ITEM_FRAME_BLOCK = 199;
+	const CHORUS_FLOWER = 200;
+	const PURPUR_BLOCK = 201;
 
-	const CHORUS_FLOWER = 200;//add ChorusBlock
+	const PURPUR_STAIRS = 203;
 
-	const PURPUR_BLOCK = 201;//add PurpurBlock
+	const END_STONE_BRICKS = 206;
+	const END_ROD = 208;
 
-	const PURPUR_STAIRS = 203;//add PurpurStairs
+	const CHORUS_PLANT = 240;
 
-	const END_STONE_BRICKS = 206;//add EndStoneBricks
-	const END_ROD = 208;//add EndRod
-
-	const CHORUS_PLANT = 240;//add ChorusPlant
-	
 	const PODZOL = 243;
 	const BEETROOT_BLOCK = 244;
 	const STONECUTTER = 245;

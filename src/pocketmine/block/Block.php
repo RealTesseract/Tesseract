@@ -25,8 +25,6 @@
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
-
-
 use pocketmine\event\block\BlockBurnEvent;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
@@ -39,7 +37,6 @@ use pocketmine\metadata\Metadatable;
 use pocketmine\metadata\MetadataValue;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
-
 
 class Block extends Position implements BlockIds, Metadatable{	
 
@@ -196,15 +193,14 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
 			self::$list[self::END_STONE] = EndStone::class;
 
-			self::$list[self::END_STONE_BRICKS] = EndStoneBricks::class;//add EndStoneBricks
-			self::$list[self::END_ROD] = EndRod::class;//add EndRod
+			self::$list[self::END_STONE_BRICKS] = EndStoneBricks::class;
+			self::$list[self::END_ROD] = EndRod::class;
 
-			self::$list[self::PURPUR_BLOCK] = PurpurBlock::class;//add PurpurBlock
+			self::$list[self::PURPUR_BLOCK] = PurpurBlock::class;
+			self::$list[self::PURPUR_STAIRS] = PurpurStairs::class;
 
-			self::$list[self::PURPUR_STAIRS] = PurpurStairs::class;//add PurpurStairs
-
-			self::$list[self::CHORUS_FLOWER] = ChorusFlower::class;//add ChorusFlower
-			self::$list[self::CHORUS_PLANT] = ChorusPlant::class;//add ChorusPlant
+			self::$list[self::CHORUS_FLOWER] = ChorusFlower::class;
+			self::$list[self::CHORUS_PLANT] = ChorusPlant::class;
 
 			self::$list[self::SANDSTONE_STAIRS] = SandstoneStairs::class;
 			self::$list[self::EMERALD_ORE] = EmeraldOre::class;
