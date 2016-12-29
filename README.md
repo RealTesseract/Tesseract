@@ -3,7 +3,7 @@ Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 <br>
-**Notice: Tesseract has been updated to support 1.0 but there are many bugs. Report any issues and we will try to fix them for you**
+## Notice: Effective 12/29/16 Tesseract is being discontinued. Software Alternatives: PMMP.
 
 ##Builds
 
