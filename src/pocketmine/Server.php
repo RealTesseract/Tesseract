@@ -2341,7 +2341,7 @@ class Server{
 			$killer->kill();
 		}*/
 		
-		$this->getPluginManager()->callEvent($ev = new ServerShutdownEvent());
+		$this->getPluginManager()->callEvent($ev = new event\server\ServerShutdownEvent());
  		if($ev->isCancelled(true)) return;
 		
 		$this->isRunning = false;
