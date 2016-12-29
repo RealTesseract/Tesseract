@@ -2842,7 +2842,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						}
 						break 2;
 					case PlayerActionPacket::ACTION_STOP_SNEAK:
-						 
+						$ev = new PlayerToggleSneakEvent($this, false);
 						$this->server->getPluginManager()->callEvent($ev);
 						if($ev->isCancelled()){
 							$this->sendData($this);
@@ -3351,7 +3351,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}
 
 					//Nasty hack. TODO: Get rid
-					$canCraft = true;//0.13.1大量物品本地配方出现问题,无法解决,使用极端(唯一)方法修复.
+					$canCraft = true;//0.13.1
 
 					/** @var Item[] $ingredients */
 					$ingredients = $packet->input;
