@@ -1732,10 +1732,11 @@ class Server{
 §e#  §cPackage: §d$package
 §e#################################################################");
 
-			if(!file_exists($this->dataPath . "pocketmine.yml")){
+			//not using (create empty pocketmine.yml??)
+			/*if(!file_exists($this->dataPath . "pocketmine.yml")){
 				$content = file_get_contents($this->filePath . "src/pocketmine/resources/pocketmine.yml");
 				@file_put_contents($this->dataPath . "pocketmine.yml", $content);
-			}
+			}*/
 			$nowLang = $this->getProperty("settings.language", "eng");
 
 			//Crashes unsupported builds without the correct configuration
