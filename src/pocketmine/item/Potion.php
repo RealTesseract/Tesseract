@@ -70,7 +70,7 @@ class Potion extends Item{
 	const STRENGTH_TWO = 33;
 	const WEAKNESS = 34;
 	const WEAKNESS_T = 35;
-	const DECAY = 36; //TODO
+	const DECAY = 36;
 	
 	//Structure: Potion ID => [matching effect, duration in ticks, amplifier]
 	//Use false if no effects.
@@ -123,7 +123,9 @@ class Potion extends Item{
 		self::STRENGTH_TWO => [Effect::STRENGTH, (90 * 20), 1],
 		
 		self::WEAKNESS => [Effect::WEAKNESS, (90 * 20), 0],
-		self::WEAKNESS_T => [Effect::WEAKNESS, (240 * 20), 0]
+		self::WEAKNESS_T => [Effect::WEAKNESS, (240 * 20), 0],
+
+		self::DECAY => [Effect::WITHER, (40 * 20), 0]
 	];
 	
 	public function __construct($meta = 0, $count = 1){
@@ -299,6 +301,7 @@ class Potion extends Item{
 			case self::WEAKNESS:
 			case self::WEAKNESS_T:
 				return "Potion of Weakness";
+			case self::DECAY:
 			default:
 				return "Potion";
 		}
