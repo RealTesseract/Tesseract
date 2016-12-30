@@ -3,6 +3,7 @@ Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 <br>
+### NOTE: Tesseract has been updated to Minecraft 1.0 but there are still a lot of bugs. Please report them in our issue tracker.
 
 ##Builds
 
