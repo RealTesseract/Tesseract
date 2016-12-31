@@ -8,7 +8,7 @@ Tesseract is the new advanced server software based on PocketMine-MP!<br>
 ##Builds
 
 __Jenkins Build:__<br>
-[![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
+[![Jenkins](http://jenkins.tesseractteam.tk:8080/job/Tesseract/badge/icon)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
 ## Quick Links (Instead of scrolling, click these!)
 
