@@ -513,7 +513,6 @@ class Level implements ChunkManager, Metadatable{
 	public function close(){
 
 		if($this->getAutoSave()) $this->save();
-		}
 
 		foreach($this->chunks as $chunk){
 			$this->unloadChunk($chunk->getX(), $chunk->getZ(), false);
