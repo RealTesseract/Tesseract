@@ -1696,8 +1696,7 @@ class Server{
 
 			$version = new VersionString($this->getPocketMineVersion());
 			$this->version = $version;
-			//$mcpe = $this->getVersion();
-			$mcpe = $this->getVersion() . " (Protocol " . Info::CURRENT_PROTOCOL . ")";
+			$mcpe = $this->getVersion() . " §c(Protocol: §d" . Info::CURRENT_PROTOCOL . "§c)";
 			$code = $this->getCodename();
 			$api = $this->getApiVersion();
 			$ip = Utils::getIP();
@@ -1709,32 +1708,20 @@ class Server{
 			$package = $packages;
 
 			            $this->logger->info("
-§e###############################################################
-§e#§b  _______                                _   
-§e#§b |__   __|                              | |  
-§e#§b    | | ___  ___ ___  ___ _ __ __ _  ___| |_ 
-§e#§b    | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|
-§e#§b    | |  __/\__ \__ \  __/ | | (_| | (__| |_ 
-§e#§b    |_|\___||___/___/\___|_|  \__,_|\___|\__|
-§e#§b                                             
-§e#
-§e# §bwww.github.com/TesseractTeam/Tesseract
-§e#					   
-§e#  §6-- Loaded: Properties and Configuration. --
-§e#
-§e#  §cVersion: §d$version
-§e#  §cMCPE: §d$mcpe
-§e#  §cIP: §d$ip
-§e#  §cPort: §d$port
-§e#  §cProxy Enabled: §d$proxy
-§e#  §cSSL Extension: §d$ssl
-§e#  §cAuthentication: §d$mode
-§e#
-§e#  §cCodename: §d$code
-§e#  §cAPI Version: §d$api
-§e#  §cLanguage: §d$lang
-§e#  §cPackage: §d$package
-§e#################################################################");
+§e###################################################  §6-- Loaded: Properties and Configuration --
+§e#                                                 #    §cVersion: §d$version
+§e#§b   _______                                _      §e#    §cMCPE: §d$mcpe
+§e#§b  |__   __|                              | |     §e#    §cIP: §d$ip §cPort: §d$port
+§e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cProxy Enabled: §d$proxy
+§e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cSSL Extension: §d$ssl
+§e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cAuthentication: §d$mode
+§e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#  ------------------------------------------
+§e#                                                 #    §cCodename: §d$code
+§e#                                                 #    §cAPI Version: §d$api
+§e#     §bwww.github.com/TesseractTeam/Tesseract      §e#    §cLanguage: §d$lang
+§e#					          #    §cPackage: §d$package
+§e###################################################  ------------------------------------------");
+");
 
 			$nowLang = $this->getProperty("settings.language", "eng");
 
