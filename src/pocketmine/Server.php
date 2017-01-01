@@ -1721,7 +1721,6 @@ class Server{
 §e#     §bwww.github.com/TesseractTeam/Tesseract      §e#    §cLanguage: §d$lang
 §e#					          #    §cPackage: §d$package
 §e###################################################  ------------------------------------------");
-");
 
 			$nowLang = $this->getProperty("settings.language", "eng");
 
