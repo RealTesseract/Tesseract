@@ -1,5 +1,5 @@
 #!/bin/bash
-curl -fsSL https://github.com/TesseractTeam/DevTools/releases/download/1/DevTools.phar -o plugins/DevTools.phar
+curl -fsSL https://github.com/TesseractTeam/DevTools/tree/master/src/DevTools -o plugins/DevTools.phar
 echo Running lint...
 shopt -s globstar
 for file in **/*.php; do
