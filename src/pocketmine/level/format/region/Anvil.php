@@ -23,15 +23,19 @@ declare(strict_types = 1);
 
 namespace pocketmine\level\format\region;
 
-use pocketmine\level\format\Chunk;
 use pocketmine\level\format\generic\GenericChunk;
 use pocketmine\level\format\generic\SubChunk;
-use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\{ByteArrayTag, ByteTag, CompoundTag, IntArrayTag, IntTag, ListTag, LongTag};
+use pocketmine\nbt\tag\{
+	ByteArrayTag,
+	ByteTag,
+	CompoundTag,
+	IntArrayTag,
+	IntTag,
+	ListTag,
+	LongTag
+};
 use pocketmine\Player;
-use pocketmine\tile\Spawnable;
-use pocketmine\utils\BinaryStream;
 use pocketmine\utils\ChunkException;
 use pocketmine\utils\MainLogger;
 
@@ -53,16 +57,16 @@ class Anvil extends McRegion{
 		$nbt->Sections = new ListTag("Sections", []);
 		$nbt->Sections->setTagType(NBT::TAG_Compound);
 		$subChunks = -1;
-		foreach($chunk->getSubChunks() as $subChunk){
+		foreach($chunk->getSubChunks() as $y => $subChunk){
 			if($subChunk->isEmpty()){
 				continue;
 			}
 			$nbt->Sections[++$subChunks] = new CompoundTag(null, [
-				"Y"          => new ByteTag("Y", $subChunk->getY()),
-				"Blocks"     => new ByteArrayTag("Blocks",     GenericChunk::reorderByteArray($subChunk->getBlockIdArray())), //Generic in-memory chunks are currrently always XZY
+				"Y"          => new ByteTag("Y", $y),
+				"Blocks"     => new ByteArrayTag("Blocks",     GenericChunk::reorderByteArray($subChunk->getBlockIdArray())), //Generic in-memory chunks are currently always XZY
 				"Data"       => new ByteArrayTag("Data",       GenericChunk::reorderNibbleArray($subChunk->getBlockDataArray())),
-				"BlockLight" => new ByteArrayTag("BlockLight", GenericChunk::reorderNibbleArray($subChunk->getBlockLightArray())),
-				"SkyLight"   => new ByteArrayTag("SkyLight",   GenericChunk::reorderNibbleArray($subChunk->getSkyLightArray()))
+				"SkyLight"   => new ByteArrayTag("SkyLight",   GenericChunk::reorderNibbleArray($subChunk->getSkyLightArray())),
+				"BlockLight" => new ByteArrayTag("BlockLight", GenericChunk::reorderNibbleArray($subChunk->getBlockLightArray()))
 			]);
 		}
 
@@ -116,12 +120,11 @@ class Anvil extends McRegion{
 			if($chunk->Sections instanceof ListTag){
 				foreach($chunk->Sections as $subChunk){
 					if($subChunk instanceof CompoundTag){
-						$subChunks[] = new SubChunk(
-							$subChunk->Y->getValue(),
+						$subChunks[$subChunk->Y->getValue()] = new SubChunk(
 							GenericChunk::reorderByteArray($subChunk->Blocks->getValue()),
 							GenericChunk::reorderNibbleArray($subChunk->Data->getValue()),
-							GenericChunk::reorderNibbleArray($subChunk->BlockLight->getValue()),
-							GenericChunk::reorderNibbleArray($subChunk->SkyLight->getValue())
+							GenericChunk::reorderNibbleArray($subChunk->SkyLight->getValue()),
+							GenericChunk::reorderNibbleArray($subChunk->BlockLight->getValue())
 						);
 					}
 				}
@@ -140,10 +143,10 @@ class Anvil extends McRegion{
 				$chunk["xPos"],
 				$chunk["zPos"],
 				$subChunks,
-				$chunk->Entities->getValue(),
-				$chunk->TileEntities->getValue(),
+				isset($chunk->Entities) ? $chunk->Entities->getValue() : [],
+				isset($chunk->TileEntities) ? $chunk->TileEntities->getValue() : [],
 				$biomeIds,
-				$chunk->HeightMap->getValue()
+				isset($chunk->HeightMap) ? $chunk->HeightMap->getValue() : []
 			);
 			$result->setLightPopulated(isset($chunk->LightPopulated) ? ((bool) $chunk->LightPopulated->getValue()) : false);
 			$result->setPopulated(isset($chunk->TerrainPopulated) ? ((bool) $chunk->TerrainPopulated->getValue()) : false);

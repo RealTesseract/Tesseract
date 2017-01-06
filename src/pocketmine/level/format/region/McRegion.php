@@ -24,16 +24,23 @@ declare(strict_types = 1);
 namespace pocketmine\level\format\region;
 
 use pocketmine\level\format\Chunk;
-use pocketmine\level\format\LevelProvider;
 use pocketmine\level\format\generic\GenericChunk;
 use pocketmine\level\format\generic\SubChunk;
 use pocketmine\level\format\generic\BaseLevelProvider;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\{ByteArrayTag, ByteTag, CompoundTag, IntArrayTag, IntTag, ListTag, LongTag, StringTag};
+use pocketmine\nbt\tag\{
+	ByteArrayTag,
+	ByteTag,
+	CompoundTag,
+	IntArrayTag,
+	IntTag,
+	ListTag,
+	LongTag,
+	StringTag
+};
 use pocketmine\Player;
-use pocketmine\utils\ChunkException;
 use pocketmine\utils\MainLogger;
 
 class McRegion extends BaseLevelProvider{
@@ -64,16 +71,17 @@ class McRegion extends BaseLevelProvider{
 
 		$ids = "";
 		$data = "";
-		$blockLight = "";
 		$skyLight = "";
+		$blockLight = "";
+		$subChunks = $chunk->getSubChunks();
 		for($x = 0; $x < 16; ++$x){
 			for($z = 0; $z < 16; ++$z){
 				for($y = 0; $y < 8; ++$y){
-					$subChunk = $chunk->getSubChunk($y);
+					$subChunk = $subChunks[$y];
 					$ids .= $subChunk->getBlockIdColumn($x, $z);
 					$data .= $subChunk->getBlockDataColumn($x, $z);
-					$blockLight .= $subChunk->getBlockLightColumn($x, $z);
 					$skyLight .= $subChunk->getSkyLightColumn($x, $z);
+					$blockLight .= $subChunk->getBlockLightColumn($x, $z);
 				}
 			}
 		}
@@ -135,10 +143,10 @@ class McRegion extends BaseLevelProvider{
 			$chunk = $chunk->Level;
 
 			$subChunks = [];
-			$fullIds = $chunk->Blocks instanceof ByteArrayTag ? $chunk->Blocks->getValue() : str_repeat("\x00", 32768);
-			$fullData = $chunk->Data instanceof ByteArrayTag ? $chunk->Data->getValue() : ($half = str_repeat("\x00", 16384));
-			$fullBlockLight = $chunk->BlockLight instanceof ByteArrayTag ? $chunk->BlockLight->getValue() : $half;
-			$fullSkyLight = $chunk->SkyLight instanceof ByteArrayTag ? $chunk->SkyLight->getValue() : str_repeat("\xff", 16384);
+			$fullIds = isset($chunk->Blocks) ? $chunk->Blocks->getValue() : str_repeat("\x00", 32768);
+			$fullData = isset($chunk->Data) ? $chunk->Data->getValue() : (str_repeat("\x00", 16384));
+			$fullSkyLight = isset($chunk->SkyLight) ? $chunk->SkyLight->getValue() : str_repeat("\xff", 16384);
+			$fullBlockLight = isset($chunk->BlockLight) ? $chunk->BlockLight->getValue() : (str_repeat("\x00", 16384));
 
 			for($y = 0; $y < 8; ++$y){
 				$offset = ($y << 4);
@@ -153,19 +161,19 @@ class McRegion extends BaseLevelProvider{
 					$data .= substr($fullData, $offset, 8);
 					$offset += 64;
 				}
-				$blockLight = "";
-				$offset = ($y << 3);
-				for($i = 0; $i < 256; ++$i){
-					$blockLight .= substr($fullBlockLight, $offset, 8);
-					$offset += 64;
-				}
 				$skyLight = "";
 				$offset = ($y << 3);
 				for($i = 0; $i < 256; ++$i){
 					$skyLight .= substr($fullSkyLight, $offset, 8);
 					$offset += 64;
 				}
-				$subChunks[] = new SubChunk($y, $ids, $data, $blockLight, $skyLight);
+				$blockLight = "";
+				$offset = ($y << 3);
+				for($i = 0; $i < 256; ++$i){
+					$blockLight .= substr($fullBlockLight, $offset, 8);
+					$offset += 64;
+				}
+				$subChunks[$y] = new SubChunk($ids, $data, $skyLight, $blockLight);
 			}
 
 			if(isset($chunk->BiomeColors)){
@@ -181,10 +189,10 @@ class McRegion extends BaseLevelProvider{
 				$chunk["xPos"],
 				$chunk["zPos"],
 				$subChunks,
-				$chunk->Entities->getValue(),
-				$chunk->TileEntities->getValue(),
+				isset($chunk->Entities) ? $chunk->Entities->getValue() : [],
+				isset($chunk->TileEntities) ? $chunk->TileEntities->getValue() : [],
 				$biomeIds,
-				$chunk->HeightMap->getValue()
+				isset($chunk->HeightMap) ? $chunk->HeightMap->getValue() : [] //this shouldn't exist in normal mcregion worlds anyway...
 			);
 			$result->setLightPopulated(isset($chunk->LightPopulated) ? ((bool) $chunk->LightPopulated->getValue()) : false);
 			$result->setPopulated(isset($chunk->TerrainPopulated) ? ((bool) $chunk->TerrainPopulated->getValue()) : false);

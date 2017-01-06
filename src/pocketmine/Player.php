@@ -863,17 +863,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk->started = $this->level->stopTime == false;
 			$this->dataPacket($pk);
 
-			if($targetLevel->getDimension() != $oldLevel->getDimension()){
-				$pk = new ChangeDimensionPacket();
-				$pk->dimension = $targetLevel->getDimension();
-				$pk->x = $this->x;
-				$pk->y = $this->y;
-				$pk->z = $this->z;
-				$this->dataPacket($pk);
-				$this->shouldSendStatus = true;
-			}
-			$targetLevel->getWeather()->sendWeather($this);
-
 			if($this->spawned){
 				$this->spawnToAll();
 			}
@@ -1056,7 +1045,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->server->onPlayerLogin($this);
 		$this->spawnToAll();
 
-		$this->level->getWeather()->sendWeather($this);
 
 		if($this->server->dserverConfig["enable"] and $this->server->dserverConfig["queryAutoUpdate"]){
 			$this->server->updateQuery();
@@ -1730,11 +1718,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->newPosition = null;
 	}
 
-	public function addMovement($x, $y, $z, $yaw, $pitch, $headYaw = null){
+	/*public function addMovement($x, $y, $z, $yaw, $pitch, $headYaw = null){
 		if($this->chunk !== null){
 			$this->level->addPlayerMovement($this->chunk->getX(), $this->chunk->getZ(), $this->id, $x, $y, $z, $yaw, $pitch, $this->onGround, $headYaw === null ? $yaw : $headYaw);
 		}
-	}
+	}*/
 
 	public function setMotion(Vector3 $mot){
 		if(parent::setMotion($mot)){
@@ -1870,10 +1858,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			if($this->isOnFire() or $this->lastUpdate % 10 == 0){
 				if($this->isCreative() and !$this->isInsideOfFire()){
 					$this->extinguish();
-				}elseif($this->getLevel()->getWeather()->isRainy()){
-					if($this->getLevel()->canBlockSeeSky($this)){
-						$this->extinguish();
-					}
 				}
 			}
 
@@ -2072,7 +2056,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->y = $this->y;
 		$pk->z = $this->z;
 		$pk->seed = -1;
-		$pk->dimension = $this->level->getDimension();
 		$pk->gamemode = $this->gamemode & 0x01;
 		$pk->difficulty = $this->server->getDifficulty();
 		$pk->spawnX = $spawnPosition->getFloorX();
@@ -2124,7 +2107,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 		$this->sendCommandData();
 
-		$this->level->getWeather()->sendWeather($this);
 		$this->forceMovement = $this->teleportPosition = $this->getPosition();
 	}
 

@@ -23,15 +23,19 @@ declare(strict_types = 1);
 
 namespace pocketmine\level\format\region;
 
-use pocketmine\level\format\Chunk;
 use pocketmine\level\format\generic\GenericChunk;
 use pocketmine\level\format\generic\SubChunk;
-use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\{ByteArrayTag, ByteTag, CompoundTag, IntArrayTag, IntTag, ListTag, LongTag};
+use pocketmine\nbt\tag\{
+	ByteArrayTag,
+	ByteTag,
+	CompoundTag,
+	IntArrayTag,
+	IntTag,
+	ListTag,
+	LongTag
+};
 use pocketmine\Player;
-use pocketmine\tile\Spawnable;
-use pocketmine\utils\BinaryStream;
 use pocketmine\utils\ChunkException;
 use pocketmine\utils\MainLogger;
 
@@ -57,16 +61,16 @@ class PMAnvil extends Anvil{
 		$nbt->Sections = new ListTag("Sections", []);
 		$nbt->Sections->setTagType(NBT::TAG_Compound);
 		$subChunks = -1;
-		foreach($chunk->getSubChunks() as $subChunk){
+		foreach($chunk->getSubChunks() as $y => $subChunk){
 			if($subChunk->isEmpty()){
 				continue;
 			}
 			$nbt->Sections[++$subChunks] = new CompoundTag(null, [
-				"Y"          => new ByteTag("Y", $subChunk->getY()),
+				"Y"          => new ByteTag("Y", $y),
 				"Blocks"     => new ByteArrayTag("Blocks",     $subChunk->getBlockIdArray()),
 				"Data"       => new ByteArrayTag("Data",       $subChunk->getBlockDataArray()),
-				"BlockLight" => new ByteArrayTag("BlockLight", $subChunk->getBlockLightArray()),
-				"SkyLight"   => new ByteArrayTag("SkyLight",   $subChunk->getSkyLightArray())
+				"SkyLight"   => new ByteArrayTag("SkyLight",   $subChunk->getSkyLightArray()),
+				"BlockLight" => new ByteArrayTag("BlockLight", $subChunk->getBlockLightArray())
 			]);
 		}
 
@@ -120,12 +124,11 @@ class PMAnvil extends Anvil{
 			if($chunk->Sections instanceof ListTag){
 				foreach($chunk->Sections as $subChunk){
 					if($subChunk instanceof CompoundTag){
-						$subChunks[] = new SubChunk(
-							$subChunk->Y->getValue(),
+						$subChunks[$subChunk->Y->getValue()] = new SubChunk(
 							$subChunk->Blocks->getValue(),
 							$subChunk->Data->getValue(),
-							$subChunk->BlockLight->getValue(),
-							$subChunk->SkyLight->getValue()
+							$subChunk->SkyLight->getValue(),
+							$subChunk->BlockLight->getValue()
 						);
 					}
 				}
@@ -136,10 +139,10 @@ class PMAnvil extends Anvil{
 				$chunk["xPos"],
 				$chunk["zPos"],
 				$subChunks,
-				$chunk->Entities->getValue(),
-				$chunk->TileEntities->getValue(),
-				$chunk->Biomes->getValue(),
-				$chunk->HeightMap->getValue()
+				isset($chunk->Entities) ? $chunk->Entities->getValue() : [],
+				isset($chunk->TileEntities) ? $chunk->TileEntities->getValue() : [],
+				isset($chunk->Biomes) ? $chunk->Biomes->getValue() : "",
+				isset($chunk->HeightMap) ? $chunk->HeightMap->getValue() : []
 			);
 			$result->setLightPopulated(isset($chunk->LightPopulated) ? ((bool) $chunk->LightPopulated->getValue()) : false);
 			$result->setPopulated(isset($chunk->TerrainPopulated) ? ((bool) $chunk->TerrainPopulated->getValue()) : false);

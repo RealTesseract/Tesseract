@@ -23,13 +23,10 @@ declare(strict_types = 1);
 
 namespace pocketmine\level\format\generic;
 
-use pocketmine\utils\ChunkException;
-
 class EmptySubChunk extends SubChunk{
-	protected $y;
 
-	public function __construct(int $y){
-		$this->y = $y;
+	public function __construct(){
+
 	}
 
 	public function isEmpty() : bool{
@@ -60,19 +57,19 @@ class EmptySubChunk extends SubChunk{
 		return false;
 	}
 
-	public function getBlockSkyLight(int $x, int $y, int $z) : int{
-		return 15;
-	}
-
-	public function setBlockSkyLight(int $x, int $y, int $z, int $level) : bool{
-		return false;
-	}
-
 	public function getBlockLight(int $x, int $y, int $z) : int{
 		return 0;
 	}
 
 	public function setBlockLight(int $x, int $y, int $z, int $level) : bool{
+		return false;
+	}
+
+	public function getBlockSkyLight(int $x, int $y, int $z) : int{
+		return 15;
+	}
+
+	public function setBlockSkyLight(int $x, int $y, int $z, int $level) : bool{
 		return false;
 	}
 
@@ -113,6 +110,6 @@ class EmptySubChunk extends SubChunk{
 	}
 
 	public function fastSerialize() : string{
-		return "";
+		throw new \BadMethodCallException("Should not try to serialize empty subchunks");
 	}
 }

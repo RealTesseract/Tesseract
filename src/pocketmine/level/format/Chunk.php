@@ -61,6 +61,7 @@ interface Chunk{
 	 * @return int
 	 */
 	public function getHeight() : int;
+
 	/**
 	 * Gets block and meta in one go
 	 *
@@ -76,7 +77,7 @@ interface Chunk{
 	 * @param int $x       0-15
 	 * @param int $y       0-255
 	 * @param int $z       0-15
-	 * @param int $blockId , if null, do not change
+	 * @param int $blockId 0-255, if null, do not change
 	 * @param int $meta    0-15, if null, do not change
 	 *
 	 * @return bool
@@ -301,15 +302,7 @@ interface Chunk{
 	 */
 	public function getHeightMapArray() : array;
 
-	public function getBlockIdArray() : string;
-
-	public function getBlockDataArray() : string;
-
 	public function getBlockExtraDataArray() : array;
-
-	public function getBlockSkyLightArray() : string;
-
-	public function getBlockLightArray() : string;
 
 	/**
 	 * @return bool
@@ -332,6 +325,7 @@ interface Chunk{
 	/**
 	 * @param int      $fY 0-15
 	 * @param SubChunk $subChunk
+	 * @param bool     $allowEmpty
 	 *
 	 * @return bool
 	 */
@@ -345,7 +339,7 @@ interface Chunk{
 	/**
 	 * Returns the index of the highest non-empty subchunk
 	 *
-	 * @return bool
+	 * @return int
 	 */
 	public function getHighestSubChunkIndex() : int;
 
@@ -369,11 +363,11 @@ interface Chunk{
 	public function networkSerialize() : string;
 
 	/**
-	 * Serializes a chunk without compression for use in AsyncTasks.
+	 * Serializes the chunk without compression for use in AsyncTasks.
 	 *
 	 * @return string
 	 */
-	public static function fastSerialize(Chunk $chunk) : string;
+	public function fastSerialize() : string;
 
 	/**
 	 * Deserializes a chunk from fast serialization
