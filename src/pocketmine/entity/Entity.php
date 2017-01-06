@@ -81,8 +81,6 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_TYPE_STRING = 4;
 	const DATA_TYPE_SLOT = 5;
 	const DATA_TYPE_POS = 6;
-	//const DATA_TYPE_ROTATION = 8;
-	//const DATA_TYPE_LONG = 8;
 	const DATA_TYPE_LONG = 7;
 	const DATA_TYPE_VECTOR3F = 8;
 
@@ -92,18 +90,18 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_COLOUR = 3; //byte
 	const DATA_NAMETAG = 4; //string
 	const DATA_OWNER_EID = 5; //long
+
 	const DATA_AIR = 7; //short
 	const DATA_POTION_COLOR = 8; //int (ARGB!)
 	const DATA_POTION_AMBIENT = 9; //byte
-	const DATA_COLOR_INFO = 9; //byte
-	/* 8 (int)
-	 * 9 (int)
-	 * 27 (byte) player-specific flags
+
+	/* 27 (byte) player-specific flags
 	 * 28 (int) player "index"? 
 	 * 29 (block coords) bed position */
 	const DATA_SCALE = 39; //float
-	const DATA_BUTTON_TEXT = 40; //string
+	const DATA_INTERACTIVE_TAG = 40; //string (button text)
 	/* 41 (long) */
+	const DATA_URL_TAG = 43; //string
 	const DATA_MAX_AIR = 44; //short
 	const DATA_MARK_VARIANT = 45; //int
 	/* 46 (byte)
@@ -112,16 +110,15 @@ abstract class Entity extends Location implements Metadatable{
 	 * 49 (long)
 	 * 50 (long)
 	 * 51 (long)
-	 * 52 (short)
-	 * 53 (unknown) */
-	const DATA_BOUNDING_BOX_WIDTH = 54; //float
-	const DATA_BOUNDING_BOX_HEIGHT = 55; //float
-	const DATA_FUSE_LENGTH = 56; //int
-	/* 57 (vector3f)
-	 * 58 (byte)
-	 * 59 (float)
-	 * 60 (float) */
-
+	 * 52 (short) */
+	const DATA_BOUNDING_BOX_WIDTH = 53; //float
+	const DATA_BOUNDING_BOX_HEIGHT = 54; //float
+	const DATA_FUSE_LENGTH = 55; //int
+	/* 56 (vector3f)
+	 * 57 (byte)
+	 * 58 (float)
+	 * 59 (float) */
+	
 	const DATA_LEAD_HOLDER_EID = 38; const DATA_LEAD_HOLDER = 38;
 	const DATA_LEAD = 24;
 
