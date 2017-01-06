@@ -1855,7 +1855,7 @@ class Level implements ChunkManager, Metadatable{
 		return $nearby;
 	}
 
-	public function getNearbyExperienceOrb(AxisAlignedBB $bb) : array{
+	/*public function getNearbyExperienceOrb(AxisAlignedBB $bb) : array{
 		$nearby = [];
 
 		foreach($this->getNearbyEntities($bb) as $entity){
@@ -1865,7 +1865,7 @@ class Level implements ChunkManager, Metadatable{
 		}
 
 		return $nearby;
-	}
+	}*/
 
 	/**
 	 * Returns a list of the Tile entities in this level
