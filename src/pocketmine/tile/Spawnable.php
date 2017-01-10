@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -27,11 +28,12 @@ use pocketmine\network\protocol\BlockEntityDataPacket;
 use pocketmine\Player;
 
 abstract class Spawnable extends Tile{
-	
+
 	public function spawnTo(Player $player){
 		if($this->closed){
 			return false;
 		}
+
 		$nbt = new NBT(NBT::LITTLE_ENDIAN);
 		$nbt->setData($this->getSpawnCompound());
 		$pk = new BlockEntityDataPacket();
@@ -40,35 +42,51 @@ abstract class Spawnable extends Tile{
 		$pk->z = $this->z;
 		$pk->namedtag = $nbt->write(true);
 		$player->dataPacket($pk);
+
 		return true;
 	}
-	
-	/**
-	 * @return CompoundTag
-	 */
-	public abstract function getSpawnCompound();
-	
+
 	public function __construct(Chunk $chunk, CompoundTag $nbt){
 		parent::__construct($chunk, $nbt);
 		$this->spawnToAll();
 	}
-	
+
 	public function spawnToAll(){
 		if($this->closed){
 			return;
 		}
+
 		foreach($this->getLevel()->getChunkPlayers($this->chunk->getX(), $this->chunk->getZ()) as $player){
 			if($player->spawned === true){
 				$this->spawnTo($player);
 			}
 		}
 	}
-	
+
 	protected function onChanged(){
 		$this->spawnToAll();
+
 		if($this->chunk !== null){
 			$this->chunk->setChanged();
 			$this->level->clearChunkCache($this->chunk->getX(), $this->chunk->getZ());
 		}
+	}
+
+	/**
+	 * @return CompoundTag
+	 */
+	public abstract function getSpawnCompound();
+
+	/**
+	 * Called when a player updates a block entity's NBT data
+	 * for example when writing on a sign.
+	 *
+	 * @param CompoundTag $nbt
+	 * @param Player      $player
+	 *
+	 * @return bool indication of success, will respawn the tile to the player if false.
+	 */
+	public function updateCompoundTag(CompoundTag $nbt, Player $player) : bool{
+		return false;
 	}
 }
