@@ -80,8 +80,6 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_TYPE_STRING = 4;
 	const DATA_TYPE_SLOT = 5;
 	const DATA_TYPE_POS = 6;
-	//const DATA_TYPE_ROTATION = 8;
-	//const DATA_TYPE_LONG = 8;
 	const DATA_TYPE_LONG = 7;
 	const DATA_TYPE_VECTOR3F = 8;
 
@@ -112,16 +110,17 @@ abstract class Entity extends Location implements Metadatable{
 	 * 49 (long)
 	 * 50 (long)
 	 * 51 (long)
-	 * 52 (short)
-	 * 53 (unknown) */
-	const DATA_BOUNDING_BOX_WIDTH = 54; //float
-	const DATA_BOUNDING_BOX_HEIGHT = 55; //float
-	/* 56 (unknown)
-	 * 57 (vector3f)
-	 * 58 (byte)
-	 * 59 (float)
-	 * 60 (float) */
-
+	 /* 52 (short) */
+	const DATA_BOUNDING_BOX_WIDTH = 53; //float
+	const DATA_BOUNDING_BOX_HEIGHT = 54; //float
+	const DATA_FUSE_LENGTH = 55; //int
+	/* 56 (vector3f)
+	 * 57 (byte)
+	 * 58 (float)
+	 * 59 (float) */
+	
+	const DATA_LEAD_HOLDER_EID = 38; const DATA_LEAD_HOLDER = 38;
+	const DATA_LEAD = 24;
 
 	const DATA_FLAG_ONFIRE = 0;
 	const DATA_FLAG_SNEAKING = 1;
