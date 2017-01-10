@@ -846,6 +846,7 @@ class Item implements ItemIds, \JsonSerializable{
 
 	public function hasAnyDamageValue() : bool{
 		return $this->meta === -1;
+	}
 
 	public function getMaxStackSize() : int{
 		return 64;
