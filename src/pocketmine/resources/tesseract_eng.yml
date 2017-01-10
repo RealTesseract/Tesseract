@@ -28,18 +28,21 @@ level:
  #This setting will decide if fire should spread after it is set on burnable materials (leaves, trees, etc.)
  fire-spread: false
  #Choose if the nether is allowed/loaded into the game. The level of nether will generate automatically even if false
+ #If set to false, it will exist, but no one will be able to access the world through the game
  allow-nether: true
  #The name of nether's level will be set here
  level-name: "nether"
 
 network:
+ #This setting decides if you want RakLib to be disabled, RakLib connects a server for it to load for a client
+ #If you do not know what this does, keep it set to false
  raklib-disable: false
  
 player:
  #This setting decides if hunger will be enabled in game
  #If set to false, hunger wont drop
  hunger: true
- #This setting decides if experience will be enalbed
+ #This setting decides if experience will be enabled
  #If set to false, then exp bottles wont drop exp dots, and exp level wont go up
  experience: true
  #This setting decides if the inventory of a player will be kept after they die
@@ -48,13 +51,13 @@ player:
  auto-clear-inventory : true
  #This setting will decide if the experience of a player will be kept after they die
  keep-experience: false
- #Radius of chunks in worlds, possibly for rendering, if players crash by too much processing, set this below 10. disable=-1
+ #This setting chooses the size of chunks for the game to load
+ #This may cause lag if set to high values, if you experience crashes, put it below 10
+ #It can also be disabled by setting "-1" for the value
  chunk-radius: -1
  
 server:
  #This setting decides if the server.log file will not be made/written.
- #You can set to True since it can help with disk space on a hosted server through computer
- #But it is suggested to turn it on if you have players online, so you can see what console sees basically
  disable-log: false
  #This setting decides if the async chunks request will be enabled upon server loading/rebooting
  async-chunk-request: true
@@ -71,15 +74,16 @@ server:
  #This setting decides if splash potions will be allowed to be thrown
  #If set to false, then they will not be visible when thrown (wont splash either)
  allow-splash-potion: true
- #THis setting decides if Advanced Command Selector is enabled (recommended it is set to default (false))
+ #This setting decides if Advanced Command Selector is enabled
+ #If you do not know what it does, keep it false
  advanced-command-selector: false
 
 enchantment:
  #This setting decides if Anvils are allowed to be used in game
- #If the below setting is false, then anvils will not show the anvil gui
+ #If the below setting is false, then anvils will not show the anvil gui and wont spawn
  enable-anvil: true
  #This setting decides if Enchantment Tables are allowed to be used in game
- #If the below setting is false, then enchanting tables will not show the enchant table gui
+ #If the below setting is false, then enchanting tables will not show the enchant table gui and wont spawn
  enable-enchanting-table: true
  #This setting decides if bookshelves are counted as entities (may cause server lag)
  #If this option is false, the server will use a random count (recommended and the values range from 0~15)
