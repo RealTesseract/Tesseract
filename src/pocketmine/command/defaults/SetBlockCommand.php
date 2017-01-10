@@ -71,7 +71,7 @@ class SetBlockCommand extends VanillaCommand{
 			}
 			if($y{0} === "~"){
 				if((is_numeric(trim($y, "~")) or trim($y, "~") === "") and ($sender instanceof Player)) $y = (int)round(trim($y, "~") + $sender->y);
-				if($y < 0 or $y > 128) return false;
+				if($y < 0 or $y > 256) return false;
 			}elseif(is_numeric($y)){
 				$y = (int)round($y);
 			}else{
