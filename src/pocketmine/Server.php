@@ -2520,7 +2520,9 @@ class Server{
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
 		$pk->entries[] = [$uuid, $entityId, $name, $skinId, $skinData];
-		Server::broadcastPacket($players === null ? $this->playerList : $players, $pk);
+		Server::broadcastPacket(array_filter($players === null ? $this->playerList : $players, function(Player $p) use ($uuid) {
+             return $p->getUniqueId() != $uuid;
+         }), $pk);
 	}
 
 	public function removePlayerListData(UUID $uuid, array $players = null){
