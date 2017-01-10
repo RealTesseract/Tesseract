@@ -48,7 +48,7 @@ class PurpurBlock extends Solid{
 			2 => "Purpur Pillar",
 		];
 
-		return $names[$this->meta & 0x0f];
+		return $names[$this->meta & 0x0f] ?? "Purpur Block"; //TODO fix properly;
 	}
 
 	public function getDrops(Item $item) : array {
