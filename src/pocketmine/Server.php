@@ -1864,8 +1864,8 @@ class Server{
 			$this->consoleSender = new ConsoleCommandSender();
 			$this->commandMap = new SimpleCommandMap($this);
 
-			$this->registerTiles();
-
+			Tile::init();
+			Entity::init();
 			InventoryType::init();
 			Block::init();
 			Enchantment::init();
@@ -2932,23 +2932,5 @@ class Server{
 		}
 
 		return true;
-	}
-
-	private function registerTiles(){
-		Tile::registerTile(Beacon::class);
-		Tile::registerTile(BrewingStand::class);
-		Tile::registerTile(Cauldron::class);
-		Tile::registerTile(Chest::class);
-		Tile::registerTile(Dispenser::class);
-		Tile::registerTile(DLDetector::class);
-		Tile::registerTile(Dropper::class);
-		Tile::registerTile(EnchantTable::class);
-		Tile::registerTile(FlowerPot::class);
-		Tile::registerTile(Furnace::class);
-		Tile::registerTile(Hopper::class);
-		Tile::registerTile(ItemFrame::class);
-		Tile::registerTile(MobSpawner::class);
-		Tile::registerTile(Sign::class);
-		Tile::registerTile(Skull::class);
 	}
 }
