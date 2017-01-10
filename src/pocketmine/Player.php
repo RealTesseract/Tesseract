@@ -2791,6 +2791,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 						$this->setSprinting(false);
 						$this->setSneaking(false);
+						$this->setGliding(false);
 
 						$this->extinguish();
 						$this->setDataProperty(self::DATA_AIR, self::DATA_TYPE_SHORT, 400);
@@ -2853,6 +2854,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							$this->setSneaking(false);
 						}
 						break 2;
+					case PlayerActionPacket::ACTION_START_GLIDE:
+  						$ev = new PlayerToggleGlideEvent($this, true);
+  						$this->server->getPluginManager()->callEvent($ev);
+  						if($ev->isCancelled()){
+  							$this->sendData($this);
+  						}else{
+  							$this->setGliding(true);
+  						}
+  						break 2;
+  					case PlayerActionPacket::ACTION_STOP_GLIDE:
+  						$ev = new PlayerToggleGlideEvent($this, false);
+  						$this->server->getPluginManager()->callEvent($ev);
+  						if($ev->isCancelled()){
+  							$this->sendData($this);
+  						}else{
+  							$this->setGliding(false);
+  						}
+  						break 2;
 					default:
 						assert(false, "Unhandled player action " . $packet->action . " from " . $this->getName());
 				}
