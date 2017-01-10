@@ -12,7 +12,7 @@
 
 #Version 파일의 버전
 config:
- version: 27
+ version: 28
 
 level:
  #날씨 시스템을 켜는 경우 설정하세요
@@ -26,6 +26,9 @@ level:
  lightning-fire: false
  #불이 번지는 것을 활성화 하려는 경우 설정하세요
  fire-spread: false
+ 
+network:
+ raklib-disable: false
  
 player:
  #배고픔 시스템 스위치

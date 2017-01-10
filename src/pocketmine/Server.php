@@ -302,6 +302,7 @@ class Server{
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
+	public $raklibDisable = false;
 
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
@@ -1519,7 +1520,7 @@ class Server{
 		$this->anvilEnabled = $this->getAdvancedProperty("enchantment.enable-anvil", true);
 		$this->enchantingTableEnabled = $this->getAdvancedProperty("enchantment.enable-enchanting-table", true);
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
-
+		$this->raklibDisable = $this->getAdvancedProperty("network.raklib-disable", false);
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		
 	}
@@ -1820,7 +1821,11 @@ class Server{
 
 			$this->enablePlugins(PluginLoadOrder::STARTUP);
 			
+			if($this->getAdvancedProperty("network.raklib-disable") === false){
 			$this->network->registerInterface(new RakLibInterface($this));
+			} else {
+				$this->logger->notice("Raklib disabled by tesseract.yml!");
+			}
 
 			LevelProviderManager::addProvider(Anvil::class);
 			LevelProviderManager::addProvider(PMAnvil::class);

@@ -12,7 +12,7 @@
 
 #Version of this file
 config:
- version: 27
+ version: 28
 
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
@@ -32,6 +32,9 @@ level:
  #The name of nether's level will be set here
  level-name: "nether"
 
+network:
+ raklib-disable: false
+ 
 player:
  #This setting decides if hunger will be enabled in game
  #If set to false, hunger wont drop
