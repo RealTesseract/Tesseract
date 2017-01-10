@@ -386,7 +386,7 @@ class Item implements ItemIds, \JsonSerializable{
 			$name = $item->getName();
 		}
 		$this->id = $id & 0xffff;
-		$this->meta = $meta !== null ? $meta & 0xffff : null;
+		$this->meta = $meta !== -1 ? $meta & 0xffff : -1;
 		$this->count = $count;
 		$this->name = $name;
 		if(!isset($this->block) and $this->id <= 0xff and isset(Block::$list[$this->id])){
@@ -399,7 +399,7 @@ class Item implements ItemIds, \JsonSerializable{
 		if($tags instanceof CompoundTag){
 			$this->setNamedTag($tags);
 		}else{
-			$this->tags = $tags;
+			$this->tags = (string) $tags;
 			$this->cachedNBT = null;
 		}
 
@@ -409,12 +409,12 @@ class Item implements ItemIds, \JsonSerializable{
 	/**
 	 * @return string
 	 */
-	public function getCompoundTag(){
+	public function getCompoundTag() : bool{
 		return $this->tags;
 	}
 
 	public function hasCompoundTag() : bool{
-		return $this->tags !== "" and $this->tags !== null;
+		return $this->tags !== "";
 	}
 
 	public function hasCustomBlockData() : bool{
@@ -836,13 +836,16 @@ class Item implements ItemIds, \JsonSerializable{
 		return $this->id;
 	}
 
-	final public function getDamage(){
+	final public function getDamage() : int{ 
 		return $this->meta;
 	}
 
-	public function setDamage($meta){
-		$this->meta = $meta !== null ? $meta & 0xFFFF : null;
+	public function setDamage(int $meta){
+		$this->meta = $meta !== -1 ? $meta & 0xFFFF : -1;
 	}
+
+	public function hasAnyDamageValue() : bool{
+		return $this->meta === -1;
 
 	public function getMaxStackSize() : int{
 		return 64;

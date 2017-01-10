@@ -24,9 +24,8 @@
  */
 namespace pocketmine\nbt;
 
-use pocketmine\item\Item;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\ByteArrayTag;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\EndTag;
@@ -39,8 +38,6 @@ use pocketmine\nbt\tag\NamedTAG;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\Tag;
-use pocketmine\utils\Utils;
-
 #ifndef COMPILE
 use pocketmine\utils\Binary;
 
@@ -449,6 +446,8 @@ class NBT{
 
 
 	/**
+	 * @param bool $network
+	 *
 	 * @return string|bool
 	 */
 	public function write(bool $network = false){
@@ -625,7 +624,6 @@ class NBT{
 	public function getArray(){
 		$data = [];
 		self::toArray($data, $this->data);
-		return $data;
 	}
 
 	private static function toArray(array &$data, Tag $tag){
