@@ -8,7 +8,7 @@
 #                                             
 #                                             
 #
-#The advanced config for Tesseract
+#The advanced configuration for Tesseract
 
 #Version of this file
 config:
@@ -18,7 +18,7 @@ level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
  weather: true
  #This setting controls a random timer for weather durations (requires weather: true)
- #The ranges that are set must follow the min-max range (min less than max (min < max))
+ #The ranges that are set must follow the min-max rule (min < max)
  weather-random-duration-min: 6000
  weather-random-duration-max: 12000
  #This setting controls the interval of lightning strikes in game，default 200 as 10s, 0 = disable
@@ -90,7 +90,8 @@ enchantment:
  count-bookshelf: false
 
 dserver:
- #This setting decides if the server counts all multi-servers combined (recommended set to false)
+ #This setting decides if the server counts all multi-servers combined
+ #If you do not know what this does, keep it set to "false"
  enable: false
  #This setting decides if the server will automatically update the Query
  query-auto-update: false
