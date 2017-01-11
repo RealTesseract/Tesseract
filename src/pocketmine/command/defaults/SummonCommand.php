@@ -38,7 +38,7 @@ class SummonCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.summon.description",
-			"%commands.summon.usage"
+			"%pocketmine.command.summon.usage"
 		);
 		$this->setPermission("pocketmine.command.summon");
 	}

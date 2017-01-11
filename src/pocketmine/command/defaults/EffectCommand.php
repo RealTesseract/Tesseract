@@ -34,7 +34,7 @@ class EffectCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.effect.description",
-			"%commands.effect.usage"
+			"%pocketmine.command.effect.usage"
 		);
 		$this->setPermission("pocketmine.command.effect;pocketmine.command.effect.other");
 	}

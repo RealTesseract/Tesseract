@@ -37,7 +37,7 @@ class SetBlockCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.setblock.description",
-			"%commands.setblock.usage"
+			"%pocketmine.command.setblock.usage"
 		);
 		$this->setPermission("pocketmine.command.setblock");
 	}
