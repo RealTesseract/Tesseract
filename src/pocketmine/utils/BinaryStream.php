@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____  
@@ -17,13 +18,17 @@
  * 
  *
 */
+
 namespace pocketmine\utils;
+
 #include <rules/DataPacket.h>
 #ifndef COMPILE
 #endif
+
 use pocketmine\item\Item;
 
 class BinaryStream extends \stdClass{
+
 	public $offset;
 	public $buffer;
 
