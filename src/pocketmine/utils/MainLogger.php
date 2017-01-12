@@ -101,7 +101,7 @@ class MainLogger extends \AttachableThreadedLogger{
 	}
 
 	public function notice($message, $name = "NOTICE"){
-		$this->send(TextFormat::BOLD . $message, \LogLevel::NOTICE, $name, TextFormat::GOLD);
+		$this->send(TextFormat::BOLD . $message, \LogLevel::NOTICE, $name, TextFormat::AQUA);
 	}
 
 	public function info($message, $name = "INFO"){
