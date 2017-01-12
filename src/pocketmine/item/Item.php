@@ -243,7 +243,7 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::COOKED_MUTTON] = CookedMutton::class;
 			self::$list[self::HOPPER] = Hopper::class;
 			self::$list[self::ELYTRA] = Elytra::class;
-			self::$list[self::NETHER_STAR] = NETHER_STAR::class;
+			self::$list[self::NETHER_STAR] = NetherStar::class;
 			self::$list[self::CHORUS_FRUIT] = ChorusFruit::class;
 			self::$list[self::PRISMARINE_CRYSTALS] = PrismarineCrystals::class;
 			self::$list[self::PRISMARINE_SHARD] = PrismarineShard::class;
