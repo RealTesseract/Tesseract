@@ -44,7 +44,7 @@ class PolarBear extends Monster{
 		$this->setMaxHealth(30);
 		return "Polar Bear";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -70,7 +70,7 @@ class PolarBear extends Monster{
 			$drops = [];
 			if (mt_rand(1, 4) === 1) {
 				$drops[] = ItemItem::get(ItemItem::RAW_SALMON, 0, mt_rand(0, 2));//yes.. 0,2
-			} else {
+			}else{
 				$drops[] = ItemItem::get(ItemItem::RAW_FISH, 0, mt_rand(0, 2));//yes.. 0,2
 			}
 		}
