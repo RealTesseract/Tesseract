@@ -7,7 +7,7 @@ class Elytra extends Armor {
 
 public function __construct($meta = 0, $count = 1){
 	
-  parent::__construct(444, $meta, $count, "Elytra Wings");
+  parent::__construct(self::ELYTRA, $meta, $count, "Elytra Wings");
 	
   }
 	public function getArmorType(){
