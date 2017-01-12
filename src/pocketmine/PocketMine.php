@@ -72,7 +72,7 @@ namespace pocketmine {
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\Installer;
 
-	const VERSION = ""; //will be set by CI to a git hash
+	const VERSION = "1.0.0dev"; //will be set by CI to a git hash
 	const API_VERSION = "3.0.0";
 	const CODENAME = "Crystal";
 	
