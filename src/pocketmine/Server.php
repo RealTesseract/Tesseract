@@ -2431,7 +2431,7 @@ class Server{
 
 		$this->logger->emergency($this->getLanguage()->translateString("pocketmine.crash.submit", [$dump->getPath()]));
 
-		if($this->getProperty("auto-report.enabled", true) !== false){
+		/*if($this->getProperty("auto-report.enabled", true) !== false){
 			$report = true;
 			$plugin = $dump->getData()["plugin"];
 			if(is_string($plugin)){
@@ -2460,7 +2460,7 @@ class Server{
 					$this->logger->emergency($this->getLanguage()->translateString("pocketmine.crash.archive", [$reportUrl, $reportId]));
 				}
 			}
-		}
+		}*/
 
 		//$this->checkMemory();
 		//$dump .= "Memory Usage Tracking: \r\n" . chunk_split(base64_encode(gzdeflate(implode(";", $this->memoryStats), 9))) . "\r\n";
