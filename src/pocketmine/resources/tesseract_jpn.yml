@@ -33,6 +33,7 @@ level:
  level-name: "nether"
  
 network:
+ #RakLibを無効にするかどうかを設定します。(RakLibはサーバーに接続したクライアントを読み込みます。)
  raklib-disable: false
 
 player:
