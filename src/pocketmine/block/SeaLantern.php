@@ -24,8 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Tool;
 use pocketmine\item\Item;
 
-
-class SeaLanternBlock extends Transparent implements SolidLight{
+class SeaLantern extends Transparent implements SolidLight{
 
 	protected $id = self::SEA_LANTERN;
 
