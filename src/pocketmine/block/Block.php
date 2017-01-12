@@ -233,7 +233,7 @@ class Block extends Position implements BlockIds, Metadatable{
 
 			self::$list[self::SLIME_BLOCK] = SlimeBlock::class;
 			self::$list[self::PRISMARINE_BLOCK] = PrismarineBlock::class;
-			self::$list[self::SEA_LANTERN_BLOCK] = SeaLanternBlock::class;
+			self::$list[self::SEA_LANTERN] = SeaLantern::class;
 			self::$list[self::HAY_BALE] = HayBale::class;
 			self::$list[self::CARPET] = Carpet::class;
 			self::$list[self::HARDENED_CLAY] = HardenedClay::class;

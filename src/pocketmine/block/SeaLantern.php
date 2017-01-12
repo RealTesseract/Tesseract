@@ -25,9 +25,9 @@ use pocketmine\item\Tool;
 use pocketmine\item\Item;
 
 
-class SeaLanternBlock extends Solid{
+class SeaLanternBlock extends Transparent implements SolidLight{
 
-	protected $id = self::SEA_LANTERN_BLOCK;
+	protected $id = self::SEA_LANTERN;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
@@ -38,7 +38,7 @@ class SeaLanternBlock extends Solid{
 	}
 
 	public function getName() : string{
-        return "Sea Lantern Block";
+        return "Sea Lantern";
 	}
 
 	public function getHardness(){
