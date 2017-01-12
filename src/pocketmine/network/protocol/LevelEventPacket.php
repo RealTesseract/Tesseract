@@ -23,7 +23,6 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-
 class LevelEventPacket extends DataPacket{
 	const NETWORK_ID = Info::LEVEL_EVENT_PACKET;
 
@@ -89,7 +88,7 @@ class LevelEventPacket extends DataPacket{
 	const EVENT_ADD_PARTICLE_MASK = 0x4000;
 
 	public $evid;
-	public $x = 0; //Weather effects don't have coordinates -_-
+	public $x = 0; //Weather effects don't have coordinates
 	public $y = 0;
 	public $z = 0;
 	public $data;

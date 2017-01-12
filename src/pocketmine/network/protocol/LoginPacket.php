@@ -31,6 +31,7 @@ class LoginPacket extends DataPacket{
 
 	const EDITION_POCKET = 0;
 
+
 	public $username;
 	public $protocol;
 	public $gameEdition;
@@ -47,8 +48,11 @@ class LoginPacket extends DataPacket{
 		if($this->protocol !== Info::CURRENT_PROTOCOL){
 			return; //Do not attempt to decode for non-accepted protocols
 		}
+
 		$this->gameEdition = $this->getByte();
+
 		$str = zlib_decode($this->getString(), 1024 * 1024 * 64);
+
 		$this->setBuffer($str, 0);
 
 		$time = time();
