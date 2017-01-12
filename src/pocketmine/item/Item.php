@@ -27,8 +27,6 @@ namespace pocketmine\item;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\block\Block;
-use pocketmine\block\Fence;
-use pocketmine\block\Flower;
 use pocketmine\entity\CaveSpider;
 use pocketmine\entity\Entity;
 use pocketmine\entity\PigZombie;
@@ -99,8 +97,6 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::MUSHROOM_STEW] = MushroomStew::class;
 			self::$list[self::RABBIT_STEW] = RabbitStew::class;
 			self::$list[self::BEETROOT_SOUP] = BeetrootSoup::class;
-			self::$list[self::CARROT] = Carrot::class;
-			self::$list[self::POTATO] = Potato::class;
 			self::$list[self::BEETROOT_SEEDS] = BeetrootSeeds::class;
 			self::$list[self::SIGN] = Sign::class;
 			self::$list[self::WOODEN_DOOR] = WoodenDoor::class;
@@ -139,7 +135,6 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::GOLD_CHESTPLATE] = GoldChestplate::class;
 			self::$list[self::GOLD_LEGGINGS] = GoldLeggings::class;
 			self::$list[self::GOLD_BOOTS] = GoldBoots::class;
-			self::$list[self::ELYTRA] = Elytra::class;
 			self::$list[self::DIAMOND_HELMET] = DiamondHelmet::class;
 			self::$list[self::DIAMOND_CHESTPLATE] = DiamondChestplate::class;
 			self::$list[self::DIAMOND_LEGGINGS] = DiamondLeggings::class;
@@ -218,6 +213,10 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::COOKED_CHICKEN] = CookedChicken::class;
 			self::$list[self::GOLD_NUGGET] = GoldNugget::class;
 			self::$list[self::EMERALD] = Emerald::class;
+			self::$list[self::ITEM_FRAME] = ItemFrame::class;
+			self::$list[self::FLOWER_POT] = FlowerPot::class;
+			self::$list[self::CARROT] = Carrot::class;
+			self::$list[self::POTATO] = Potato::class;
 			self::$list[self::BAKED_POTATO] = BakedPotato::class;
 			self::$list[self::PUMPKIN_PIE] = PumpkinPie::class;
 			self::$list[self::NETHER_BRICK] = NetherBrick::class;
@@ -225,7 +224,6 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::BREWING_STAND] = BrewingStand::class;
 			self::$list[self::CAMERA] = Camera::class;
 			self::$list[self::BEETROOT] = Beetroot::class;
-			self::$list[self::FLOWER_POT] = FlowerPot::class;
 			self::$list[self::SKULL] = Skull::class;
 			self::$list[self::RAW_RABBIT] = RawRabbit::class;
 			self::$list[self::COOKED_RABBIT] = CookedRabbit::class;
@@ -236,7 +234,6 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::BLAZE_POWDER] = BlazePowder::class;
 			self::$list[self::MAGMA_CREAM] = MagmaCream::class;
 			self::$list[self::GLISTERING_MELON] = GlisteringMelon::class;
-			self::$list[self::ITEM_FRAME] = ItemFrame::class;
 			self::$list[self::ENCHANTED_BOOK] = EnchantedBook::class;
 			self::$list[self::REPEATER] = Repeater::class;
 			self::$list[self::CAULDRON] = Cauldron::class;
@@ -245,10 +242,11 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::RAW_MUTTON] = RawMutton::class;
 			self::$list[self::COOKED_MUTTON] = CookedMutton::class;
 			self::$list[self::HOPPER] = Hopper::class;
-			self::$list[self::PRISMARINE_SHARD] = PrismarineShard::class;
-			self::$list[self::PRISMARINE_CRYSTALS] = PrismarineCrystals::class;
-			self::$list[self::NETHER_STAR] = NetherStar::class;
+			self::$list[self::ELYTRA] = Elytra::class;
+			self::$list[self::NETHER_STAR] = NETHER_STAR::class;
 			self::$list[self::CHORUS_FRUIT] = ChorusFruit::class;
+			self::$list[self::PRISMARINE_CRYSTALS] = PrismarineCrystals::class;
+			self::$list[self::PRISMARINE_SHARD] = PrismarineShard::class;
 
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){
@@ -257,7 +255,7 @@ class Item implements ItemIds, \JsonSerializable{
 			}
 		}
 
-		self::initCreativeItems($readFromJson);
+		self::initCreativeItems();
 	}
 
 	private static $creative = [];
@@ -378,13 +376,7 @@ class Item implements ItemIds, \JsonSerializable{
 		}
 	}
 
-	public function __construct($id, $meta = 0, int $count = 1, string $name = "Unknown"){
-		if(is_string($id)){
-			$item = Item::fromString($id);
-			$id = $item->getId();
-			if($item->getDamage() != $meta) $meta = $item->getDamage();
-			$name = $item->getName();
-		}
+	public function __construct(int $id, int $meta = 0, int $count = 1, string $name = "Unknown"){
 		$this->id = $id & 0xffff;
 		$this->meta = $meta !== -1 ? $meta & 0xffff : -1;
 		$this->count = $count;
@@ -409,7 +401,7 @@ class Item implements ItemIds, \JsonSerializable{
 	/**
 	 * @return string
 	 */
-	public function getCompoundTag() : bool{
+	public function getCompoundTag() : string{
 		return $this->tags;
 	}
 
@@ -721,7 +713,7 @@ class Item implements ItemIds, \JsonSerializable{
 			$this->clearCustomName();
 		}
 
-		if(!$this->hasCompoundTag()){
+		if(!($hadCompoundTag = $this->hasCompoundTag())){
 			$tag = new CompoundTag("", []);
 		}else{
 			$tag = $this->getNamedTag();
@@ -734,9 +726,10 @@ class Item implements ItemIds, \JsonSerializable{
 				"Name" => new StringTag("Name", $name)
 			]);
 		}
-		
-		$this->setCompoundTag($tag);
-		
+
+		if(!$hadCompoundTag){
+			$this->setCompoundTag($tag);
+		}
 
 		return $this;
 	}
@@ -835,7 +828,7 @@ class Item implements ItemIds, \JsonSerializable{
 		return $this->id;
 	}
 
-	final public function getDamage() : int{ 
+	final public function getDamage() : int{
 		return $this->meta;
 	}
 
@@ -992,59 +985,61 @@ class Item implements ItemIds, \JsonSerializable{
 			"nbt" => $this->tags
 		];
 	}
-	
+
 	/**
- 	 * Serializes the item to an NBT CompoundTag
- 	 *
- 	 * @param int $slot optional, the inventory slot of the item
- 	 *
- 	 * @return CompoundTag
- 	 */
- 	public function nbtSerialize(int $slot = -1, string $tagName = "") : CompoundTag{
- 		$tag = new CompoundTag($tagName, [
- 			"id" => new ShortTag("id", $this->id),
- 			"Count" => new ByteTag("Count", $this->count ?? -1),
- 			"Damage" => new ShortTag("Damage", $this->meta),
- 		]);
- 
- 		if($this->hasCompoundTag()){
- 			$tag->tag = clone $this->getNamedTag();
- 			$tag->tag->setName("tag");
- 		}
- 		
- 		if($slot !== -1){
- 			$tag->Slot = new ByteTag("Slot", $slot);
- 		}
- 
- 		return $tag;
- 	}
- 
- 	/**
- 	 * Deserializes an Item from an NBT CompoundTag
- 	 *
- 	 * @param CompoundTag $tag
- 	 *
- 	 * @return Item
- 	 */
- 	public static function nbtDeserialize(CompoundTag $tag) : Item{
- 		if(!isset($tag->id) or !isset($tag->Count)){
- 			return Item::get(0);
- 		}
- 
- 		if($tag->id instanceof ShortTag){
- 			$item = Item::get($tag->id->getValue(), !isset($tag->Damage) ? 0 : $tag->Damage->getValue(), $tag->Count->getValue());
- 		}elseif($tag->id instanceof StringTag){ //PC item save format
- 			$item = Item::fromString($tag->id->getValue());
- 			$item->setDamage(!isset($tag->Damage) ? 0 : $tag->Damage->getValue());
- 			$item->setCount($tag->Count->getValue());
- 		}else{
- 			throw new \InvalidArgumentException("Item CompoundTag ID must be an instance of StringTag or ShortTag, " . get_class($tag->id) . " given");
- 		}
- 
- 		if(isset($tag->tag) and $tag->tag instanceof CompoundTag){
- 			$item->setNamedTag($tag->tag);
- 		}
- 
- 		return $item;
- 	}
+	 * Serializes the item to an NBT CompoundTag
+	 *
+	 * @param int    $slot optional, the inventory slot of the item
+	 * @param string $tagName the name to assign to the CompoundTag object
+	 *
+	 * @return CompoundTag
+	 */
+	public function nbtSerialize(int $slot = -1, string $tagName = "") : CompoundTag{
+		$tag = new CompoundTag($tagName, [
+			"id" => new ShortTag("id", $this->id),
+			"Count" => new ByteTag("Count", $this->count ?? -1),
+			"Damage" => new ShortTag("Damage", $this->meta),
+		]);
+
+		if($this->hasCompoundTag()){
+			$tag->tag = clone $this->getNamedTag();
+			$tag->tag->setName("tag");
+		}
+		
+		if($slot !== -1){
+			$tag->Slot = new ByteTag("Slot", $slot);
+		}
+
+		return $tag;
+	}
+
+	/**
+	 * Deserializes an Item from an NBT CompoundTag
+	 *
+	 * @param CompoundTag $tag
+	 *
+	 * @return Item
+	 */
+	public static function nbtDeserialize(CompoundTag $tag) : Item{
+		if(!isset($tag->id) or !isset($tag->Count)){
+			return Item::get(0);
+		}
+
+		if($tag->id instanceof ShortTag){
+			$item = Item::get($tag->id->getValue(), !isset($tag->Damage) ? 0 : $tag->Damage->getValue(), $tag->Count->getValue());
+		}elseif($tag->id instanceof StringTag){ //PC item save format
+			$item = Item::fromString($tag->id->getValue());
+			$item->setDamage(!isset($tag->Damage) ? 0 : $tag->Damage->getValue());
+			$item->setCount($tag->Count->getValue());
+		}else{
+			throw new \InvalidArgumentException("Item CompoundTag ID must be an instance of StringTag or ShortTag, " . get_class($tag->id) . " given");
+		}
+
+		if(isset($tag->tag) and $tag->tag instanceof CompoundTag){
+			$item->setNamedTag($tag->tag);
+		}
+
+		return $item;
+	}
+
 }
