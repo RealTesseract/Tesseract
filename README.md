@@ -3,16 +3,12 @@ Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 <br>
-## NOTE: Tesseract has been updated to Minecraft 1.0 but there are still a lot of bugs. Please report them in our issue tracker.
-## Notice: Report any issues and we will try to fix them for you.
+## Notice: Tesseract is supported to Minecraft 1.0. Report any issues and we will try to fix them for you.
 
 ##Builds
 
 __Travis-CI Build:__<br>
  [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)
- 
-__Jenkins Build:__<br>
-[![Jenkins](http://jenkins.tesseractteam.tk:8080/job/Tesseract/badge/icon)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
 ## Quick Links (Instead of scrolling, click these!)
 
