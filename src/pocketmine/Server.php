@@ -1898,8 +1898,7 @@ class Server{
 			
 
 			if($cfgVer > $advVer){
-				$this->logger->notice("Your tesseract.yml needs update");
-				$this->logger->notice("Current Version: $advVer   Latest Version: $cfgVer");
+				$this->logger->notice("Your tesseract.yml needs update (Current : $advVer -> Latest: $cfgVer)");
 			}
 
 			$this->generateRecipeList();
