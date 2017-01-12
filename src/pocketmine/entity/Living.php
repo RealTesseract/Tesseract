@@ -21,7 +21,6 @@
 
 namespace pocketmine\entity;
 
-
 use pocketmine\block\Block;
 use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
