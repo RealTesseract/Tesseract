@@ -175,7 +175,7 @@ class Potion extends Item{
 		if($human instanceof Player){
 			$human->dataPacket($pk);
 		}
-		$server = $human->getLevel()->getServer()
+		$server = $human->getLevel()->getServer();
 		
 		$server->broadcastPacket($human->getViewers(), $pk);
 		
