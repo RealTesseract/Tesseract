@@ -1604,7 +1604,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}
 				}
 			}
-		/*}else*/{
+		//}else{
 			if($this->chunk === null or !$this->chunk->isGenerated()){
 				$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
 				if($chunk === null or !$chunk->isGenerated()){
@@ -1617,7 +1617,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$this->chunk = $chunk;
 				}
 			}
-		}
+		//}
 
 		if(!$revert and $distanceSquared != 0){
 			$dx = $newPos->x - $this->x;
