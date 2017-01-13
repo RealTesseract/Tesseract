@@ -19,6 +19,7 @@ __[Installation](https://github.com/TesseractTeam/Tesseract/blob/master/README.m
 __[Resources](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#resources)__ <br>
 __[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#acknowledgements)__ <br>
 __[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
+__[TODO LIST!](https://github.com/TesseractTeam/Tesseract/projects/1)__ <br>
 __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
 
 <br>
