@@ -58,7 +58,10 @@ abstract class Food extends Item implements FoodSource{
 		if($human instanceof Player){
 			$human->dataPacket($pk);
 		}
-		Server::broadcastPacket($human->getViewers(), $pk);
+		
+		$server = $human->getLevel()->getServer();
+		
+		$server->broadcastPacket($human->getViewers(), $pk);
 
 		Server::getInstance()->getPluginManager()->callEvent($ev = new EntityEatItemEvent($human, $this));
 
