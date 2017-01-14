@@ -437,21 +437,21 @@ class Chunk{
 			for($z = 0; $z < 16; ++$z){
 				$heightMap = $this->getHeightMap($x, $z);
 
-				$y = min(($this->getHighestSubChunkIndex() + 1) << 4, $heightMap);
+				$y = ($this->getHighestSubChunkIndex() + 1) << 4;
 
 				for(; $y > $heightMap; --$y){
 					$this->setBlockSkyLight($x, $y, $z, 15);
 				}
 
-				for(; $y > 0; --$y){
-					if($this->getBlockId($x, $y, $z) !== Block::AIR){
-						break;
-					}
-
+				for(; $y > 0 and $this->getBlockId($x, $y, $z) === Block::AIR; --$y){
 					$this->setBlockSkyLight($x, $y, $z, 15);
 				}
 
 				$this->setHeightMap($x, $z, $y);
+				
+				for(; $y > 0; --$y){		
+					$this->setBlockSkyLight($x, $y, $z, 0);
+				}
 			}
 		}
 	}

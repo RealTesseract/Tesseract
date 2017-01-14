@@ -3758,7 +3758,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$this->save();
 				}
 			}
-		$this->server->despawnEntitiesForPlayer($this);
+
 			foreach($this->server->getOnlinePlayers() as $player){
 				if(!$player->canSee($this)){
 					$player->showPlayer($this);

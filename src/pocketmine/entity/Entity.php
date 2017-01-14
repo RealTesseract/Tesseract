@@ -93,7 +93,7 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_AIR = 7; //short
 	const DATA_POTION_COLOR = 8; //int (ARGB!)
 	const DATA_POTION_AMBIENT = 9; //byte
-	const DATA_LEAD = 24;
+	
 	/* 27 (byte) player-specific flags
 	 * 28 (int) player "index"?
 	 * 29 (block coords) bed position */
@@ -110,10 +110,11 @@ abstract class Entity extends Location implements Metadatable{
 	 * 49 (long)
 	 * 50 (long)
 	 * 51 (long)
-	 /* 52 (short) */
-	const DATA_BOUNDING_BOX_WIDTH = 53; //float
-	const DATA_BOUNDING_BOX_HEIGHT = 54; //float
-	const DATA_FUSE_LENGTH = 55; //int
+	 * 52 (short) 
+	 * 53 (unknown)*/
+	const DATA_BOUNDING_BOX_WIDTH = 54; //float
+	const DATA_BOUNDING_BOX_HEIGHT = 55; //float
+	const DATA_FUSE_LENGTH = 56; //int
 	/* 56 (vector3f)
 	 * 57 (byte)
 	 * 58 (float)
