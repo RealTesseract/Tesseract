@@ -26,7 +26,7 @@ namespace pocketmine\entity;
 use pocketmine\Player;
 use pocketmine\network\protocol\AddEntityPacket;
 
-class Horse extends Animal{
+class Horse extends Living{
 
 	const NETWORK_ID = 23;
 
