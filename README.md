@@ -13,6 +13,10 @@ __Travis-CI Build:__<br>
  __Jenkins Build:__<br>
 [![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](http://jenkins.tesseractteam.tk:8080/job/Tesseract)
 
+## Project List
+You can check the progress of the project.
+__[Project List!](https://github.com/TesseractTeam/Tesseract/projects/1)__
+
 ## Quick Links (Instead of scrolling, click these!)
 
 __[Installation](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#installation)__ <br>
