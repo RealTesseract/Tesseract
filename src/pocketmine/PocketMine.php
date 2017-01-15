@@ -72,13 +72,9 @@ namespace pocketmine {
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\Installer;
 
-	const VERSION = "1.0.0dev"; //will be set by CI to a git hash
+	const VERSION = "1.0.0dev";
 	const API_VERSION = "3.0.0";
 	const CODENAME = "Crystal";
-	
-	//This method should no longer be used, removing soon
-	/*const MINECRAFT_VERSION = "v1.0.0";
-	const MINECRAFT_VERSION_NETWORK = "1.0.0";*/
 
 	/*
 	 * Startup code. Do not look at it, it may harm you.
@@ -117,7 +113,7 @@ namespace pocketmine {
 	$autoloader->register(true);
 
 
-	set_time_limit(0); //Who set it to 30 seconds?!?!
+	set_time_limit(0);
 
 	gc_enable();
 	error_reporting(-1);
