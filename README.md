@@ -55,8 +55,7 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 - Tesseract is also a "spoon" of **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** 
 - Most of the original code was written by PocketMine Team and iTX Technologies. <br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
-<br>
+__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__<br>
 
 ## License
 -------------
@@ -87,3 +86,4 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 * __[Zlib](http://www.zlib.net/)__: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
 * __[Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)__
 * __[UT3 Query Protocol](http://wiki.unrealadmin.org/UT3_query_protocol)__
+![NO ISSUES!](Tesseract/.github/NO-ISSUES!.jpg)
