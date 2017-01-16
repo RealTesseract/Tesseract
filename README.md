@@ -3,6 +3,8 @@ Tesseract Introduction
 -------------
 Tesseract is the new advanced server software based on PocketMine-MP!<br>
 <br>
+## Tesseract is currently the LEAST BUGGY MCPE SERVER SOFTWARE!
+
 ## Notice
 
 **Tesseract is supported to Minecraft:PE 1.0 (PE & win10)<br> Report any issues and we will try to fix them for you.** <br><br> Tesseract supports only the world type of Anvil. (MCRegion is not supported)
