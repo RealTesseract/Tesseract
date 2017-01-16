@@ -218,7 +218,7 @@ class MainLogger extends \AttachableThreadedLogger{
 			}
 		}
 
-		$message = TextFormat::toANSI(TextFormat::BOLD . TextFormat::GREEN . "Tesseract // " . TextFormat::RESET . $color . $prefix . "> " . $message . TextFormat::RESET);
+		$message = TextFormat::toANSI(TextFormat::GREEN . "Tesseract" . TextFormat::WHITE . "// " . TextFormat::AQUA . date("H:i:s") .  TextFormat::WHITE . "//" . TextFormat::RESET . $color . $prefix . "> " . $message . TextFormat::RESET);
 		//$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s") . "] ". TextFormat::RESET . $color ."<".$prefix . ">" . " " . $message . TextFormat::RESET);
 		$cleanMessage = TextFormat::clean($message);
 
