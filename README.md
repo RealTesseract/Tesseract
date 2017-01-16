@@ -87,5 +87,5 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 * __[Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)__
 * __[UT3 Query Protocol](http://wiki.unrealadmin.org/UT3_query_protocol)__
 
-## Proof of Least Buggy (1/16/17
+## Proof of Least Buggy (1/16/17)
 ![NO ISSUES!](.github/NO-ISSUES!.jpg)
