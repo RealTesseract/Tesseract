@@ -5,7 +5,8 @@ Tesseract is the new advanced server software based on PocketMine-MP!<br>
 <br>
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0 (PE & win10)<br> Report any issues and we will try to fix them for you.**
+**Tesseract is supported to Minecraft:PE 1.0 (PE & win10)<br> Report any issues and we will try to fix them for you.<br><br>Tesseract supports only the world type of Anvil (MCRegion is not supported) **
+
 ##Builds
 
 __Travis-CI Build:__<br>
@@ -25,8 +26,6 @@ __[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/READ
 __[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
 __[TODO LIST!](https://github.com/TesseractTeam/Tesseract/projects/1)__ <br>
 __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
-
-<br>
 
 ## Installation
 
