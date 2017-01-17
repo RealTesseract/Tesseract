@@ -92,4 +92,4 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 
 ### List of 0-Issues days: 
 - 1/16/17
--1/17/17
+- 1/17/17
