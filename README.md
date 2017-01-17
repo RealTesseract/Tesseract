@@ -2,7 +2,7 @@
 Tesseract Introduction
 -------------
 **Tesseract is the new advanced server software based on PocketMine-MP! <br>
-Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion is not supported) <br>
+Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion is not supported)** <br>
 
 ## Notice
 
