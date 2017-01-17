@@ -1582,10 +1582,10 @@ class Server{
 §e###################################################  §6-- Loaded: Properties and Configuration --
 §e#                                                 #    §cVersion: §d$version
 §e#§b   _______                                _      §e#    §cMCPE: §d$mcpe
-§e#§b  |__   __|                              | |     §e#    §cIP: §d$ip §cPort: §d$port
+§e#§b  |__   __|                              | |     §e#    §cDate: "date("D, F d, Y, H:i")"
 §e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cProxy Enabled: §d$proxy
 §e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cSSL Extension: §d$ssl
-§e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cAuthentication: §d$mode
+§e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cAuthentifcation: §d$mode
 §e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#  §6------------------------------------------
 §e#                                                 #    §cCodename: §d$code
 §e#                                                 #    §cAPI Version: §d$api
