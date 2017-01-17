@@ -22,6 +22,8 @@
 namespace pocketmine\command;
 
 use pocketmine\command\defaults\BanCommand;
+use pocketmine\command\defaults\BanCidByNameCommand;
+use pocketmine\command\defaults\BanCidCommand;
 use pocketmine\command\defaults\BanIpByNameCommand;
 use pocketmine\command\defaults\BanIpCommand;
 use pocketmine\command\defaults\BanListCommand;
@@ -100,6 +102,8 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new WeatherCommand("weather"));
 
 		$this->register("pocketmine", new BanIpByNameCommand("banipbyname"));
+		$this->register("pocketmine", new BanCidByNameCommand("bancidbyname"));
+		$this->register("pocketmine", new BanCidCommand("bancid"));
 
 		$this->register("pocketmine", new VersionCommand("version"));
 		$this->register("pocketmine", new PluginsCommand("plugins"));
