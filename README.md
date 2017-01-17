@@ -1,13 +1,13 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
 Tesseract Introduction
 -------------
-Tesseract is the new advanced server software based on PocketMine-MP!<br>
-<br>
-## Tesseract is currently the LEAST BUGGY MCPE SERVER SOFTWARE!
+**Tesseract is the new advanced server software based on PocketMine-MP! <br>
+Tesseract supports only the world type of Anvil. (MCRegion is not supported) <br>
+Tesseract is currently the LEAST BUGGY MCPE SERVER SOFTWARE!** <br>
 
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0 (PE & win10)<br> Report any issues and we will try to fix them for you.** <br><br> Tesseract supports only the world type of Anvil. (MCRegion is not supported)
+**Tesseract is supported to Minecraft:PE 1.0 (PE & win10) <br> Report any issues and we will try to fix them for you.** 
 
 ##Builds
 
@@ -41,8 +41,8 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 ## Resources
 
 **External Links**
-     Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are on windows).
-     Download it 
+     Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are on windows). <br>
+     Download it 
 *__[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
 
 __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
