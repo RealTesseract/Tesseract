@@ -1576,7 +1576,7 @@ class Server{
 			$ssl = $this->isExtensionInstalled("OpenSSL");
 			$mode = $this->checkAuthentication();
 			$lang = $this->getProperty("settings.language", "eng");
-			$date = date("D, F d, Y, H:i");
+			$date = date("D, F d, Y, H:i T");
 			$package = $packages;
 
 			            $this->logger->info("
