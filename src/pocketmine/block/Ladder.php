@@ -143,7 +143,7 @@ class Ladder extends Transparent{
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item){
 		return [
 			[$this->id, 0, 1],
 		];
