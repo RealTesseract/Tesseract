@@ -407,7 +407,6 @@ class Level implements ChunkManager, Metadatable{
 		if($this->server->netherEnabled and $this->server->netherName == $this->folderName) $this->setDimension(self::DIMENSION_NETHER);
 		else $this->setDimension(self::DIMENSION_NORMAL);
 		if($this->server->weatherEnabled and $this->getDimension() == self::DIMENSION_NORMAL){
-			WeatherManager::registerLevel($this);
 			$this->weather->setCanCalculate(true);
 		}else $this->weather->setCanCalculate(false);
 	}
@@ -620,8 +619,6 @@ class Level implements ChunkManager, Metadatable{
 		if($this === $defaultLevel){
 			$this->server->setDefaultLevel(null);
 		}
-
-		if($this->weather != null) WeatherManager::unregisterLevel($this);
 
 		$this->close();
 

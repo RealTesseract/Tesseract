@@ -264,19 +264,6 @@ class EnchantInventory extends TemporaryInventory{
 		}
 	}
 
-	public function sendEnchantmentList(){
-		$pk = new CraftingDataPacket();
-		if($this->entries !== null and $this->levels !== null){
-			$list = new EnchantmentList(count($this->entries));
-			for($i = 0; $i < count($this->entries); $i++){
-				$list->setSlot($i, $this->entries[$i]);
-			}
-			$pk->addEnchantList($list);
-		}
-
-		Server::getInstance()->broadcastPacket($this->getViewers(), $pk);
-	}
-
 	/**
 	 * @param Enchantment   $enchantment
 	 * @param Enchantment[] $enchantments
