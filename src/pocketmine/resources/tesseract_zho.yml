@@ -43,6 +43,8 @@ player:
  keep-experience: false
  #如果玩家進入遊戲時崩潰, 請設置該值低於10. 禁用 = -1
  chunk-radius: -1
+ 
+ check-movement: true
 
 nether:
  #是否允許地獄，打開此選項會自動生成地獄地圖

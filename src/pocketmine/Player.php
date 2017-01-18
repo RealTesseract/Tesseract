@@ -151,7 +151,6 @@ use pocketmine\permission\PermissionAttachment;
 use pocketmine\plugin\Plugin;
 use pocketmine\tile\ItemFrame;
 use pocketmine\tile\Spawnable;
-use pocketmine\utils\Binary;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\UUID;
 
@@ -1596,8 +1595,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 		$revert = false;
 
-		//if($this->server->checkMovement){
+		if($this->server->checkMovement){
 			if(($distanceSquared / ($tickDiff ** 2)) > 200){
+				$this->server->getLogger()->warning($this->getName() . " moved too fast, reverting movement");
 				$revert = true;
 			}else{
 				if($this->chunk === null or !$this->chunk->isGenerated()){
@@ -1613,7 +1613,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}
 				}
 			}
-		/*}else*/{
+		}else{
 			if($this->chunk === null or !$this->chunk->isGenerated()){
 				$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
 				if($chunk === null or !$chunk->isGenerated()){
@@ -1646,22 +1646,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 			$diff = ($diffX ** 2 + $diffY ** 2 + $diffZ ** 2) / ($tickDiff ** 2);
 
-			/*if($this->isSurvival()){
-				if(!$revert and !$this->isSleeping()){
-					if($diff > 0.0625){
-						$revert = true;
-						$this->server->getLogger()->warning($this->getServer()->getLanguage()->translateString("pocketmine.player.invalidMove", [$this->getName()]));
-					}
-				}
-			}
-
 			if($diff > 0){
 				$this->x = $newPos->x;
 				$this->y = $newPos->y;
 				$this->z = $newPos->z;
 				$radius = $this->width / 2;
 				$this->boundingBox->setBounds($this->x - $radius, $this->y, $this->z - $radius, $this->x + $radius, $this->y + $this->height, $this->z + $radius);
-			}*/
+			}
 		}
 
 		$from = new Location($this->lastX, $this->lastY, $this->lastZ, $this->lastYaw, $this->lastPitch, $this->level);
@@ -4320,29 +4311,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	public function isLoaderActive(){
 		return $this->isConnected();
-	}
-
-	/**
-	 * @param $chunkX
-	 * @param $chunkZ
-	 * @param $payload
-	 *
-	 * @return BatchPacket|FullChunkDataPacket
-	 */
-	public static function getChunkCacheFromData($chunkX, $chunkZ, $payload){
-		$pk = new FullChunkDataPacket();
-		$pk->chunkX = $chunkX;
-		$pk->chunkZ = $chunkZ;
-		$pk->data = $payload;
-		if(Network::$BATCH_THRESHOLD >= 0){
-			$pk->encode();
-			$batch = new BatchPacket();
-			$batch->payload = zlib_encode(Binary::writeUnsignedVarInt(strlen($pk->getBuffer())) . $pk->getBuffer(), ZLIB_ENCODING_DEFLATE, Server::getInstance()->networkCompressionLevel);
-			$batch->encode();
-			$batch->isEncoded = true;
-			return $batch;
-		}
-		return $pk;
 	}
 
 	/**

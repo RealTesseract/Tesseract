@@ -88,6 +88,7 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\LongTag;
+use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\LevelEventPacket;
 use pocketmine\network\protocol\MoveEntityPacket;
@@ -102,8 +103,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\tile\Chest;
 use pocketmine\tile\Tile;
-use pocketmine\utils\LevelException;
-use pocketmine\utils\MainLogger;
+use pocketmine\utils\Binary;
 use pocketmine\utils\Random;
 use pocketmine\utils\ReversePriorityQueue;
 use pocketmine\level\particle\Particle;
@@ -274,6 +274,8 @@ class Level implements ChunkManager, Metadatable{
 	/** @var Generator */
 	private $generatorInstance;
 
+	private $closed = false;
+	
 	/** @var Weather */
 	private $weather;
 
@@ -495,9 +497,14 @@ class Level implements ChunkManager, Metadatable{
 	final public function getId() : int{
 		return $this->levelId;
 	}
+	
+	public function isClosed() : bool{
+		return $this->closed;
+	}
 
 	public function close(){
-
+	assert(!$this->closed, "Tried to close a level which is already closed");
+	
 		if($this->getAutoSave()){
 			$this->save();
 		}
@@ -513,6 +520,8 @@ class Level implements ChunkManager, Metadatable{
 		$this->blockMetadata = null;
 		$this->blockCache = [];
 		$this->temporalPosition = null;
+		
+		$this->closed = true;
 	}
 
 	public function addSound(Sound $sound, array $players = null){
@@ -990,8 +999,6 @@ class Level implements ChunkManager, Metadatable{
 				}
 			}
 		}
-
-		$blockTest = 0;
 
 		foreach($this->chunkTickList as $index => $loaders){
 			Level::getXZ($index, $chunkX, $chunkZ);
@@ -2596,7 +2603,7 @@ class Level implements ChunkManager, Metadatable{
 		$index = Level::chunkHash($x, $z);
 
 		if(!isset($this->chunkCache[$index]) and $this->cacheChunks and $this->server->getMemoryManager()->canUseChunkCache()){
-			$this->chunkCache[$index] = Player::getChunkCacheFromData($x, $z, $payload);
+			$this->chunkCache[$index] = Level::getChunkCacheFromData($x, $z, $payload);
 			$this->sendChunkFromCache($x, $z);
 			$this->timings->syncChunkSendTimer->stopTiming();
 			return;
@@ -2810,9 +2817,7 @@ class Level implements ChunkManager, Metadatable{
 		}catch(\Throwable $e){
 			$logger = $this->server->getLogger();
 			$logger->error($this->server->getLanguage()->translateString("pocketmine.level.chunkUnloadError", [$e->getMessage()]));
-			if($logger instanceof MainLogger){
-				$logger->logException($e);
-			}
+			$logger->logException($e);	
 		}
 
 		unset($this->chunks[$index]);
@@ -3073,6 +3078,27 @@ class Level implements ChunkManager, Metadatable{
 				}
 			}
 		}
+	}
+	
+	/**
+	 * @param int    $chunkX
+	 * @param int    $chunkZ
+	 * @param string $payload
+	 *
+	 * @return DataPacket
+	 */
+	public static function getChunkCacheFromData($chunkX, $chunkZ, $payload){
+		$pk = new FullChunkDataPacket();
+		$pk->chunkX = $chunkX;
+		$pk->chunkZ = $chunkZ;
+		$pk->data = $payload;
+		$pk->encode();
+
+		$batch = new BatchPacket();
+		$batch->payload = zlib_encode(Binary::writeUnsignedVarInt(strlen($pk->getBuffer())) . $pk->getBuffer(), ZLIB_ENCODING_DEFLATE, Server::getInstance()->networkCompressionLevel);
+		$batch->encode();
+		$batch->isEncoded = true;
+		return $batch;
 	}
 
 	public function setMetadata($metadataKey, MetadataValue $metadataValue){

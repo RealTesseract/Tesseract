@@ -58,6 +58,7 @@ use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\hell\Nether;
 use pocketmine\level\generator\normal\Normal;
 use pocketmine\level\Level;
+use pocketmine\level\LevelException;
 use pocketmine\metadata\EntityMetadataStore;
 use pocketmine\metadata\LevelMetadataStore;
 use pocketmine\metadata\PlayerMetadataStore;
@@ -100,7 +101,6 @@ use pocketmine\tile\Tile;
 use pocketmine\utils\Binary;
 use pocketmine\utils\Color;
 use pocketmine\utils\Config;
-use pocketmine\utils\LevelException;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\ServerException;
 use pocketmine\utils\Terminal;
@@ -303,6 +303,7 @@ class Server{
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
 	public $raklibDisable = false;
+	public $checkMovement = true;
 
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
@@ -1468,7 +1469,7 @@ class Server{
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
 		$this->raklibDisable = $this->getAdvancedProperty("network.raklib-disable", false);
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
-		
+		$this->checkMovement = $this->getAdvancedProperty("player.check-movement", true);
 	}
 	
 	/**

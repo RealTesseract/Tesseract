@@ -56,6 +56,8 @@ player:
  #It can also be disabled by setting "-1" for the value
  chunk-radius: -1
  
+ check-movement: true
+ 
 server:
  #This setting decides if the server.log file will not be made/written.
  disable-log: false

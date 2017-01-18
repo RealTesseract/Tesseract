@@ -49,6 +49,8 @@ player:
  keep-experience: false
  #ワールドの読み込むチャンク量の半径を設定します(10以上を指定すると処理過多によりクラッシュする可能性があります。-1を指定すると無効に設定します。)
  chunk-radius: -1
+ 
+ check-movement: true
 
 server:
  #サーバーのログをファイルに保存するかを設定します。

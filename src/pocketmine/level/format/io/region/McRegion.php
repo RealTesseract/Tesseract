@@ -24,6 +24,8 @@ declare(strict_types = 1);
 namespace pocketmine\level\format\io\region;
 
 use pocketmine\level\format\Chunk;
+use pocketmine\level\format\io\ChunkException;
+use pocketmine\level\format\io\ChunkUtils;
 use pocketmine\level\format\io\BaseLevelProvider;
 use pocketmine\level\format\SubChunk;
 use pocketmine\level\generator\Generator;
@@ -129,16 +131,16 @@ class McRegion extends BaseLevelProvider{
 			$chunk = $nbt->getData();
 
 			if(!isset($chunk->Level) or !($chunk->Level instanceof CompoundTag)){
-				return null;
+				throw new ChunkException("Invalid NBT format");
 			}
 
 			$chunk = $chunk->Level;
 
 			$subChunks = [];
 			$fullIds = isset($chunk->Blocks) ? $chunk->Blocks->getValue() : str_repeat("\x00", 32768);
-			$fullData = isset($chunk->Data) ? $chunk->Data->getValue() : ($half = str_repeat("\x00", 16384));
+			$fullData = isset($chunk->Data) ? $chunk->Data->getValue() : (str_repeat("\x00", 16384));
 			$fullSkyLight = isset($chunk->SkyLight) ? $chunk->SkyLight->getValue() : str_repeat("\xff", 16384);
-			$fullBlockLight = isset($chunk->BlockLight) ? $chunk->BlockLight->getValue() : $half;
+			$fullBlockLight = isset($chunk->BlockLight) ? $chunk->BlockLight->getValue() : (str_repeat("\x00", 16384));
 
 			for($y = 0; $y < 8; ++$y){
 				$offset = ($y << 4);
@@ -169,7 +171,7 @@ class McRegion extends BaseLevelProvider{
 			}
 
 			if(isset($chunk->BiomeColors)){
-				$biomeIds = Chunk::convertBiomeColours($chunk->BiomeColors->getValue()); //Convert back to PC format (RIP colours D:)
+				$biomeIds = ChunkUtils::convertBiomeColors($chunk->BiomeColors->getValue()); //Convert back to PC format (RIP colours D:)
 			}elseif(isset($chunk->Biomes)){
 				$biomeIds = $chunk->Biomes->getValue();
 			}else{

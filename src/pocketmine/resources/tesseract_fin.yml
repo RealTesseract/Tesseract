@@ -56,6 +56,8 @@ player:
  #Myos poistaa kaytosta asettamalla "-1" arvo
  chunk-radius: -1
  
+ check-movement: true
+ 
 server:
  #Tama asetus paattaa, jos server.log-tiedosto ei ole tehty ja kirjoittaneet.
  disable-log: false

@@ -43,6 +43,8 @@ player:
  keep-experience: false
  #Nếu người chơi vào game bị crash, đặt nó là 10. Hủy chế độ=-1
  chunk-radius: -1
+ 
+ check-movement: true
 
 nether:
  #Bật/tắt nếu muốn thêm địa ngục vào server, khi bật server hệ thống sẽ tự tạo thế giới địa ngục (true/false)

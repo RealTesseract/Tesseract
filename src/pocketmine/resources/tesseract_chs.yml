@@ -44,6 +44,8 @@ player:
  #如果玩家进入游戏时崩溃, 请设置低于10的值. 禁用 = -1
  chunk-radius: -1
  
+ check-movement: true
+ 
 nether:
  #是否允许地狱，打开此选项会自动生成地狱地图
  allow-nether: true
