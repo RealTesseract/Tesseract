@@ -36,7 +36,7 @@ class Ladder extends Transparent{
 		$this->meta = $meta;
 	}
 
-	public function getName() : string{
+	public function getName(){
 		return "Ladder";
 	}
 
@@ -48,7 +48,7 @@ class Ladder extends Transparent{
 		return false;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.4;
 	}
 
@@ -57,7 +57,7 @@ class Ladder extends Transparent{
 		$entity->onGround = true;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 
 		$f = 0.1875;
 
@@ -124,25 +124,26 @@ class Ladder extends Transparent{
 
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
-		$faces = [
-			2 => 3,
-			3 => 2,
-			4 => 5,
-			5 => 4,
-		];
-				if (!$this->getSide($faces[$this->meta])->isSolid()){//replace with common break method
-					$this->getLevel()->useBreakOn($this);
+			$sides = [
+				2 => 3,
+				3 => 2,
+				4 => 5,
+				5 => 4
+			];
+			if(!$this->getSide($sides[$this->meta])->isSolid()){ //Replace with common break method
+				$this->level->useBreakOn($this);
 				return Level::BLOCK_UPDATE_NORMAL;
-				}
 			}
+		}
+
 		return false;
 	}
-	
+
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item){
 		return [
 			[$this->id, 0, 1],
 		];
