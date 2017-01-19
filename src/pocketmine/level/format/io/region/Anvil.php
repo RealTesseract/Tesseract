@@ -127,7 +127,7 @@ class Anvil extends McRegion{
 			}
 
 			if(isset($chunk->BiomeColors)){
-				$biomeIds = ChunkUtils::convertBiomeColours($chunk->BiomeColors->getValue()); //Convert back to PC format (RIP colours D:)
+				$biomeIds = ChunkUtils::convertBiomeColors($chunk->BiomeColors->getValue()); //Convert back to PC format (RIP colours D:)
 			}elseif(isset($chunk->Biomes)){
 				$biomeIds = $chunk->Biomes->getValue();
 			}else{
