@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class ContainerClosePacket extends DataPacket{
+
 	const NETWORK_ID = Info::CONTAINER_CLOSE_PACKET;
 
 	public $windowid;
@@ -36,6 +37,13 @@ class ContainerClosePacket extends DataPacket{
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->windowid);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ContainerClosePacket";
 	}
 
 }

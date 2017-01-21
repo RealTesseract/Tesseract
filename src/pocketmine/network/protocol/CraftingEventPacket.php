@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class CraftingEventPacket extends DataPacket{
+
 	const NETWORK_ID = Info::CRAFTING_EVENT_PACKET;
 
 	public $windowId;
@@ -57,6 +58,13 @@ class CraftingEventPacket extends DataPacket{
 
 	public function encode(){
 
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "CraftingEventPacket";
 	}
 
 }

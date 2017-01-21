@@ -31,6 +31,7 @@ use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 
 class CraftingDataPacket extends DataPacket{
+
 	const NETWORK_ID = Info::CRAFTING_DATA_PACKET;
 
 	const ENTRY_SHAPELESS = 0;
@@ -195,6 +196,13 @@ class CraftingDataPacket extends DataPacket{
 		}
 
 		$this->putBool($this->cleanRecipes);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "CraftingDataPacket";
 	}
 
 }

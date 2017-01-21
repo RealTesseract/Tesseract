@@ -25,6 +25,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\Player;
 
 class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable{
+
 	public static $handlerList = null;
 
 	/** @var bool */
@@ -37,6 +38,13 @@ class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable{
 
 	public function isFlying(){
 		return $this->isFlying;
+	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "PlayerToggleFlightEvent";
 	}
 
 }

@@ -25,6 +25,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\Player;
 
 class PlayerPickupExpOrbEvent extends PlayerEvent implements Cancellable{
+
 	public static $handlerList = null;
 
 	private $amount;
@@ -41,4 +42,12 @@ class PlayerPickupExpOrbEvent extends PlayerEvent implements Cancellable{
 	public function setAmount(int $amount){
 		$this->amount = $amount;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "PlayerPickupExpOrbEvent";
+	}
+
 }

@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class UseItemPacket extends DataPacket{
+
 	const NETWORK_ID = Info::USE_ITEM_PACKET;
 
 	public $x;
@@ -54,4 +55,12 @@ class UseItemPacket extends DataPacket{
 	public function encode(){
 
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "UseItemPacket";
+	}
+
 }

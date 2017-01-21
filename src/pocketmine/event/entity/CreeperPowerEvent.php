@@ -50,4 +50,12 @@ class CreeperPowerEvent extends EntityEvent implements Cancellable{
 	public function getCause(){
 		return $this->cause;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "CreeperPowerEvent";
+	}
+
 }

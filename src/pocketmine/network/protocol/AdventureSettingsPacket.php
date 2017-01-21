@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class AdventureSettingsPacket extends DataPacket{
+
 	const NETWORK_ID = Info::ADVENTURE_SETTINGS_PACKET;
 
 	const PERMISSION_NORMAL = 0;
@@ -92,6 +93,13 @@ class AdventureSettingsPacket extends DataPacket{
 
 		$this->putUnsignedVarInt($this->flags);
 		$this->putUnsignedVarInt($this->userPermission);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "AdventureSettingsPacket";
 	}
 
 }

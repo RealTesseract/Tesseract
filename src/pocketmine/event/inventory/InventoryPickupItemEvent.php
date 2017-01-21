@@ -26,6 +26,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\inventory\Inventory;
 
 class InventoryPickupItemEvent extends InventoryEvent implements Cancellable{
+
 	public static $handlerList = null;
 
 	/** @var Item */
@@ -45,6 +46,13 @@ class InventoryPickupItemEvent extends InventoryEvent implements Cancellable{
 	 */
 	public function getItem(){
 		return $this->item;
+	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "InventoryPickupItemEvent";
 	}
 
 }

@@ -86,4 +86,11 @@ class EntityDespawnEvent extends EntityEvent{
 		return $this->entity instanceof Item;
 	}
 
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "EntityDespawnEvent";
+	}
+
 }

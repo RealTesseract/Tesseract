@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class EntityEventPacket extends DataPacket{
+
 	const NETWORK_ID = Info::ENTITY_EVENT_PACKET;
 
 	const HURT_ANIMATION = 2;
@@ -60,6 +61,13 @@ class EntityEventPacket extends DataPacket{
 		$this->putEntityId($this->eid);
 		$this->putByte($this->event);
 		$this->putVarInt($this->unknown);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "EntityEventPacket";
 	}
 
 }

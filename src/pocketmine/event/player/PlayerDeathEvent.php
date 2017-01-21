@@ -27,6 +27,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 
 class PlayerDeathEvent extends EntityDeathEvent{
+
 	public static $handlerList = null;
 
 	/** @var TextContainer|string */
@@ -87,4 +88,12 @@ class PlayerDeathEvent extends EntityDeathEvent{
 	public function setKeepExperience(bool $keepExperience){
 		$this->keepExperience = $keepExperience;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "PlayerDeathEvent";
+	}
+
 }

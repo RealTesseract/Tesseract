@@ -29,6 +29,7 @@ use pocketmine\utils\Binary;
 #endif
 
 class SetEntityDataPacket extends DataPacket{
+
 	const NETWORK_ID = Info::SET_ENTITY_DATA_PACKET;
 
 	public $eid;
@@ -43,6 +44,13 @@ class SetEntityDataPacket extends DataPacket{
 		$this->putEntityId($this->eid);
 		$meta = Binary::writeMetadata($this->metadata);
 		$this->put($meta);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "SetEntityDataPacket";
 	}
 
 }

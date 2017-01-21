@@ -22,6 +22,7 @@
 namespace pocketmine\network\protocol;
 
 class RequestChunkRadiusPacket extends DataPacket{
+
 	const NETWORK_ID = Info::REQUEST_CHUNK_RADIUS_PACKET;
 
 	public $radius;
@@ -33,4 +34,12 @@ class RequestChunkRadiusPacket extends DataPacket{
 	public function encode(){
 
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "RequestChunkRadiusPacket";
+	}
+
 }

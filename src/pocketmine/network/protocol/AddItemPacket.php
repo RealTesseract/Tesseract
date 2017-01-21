@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class AddItemPacket extends DataPacket{
+
 	const NETWORK_ID = Info::ADD_ITEM_PACKET;
 
 	public $item;
@@ -36,6 +37,13 @@ class AddItemPacket extends DataPacket{
 	public function encode(){
 		$this->reset();
 		$this->putSlot($this->item);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "AddItemPacket";
 	}
 
 }

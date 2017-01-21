@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class ContainerSetDataPacket extends DataPacket{
+
 	const NETWORK_ID = Info::CONTAINER_SET_DATA_PACKET;
 
 	public $windowid;
@@ -40,6 +41,13 @@ class ContainerSetDataPacket extends DataPacket{
 		$this->putByte($this->windowid);
 		$this->putVarInt($this->property);
 		$this->putVarInt($this->value);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ContainerSetDataPacket";
 	}
 
 }

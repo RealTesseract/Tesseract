@@ -17,10 +17,14 @@
  *
  *
  */
+
 namespace pocketmine\event\player;
+
 use pocketmine\event\Cancellable;
 use pocketmine\Player;
+
 class PlayerToggleGlideEvent extends PlayerEvent implements Cancellable{
+
 	public static $handlerList = null;
 	/** @var bool */
 	protected $isGliding;
@@ -31,4 +35,12 @@ class PlayerToggleGlideEvent extends PlayerEvent implements Cancellable{
 	public function isGliding(){
 		return $this->isGliding;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "PlayerToggleGlideEvent";
+	}
+
 }

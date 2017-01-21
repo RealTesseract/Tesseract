@@ -24,6 +24,7 @@
 #include <rules/DataPacket.h>
 namespace pocketmine\network\protocol;
 
+
 class CameraPacket extends DataPacket{
 	
 	const NETWORK_ID = Info::CAMERA_PACKET;
@@ -37,4 +38,12 @@ class CameraPacket extends DataPacket{
 		$this->putVarInt($this->eid);
 		$this->putVarInt($this->eid);
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "BossEventPacket";
+	}
+
 }

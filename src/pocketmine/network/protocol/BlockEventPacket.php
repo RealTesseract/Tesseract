@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class BlockEventPacket extends DataPacket{
+
 	const NETWORK_ID = Info::BLOCK_EVENT_PACKET;
 
 	public $x;
@@ -42,6 +43,13 @@ class BlockEventPacket extends DataPacket{
 		$this->putBlockCoords($this->x, $this->y, $this->z);
 		$this->putVarInt($this->case1);
 		$this->putVarInt($this->case2);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "BlockEventPacket";
 	}
 
 }

@@ -24,6 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 class LevelSoundEventPacket extends DataPacket{
+
 	const NETWORK_ID = Info::LEVEL_SOUND_EVENT_PACKET;
 
 	const SOUND_ITEM_USE_ON = 0;
@@ -146,4 +147,12 @@ class LevelSoundEventPacket extends DataPacket{
 		$this->putBool($this->unknownBool);
 		$this->putBool($this->unknownBool2);
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "LevelSoundEventPacket";
+	}
+
 }

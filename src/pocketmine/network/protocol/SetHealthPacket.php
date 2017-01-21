@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class SetHealthPacket extends DataPacket{
+
 	const NETWORK_ID = Info::SET_HEALTH_PACKET;
 
 	public $health;
@@ -36,6 +37,13 @@ class SetHealthPacket extends DataPacket{
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->health);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "SetHealthPacket";
 	}
 
 }

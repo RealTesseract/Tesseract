@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class PlayerActionPacket extends DataPacket{
+
 	const NETWORK_ID = Info::PLAYER_ACTION_PACKET;
 
 	const ACTION_START_BREAK = 0;
@@ -66,6 +67,13 @@ class PlayerActionPacket extends DataPacket{
 		$this->putVarInt($this->action);
 		$this->putBlockCoords($this->x, $this->y, $this->z);
 		$this->putVarInt($this->face);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "PlayerActionPacket";
 	}
 
 }

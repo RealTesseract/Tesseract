@@ -40,4 +40,11 @@ class ShowCreditsPacket extends DataPacket{
 		$this->putVarInt($this->type);
 	}
 
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ShowCreditsPacket";
+	}
+
 }

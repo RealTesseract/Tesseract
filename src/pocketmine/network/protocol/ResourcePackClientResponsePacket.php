@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class ResourcePackClientResponsePacket extends DataPacket{
+
 	const NETWORK_ID = Info::RESOURCE_PACK_CLIENT_RESPONSE_PACKET;
 
 	public $unknownByte;
@@ -37,6 +38,13 @@ class ResourcePackClientResponsePacket extends DataPacket{
 
 	public function encode(){
 
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ResourcePackClientResponsePacket";
 	}
 
 }

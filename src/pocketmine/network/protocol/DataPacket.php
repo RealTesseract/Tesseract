@@ -27,10 +27,8 @@ namespace pocketmine\network\protocol;
 
 #endif
 
-
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\Utils;
-
 
 abstract class DataPacket extends BinaryStream{
 
@@ -72,4 +70,12 @@ abstract class DataPacket extends BinaryStream{
 
 		return $data;
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "DataPacket";
+	}
+
 }

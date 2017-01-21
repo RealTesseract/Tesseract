@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class ContainerOpenPacket extends DataPacket{
+
 	const NETWORK_ID = Info::CONTAINER_OPEN_PACKET;
 
 	public $windowid;
@@ -46,6 +47,13 @@ class ContainerOpenPacket extends DataPacket{
 		$this->putVarInt($this->slots);
 		$this->putBlockCoords($this->x, $this->y, $this->z);
 		$this->putEntityId($this->entityId);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ContainerOpenPacket";
 	}
 
 }

@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class DisconnectPacket extends DataPacket{
+
 	const NETWORK_ID = Info::DISCONNECT_PACKET;
 
 	public $hideDisconnectionScreen = false;
@@ -39,6 +40,13 @@ class DisconnectPacket extends DataPacket{
 		$this->reset();
 		$this->putBool($this->hideDisconnectionScreen);
 		$this->putString($this->message);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "DisconnectPacket";
 	}
 
 }

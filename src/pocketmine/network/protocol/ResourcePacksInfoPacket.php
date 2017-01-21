@@ -26,6 +26,7 @@ namespace pocketmine\network\protocol;
 use pocketmine\resourcepacks\ResourcePackInfoEntry;
 
 class ResourcePacksInfoPacket extends DataPacket{
+
 	const NETWORK_ID = Info::RESOURCE_PACKS_INFO_PACKET;
 
 	public $mustAccept = false; //force client to use selected resource packs
@@ -55,4 +56,12 @@ class ResourcePacksInfoPacket extends DataPacket{
 			$this->putLong($entry->getPackSize());
 		}
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ResourcePacksInfoPacket";
+	}
+
 }

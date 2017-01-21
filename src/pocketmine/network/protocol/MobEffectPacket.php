@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class MobEffectPacket extends DataPacket{
+
 	const NETWORK_ID = Info::MOB_EFFECT_PACKET;
 
 	const EVENT_ADD = 1;
@@ -50,6 +51,13 @@ class MobEffectPacket extends DataPacket{
 		$this->putVarInt($this->amplifier);
 		$this->putBool($this->particles);
 		$this->putVarInt($this->duration);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "MobEffectPacket";
 	}
 
 }

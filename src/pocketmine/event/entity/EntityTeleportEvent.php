@@ -68,5 +68,11 @@ class EntityTeleportEvent extends EntityEvent implements Cancellable{
 		$this->to = $to;
 	}
 
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "EntityTeleportEvent";
+	}
 
 }

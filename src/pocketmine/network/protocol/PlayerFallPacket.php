@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class PlayerFallPacket extends DataPacket{
+
 	const NETWORK_ID = Info::PLAYER_FALL_PACKET;
 
 	public $unknown; //betting this is fall distance, but let's make sure first
@@ -36,4 +37,12 @@ class PlayerFallPacket extends DataPacket{
 	public function encode(){
 
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "PlayerFallPacket";
+	}
+
 }

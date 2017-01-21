@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class RespawnPacket extends DataPacket{
+
 	const NETWORK_ID = Info::RESPAWN_PACKET;
 
 	public $x;
@@ -42,6 +43,13 @@ class RespawnPacket extends DataPacket{
 		$this->putLFloat($this->x);
 		$this->putLFloat($this->y);
 		$this->putLFloat($this->z);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "RespawnPacket";
 	}
 
 }

@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class SetPlayerGameTypePacket extends DataPacket{
+
 	const NETWORK_ID = Info::SET_PLAYER_GAME_TYPE_PACKET;
 
 	public $gamemode;
@@ -37,4 +38,12 @@ class SetPlayerGameTypePacket extends DataPacket{
 		$this->reset();
 		$this->putVarInt($this->gamemode);
 	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "SetPlayerGameTypePacket";
+	}
+
 }

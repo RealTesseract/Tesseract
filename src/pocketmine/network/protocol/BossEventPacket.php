@@ -49,4 +49,11 @@ class BossEventPacket extends DataPacket{
  		$this->putFloat($this->float);
 	}
 
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "BossEventPacket";
+	}
+
 }

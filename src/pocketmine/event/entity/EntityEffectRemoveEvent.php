@@ -44,4 +44,12 @@ class EntityEffectRemoveEvent extends EntityEvent implements Cancellable{
 	public function getEffect(){
 		return $this->effect;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "EntityEffectRemoveEvent";
+	}
+
 }

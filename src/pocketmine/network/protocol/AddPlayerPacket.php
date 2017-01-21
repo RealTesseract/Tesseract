@@ -29,6 +29,7 @@ use pocketmine\utils\Binary;
 #endif
 
 class AddPlayerPacket extends DataPacket{
+
 	const NETWORK_ID = Info::ADD_PLAYER_PACKET;
 
 	public $uuid;
@@ -64,6 +65,13 @@ class AddPlayerPacket extends DataPacket{
 		$this->putSlot($this->item);
 		$meta = Binary::writeMetadata($this->metadata);
 		$this->put($meta);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "AddPlayerPacket";
 	}
 
 }

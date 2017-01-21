@@ -26,6 +26,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\Player;
 
 class PlayerExhaustEvent extends PlayerEvent implements Cancellable{
+
 	public static $handlerList = null;
 
 	const CAUSE_ATTACK = 1;
@@ -63,4 +64,12 @@ class PlayerExhaustEvent extends PlayerEvent implements Cancellable{
 	public function setAmount(float $amount){
 		$this->amount = $amount;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "PlayerExhaustEvent";
+	}
+
 }

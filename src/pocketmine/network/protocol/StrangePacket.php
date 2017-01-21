@@ -18,6 +18,7 @@
 namespace pocketmine\network\protocol;
 
 class StrangePacket extends DataPacket{
+
 	const NETWORK_ID = 0x1b;
 
 	public $address;
@@ -46,6 +47,13 @@ class StrangePacket extends DataPacket{
 	public function encode(){
 		$this->reset();
 		$this->putAddress($this->address, $this->port);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "StrangePacket";
 	}
 
 }

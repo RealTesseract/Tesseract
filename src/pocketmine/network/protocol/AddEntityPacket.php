@@ -29,6 +29,7 @@ use pocketmine\utils\Binary;
 #endif
 
 class AddEntityPacket extends DataPacket{
+
 	const NETWORK_ID = Info::ADD_ENTITY_PACKET;
 
 	public $eid;
@@ -67,6 +68,13 @@ class AddEntityPacket extends DataPacket{
 			$this->putEntityId($link[1]);
 			$this->putByte($link[2]);
 		}
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "AddEntityPacket";
 	}
 
 }

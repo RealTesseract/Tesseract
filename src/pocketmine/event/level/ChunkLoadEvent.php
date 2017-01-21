@@ -27,6 +27,7 @@ use pocketmine\level\format\Chunk;
  * Called when a Chunk is loaded
  */
 class ChunkLoadEvent extends ChunkEvent{
+
 	public static $handlerList = null;
 
 	private $newChunk;
@@ -42,4 +43,12 @@ class ChunkLoadEvent extends ChunkEvent{
 	public function isNewChunk(){
 		return $this->newChunk;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "ChunkLoadEvent";
+	}
+
 }

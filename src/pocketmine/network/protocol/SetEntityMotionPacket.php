@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class SetEntityMotionPacket extends DataPacket{
+
 	const NETWORK_ID = Info::SET_ENTITY_MOTION_PACKET;
 
 	public $eid;
@@ -45,6 +46,13 @@ class SetEntityMotionPacket extends DataPacket{
 		$this->reset();
 		$this->putEntityId($this->eid);
 		$this->putVector3f($this->motionX, $this->motionY, $this->motionZ);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "SetEntityMotionPacket";
 	}
 
 }

@@ -32,6 +32,7 @@ use pocketmine\entity\Vehicle;
  * Called when a entity is spawned
  */
 class EntitySpawnEvent extends EntityEvent{
+
 	public static $handlerList = null;
 
 	private $entityType;
@@ -91,6 +92,13 @@ class EntitySpawnEvent extends EntityEvent{
 	 */
 	public function isItem(){
 		return $this->entity instanceof Item;
+	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "EntitySpawnEvent";
 	}
 
 }

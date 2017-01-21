@@ -50,4 +50,11 @@ class UpdateAttributesPacket extends DataPacket{
 		}
 	}
 
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "UpdateAttributesPacket";
+	}
+
 }

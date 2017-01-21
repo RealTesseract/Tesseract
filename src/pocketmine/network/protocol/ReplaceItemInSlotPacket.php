@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class ReplaceItemInSlotPacket extends DataPacket{
+
 	const NETWORK_ID = Info::REPLACE_ITEM_IN_SLOT_PACKET;
 
 	public $item;
@@ -36,6 +37,13 @@ class ReplaceItemInSlotPacket extends DataPacket{
 	public function encode(){
 		$this->reset();
 		$this->putSlot($this->item);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ReplaceItemInSlotPacket";
 	}
 
 }

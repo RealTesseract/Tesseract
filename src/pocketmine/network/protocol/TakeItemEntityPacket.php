@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class TakeItemEntityPacket extends DataPacket{
+
 	const NETWORK_ID = Info::TAKE_ITEM_ENTITY_PACKET;
 
 	public $target;
@@ -38,6 +39,13 @@ class TakeItemEntityPacket extends DataPacket{
 		$this->reset();
 		$this->putEntityId($this->target);
 		$this->putEntityId($this->eid);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "TakeItemEntityPacket";
 	}
 
 }

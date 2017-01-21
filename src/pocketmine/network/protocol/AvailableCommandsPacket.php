@@ -24,6 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 class AvailableCommandsPacket extends DataPacket{
+
 	const NETWORK_ID = Info::AVAILABLE_COMMANDS_PACKET;
 
 	public $commands; //JSON-encoded command data
@@ -37,6 +38,13 @@ class AvailableCommandsPacket extends DataPacket{
 		$this->reset();
 		$this->putString($this->commands);
 		$this->putString($this->unknown);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "AvailableCommandsPacket";
 	}
 
 }

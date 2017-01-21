@@ -44,5 +44,11 @@ class EntityMotionEvent extends EntityEvent implements Cancellable{
 		return $this->mot;
 	}
 
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "EntityMotionEvent";
+	}
 
 }

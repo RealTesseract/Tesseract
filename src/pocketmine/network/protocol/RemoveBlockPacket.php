@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class RemoveBlockPacket extends DataPacket{
+
 	const NETWORK_ID = Info::REMOVE_BLOCK_PACKET;
 
 	public $x;
@@ -37,6 +38,13 @@ class RemoveBlockPacket extends DataPacket{
 
 	public function encode(){
 
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "RemoveBlockPacket";
 	}
 
 }

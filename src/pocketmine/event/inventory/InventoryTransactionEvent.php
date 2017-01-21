@@ -57,4 +57,12 @@ class InventoryTransactionEvent extends Event implements Cancellable{
 	public function getQueue(){
 		return $this->transactionQueue;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "InventoryTransactionEvent";
+	}
+
 }

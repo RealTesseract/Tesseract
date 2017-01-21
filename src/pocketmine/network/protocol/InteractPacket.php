@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class InteractPacket extends DataPacket{
+
 	const NETWORK_ID = Info::INTERACT_PACKET;
 
 	const ACTION_RIGHT_CLICK = 1;
@@ -45,6 +46,13 @@ class InteractPacket extends DataPacket{
 		$this->reset();
 		$this->putByte($this->action);
 		$this->putEntityId($this->target);
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "InteractPacket";
 	}
 
 }

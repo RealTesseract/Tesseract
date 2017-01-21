@@ -41,4 +41,11 @@ class ItemFrameDropItemPacket extends DataPacket{
 
 	}
 
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "ItemFrameDropItemPacket";
+	}
+
 }

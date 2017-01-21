@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class TextPacket extends DataPacket{
+
 	const NETWORK_ID = Info::TEXT_PACKET;
 
 	const TYPE_RAW = 0;
@@ -85,6 +86,13 @@ class TextPacket extends DataPacket{
 					$this->putString($p);
 				}
 		}
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "TextPacket";
 	}
 
 }

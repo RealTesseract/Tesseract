@@ -26,6 +26,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 
 class CraftItemEvent extends Event implements Cancellable{
+
 	public static $handlerList = null;
 	/** @var Item[] */
 	private $input = [];
@@ -69,4 +70,12 @@ class CraftItemEvent extends Event implements Cancellable{
 	public function getPlayer(){
 		return $this->player;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "CraftItemEvent";
+	}
+
 }

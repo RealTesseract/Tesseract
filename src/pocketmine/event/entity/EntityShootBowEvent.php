@@ -28,6 +28,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 
 class EntityShootBowEvent extends EntityEvent implements Cancellable{
+
 	public static $handlerList = null;
 
 	/** @var Item */
@@ -98,5 +99,11 @@ class EntityShootBowEvent extends EntityEvent implements Cancellable{
 		$this->force = $force;
 	}
 
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "EntityShootBowEvent";
+	}
 
 }

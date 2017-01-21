@@ -42,4 +42,11 @@ class BlockGrowEvent extends BlockEvent implements Cancellable{
 		return $this->newState;
 	}
 
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "BlockGrowEvent";
+	}
+
 }

@@ -25,6 +25,7 @@ namespace pocketmine\network\protocol;
 
 
 class LoginPacket extends DataPacket{
+
 	const NETWORK_ID = Info::LOGIN_PACKET;
 
 	const MOJANG_PUBKEY = "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE8ELkixyLcwlZryUQcu1TvPOmI2B7vX83ndnWRUaXm74wFfa5f/lwQNTfrLVHa2PmenpGI6JhIMUJaWZrjmMj90NoKNFSNBuKdm8rYiXsfaz3K36x/1U26HpG0ZxK/V1V";
@@ -140,6 +141,13 @@ class LoginPacket extends DataPacket{
 		}
 
 		return array($verified, json_decode(base64_decode($payloadB64), true));
+	}
+
+	/**
+	 * @return PacketName
+	 */
+	public function getPacketName(){
+		return "LoginPacket";
 	}
 
 }

@@ -60,4 +60,12 @@ class PlayerFishEvent extends PlayerEvent implements Cancellable{
 	public function getHook(){
 		return $this->hook;
 	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "PlayerFishEvent";
+	}
+
 }

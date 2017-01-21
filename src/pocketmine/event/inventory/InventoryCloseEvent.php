@@ -25,6 +25,7 @@ use pocketmine\inventory\Inventory;
 use pocketmine\Player;
 
 class InventoryCloseEvent extends InventoryEvent{
+
 	public static $handlerList = null;
 
 	/** @var Player */
@@ -44,6 +45,13 @@ class InventoryCloseEvent extends InventoryEvent{
 	 */
 	public function getPlayer(){
 		return $this->who;
+	}
+
+	/**
+	 * @return EventName
+	 */
+	public function getEventName(){
+		return "InventoryCloseEvent";
 	}
 
 }
