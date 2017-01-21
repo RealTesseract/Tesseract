@@ -1597,20 +1597,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->server->getLogger()->warning($this->getName() . " moved too fast, reverting movement");
 				$revert = true;
 			}else{
-				if($this->chunk === null or !$this->chunk->isGenerated()){
-					$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
-					if($chunk === null or !$chunk->isGenerated()){
-						$revert = true;
-						$this->nextChunkOrderRun = 0;
-					}else{
-						if($this->chunk !== null){
-							$this->chunk->removeEntity($this);
-						}
-						$this->chunk = $chunk;
-					}
-				}
-			}
-		}else{
 			if($this->chunk === null or !$this->chunk->isGenerated()){
 				$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
 				if($chunk === null or !$chunk->isGenerated()){
@@ -1624,6 +1610,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 			}
 		}
+	}
 
 		if(!$revert and $distanceSquared != 0){
 			$dx = $newPos->x - $this->x;
@@ -1710,7 +1697,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->setMoving(false);
 		}
 
-		if($revert && !$this->isSpectator()){
+		if($revert){
 
 			$this->lastX = $from->x;
 			$this->lastY = $from->y;
