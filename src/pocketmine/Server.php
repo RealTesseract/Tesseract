@@ -1567,12 +1567,13 @@ class Server{
 			$this->console = new CommandReader($logger);
 
 			$version = new VersionString($this->getPocketMineVersion());
-			$this->version = $version;
-			$mcpe = $this->getVersion() . " §c(Protocol: §d" . Info::CURRENT_PROTOCOL . "§c)";
 			$code = $this->getCodename();
+			$this->version = $version;
+			$mcpe = $this->getVersion();
+			$protocol = Info::CURRENT_PROTOCOL;
 			$api = $this->getApiVersion();
 			$ip = Utils::getIP();
-			$port = "19132";
+			$port = "19132";//TODO
 			$proxy = $this->isProxyEnabled();
 			$ssl = $this->isExtensionInstalled("OpenSSL");
 			$mode = $this->checkAuthentication();
@@ -1582,14 +1583,14 @@ class Server{
 
 			            $this->logger->info("
 §e###################################################  §6-- Loaded: Properties and Configuration --
-§e#                                                 #    §cVersion: §d$version
-§e#§b   _______                                _      §e#    §cMCPE: §d$mcpe
-§e#§b  |__   __|                              | |     §e#    §cDate: §d$date
-§e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cProxy Enabled: §d$proxy
-§e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cSSL Extension: §d$ssl
-§e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cAuthentifcation: §d$mode
-§e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#  §6------------------------------------------
-§e#                                                 #    §cCodename: §d$code
+§e#                                                 #    §cDate: §d$date
+§e#§b   _______                                _      §e#    §cVersion: §d$version §cCodename: §d$code
+§e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe §c(Protocol: §d$protocol §c)
+§e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cIP: §d$ip §cPort: §d$port
+§e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProxy Enabled: §d$proxy
+§e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cSSL Extension: §d$ssl
+§e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#    §cAuthentifcation: §d$mode
+§e#                                                 #    §6------------------------------------------
 §e#                                                 #    §cAPI Version: §d$api
 §e#     §bwww.github.com/TesseractTeam/Tesseract      §e#    §cLanguage: §d$lang
 §e#					          #    §cPackage: §d$package
