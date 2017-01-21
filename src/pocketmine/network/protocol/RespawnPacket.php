@@ -48,7 +48,7 @@ class RespawnPacket extends DataPacket{
 	/**
 	 * @return PacketName
 	 */
-	public function getPacketName(){
+	public function getName(){
 		return "RespawnPacket";
 	}
 

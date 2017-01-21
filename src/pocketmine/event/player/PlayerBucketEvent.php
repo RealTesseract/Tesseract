@@ -94,7 +94,7 @@ abstract class PlayerBucketEvent extends PlayerEvent implements Cancellable{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "PlayerBucketEvent";
 	}
 

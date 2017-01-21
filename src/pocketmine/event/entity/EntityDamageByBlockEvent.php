@@ -51,7 +51,7 @@ class EntityDamageByBlockEvent extends EntityDamageEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "EntityDamageByBlockEvent";
 	}
 

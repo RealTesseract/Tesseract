@@ -89,7 +89,7 @@ class EntityDespawnEvent extends EntityEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "EntityDespawnEvent";
 	}
 

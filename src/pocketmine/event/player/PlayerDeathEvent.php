@@ -92,7 +92,7 @@ class PlayerDeathEvent extends EntityDeathEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "PlayerDeathEvent";
 	}
 

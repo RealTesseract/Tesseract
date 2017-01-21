@@ -50,7 +50,7 @@ class PlayerPreLoginEvent extends PlayerEvent implements Cancellable{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "PlayerPreLoginEvent";
 	}
 

@@ -48,7 +48,7 @@ class EntityCombustByEntityEvent extends EntityCombustEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "EntityCombustByEntityEvent";
 	}
 

@@ -51,7 +51,7 @@ class InventoryPickupItemEvent extends InventoryEvent implements Cancellable{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "InventoryPickupItemEvent";
 	}
 

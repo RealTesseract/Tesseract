@@ -31,7 +31,7 @@ class ChunkPopulateEvent extends ChunkEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "ChunkPopulateEvent";
 	}
 

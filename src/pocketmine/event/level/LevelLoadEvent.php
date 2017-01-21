@@ -31,7 +31,7 @@ class LevelLoadEvent extends LevelEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "LevelLoadEvent";
 	}
 

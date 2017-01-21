@@ -30,7 +30,7 @@ class ServerShutdownEvent extends ServerEvent implements Cancellable{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "ServerShutdownEvent";
 	}
 

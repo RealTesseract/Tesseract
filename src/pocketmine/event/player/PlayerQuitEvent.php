@@ -59,7 +59,7 @@ class PlayerQuitEvent extends PlayerEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "PlayerQuitEvent";
 	}
 

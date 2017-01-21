@@ -34,7 +34,7 @@ class LeavesDecayEvent extends BlockEvent implements Cancellable{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "LeavesDecayEvent";
 	}
 

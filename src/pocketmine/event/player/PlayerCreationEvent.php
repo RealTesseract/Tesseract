@@ -140,7 +140,7 @@ class PlayerCreationEvent extends Event{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "PlayerCreationEvent";
 	}
 

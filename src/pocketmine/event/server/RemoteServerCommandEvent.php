@@ -41,7 +41,7 @@ class RemoteServerCommandEvent extends ServerCommandEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "RemoteServerCommandEvent";
 	}
 

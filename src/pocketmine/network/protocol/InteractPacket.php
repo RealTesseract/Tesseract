@@ -51,7 +51,7 @@ class InteractPacket extends DataPacket{
 	/**
 	 * @return PacketName
 	 */
-	public function getPacketName(){
+	public function getName(){
 		return "InteractPacket";
 	}
 

@@ -230,7 +230,7 @@ class QueryRegenerateEvent extends ServerEvent{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "QueryRegenerateEvent";
 	}
 

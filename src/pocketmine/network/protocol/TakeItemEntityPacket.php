@@ -44,7 +44,7 @@ class TakeItemEntityPacket extends DataPacket{
 	/**
 	 * @return PacketName
 	 */
-	public function getPacketName(){
+	public function getName(){
 		return "TakeItemEntityPacket";
 	}
 

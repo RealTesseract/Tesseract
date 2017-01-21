@@ -46,7 +46,7 @@ class PlayerHungerChangeEvent extends PlayerEvent implements Cancellable{
 	/**
 	 * @return EventName
 	 */
-	public function getEventName(){
+	public function getName(){
 		return "PlayerHungerChangeEvent";
 	}
 

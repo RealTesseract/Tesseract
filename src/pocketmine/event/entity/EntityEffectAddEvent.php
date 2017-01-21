@@ -45,7 +45,7 @@ class EntityEffectAddEvent extends EntityEvent implements Cancellable{
 		return $this->effect;
 	}
 
-	public function getEventName(){
+	public function getName(){
 		return "EntityEffectAddEvent";
 	}
 
