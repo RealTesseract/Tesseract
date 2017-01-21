@@ -409,6 +409,19 @@ abstract class Entity extends Location implements Metadatable{
 
 	}
 
+	//add original function (use create AI etc)
+	public function getHeight(){
+		return $this->height;
+	}
+
+	public function getWidth(){
+		return $this->width;
+	}
+
+	public function getLength(){
+		return $this->length;
+	}
+
 	/**
 	 * @return int
 	 */
@@ -443,7 +456,6 @@ abstract class Entity extends Location implements Metadatable{
 	public function isNameTagAlwaysVisible(){
 		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ALWAYS_SHOW_NAMETAG);
 	}
-
 
 	/**
 	 * @param string $name
