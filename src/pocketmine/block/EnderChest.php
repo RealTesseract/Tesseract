@@ -43,16 +43,16 @@ class EnderChest extends Transparent{
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated(){
+	public function canBeActivated() : bool{
 		return true;
 	}
 
 	public function getHardness(){
-		return 2.5;
+		return 22.5;
 	}
 
 	public function getToolType(){
-		return Tool::TYPE_AXE;
+		return Tool::TYPE_PICKAXE;
 	}
 
 	public function getName() : string{
@@ -152,7 +152,7 @@ class EnderChest extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item){
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::OBSIDIAN, 0, 8],
 		];
