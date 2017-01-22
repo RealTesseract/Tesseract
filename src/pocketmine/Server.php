@@ -1566,9 +1566,9 @@ class Server{
 			$this->config = new Config($configPath = $this->dataPath . "pocketmine.yml", Config::YAML, []);
 			$this->console = new CommandReader($logger);
 
-			$version = new VersionString($this->getPocketMineVersion());
-			$code = $this->getCodename();
+			$version = $this->getFormattedVersion();
 			$this->version = $version;
+			$code = $this->getCodename();
 			$mcpe = $this->getVersion();
 			$protocol = Info::CURRENT_PROTOCOL;
 			$api = $this->getApiVersion();
@@ -1590,7 +1590,7 @@ class Server{
 §e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProxy Enabled: §d$proxy
 §e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cSSL Extension: §d$ssl
 §e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#    §cAuthentifcation: §d$mode
-§e#                                                 #    §6------------------------------------------
+§e#                                                 #  §6------------------------------------------
 §e#                                                 #    §cAPI Version: §d$api
 §e#     §bwww.github.com/TesseractTeam/Tesseract      §e#    §cLanguage: §d$lang
 §e#					          #    §cPackage: §d$package
@@ -2630,7 +2630,7 @@ class Server{
 		$u = Utils::getMemoryUsage(true);
 		$usage = round(($u[0] / 1024) / 1024, 2) . "/" . round(($d[0] / 1024) / 1024, 2) . "/" . round(($u[1] / 1024) / 1024, 2) . "/" . round(($u[2] / 1024) / 1024, 2) . " MB @ " . Utils::getThreadCount() . " threads";
 
-		echo "\x1b]0;" . $this->getName() . $this->getFormattedVersion("-") .
+		echo "\x1b]0;" . $this->getName() . $this->getFormattedVersion(" ") .
 			" | Online " . count($this->players) . "/" . $this->getMaxPlayers() .
 			" | Memory " . $usage .
 			" | U " . round($this->network->getUpload() / 1024, 2) .
