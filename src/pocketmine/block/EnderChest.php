@@ -154,7 +154,7 @@ class EnderChest extends Transparent{
 
 	public function getDrops(Item $item){
 		return [
-			[$this->id, 0, 1],
+			[Item::OBSIDIAN, 0, 8],
 		];
 	}
 
