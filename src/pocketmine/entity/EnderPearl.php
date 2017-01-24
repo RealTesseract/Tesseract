@@ -53,7 +53,7 @@ class EnderPearl extends Projectile{
 	}
 
 	public function close(){
-		if ($this->getSpawner() instanceof Player) {
+		if ($this->getSpawner() instanceof Player && $this->level != null) {
 			$this->getSpawner()->teleport($this);
 		}
 		parent::close();
