@@ -1463,6 +1463,14 @@ class Server{
 	}
 	
 	/**
+	 * @deprecated Use SynapsePM plugin instead
+	 * @return bool
+	 */
+	public function isSynapseEnabled() : bool {
+		return $this->getSynapse() !== null;
+	}
+	
+	/**
 	  * API for checking if PROXY is enabled
 	 */
 	public function isProxyEnabled(){
@@ -1897,6 +1905,19 @@ class Server{
 		   return "online mode/secure";
 	   }
 	}
+	
+	/**
+	 * @deprecated Use SynapsePM plugin instead
+	 * @return Synapse|null
+	 */
+	public function getSynapse(){
+		$plugin = $this->pluginManager->getPlugin('SynapsePM');
+		if ($plugin === null or $plugin->isDisabled()) {
+			return null;
+		}
+		return $plugin->getSynapse();
+	}
+
 	/**
 	 * @param string        $message
 	 * @param Player[]|null $recipients
