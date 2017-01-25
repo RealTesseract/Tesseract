@@ -31,7 +31,7 @@ use pocketmine\block\Wood2;
 use pocketmine\item\Item;
 use pocketmine\item\Potion;
 use pocketmine\network\protocol\CraftingDataPacket;
-use pocketmine\inventory\Timings;
+use pocketmine\event\Timings;
 use pocketmine\utils\UUID;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
