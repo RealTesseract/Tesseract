@@ -22,6 +22,7 @@ class InventoryType{
 	const DROPPER = 11;
 	const HOPPER = 12;
 	const ENDER_CHEST = 13;
+	const BEACON = 14;
 
 	const PLAYER_FLOATING = 254;
 
@@ -58,6 +59,7 @@ class InventoryType{
 		static::$default[static::DROPPER] = new InventoryType(9, "Dropper", 7); //9 CONTAINER
 		static::$default[static::HOPPER] = new InventoryType(5, "Hopper", 8); //5 CONTAINER
 		static::$default[static::ENDER_CHEST] = new InventoryType(27, "Ender Chest", 0);
+		static::$default[static::BEACON] = new InventoryType(0, "Beacon", 13);
 
 		static::$default[static::PLAYER_FLOATING] = new InventoryType(36, "Floating", null); //Mirror all slots of main inventory (needed for large item pickups)
 	}
