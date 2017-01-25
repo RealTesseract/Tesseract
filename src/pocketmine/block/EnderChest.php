@@ -71,18 +71,16 @@ class EnderChest extends Transparent{
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		$below = $this->getSide(0);
-
-		if($target->isTransparent() === false and $face !== 0){
 			$faces = [
 				0 => 4,
 				1 => 2,
 				2 => 5,
 				3 => 3,
 			];
-			$this->meta = $faces[$face];
+			
+			$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
+			
 			$this->getLevel()->setBlock($block, $this, true, true);
-
 			$nbt = new CompoundTag("", [
 				new ListTag("Items", []),
 				new StringTag("id", Tile::ENDER_CHEST),
@@ -96,19 +94,10 @@ class EnderChest extends Transparent{
 				$nbt->CustomName = new StringTag("CustomName", $item->getCustomName());
 			}
 
-			if($item->hasCustomBlockData()){
-				foreach($item->getCustomBlockData() as $key => $v){
-					$nbt->{$key} = $v;
-				}
-			}
-
 			$tile = Tile::createTile("EnderChest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
 
 			return true;
 		}
-
-		return false;
-	}
 
 	public function onBreak(Item $item){
 		$this->getLevel()->setBlock($this, new Air(), true, true);
@@ -123,30 +112,21 @@ class EnderChest extends Transparent{
 				return true;
 			}
 
-			$tile = $this->getLevel()->getTile($this);
-			$enderchest = null;
-
-			if($tile instanceof TileEnderChest){
-				$enderchest = $tile;
-			}else{
+			if(!($this->getLevel()->getTile($this) instanceof TileEnderChest)) {
 				$nbt = new CompoundTag("", [
-					new ListTag("Items", []),
 					new StringTag("id", Tile::ENDER_CHEST),
 					new IntTag("x", $this->x),
 					new IntTag("y", $this->y),
 					new IntTag("z", $this->z)
 				]);
-				$nbt->Items->setTagType(NBT::TAG_Compound);
-				$enderchest = Tile::createTile("EnderChest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+ 				Tile::createTile("EnderChest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
 			}
 
-			if(isset($enderchest->namedtag->Lock) and $enderchest->namedtag->Lock instanceof StringTag){
-				if($enderchest->namedtag->Lock->getValue() !== $item->getCustomName()){
-					return true;
-				}
+			if($player->isCreative() and $player->getServer()->limitedCreative){
+				return true;
 			}
 
-			$player->addWindow($enderchest->getInventory());
+			$player->getEnderChestInventory()->openAt($this);
 		}
 
 		return true;
