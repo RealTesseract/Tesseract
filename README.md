@@ -29,6 +29,7 @@ __[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/READ
 __[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
 __[TODO LIST!](https://github.com/TesseractTeam/Tesseract/projects/1)__ <br>
 __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
+__[Proof of Least Buggy (1/16/17 & 1/17/17)](https://github.com/TesseractTeam/Tesseract#proof-of-least-buggy-11617)__ <br>
 
 ## Installation
 
@@ -44,7 +45,7 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 **External Links**
      Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are on windows). <br>
      Download it 
-*__[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
+__[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
 
 __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
 <br>
