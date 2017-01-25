@@ -10,7 +10,7 @@ class Cookie extends Food{
 	}
 
 	public function getFoodRestore() : int{
-		return 2;
+		return 1;
 	}
 
 	public function getSaturationRestore() : float{
