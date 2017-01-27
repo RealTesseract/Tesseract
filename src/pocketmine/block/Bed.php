@@ -4,7 +4,7 @@
 
 namespace pocketmine\block;
 
-use pocketmine\event\TranslationContainter;
+use pocketmine\event\TranslationContainer;
 use pocketmine\item\Item;
 use pocketmine\level\Explosion;
 use pocketmine\level\Level;
@@ -55,7 +55,7 @@ class Bed extends Transparent{
 		$isNight = ($time >= Level::TIME_NIGHT and $time < Level::TIME_SUNRISE);
 
 		if($player instanceof Player and !$isNight){
-			$player->sendMessage(new TranslationContainter(TextFormat::GRAY . "%tile.bed.noSleep"));
+			$player->sendMessage(new TranslationContainer(TextFormat::GRAY . "%tile.bed.noSleep"));
 			return true;
 		}
 
@@ -84,7 +84,7 @@ class Bed extends Transparent{
 		}
 
 		if($player instanceof Player and $player->sleepOn($b) === false){
-			$player->sendMessage(new TranslationContainter(TextFormat::GRAY . "%tile.bed.occupied"));
+			$player->sendMessage(new TranslationContainer(TextFormat::GRAY . "%tile.bed.occupied"));
 		}
 
 		return true;
