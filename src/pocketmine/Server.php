@@ -281,6 +281,8 @@ class Server{
 	public $allowInventoryCheats = false;
 	public $raklibDisable = false;
 	public $checkMovement = true;
+	public $antiFly = true;
+	public $allowInstabreak = false;
 	
 	/**
 	 * @return string
@@ -1444,7 +1446,9 @@ class Server{
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
 		$this->raklibDisable = $this->getAdvancedProperty("network.raklib-disable", false);
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
-		$this->checkMovement = $this->getAdvancedProperty("player.check-movement", true);
+		$this->checkMovement = $this->getAdvancedProperty("anticheat.check-movement", true);
+		$this->allowInstabreak = $this->getAdvancedProperty("anticheat.allow-instabreak", true);
+		$this->antiFly = $this->getAdvancedProperty("anticheat.anti-fly", true);
 	}
 	
 	/**
