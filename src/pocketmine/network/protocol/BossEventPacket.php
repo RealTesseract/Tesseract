@@ -32,9 +32,6 @@ class BossEventPacket extends DataPacket{
 
   	public $eid;
 	public $type;
-	public $string;
-	public $short;
-	public $float;
 
 	public function decode(){
 
@@ -42,11 +39,8 @@ class BossEventPacket extends DataPacket{
 
 	public function encode(){
 		$this->reset();
-		$this->putVarInt($this->eid);
+		$this->putEntityId($this->eid);
 		$this->putUnsignedVarInt($this->type);
-		$this->putString($this->string);
-		$this->putShort($this->short);
- 		$this->putFloat($this->float);
 	}
 
 	/**
