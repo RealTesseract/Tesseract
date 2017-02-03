@@ -4,7 +4,7 @@
 
 namespace pocketmine\block;
 
-class ActivatorRail extends PoweredRail {
+class ActivatorRail extends Solid {
 
     protected $id = self::ACTIVATOR_RAIL;
 

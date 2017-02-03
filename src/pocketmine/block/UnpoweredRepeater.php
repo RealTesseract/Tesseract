@@ -30,14 +30,6 @@ class UnpoweredRepeater extends PoweredRepeater{
 		return "Unpowered Repeater";
 	}
 
-	public function getStrength(){
-		return 0;
-	}
-
-	public function isActivated(Block $from = null){
-		return false;
-	}
-
 	public function onBreak(Item $item){
 		$this->getLevel()->setBlock($this, new Air(), true);
 	}

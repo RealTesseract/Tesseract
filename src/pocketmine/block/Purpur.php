@@ -26,9 +26,9 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class PurpurBlock extends Solid{
+class Purpur extends Solid{
 
-	protected $id = self::PURPUR_BLOCK;
+	protected $id = self::PURPUR;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;

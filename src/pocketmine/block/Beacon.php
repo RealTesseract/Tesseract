@@ -35,9 +35,9 @@ use pocketmine\tile\Tile;
 use pocketmine\tile\Beacon as TileBeacon;
 use pocketmine\math\Vector3;
 
- class BeaconBlock extends Transparent implements SolidLight{
+ class Beacon extends Transparent implements SolidLight{
  
- 	protected $id = self::BEACON_BLOCK;
+ 	protected $id = self::BEACON;
  
  	public function __construct($meta = 0){
  		$this->meta = $meta;

@@ -23,14 +23,8 @@
  
 namespace pocketmine\inventory;
 
-use pocketmine\entity\Human;
-use pocketmine\level\Level;
-use pocketmine\level\Position;
-use pocketmine\network\protocol\BlockEventPacket;
-use pocketmine\Player;
 use pocketmine\tile\Beacon;
-use pocketmine\tile\Chest;
-use pocketmine\tile\EnderChest;
+
 class BeaconInventory extends ContainerInventory {
 	
 	public function __construct(Beacon $tile){

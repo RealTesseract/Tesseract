@@ -7,9 +7,9 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class PrismarineBlock extends Solid{
+class Prismarine extends Solid{
 
-	protected $id = self::PRISMARINE_BLOCK;
+	protected $id = self::PRISMARINE;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;

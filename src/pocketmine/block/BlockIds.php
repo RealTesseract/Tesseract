@@ -117,7 +117,7 @@ interface BlockIds{
 	const PORTAL_BLOCK = 90; const PORTAL = 90;
 	const JACK_O_LANTERN = 91; const LIT_PUMPKIN = 91;
 	const CAKE_BLOCK = 92;
-	const REPEATER_BLOCK = 93; const UNPOWERED_REPEATER_BLOCK = 93;
+	const UNPOWERED_REPEATER_BLOCK = 93;
 	const POWERED_REPEATER_BLOCK = 94;
 	const INVISIBLE_BEDROCK = 95;
 	const TRAPDOOR = 96; const WOODEN_TRAPDOOR = 96;
@@ -161,7 +161,7 @@ interface BlockIds{
 	const SPRUCE_WOOD_STAIRS = 134; const SPRUCE_WOODEN_STAIRS = 134;
 	const BIRCH_WOOD_STAIRS = 135; const BIRCH_WOODEN_STAIRS = 135;
 	const JUNGLE_WOOD_STAIRS = 136; const JUNGLE_WOODEN_STAIRS = 136;
-	const BEACON_BLOCK = 138;
+	const BEACON = 138;
 	const COBBLESTONE_WALL = 139; const COBBLE_WALL = 139; const STONE_WALL = 139;
 	const FLOWER_POT_BLOCK = 140;
 	const CARROT_BLOCK = 141;
@@ -191,7 +191,7 @@ interface BlockIds{
 	const SLIME_BLOCK = 165;
 
 	const IRON_TRAPDOOR = 167;
-	const PRISMARINE_BLOCK = 168;
+	const PRISMARINE = 168;
 	const SEA_LANTERN = 169;
 	const HAY_BALE = 170;
 	const CARPET = 171;
@@ -219,7 +219,7 @@ interface BlockIds{
 	const GRASS_PATH = 198;
 	const ITEM_FRAME_BLOCK = 199;
 	const CHORUS_FLOWER = 200;
-	const PURPUR_BLOCK = 201;
+	const PURPUR = 201;
 
 	const PURPUR_STAIRS = 203;
 
