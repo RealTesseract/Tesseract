@@ -68,10 +68,6 @@ class Hopper extends Transparent{
 		}
 		return true;
 	}
-	
-	public function activate(){
-		//TODO: Hopper content freezing (requires basic redstone system upgrade)
-	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [

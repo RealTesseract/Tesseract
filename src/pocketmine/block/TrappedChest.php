@@ -33,7 +33,7 @@ use pocketmine\Player;
 use pocketmine\tile\Chest as TileChest;
 use pocketmine\tile\Tile;
 
-class TrappedChest extends RedstoneSource{
+class TrappedChest extends Solid{
 	protected $id = self::TRAPPED_CHEST;
 
 	public function __construct($meta = 0){

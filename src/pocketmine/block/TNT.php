@@ -17,7 +17,7 @@ use pocketmine\nbt\tag\FloatTag;
 use pocketmine\Player;
 use pocketmine\utils\Random;
 
-class TNT extends Solid implements ElectricalAppliance{
+class TNT extends Solid {
 
 	protected $id = self::TNT;
 
@@ -80,11 +80,6 @@ class TNT extends Solid implements ElectricalAppliance{
 			$sides = [0, 1, 2, 3, 4, 5];
 			foreach($sides as $side){
 				$block = $this->getSide($side);
-				if($block instanceof RedstoneSource and $block->isActivated($this)){
-					$this->prime();
-					$this->getLevel()->setBlock($this, new Air(), true);
-					break;
-				}
 			}
 			return Level::BLOCK_UPDATE_SCHEDULED;
 		}

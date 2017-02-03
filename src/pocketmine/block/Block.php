@@ -248,11 +248,9 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::STONE_PRESSURE_PLATE] = StonePressurePlate::class;
 			self::$list[self::LIGHT_WEIGHTED_PRESSURE_PLATE] = LightWeightedPressurePlate::class;
 			self::$list[self::HEAVY_WEIGHTED_PRESSURE_PLATE] = HeavyWeightedPressurePlate::class;
-			self::$list[self::REDSTONE_WIRE] = RedstoneWire::class;
-			self::$list[self::ACTIVE_REDSTONE_LAMP] = ActiveRedstoneLamp::class;
-			self::$list[self::INACTIVE_REDSTONE_LAMP] = InactiveRedstoneLamp::class;
+			self::$list[self::LIT_REDSTONE_LAMP] = LitRedstoneLamp::class;
+			self::$list[self::REDSTONE_LAMP] = RedstoneLamp::class;
 			self::$list[self::REDSTONE_TORCH] = RedstoneTorch::class;
-			self::$list[self::UNLIT_REDSTONE_TORCH] = UnlitRedstoneTorch::class;
 			self::$list[self::WOODEN_BUTTON] = WoodenButton::class;
 			self::$list[self::STONE_BUTTON] = StoneButton::class;
 			self::$list[self::LEVER] = Lever::class;

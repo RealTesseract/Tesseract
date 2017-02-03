@@ -27,7 +27,7 @@ use pocketmine\level\sound\ButtonClickSound;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class WoodenButton extends RedstoneSource{
+class WoodenButton extends Solid{
 	protected $id = self::WOODEN_BUTTON;
 
 	public function __construct($meta = 0){

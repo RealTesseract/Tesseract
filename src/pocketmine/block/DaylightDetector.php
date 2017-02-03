@@ -27,11 +27,13 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\tile\Tile;
-use pocketmine\tile\DLDetector;
 
-class DaylightDetector extends RedstoneSource{
+class DaylightDetector extends Solid{
 	protected $id = self::DAYLIGHT_SENSOR;
-	//protected $hasStartedUpdate = false;
+	
+	public function __construct($meta = 0){
+		$this->meta = $meta;
+	}
 
 	public function getName() : string{
 		return "Daylight Sensor";
@@ -50,39 +52,6 @@ class DaylightDetector extends RedstoneSource{
 
 	public function canBeActivated() : bool {
 		return true;
-	}
-
-	/**
-	 * @return DLDetector
-	 */
-	protected function getTile(){
-		$t = $this->getLevel()->getTile($this);
-		if($t instanceof DLDetector){
-			return $t;
-		}else{
-			$nbt = new CompoundTag("", [
-				new StringTag("id", Tile::DAY_LIGHT_DETECTOR),
-				new IntTag("x", $this->x),
-				new IntTag("y", $this->y),
-				new IntTag("z", $this->z)
-			]);
-			return Tile::createTile(Tile::DAY_LIGHT_DETECTOR, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
-		}
-	}
-
-	public function onActivate(Item $item, Player $player = null){
-		$this->getLevel()->setBlock($this, new DaylightDetectorInverted(), true, true);
-		$this->getTile()->onUpdate();
-		return true;
-	}
-
-	public function isActivated(Block $from = null){
-		return $this->getTile()->isActivated();
-	}
-
-	public function onBreak(Item $item){
-		$this->getLevel()->setBlock($this, new Air());
-		if($this->isActivated()) $this->deactivate();
 	}
 
 	public function getHardness() {

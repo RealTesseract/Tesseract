@@ -29,7 +29,6 @@ abstract class Tile extends Position{
 	const ITEM_FRAME = "ItemFrame";
 	const DISPENSER = "Dispenser";
 	const DROPPER = "Dropper";
-	const DAY_LIGHT_DETECTOR = "DLDetector";
 	const CAULDRON = "Cauldron";
 	const HOPPER = "Hopper";
 	const BEACON = "Beacon";
@@ -65,7 +64,6 @@ abstract class Tile extends Position{
 		self::registerTile(Cauldron::class);
 		self::registerTile(Chest::class);
 		self::registerTile(Dispenser::class);
-		self::registerTile(DLDetector::class);
 		self::registerTile(Dropper::class);
 		self::registerTile(EnchantTable::class);
 		self::registerTile(EnderChest::class);

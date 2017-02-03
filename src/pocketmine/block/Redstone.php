@@ -7,28 +7,12 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Redstone extends RedstoneSource{
+class Redstone extends Solid{
 
 	protected $id = self::REDSTONE_BLOCK;
 
-	public function __construct(){
-
-	}
-
-	public function getBoundingBox() {
-		return Block::getBoundingBox();
-	}
-
-	public function canBeFlowedInto(){
-		return false;
-	}
-
-	public function isSolid(){
-		return true;
-	}
-
-	public function isActivated(Block $from = null){
-		return true;
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
 	public function getHardness() {

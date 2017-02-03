@@ -98,9 +98,9 @@ interface BlockIds{
 	const IRON_DOOR_BLOCK = 71;
 	const WOODEN_PRESSURE_PLATE = 72;
 	const REDSTONE_ORE = 73;
-	const GLOWING_REDSTONE_ORE = 74; const LIT_REDSTONE_ORE = 74;
-	const UNLIT_REDSTONE_TORCH = 75;
-	const REDSTONE_TORCH = 76; const LIT_REDSTONE_TORCH = 76;
+	const GLOWING_REDSTONE_ORE = 74;
+	//const UNLIT_REDSTONE_TORCH = 75;
+	const REDSTONE_TORCH = 76;
 	const STONE_BUTTON = 77;
 	const SNOW = 78; const SNOW_LAYER = 78;
 	const ICE = 79;
@@ -147,8 +147,8 @@ interface BlockIds{
 	const END_PORTAL_FRAME = 120; const END_PORTAL = 120;
 	const END_STONE = 121;
 
-	const REDSTONE_LAMP = 123; const INACTIVE_REDSTONE_LAMP = 123;
-	const LIT_REDSTONE_LAMP = 124; const ACTIVE_REDSTONE_LAMP = 124;
+	const REDSTONE_LAMP = 123;
+	const LIT_REDSTONE_LAMP = 124;
 	const DROPPER = 125;
 	const ACTIVATOR_RAIL = 126;
 	const COCOA_BLOCK = 127; const COCOA_PODS = 127;
