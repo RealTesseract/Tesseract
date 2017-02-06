@@ -5,7 +5,7 @@
 namespace pocketmine\level\generator\normal\biome;
 
 use pocketmine\level\generator\normal\populator\Mushroom;
-use pocketmine\level\generator\normal\populator\Sugarcane;
+use pocketmine\level\generator\normal\populator\SugarCane;
 use pocketmine\level\generator\normal\populator\TallGrass;
 
 class OceanBiome extends WateryBiome{
