@@ -5,8 +5,9 @@
 namespace pocketmine\level\generator\normal\biome;
 
 use pocketmine\block\Sapling;
-use pocketmine\level\generator\populator\TallGrass;
-use pocketmine\level\generator\populator\Tree;
+use pocketmine\level\generator\normal\populator\Mushroom;
+use pocketmine\level\generator\normal\populator\TallGrass;
+use pocketmine\level\generator\normal\populator\Tree;
 
 class ForestBiome extends GrassyBiome{
 
@@ -28,6 +29,9 @@ class ForestBiome extends GrassyBiome{
 		$tallGrass->setBaseAmount(3);
 
 		$this->addPopulator($tallGrass);
+		
+		$mushroom = new Mushroom();
+		$this->addPopulator($mushroom);
 
 		$this->setElevation(63, 81);
 
