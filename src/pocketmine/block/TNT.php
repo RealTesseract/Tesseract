@@ -32,9 +32,9 @@ class TNT extends Solid {
         return 0;
     }
   
-    public function canBeActivated(){
-        return true;
-    }
+    public function canBeActivated() : bool{
+ 		return true;
+ 	}
 
     public function onActivate(Item $item, Player $player = null){
         if ($item->getId() === Item::FLINT_STEEL) {
