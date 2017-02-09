@@ -2,12 +2,12 @@
 Tesseract Introduction
 -------------
 **Tesseract is the new advanced server software based on PocketMine-MP and Genisys! <br>
-Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion is not supported) <br>
+Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion support is (deprecated)[https://www.google.com/search?q=deprecated&oq=deprecated&aqs=chrome.0.69i59j69i61.1457j0j7&sourceid=chrome&ie=UTF-8]) <br>
 Tesseract supports Packet and Event Debug System (For Plugin Developesr)**
 
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0 (PE & win10) <br>
+**Tesseract is supported to Minecraft:PE 1.0.3 (PE & win10) <br>
 Report any issues and we will try to fix them for you.** 
 
 ##Builds
