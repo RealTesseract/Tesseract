@@ -172,6 +172,12 @@ class Server{
 
 	/** @var int */
 	private $maxPlayers;
+	
+	/** @var int */
+	private $maxUse;
+	
+	/** @var int */
+	private $maxTick;
 
 	/** @var bool */
 	private $autoSave;
