@@ -1,13 +1,13 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
 Tesseract Introduction
 -------------
-**Tesseract is the new advanced server software based on PocketMine-MP and Genisys! <br>
+**Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
 Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion support is [deprecated](https://www.google.com/search?q=deprecated&oq=deprecated&aqs=chrome.0.69i59j69i61.1457j0j7&sourceid=chrome&ie=UTF-8)) <br>
-Tesseract supports Packet and Event Debug System (For Plugin Developesr)**
+Tesseract supports packet and event debug system (for plugin developers)**
 
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0.3 (PE & win10) <br>
+**Tesseract is supported to Minecraft:PE 1.0.3 (PE & Win10) <br>
 Report any issues and we will try to fix them for you.** 
 
 ##Builds
@@ -29,7 +29,6 @@ __[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/READ
 __[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
 __[TODO LIST!](https://github.com/TesseractTeam/Tesseract/projects/1)__ <br>
 __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
-__[Proof of Least Buggy (1/16/17 & 1/17/17)](https://github.com/TesseractTeam/Tesseract#proof-of-least-buggy-11617)__ <br>
 
 ## Installation
 
@@ -91,16 +90,6 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 * __[Zlib](http://www.zlib.net/)__: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
 * __[Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)__
 * __[UT3 Query Protocol](http://wiki.unrealadmin.org/UT3_query_protocol)__
-
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
-<br>
-
-## Proof of Least Buggy (1/16/17)
-![NO ISSUES!](.github/NO-ISSUES!.jpg)
-
-### List of 0-Issues days: 
-- 1/16/17
-- 1/17/17
 
 __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
 <br>
