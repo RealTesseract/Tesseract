@@ -2041,6 +2041,30 @@ class Server{
 	}
 
 	/**
+	 * @param string        $action
+	 * @param Player[]|null $recipients
+	 *
+	 * @return int
+	 */
+		public function broadcastActionBar(string $action, $recipients = null) : int{
+		if(!is_array($recipients)){
+			/** @var Player[] $recipients */
+			$recipients = [];
+			foreach($this->pluginManager->getPermissionSubscriptions(self::BROADCAST_CHANNEL_USERS) as $permissible){
+				if($permissible instanceof Player and $permissible->hasPermission(self::BROADCAST_CHANNEL_USERS)){
+					$recipients[spl_object_hash($permissible)] = $permissible; // do not send messages directly, or some might be repeated
+				}
+			}
+		}
+		/** @var Player[] $recipients */
+		foreach($recipients as $recipient){
+			$tip = "$action\n\n\n\n\n\n"
+			$recipient->sendTip($tip);
+		}
+		return count($recipients);
+	}
+	
+	/**
 	 * Broadcasts a list of packets in a batch to a list of players
 	 *
 	 * @param Player[]            $players
