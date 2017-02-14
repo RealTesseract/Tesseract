@@ -199,7 +199,7 @@ class Normal extends Generator{
 				$smoothHeight = ($maxSum - $minSum) / 2;
 
 				for($y = 0; $y < 128; ++$y){
-					if($y === 129){
+					if($y === 0){
 						$chunk->setBlockId($x, $y, $z, Block::BEDROCK);
 						continue;
 					}
