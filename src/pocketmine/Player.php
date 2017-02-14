@@ -3461,6 +3461,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if(!$t->updateCompoundTag($nbt, $this)){
 						$t->spawnTo($this);
 					}
+				} else if ($t instanceof Sign){
+                 	 $nbt = new NBT(NBT::LITTLE_ENDIAN);
+                     $nbt->read($packet->namedtag);
+               		 $nbt = $nbt->getData();
+                     if($nbt["id"] !== Tile::SIGN){
+                		$t->spawnTo($this);
+                     }else{
+                     	$ev = new SignChangeEvent($t->getBlock(), $this, [TextFormat::clean($nbt["Text1"], $this->removeFormat), TextFormat::clean($nbt["Text2"], $this->removeFormat), TextFormat::clean($nbt["Text3"], $this->removeFormat), TextFormat::clean($nbt["Text4"], $this->removeFormat)]);
+                        if(!isset($t->namedtag->Creator) or $t->namedtag["Creator"] !== $this->getRawUniqueId()){
+                        	$ev->setCancelled();
+                        }
+                        $this->server->getPluginManager()->callEvent($ev);
+                        if(!$ev->isCancelled()){
+                        	$t->setText($ev->getLine(0), $ev->getLine(1), $ev->getLine(2), $ev->getLine(3));
+                        }else{
+                        	$t->spawnTo($this);
+                        }
+                	}
 				}
 				break;
 			case ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET:
