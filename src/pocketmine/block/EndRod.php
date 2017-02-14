@@ -39,44 +39,31 @@ class EndRod extends Flowable{
 		return 14;
 	}
 
-	public function getName() : string{
+	public function getName() : string {
 		return "End Rod";
 	}
 
-	public function onUpdate($type){
-		if($type === Level::BLOCK_UPDATE_NORMAL){
-			$below = $this->getSide(0);
-			$side = $this->getDamage();
-			$faces = [
-				1 => 1,
-				2 => 2,
-				3 => 3,
-				4 => 4,
-				5 => 5,
-				6 => 6,
-				0 => 0,
-			];
-		}
-		return false;
-	}
+	public function getResistance(){
+        return 0;
+    }
+	
+	public function getHardness(){
+        return 0;
+    }
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		$below = $this->getSide(0);
-
-		if($target->isTransparent() === false and $face !== 0){
 			$faces = [
+				0 => 0,
 				1 => 1,
 				2 => 3,
 				3 => 2,
 				4 => 5,
 				5 => 4,
 			];
-			$this->meta = $faces[$face];
+			$this->meta = ($target->getId() === self::END_ROD && $faces[$face] == $target->getDamage()) ? Vector3::getOppositeSide($faces[$face]) : $faces[$face];
 			$this->getLevel()->setBlock($block, $this, true, true);
 			return true;
 		}
-		return false;
-	}
 
 	public function getDrops(Item $item) : array {
 		return [
