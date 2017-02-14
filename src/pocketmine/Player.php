@@ -133,9 +133,6 @@ use pocketmine\tile\Spawnable;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\UUID;
 
-/**
- * Main class that handles networking, recovery, and packet sending to the server part
- */
 class Player extends Human implements CommandSender, InventoryHolder, ChunkLoader, IPlayer{
 
 	const SURVIVAL = 0;
@@ -1929,7 +1926,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 			return;
 		}elseif($this->server->getNameBans()->isBanned(strtolower($this->getName())) or $this->server->getIPBans()->isBanned($this->getAddress()) or $this->server->getCIDBans()->isBanned($this->randomClientId)){
-			$this->close($this->getLeaveMessage(), TextFormat::RED . "You are banned");
+		    $this->close($this->getLeaveMessage(), TextFormat::RED . "You are banned Reason: " . $reason);
 
 			return;
 		}

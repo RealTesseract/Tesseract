@@ -1608,13 +1608,6 @@ abstract class Entity extends Location implements Metadatable{
 			$block->addVelocityToEntity($this, $vector);
 		}
 
-		if(!$this->isPlayer){
-			/** @var \pocketmine\block\PressurePlate $block * */
-			foreach($this->activatedPressurePlates as $key => $block){
-				if(!isset($blocksaround[$key])) $block->checkActivation();
-			}
-		}
-
 		if($vector->lengthSquared() > 0){
 			$vector = $vector->normalize();
 			$d = 0.014;
