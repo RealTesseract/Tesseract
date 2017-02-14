@@ -2058,7 +2058,7 @@ class Server{
 		}
 		/** @var Player[] $recipients */
 		foreach($recipients as $recipient){
-			$tip = "$action\n\n\n\n\n\n"
+			$tip = "$action\n\n\n\n\n\n";
 			$recipient->sendTip($tip);
 		}
 		return count($recipients);
