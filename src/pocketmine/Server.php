@@ -1588,7 +1588,7 @@ class Server{
 §e###################################################  §6-- Loaded: Properties and Configuration --
 §e#                                                 #    §cDate: §d$date
 §e#§b   _______                                _      §e#    §cVersion: §d$version §cCodename: §d$code
-§e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe §c(Protocol: §d$protocol§c)
+§e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe $cProtocol: §d$protocol
 §e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cIP: §d$ip §cPort: §d$port
 §e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProxy Enabled: §d$proxy
 §e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cSSL Extension: §d$ssl
