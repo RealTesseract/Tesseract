@@ -23,6 +23,7 @@ use pocketmine\entity\Minecart;
 use pocketmine\entity\Projectile;
 use pocketmine\entity\ThrownExpBottle;
 use pocketmine\entity\ThrownPotion;
+use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityCombustByEntityEvent;
 use pocketmine\event\entity\EntityDamageByBlockEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -130,12 +131,10 @@ use pocketmine\permission\PermissionAttachment;
 use pocketmine\plugin\Plugin;
 use pocketmine\tile\ItemFrame;
 use pocketmine\tile\Spawnable;
+use pocketmine\tile\Tile;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\UUID;
 
-/**
- * Main class that handles networking, recovery, and packet sending to the server part
- */
 class Player extends Human implements CommandSender, InventoryHolder, ChunkLoader, IPlayer{
 
 	const SURVIVAL = 0;
@@ -1929,7 +1928,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 			return;
 		}elseif($this->server->getNameBans()->isBanned(strtolower($this->getName())) or $this->server->getIPBans()->isBanned($this->getAddress()) or $this->server->getCIDBans()->isBanned($this->randomClientId)){
-			$this->close($this->getLeaveMessage(), TextFormat::RED . "You are banned");
+			$reason = "";
+		    $this->close($this->getLeaveMessage(), TextFormat::RED . "You are banned. Reason: " . $reason);
 
 			return;
 		}
@@ -2121,26 +2121,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 
 		switch($packet::NETWORK_ID){
-			case ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET:
-				$tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
-				if($tile instanceof ItemFrame){
-					$block = $this->level->getBlock($tile);
-					$this->server->getPluginManager()->callEvent($ev = new BlockBreakEvent($this, $block, $this->getInventory()->getItemInHand(), true));
-					if(!$ev->isCancelled()){
-						$item = $tile->getItem();
-						$this->server->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this, $block, $tile, $item));
-						if(!$ev->isCancelled()){
-							if($item->getId() !== Item::AIR){
-								if((mt_rand(0, 10) / 10) < $tile->getItemDropChance()){
-									$this->level->dropItem($tile, $item);
-								}
-								$tile->setItem(Item::get(Item::AIR));
-								$tile->setItemRotation(0);
-							}
-						}else $tile->spawnTo($this);
-					}else $tile->spawnTo($this);
-				}
-				break;
 			case ProtocolInfo::REQUEST_CHUNK_RADIUS_PACKET:
 				/*if($this->spawned){
 					$this->viewDistance = $packet->radius ** 2;
@@ -3483,6 +3463,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if(!$t->updateCompoundTag($nbt, $this)){
 						$t->spawnTo($this);
 					}
+				} else if ($t instanceof Sign){
+                 	 $nbt = new NBT(NBT::LITTLE_ENDIAN);
+                     $nbt->read($packet->namedtag);
+               		 $nbt = $nbt->getData();
+                     if($nbt["id"] !== Tile::SIGN){
+                		$t->spawnTo($this);
+                     }else{
+                     	$ev = new SignChangeEvent($t->getBlock(), $this, [TextFormat::clean($nbt["Text1"], $this->removeFormat), TextFormat::clean($nbt["Text2"], $this->removeFormat), TextFormat::clean($nbt["Text3"], $this->removeFormat), TextFormat::clean($nbt["Text4"], $this->removeFormat)]);
+                        if(!isset($t->namedtag->Creator) or $t->namedtag["Creator"] !== $this->getRawUniqueId()){
+                        	$ev->setCancelled();
+                        }
+                        $this->server->getPluginManager()->callEvent($ev);
+                        if(!$ev->isCancelled()){
+                        	$t->setText($ev->getLine(0), $ev->getLine(1), $ev->getLine(2), $ev->getLine(3));
+                        }else{
+                        	$t->spawnTo($this);
+                        }
+                	}
 				}
 				break;
 			case ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET:
@@ -3715,13 +3713,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->removeEffect(Effect::HEALTH_BOOST);
 
 			$this->connected = false;
-			if(strlen($this->getName()) > 0){
-				$this->server->getPluginManager()->callEvent($ev = new PlayerQuitEvent($this, $message, true));
-				if($this->loggedIn === true and $ev->getAutoSave()){
-					$this->save();
-				}
-			}
-
+			
 			foreach($this->server->getOnlinePlayers() as $player){
 				if(!$player->canSee($this)){
 					$player->showPlayer($this);
@@ -3747,14 +3739,20 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->server->removeOnlinePlayer($this);
 			}
 
+			if(strlen($this->getName()) > 0){
+  				$this->server->getPluginManager()->callEvent($ev = new PlayerQuitEvent($this, $message, true));
+  				if($this->loggedIn === true and $ev->getAutoSave()){
+  					$this->save();
+  				}						
+  				if($this->spawned !== false and $ev->getQuitMessage() != ""){
+  					if($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_MESSAGE) $this->server->broadcastMessage($ev->getQuitMessage());
+  						elseif($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_TIP) $this->server->broadcastTip(str_replace("@player", $this->getName(), $this->server->playerLogoutMsg));
+  						elseif($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_POPUP) $this->server->broadcastPopup(str_replace("@player", $this->getName(), $this->server->playerLogoutMsg));
+ 					}
+ 				}
+		}
+
 			$this->loggedIn = false;
-
-			if(isset($ev) and $this->username != "" and $this->spawned !== false and $ev->getQuitMessage() != ""){
-				if($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_MESSAGE) $this->server->broadcastMessage($ev->getQuitMessage());
-				elseif($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_TIP) $this->server->broadcastTip(str_replace("@player", $this->getName(), $this->server->playerLogoutMsg));
-				elseif($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_POPUP) $this->server->broadcastPopup(str_replace("@player", $this->getName(), $this->server->playerLogoutMsg));
-			}
-
 			$this->server->getPluginManager()->unsubscribeFromPermission(Server::BROADCAST_CHANNEL_USERS, $this);
 			$this->spawned = false;
 			$this->server->getLogger()->info($this->getServer()->getLanguage()->translateString("pocketmine.player.logOut", [
