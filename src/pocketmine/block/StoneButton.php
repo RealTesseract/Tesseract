@@ -31,7 +31,9 @@ class StoneButton extends WoodenButton{
 	public function getName() : string{
 		return "Stone Button";
 	}
-
+	public function isSolid(){
+	    return false;
+	}
 	public function onActivate(Item $item, Player $player = null){
 		if(!$this->isActivated()){
 			$this->meta ^= 0x08;
