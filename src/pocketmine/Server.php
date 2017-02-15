@@ -173,12 +173,6 @@ class Server{
 	/** @var int */
 	private $maxPlayers;
 	
-	/** @var int */
-	private $maxUse;
-	
-	/** @var int */
-	private $maxTick;
-
 	/** @var bool */
 	private $autoSave;
 
@@ -669,7 +663,7 @@ class Server{
 	 * @return float
 	 */
 	public function getTicksPerSecond(){
-		return round($this->maxTick, 2);
+		return round($this->currentTPS, 2);
 	}
 
 	/**
@@ -687,7 +681,7 @@ class Server{
 	 * @return float
 	 */
 	public function getTickUsage(){
-		return round($this->maxUse * 100, 2);
+		return round($this->currentUse * 100, 2);
 	}
 
 	/**
@@ -2601,6 +2595,7 @@ class Server{
 	/**
 	 * @return MemoryManager
 	 */
+	
 	public function getMemoryManager(){
 		return $this->memoryManager;
 	}
@@ -2726,8 +2721,8 @@ class Server{
 
 		if(($this->tickCounter & 0b1111) === 0){
 			$this->titleTick();
-			$this->maxTick = 20;
-			$this->maxUse = 0;
+			$this->currentTPS = 20;
+			$this->currentUse = 0;
 
 			if(($this->tickCounter & 0b111111111) === 0){
 				if(($this->dserverConfig["enable"] and $this->dserverConfig["queryTickUpdate"]) or !$this->dserverConfig["enable"]){
@@ -2767,8 +2762,8 @@ class Server{
 		Timings::$serverTickTimer->stopTiming();
 
 		$now = microtime(true);
-		$tick = min(20, 1 / max(0.001, $now - $tickTime));
-		$use = min(1, ($now - $tickTime) / 0.05);
+		$this->currentTPS = min(20, 1 / max(0.001, $now - $tickTime));
+		$this->currentUse = min(1, ($now - $tickTime) / 0.05);
 
 		TimingsHandler::tick($this->currentTPS <= $this->profilingTickRate);
 
