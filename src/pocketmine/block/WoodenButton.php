@@ -33,7 +33,9 @@ class WoodenButton extends Solid{
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
-
+	public function isSolid(){
+    	return false;
+	}
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_SCHEDULED){
 			if($this->isActivated()) {
