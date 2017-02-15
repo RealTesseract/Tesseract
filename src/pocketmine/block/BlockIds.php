@@ -146,7 +146,7 @@ interface BlockIds{
 
 	const END_PORTAL_FRAME = 120; const END_PORTAL = 120;
 	const END_STONE = 121;
-
+    const DRAGON_EGG = 122;
 	const REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124;
 	const DROPPER = 125;

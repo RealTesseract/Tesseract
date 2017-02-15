@@ -3738,20 +3738,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			if($this->loggedIn){
 				$this->server->removeOnlinePlayer($this);
 			}
-
+			
 			if(strlen($this->getName()) > 0){
-  				$this->server->getPluginManager()->callEvent($ev = new PlayerQuitEvent($this, $message, true));
-  				if($this->loggedIn === true and $ev->getAutoSave()){
-  					$this->save();
-  				}						
-  				if($this->spawned !== false and $ev->getQuitMessage() != ""){
-  					if($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_MESSAGE) $this->server->broadcastMessage($ev->getQuitMessage());
-  						elseif($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_TIP) $this->server->broadcastTip(str_replace("@player", $this->getName(), $this->server->playerLogoutMsg));
-  						elseif($this->server->playerMsgType === Server::PLAYER_MSG_TYPE_POPUP) $this->server->broadcastPopup(str_replace("@player", $this->getName(), $this->server->playerLogoutMsg));
- 					}
- 				}
-		}
-
+				$this->server->getPluginManager()->callEvent($ev = new PlayerQuitEvent($this, $message, true));
+				if($this->loggedIn === true and $ev->getAutoSave()){
+					$this->save();
+				}
+				if($this->spawned !== false and $ev->getQuitMessage() != ""){
+					$this->server->broadcastMessage($ev->getQuitMessage());
+				}
+			}
+      
 			$this->loggedIn = false;
 			$this->server->getPluginManager()->unsubscribeFromPermission(Server::BROADCAST_CHANNEL_USERS, $this);
 			$this->spawned = false;

@@ -272,6 +272,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::CAULDRON_BLOCK] = Cauldron::class;
 			self::$list[self::INVISIBLE_BEDROCK] = InvisibleBedrock::class;
 			self::$list[self::HOPPER_BLOCK] = Hopper::class;
+			self::$list[self::DRAGON_EGG] = DragonEgg::class;
 
 			foreach(self::$list as $id => $class){
 				if($class !== null){
