@@ -1760,6 +1760,10 @@ class Server{
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
 			//TODO Generator::addGenerator(Ender::class, "ender");
+			
+			if($this->getProperty("level-settings.default-format", "mcregion")){
+					$this->getLogger()->warning("McRegion is deprecated please refrain from using it!");
+				}
 
 			foreach((array) $this->getProperty("worlds", []) as $name => $worldSetting){
 				if($this->loadLevel($name) === false){
