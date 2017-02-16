@@ -3629,8 +3629,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				unset($this->usedChunks[$index]);
 			}
 
-			parent::close();
-
 			$this->interface->close($this, $notify ? $reason : "");
 
 			if($this->loggedIn){
@@ -3642,10 +3640,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				if($this->loggedIn === true and $ev->getAutoSave()){
 					$this->save();
 				}
+				
 				if($this->spawned !== false and $ev->getQuitMessage() != ""){
 					$this->server->broadcastMessage($ev->getQuitMessage());
 				}
 			}
+			
+			parent::close();
+			
 			$this->loggedIn = false;
 			$this->server->getPluginManager()->unsubscribeFromPermission(Server::BROADCAST_CHANNEL_USERS, $this);
 			$this->spawned = false;
