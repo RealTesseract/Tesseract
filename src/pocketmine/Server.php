@@ -1460,27 +1460,6 @@ class Server{
 	}
 	
 	/**
-	 * @deprecated Use SynapsePM plugin instead
-	 * @return bool
-	 */
-	public function isSynapseEnabled() : bool {
-		return $this->getSynapse() !== null;
-	}
-	
-	/**
-	  * API for checking if PROXY is enabled
-	 */
-	public function isProxyEnabled(){
-		$plugin = null;//$this->pluginManager->getPlugin('WingProxy');
-		
-		if($plugin == null or $plugin->isDisabled()){
-			return 'false';
-	} else {
-	        return 'true';	
-	}
-	}
-	
-	/**
 	 * @return int
 	 *
 	 * Get DServer max players
@@ -1569,7 +1548,6 @@ class Server{
 			$api = $this->getApiVersion();
 			$ip = Utils::getIP();
 			$port = "19132";//TODO
-			$proxy = $this->isProxyEnabled();
 			$ssl = $this->isExtensionInstalled("OpenSSL");
 			$mode = $this->checkAuthentication();
 			$lang = $this->getProperty("settings.language", "eng");
@@ -1580,9 +1558,9 @@ class Server{
 §e###################################################  §6-- Loaded: Properties and Configuration --
 §e#                                                 #    §cDate: §d$date
 §e#§b   _______                                _      §e#    §cVersion: §d$version §cCodename: §d$code
-§e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe $cProtocol: §d$protocol
+§e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe
 §e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cIP: §d$ip §cPort: §d$port
-§e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProxy Enabled: §d$proxy
+§e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProtocol: §d$protocol
 §e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cSSL Extension: §d$ssl
 §e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#    §cAuthentication: §d$mode
 §e#                                                 #  §6------------------------------------------
@@ -1853,19 +1831,6 @@ class Server{
 		}
 	}
 
-	/**
-	 * @return WingProxy
-	 */
-	 
-	public function getProxy(){
-       if($this->isProxyEnabled() == false){
-		   throw new \InvalidStateException("ERROR: Proxy is not enabled");
-		   
-	   } else {
-	     return $this->pluginManager()->getPlugin("WingProxy");		 
-	   }
-	}
-
 	public function getOnlineMode(){
 		
 		return $this->getConfigBoolean("online-mode", false);
@@ -1901,18 +1866,6 @@ class Server{
 	   } else {
 		   return "online mode/secure";
 	   }
-	}
-	
-	/**
-	 * @deprecated Use SynapsePM plugin instead
-	 * @return Synapse|null
-	 */
-	public function getSynapse(){
-		$plugin = $this->pluginManager->getPlugin('SynapsePM');
-		if ($plugin === null or $plugin->isDisabled()) {
-			return null;
-		}
-		return $plugin->getSynapse();
 	}
 
 	/**
@@ -2384,37 +2337,6 @@ class Server{
 		}
 
 		$this->logger->emergency($this->getLanguage()->translateString("pocketmine.crash.submit", [$dump->getPath()]));
-
-		/*if($this->getProperty("auto-report.enabled", true) !== false){
-			$report = true;
-			$plugin = $dump->getData()["plugin"];
-			if(is_string($plugin)){
-				$p = $this->pluginManager->getPlugin($plugin);
-				if($p instanceof Plugin and !($p->getPluginLoader() instanceof PharPluginLoader)){
-					$report = false;
-				}
-			}elseif(\Phar::running(true) == ""){
-				$report = false;
-			}
-			if($dump->getData()["error"]["type"] === "E_PARSE" or $dump->getData()["error"]["type"] === "E_COMPILE_ERROR"){
-				$report = false;
-			}
-
-			if($report){
-				$reply = Utils::postURL("http://" . $this->getProperty("auto-report.host", "crash.pocketmine.net") . "/submit/api", [
-					"report" => "yes",
-					"name" => $this->getName() . " " . $this->getPocketMineVersion(),
-					"email" => "crash@pocketmine.net",
-					"reportPaste" => base64_encode($dump->getEncodedData())
-				]);
-
-				if(($data = json_decode($reply)) !== false and isset($data->crashId)){
-					$reportId = $data->crashId;
-					$reportUrl = $data->crashUrl;
-					$this->logger->emergency($this->getLanguage()->translateString("pocketmine.crash.archive", [$reportUrl, $reportId]));
-				}
-			}
-		}*/
 
 		//$this->checkMemory();
 		//$dump .= "Memory Usage Tracking: \r\n" . chunk_split(base64_encode(gzdeflate(implode(";", $this->memoryStats), 9))) . "\r\n";

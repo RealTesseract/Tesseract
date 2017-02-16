@@ -76,10 +76,6 @@ class FenceGate extends Transparent{
 		return true;
 	}
 
-	public function isOpened(){
-		return (($this->getDamage() & 0x04) > 0);
-	}
-
 	public function getDrops(Item $item) : array {
 		return [
 			[$this->id, 0, 1],
@@ -87,14 +83,7 @@ class FenceGate extends Transparent{
 	}
 
 	public function onActivate(Item $item, Player $player = null){
-		$faces = [
-			0 => 3,
-			1 => 0,
-			2 => 1,
-			3 => 2,
-		];
-		if($player !== null) $this->meta = ($faces[$player instanceof Player ? $player->getDirection() : 0] & 0x03) | ((~$this->meta) & 0x04);
-		else $this->meta ^= 0x04;
+		$this->meta ^= 0x04;
 		$this->getLevel()->setBlock($this, $this, true);
 		$this->level->addSound(new DoorSound($this));
 		return true;
