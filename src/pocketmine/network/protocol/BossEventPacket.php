@@ -5,7 +5,7 @@
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
-use pocketmine\utils\Binary;
+
 
 class BossEventPacket extends DataPacket{
 

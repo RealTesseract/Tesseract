@@ -6,7 +6,7 @@ namespace pocketmine\utils;
 
 use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
-use pocketmine\level\Level;
+
 use pocketmine\math\Vector3;
 
 /**

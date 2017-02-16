@@ -26,7 +26,7 @@ use pocketmine\command\defaults\ListCommand;
 use pocketmine\command\defaults\MeCommand;
 use pocketmine\command\defaults\OpCommand;
 use pocketmine\command\defaults\PardonCommand;
-use pocketmine\command\defaults\PardonCidCommand;
+
 use pocketmine\command\defaults\PardonIpCommand;
 use pocketmine\command\defaults\ParticleCommand;
 use pocketmine\command\defaults\PluginsCommand;

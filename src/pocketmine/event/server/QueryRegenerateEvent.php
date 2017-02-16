@@ -4,7 +4,7 @@
 
 namespace pocketmine\event\server;
 
-use pocketmine\event;
+
 use pocketmine\Server;
 use pocketmine\utils\Binary;
 
