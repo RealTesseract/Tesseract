@@ -4,9 +4,11 @@ namespace pocketmine\item;
 
 use pocketmine\block\Block;
 use pocketmine\block\Fire;
+use pocketmine\block\Portal;
 use pocketmine\block\Solid;
 use pocketmine\level\Level;
 use pocketmine\Player;
+use pocketmine\math\Vector3;
 
 class FireCharge extends Item
 {
