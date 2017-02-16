@@ -16,6 +16,7 @@ class PlayerTextPreSendEvent extends PlayerEvent implements Cancellable{
 	const POPUP = 1;
 	const TIP = 2;
 	const TRANSLATED_MESSAGE = 3;
+	const ActionBar = 4;
 
 	public static $handlerList = null;
 
