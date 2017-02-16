@@ -23,7 +23,7 @@ class AddItemPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName
+	 * @return AddItemPacket
 	 */
 	public function getName(){
 		return "AddItemPacket";

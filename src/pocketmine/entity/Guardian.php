@@ -52,7 +52,7 @@ class Guardian extends WaterAnimal implements Ageable{
 
 			$pk = new EntityEventPacket();
 			$pk->eid = $this->getId();
-			Server::broadcastPacket($this->hasSpawned, $pk);
+			$this->server->broadcastPacket($this->hasSpawned, $pk);
 		}
 	}
 

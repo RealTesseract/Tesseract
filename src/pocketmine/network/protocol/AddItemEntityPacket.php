@@ -34,7 +34,7 @@ class AddItemEntityPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName
+	 * @return AddItemEntityPacket
 	 */
 	public function getName(){
 		return "AddItemEntityPacket";

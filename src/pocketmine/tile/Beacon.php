@@ -148,8 +148,8 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 				return false;
 		}
 	}
-	
-	public function solidAbove() {
+
+    public function solidAbove() {
 		if ($this->y === $this->getLevel()->getHighestBlockAt($this->x, $this->z)) return false;
 		for ($i = $this->y; $i < Level::Y_MAX; $i++) {
 			if (($block = $this->getLevel()->getBlock(new Vector3($this->x, $i, $this->z)))->isSolid() && !$block->getId() === Block::BEACON) return true;
