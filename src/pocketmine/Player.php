@@ -3685,7 +3685,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk->message = "$action"."\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			$this->dataPacket($pk);
 			return true;
-				
+			}
 			if($win == null or false){
 			$pk->message = "$action"."\n\n\n\n\n\n";
 			$this->dataPacket($pk);
