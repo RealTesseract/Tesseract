@@ -3673,16 +3673,25 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	* @param $action
 	* @return bool
 	*/
-	public function sendActionBar($action){
+	public function sendActionBar($action, $win = false){
 		$ev = new PlayerTextPreSendEvent($this, $message, PlayerTextPreSendEvent::ActionBar);
 		$this->server->getPluginManager()->callEvent($ev);
 		if(!$ev->isCancelled()){
 			$pk = new TextPacket();
 			$pk->type = TextPacket::TYPE_TIP;
 			$action = $ev->getMessage();
+			
+			if($win == true){
+			$pk->message = "$action"."\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+			$this->dataPacket($pk);
+			return true;
+				
+			if($win == null or false){
 			$pk->message = "$action"."\n\n\n\n\n\n";
 			$this->dataPacket($pk);
 			return true;
+					
+				}
 		}
 		return false;
 	}
