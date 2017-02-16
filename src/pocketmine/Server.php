@@ -2046,7 +2046,7 @@ class Server{
 	 *
 	 * @return int
 	 */
-		public function broadcastActionBar(string $action, $recipients = null) : int{
+		public function broadcastActionBar(string $action, $recipients = null, $win = false) : int{
 		if(!is_array($recipients)){
 			/** @var Player[] $recipients */
 			$recipients = [];
@@ -2058,6 +2058,12 @@ class Server{
 		}
 		/** @var Player[] $recipients */
 		foreach($recipients as $recipient){
+			
+			if($win == true){
+			$tip = "$action\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+			$recipient->sendTip($tip);
+			}
+			if($win == false or null){
 			$tip = "$action\n\n\n\n\n\n";
 			$recipient->sendTip($tip);
 		}
