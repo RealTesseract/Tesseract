@@ -1,45 +1,26 @@
 <?php
 
-/*
- *
- *    _______                                _
- *   |__   __|                              | |
- *      | | ___  ___ ___  ___ _ __ __ _  ___| |_
- *      | |/ _ \/ __/ __|/ _ \  __/ _` |/ __| __|
- *      | |  __/\__ \__ \  __/ | | (_| | (__| |_
- *      |_|\___||___/___/\___|_|  \__,_|\___|\__|
- *
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author Tessetact Team
- * @link http://www.github.com/TesseractTeam/Tesseract
- * 
- *
- */
+
  
 namespace pocketmine\tile;
 
 use pocketmine\block\Block;
 use pocketmine\entity\Effect;
 use pocketmine\inventory\BeaconInventory;
-use pocketmine\inventory\Inventory;
+
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
 use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Vector3;
-use pocketmine\nbt\NBT;
+
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
-use pocketmine\Server;
+
 
 class Beacon extends Spawnable implements Nameable, InventoryHolder {
 	
@@ -167,8 +148,8 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 				return false;
 		}
 	}
-	
-	public function solidAbove() {
+
+    public function solidAbove() {
 		if ($this->y === $this->getLevel()->getHighestBlockAt($this->x, $this->z)) return false;
 		for ($i = $this->y; $i < Level::Y_MAX; $i++) {
 			if (($block = $this->getLevel()->getBlock(new Vector3($this->x, $i, $this->z)))->isSolid() && !$block->getId() === Block::BEACON) return true;

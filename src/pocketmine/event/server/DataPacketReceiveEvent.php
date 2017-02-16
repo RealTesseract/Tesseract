@@ -4,7 +4,7 @@
 
 namespace pocketmine\event\server;
 
-use pocketmine\event;
+
 use pocketmine\event\Cancellable;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\Player;

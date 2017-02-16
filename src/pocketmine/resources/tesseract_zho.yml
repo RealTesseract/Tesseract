@@ -67,8 +67,6 @@ server:
  logout-msg: "§3@player 離開了遊戲"
  #是否限制創造某些功能(禁止丟物品, 禁止操作箱子等等)
  limited-creative: true
- #是否開啟方塊破壞粒子效果
- destroy-block-particle: true
  #是否啟用噴濺型藥水
  allow-splash-potion: true
  #是否啟用進階指令選擇器

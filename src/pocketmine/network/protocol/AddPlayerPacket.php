@@ -4,13 +4,6 @@
 
 namespace pocketmine\network\protocol;
 
-#include <rules/DataPacket.h>
-
-#ifndef COMPILE
-use pocketmine\utils\Binary;
-
-#endif
-
 class AddPlayerPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ADD_PLAYER_PACKET;
@@ -46,8 +39,7 @@ class AddPlayerPacket extends DataPacket{
 		$this->putLFloat($this->headYaw ?? $this->yaw);
 		$this->putLFloat($this->yaw);
 		$this->putSlot($this->item);
-		$meta = Binary::writeMetadata($this->metadata);
-		$this->put($meta);
+		$this->putEntityMetadata($this->metadata);
 	}
 
 	/**

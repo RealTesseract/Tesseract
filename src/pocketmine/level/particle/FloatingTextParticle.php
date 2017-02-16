@@ -9,7 +9,7 @@ use pocketmine\entity\Item as ItemEntity;
 use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\RemoveEntityPacket;
-use pocketmine\utils\UUID;
+
 
 class FloatingTextParticle extends Particle{
 	//TODO: HACK!

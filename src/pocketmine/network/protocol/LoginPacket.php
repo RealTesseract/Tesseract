@@ -21,6 +21,15 @@ class LoginPacket extends DataPacket{
 	public $gameEdition;
 	public $clientUUID;
 	public $clientId;
+    public $AdRole;
+	public $CurrentInputMode;
+	public $DefaultInputMode;
+	public $DeviceModel;
+	public $DeviceOS;
+	public $GameVersion;
+	public $GuiScale;
+	public $TenantId;
+	public $UIProfile;
 	public $identityPublicKey;
 	public $serverAddress;
 
@@ -75,9 +84,30 @@ class LoginPacket extends DataPacket{
 			}
 		}
 		list($verified, $skinToken) = $this->decodeToken($this->get($this->getLInt()), $chainKey);
-		if(isset($skinToken["ClientRandomId"])){
+        if(isset($skinToken["AdRole"])){
+            $this->AdRole = $skinToken["AdRole"];
+        }
+        if(isset($skinToken["ClientRandomId"])){
 			$this->clientId = $skinToken["ClientRandomId"];
 		}
+        if(isset($skinToken["CurrentInputMode"])){
+            $this->CurrentInputMode = $skinToken["CurrentInputMode"];
+        }
+        if(isset($skinToken["DefaultInputMode"])){
+            $this->DefaultInputMode = $skinToken["DefaultInputMode"];
+        }
+ 		if(isset($skinToken["DeviceModel"])){
+            $this->DeviceModel = $skinToken["DeviceModel"];
+        }
+ 		if(isset($skinToken["DeviceOS"])){
+            $this->DeviceOS = $skinToken["DeviceOS"];
+        }
+ 		if(isset($skinToken["GameVersion"])){
+            $this->GameVersion = $skinToken["GameVersion"];
+        }
+ 		if(isset($skinToken["GuiScale"])){
+            $this->GuiScale = $skinToken["GuiScale"];
+        }
 		if(isset($skinToken["ServerAddress"])){
 			$this->serverAddress = $skinToken["ServerAddress"];
 		}
@@ -87,6 +117,12 @@ class LoginPacket extends DataPacket{
 		if(isset($skinToken["SkinId"])){
 			$this->skinId = $skinToken["SkinId"];
 		}
+        if(isset($skinToken["TenantId"])){
+            $this->TenantId = $skinToken["TenantId"];
+        }
+        if(isset($skinToken["UIProfile"])){
+            $this->UIProfile = $skinToken["UIProfile"];
+        }
 		if($verified){
 			$this->identityPublicKey = $chainKey;
 		}

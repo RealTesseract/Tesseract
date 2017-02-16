@@ -1,23 +1,6 @@
 <?php
 
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://itxtech.org
- *
- */
+
 
 namespace pocketmine\level\generator\normal;
 
@@ -56,6 +39,16 @@ class Normal2 extends Normal{
 	private $noiseRiver;
 
 	private $heightOffset;
+
+    /** @var Random */
+    private $random;
+    /** @var Populator[] */
+    private $generationPopulators = [];
+    /** @var Populator[] */
+    private $populators = [];
+    /** @var BiomeSelector */
+    private $selector;
+	private $level;
 
 	private $seaHeight = 62;
 	private $seaFloorHeight = 48;

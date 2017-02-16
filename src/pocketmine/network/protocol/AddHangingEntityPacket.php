@@ -30,7 +30,7 @@ class AddHangingEntityPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName
+	 * @return AddHangingEntityPacket
 	 */
 	public function getName(){
 		return "AddHangingEntityPacket";

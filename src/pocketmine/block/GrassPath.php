@@ -7,7 +7,6 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-use pocketmine\item\enchantment\enchantment;
 
 
 use pocketmine\level\Level;

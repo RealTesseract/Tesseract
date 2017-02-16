@@ -1,14 +1,12 @@
 <?php
 
-
-
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
-use pocketmine\level\Level;
+
 use pocketmine\level\sound\TNTPrimeSound;
-use pocketmine\math\Vector3;
+
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\DoubleTag;
@@ -37,7 +35,7 @@ class TNT extends Solid {
  	}
 
     public function onActivate(Item $item, Player $player = null){
-        if ($item->getId() === Item::FLINT_STEEL) {
+        if ($item->getId() === Item::FLINT_STEEL || $item->getId() === Item::FIRE_CHARGE) {
             $item->useOn($this);
             $this->getLevel()->setBlock($this, new Air(), true);
             $mot = (new Random())->nextSignedFloat() * M_PI * 2;

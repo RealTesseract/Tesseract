@@ -2,22 +2,16 @@
 
 namespace pocketmine\inventory;
 
-use pocketmine\block\Planks;
-use pocketmine\block\Quartz;
-use pocketmine\block\Sandstone;
-use pocketmine\block\Slab;
-use pocketmine\block\Stone;
-use pocketmine\block\StoneBricks;
-use pocketmine\block\StoneWall;
-use pocketmine\block\Wood;
-use pocketmine\block\Wood2;
+
+
+
 use pocketmine\item\Item;
 use pocketmine\item\Potion;
 use pocketmine\network\protocol\CraftingDataPacket;
 use pocketmine\event\Timings;
 use pocketmine\utils\UUID;
 use pocketmine\Server;
-use pocketmine\utils\MainLogger;
+
 use pocketmine\utils\Config;
 
 class CraftingManager

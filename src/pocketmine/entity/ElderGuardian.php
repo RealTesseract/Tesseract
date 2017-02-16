@@ -4,12 +4,12 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\item\enchantment\Enchantment;
+
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\Item as ItemItem;
 use pocketmine\math\Vector3;
-use pocketmine\network\Network;
+
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\Player;
@@ -53,7 +53,7 @@ class ElderGuardian extends WaterAnimal implements Ageable{
 
 			$pk = new EntityEventPacket();
 			$pk->eid = $this->getId();
-			Server::broadcastPacket($this->hasSpawned, $pk);
+            $this->server->broadcastPacket($this->hasSpawned, $pk);
 		}
 	}
 

@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace pocketmine;
 
 use pocketmine\block\Air;
@@ -300,108 +298,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.left", [
 			$this->getDisplayName()
 		]);
-	}
-
-	/**
-	 * @deprecated Use Human::setTotalXp($xp), this method will be removed in the future.
-	 */
-	public function setExperienceAndLevel(int $exp, int $level){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->setTotalXp(self::getTotalXpRequirement($level) + $exp);
-	}
-
-	/**
-	 * @deprecated Use Human::setTotalXp($xp), this method will be removed in the future.
-	 */
-	public function setExp(int $exp){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->setTotalXp($exp);
-	}
-
-	/**
-	 * @deprecated Use Human::setXpLevel($level), this method will be removed in the future.
-	 */
-	public function setExpLevel(int $level){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->setXpLevel($level);
-	}
-
-	/**
-	 * @deprecated Use Human::getTotalXpRequirement($level), this method will be removed in the future.
-	 */
-	public function getExpectedExperience(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return self::getTotalXpRequirement($this->getXpLevel() + 1);
-	}
-
-	/**
-	 * @deprecated Use Human::getLevelXpRequirement($level), this method will be removed in the future.
-	 */
-	public function getLevelUpExpectedExperience(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return self::getLevelXpRequirement($this->getXpLevel() + 1);
-	}
-
-	/**
-	 * @deprecated
-	 */
-	public function calcExpLevel(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-	}
-
-	/**
-	 * @deprecated Use Human::addXp($xp), this method will be removed in the future.
-	 */
-	public function addExperience(int $exp){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->addXp($exp);
-	}
-
-	/**
-	 * @deprecated Use Human::addXpLevel(), this method will be removed in the future.
-	 */
-	public function addExpLevel(int $level){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->addXpLevel($level);
-	}
-
-	/**
-	 * @deprecated Use Human::getTotalXp(), this method will be removed in the future.
-	 */
-	public function getExp(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->getTotalXp();
-	}
-
-	/**
-	 * @deprecated Use Human::getXpLevel(), this method will be removed in the future.
-	 */
-	public function getExpLevel(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->getXpLevel();
-	}
-
-	/**
-	 * @deprecated Use Human::canPickupXp(), this method will be removed in the future.
-	 */
-	public function canPickupExp(): bool{
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		return $this->canPickupXp();
-	}
-
-	/**
-	 * @deprecated Use Human::resetXpCooldown(), this method will be removed in the future.
-	 */
-	public function resetExpCooldown(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
-		$this->resetXpCooldown();
-	}
-
-	/**
-	 * @deprecated
-	 */
-	public function updateExperience(){
-		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
 	}
 
 	/**
@@ -925,7 +821,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			++$count;
 
 			$this->usedChunks[$index] = false;
-			$this->level->registerChunkLoader($this, $X, $Z, true);
+			$this->level->registerChunkLoader($this, $X, $Z, false);
 
 			if(!$this->level->populateChunk($X, $Z)){
 				if($this->spawned and $this->teleportPosition === null){
@@ -1023,10 +919,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($this->server->dserverConfig["enable"] and $this->server->dserverConfig["queryAutoUpdate"]){
 			$this->server->updateQuery();
 		}
-
-		/*if($this->server->getUpdater()->hasUpdate() and $this->hasPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE)){
-			$this->server->getUpdater()->showPlayerUpdate($this);
-		}*/
 
 		if($this->getHealth() <= 0){
 			$pk = new RespawnPacket();
@@ -1561,10 +1453,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 		$revert = false;
 
-			if(($distanceSquared / ($tickDiff ** 2)) > 200 and $this->server->checkMovement){
-				$this->server->getLogger()->warning($this->getName() . " moved too fast, reverting movement");
+		if($this->server->checkMovement){
+			if(($distanceSquared / ($tickDiff ** 2)) > 200){
 				$revert = true;
 			}else{
+				if($this->chunk === null or !$this->chunk->isGenerated()){
+					$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
+					if($chunk === null or !$chunk->isGenerated()){
+						$revert = true;
+						$this->nextChunkOrderRun = 0;
+					}else{
+						if($this->chunk !== null){
+							$this->chunk->removeEntity($this);
+						}
+						$this->chunk = $chunk;
+					}
+				}
+			}
+		}else{
 			if($this->chunk === null or !$this->chunk->isGenerated()){
 				$chunk = $this->level->getChunk($newPos->x >> 4, $newPos->z >> 4, false);
 				if($chunk === null or !$chunk->isGenerated()){
@@ -1590,6 +1496,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$diffX = $this->x - $newPos->x;
 			$diffY = $this->y - $newPos->y;
 			$diffZ = $this->z - $newPos->z;
+			
+			$yS = 0.5 + $this->ySize;
+			if($diffY >= -$yS or $diffY <= $yS){
+				$diffY = 0;
+			}
 
 			$diff = ($diffX ** 2 + $diffY ** 2 + $diffZ ** 2) / ($tickDiff ** 2);
 
@@ -2749,7 +2660,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						$this->setGliding(false);
 
 						$this->extinguish();
-						$this->setDataProperty(self::DATA_AIR, self::DATA_TYPE_SHORT, 400);
+						$this->setDataProperty(self::DATA_AIR, self::DATA_TYPE_SHORT, 400, false);
 						$this->deadTicks = 0;
 						$this->noDamageTicks = 60;
 
@@ -2844,7 +2755,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$item = $this->inventory->getItemInHand();
 				$oldItem = clone $item;
 
-				if($this->canInteract($vector->add(0.5, 0.5, 0.5), $this->isCreative() ? 13 : 6) and $this->level->useBreakOn($vector, $item, $this, $this->server->destroyBlockParticle)){
+				if($this->canInteract($vector->add(0.5, 0.5, 0.5), $this->isCreative() ? 13 : 6) and $this->level->useBreakOn($vector, $item, $this, true)){
 					if($this->isSurvival()){
 						if(!$item->equals($oldItem) or $item->getCount() !== $oldItem->getCount()){
 							$this->inventory->setItemInHand($item);
@@ -3497,18 +3408,23 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
-				if(($tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z))) instanceof ItemFrame){
-					if(!$tile->getItem()->equals($packet->item) and !$this->isCreative(true)){
-						$tile->spawnTo($this);
-						break;
-					}
+                $tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
+				if(($tile instanceof ItemFrame)) {
+                    if (!$tile->getItem()->equals($packet->item)) {
+                        $tile->spawnTo($this);
+                        break;
+                    }
 
-					if(lcg_value() <= $tile->getItemDropChance() and $packet->item->getId() !== Item::AIR){
-						$this->level->dropItem($tile->getBlock(), $packet->item); //Use the packet item to handle creative drops correctly
-					}
-					$tile->setItem(Item::get(Item::AIR));
-					$tile->setItemRotation(0);
-				}
+                    $this->getServer()->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this->getLevel()->getBlock($tile), $this, $tile->getItem(), $tile->getItemDropChance()));
+                    if (!$ev->isCancelled()) {
+                        if (lcg_value() <= $ev->getItemDropChance() && $packet->item->getId() !== Item::AIR) {
+                            if ($this->getGamemode() !== self::CREATIVE && $this->getGamemode() !== self::SPECTATOR)
+                                $this->level->dropItem($tile, $ev->getDropItem());
+                        }
+                        $tile->setItem();
+                        //$tile->setItemRotation(0);
+                    }
+                }
 
 				break;
 			default:

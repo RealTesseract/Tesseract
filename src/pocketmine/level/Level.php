@@ -47,7 +47,7 @@ use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\Timings;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
-use pocketmine\item\enchantment\enchantment;
+
 use pocketmine\level\format\Chunk;
 use pocketmine\level\format\io\BaseLevelProvider;
 use pocketmine\level\format\io\LevelProvider;
@@ -1666,12 +1666,7 @@ class Level implements ChunkManager, Metadatable{
 		}
 
 		if($createParticles){
-			$players = $this->getChunkPlayers($target->x >> 4, $target->z >> 4);
-			/*if($player !== null){
-				unset($players[$player->getLoaderId()]);
-			}*/
-
-			$this->addParticle(new DestroyBlockParticle($target->add(0.5), $target), $players);
+			$this->addParticle(new DestroyBlockParticle($target->add(0.5, 0.5, 0.5), $target));
 		}
 
 		$target->onBreak($item);

@@ -74,8 +74,6 @@ server:
  #This setting decides if limited creative is enabled in game
  #If set to true true, then players cannot drop items from hotbar, cannot open chests, and so on
  limited-creative: true
- #This setting decides if block particles upon destroying a block will spawn (may cause lag to older devices)
- destroy-block-particle: true
  #This setting decides if splash potions will be allowed to be thrown
  #If set to false, then they will not be visible when thrown (wont splash either)
  allow-splash-potion: true

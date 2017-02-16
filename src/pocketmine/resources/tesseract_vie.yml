@@ -68,8 +68,6 @@ server:
  logout-msg: "§3@player left the game"
  #Bật/tắt nếu kích hoạt chế độ sáng tạo giới hạn (Không thể rớt đồ, mở rương và hơn thế nữa) (mặc định: false) (true/false)
  limited-creative: true
- #Bật/tắt nếu muốn kích hoạt DestroyBlockParticle (phá block tự nhiên) (true/false)
- destroy-block-particle: true
  #Bật/tắt nếu muốn thêm chai ném (true/false)
  allow-splash-potion: true
  #Bật/tắt nếu muốn thêm Lệnh Nâng Cao (mặc định: false) (true/false)
