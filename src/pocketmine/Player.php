@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace pocketmine;
 
 use pocketmine\block\Air;
@@ -3414,18 +3412,23 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
-				if(($tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z))) instanceof ItemFrame){
-					if(!$tile->getItem()->equals($packet->item) and !$this->isCreative(true)){
-						$tile->spawnTo($this);
-						break;
-					}
+                $tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
+				if(($tile instanceof ItemFrame)) {
+                    if (!$tile->getItem()->equals($packet->item)) {
+                        $tile->spawnTo($this);
+                        break;
+                    }
 
-					if(lcg_value() <= $tile->getItemDropChance() and $packet->item->getId() !== Item::AIR){
-						$this->level->dropItem($tile->getBlock(), $packet->item); //Use the packet item to handle creative drops correctly
-					}
-					$tile->setItem(Item::get(Item::AIR));
-					$tile->setItemRotation(0);
-				}
+                    $this->getServer()->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this->getLevel()->getBlock($tile), $this, $tile->getItem(), $tile->getItemDropChance()));
+                    if (!$ev->isCancelled()) {
+                        if (lcg_value() <= $ev->getItemDropChance() && $packet->item->getId() !== Item::AIR) {
+                            if ($this->getGamemode() !== self::CREATIVE && $this->getGamemode() !== self::SPECTATOR)
+                                $this->level->dropItem($tile, $ev->getDropItem());
+                        }
+                        $tile->setItem();
+                        //$tile->setItemRotation(0);
+                    }
+                }
 
 				break;
 			default:

@@ -235,6 +235,7 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::CHORUS_FRUIT] = ChorusFruit::class;
 			self::$list[self::PRISMARINE_CRYSTALS] = PrismarineCrystals::class;
 			self::$list[self::PRISMARINE_SHARD] = PrismarineShard::class;
+			self::$list[self::FIRE_CHARGE] = FireCharge::class;
 
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){

@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace pocketmine\item;
 
 use pocketmine\block\Block;
@@ -28,39 +26,35 @@ class FlintSteel extends Tool{
 	}
 
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
-		if($target->getId() === Block::OBSIDIAN and $player->getServer()->netherEnabled){//黑曜石 4*5最小 23*23最大
-			//$level->setBlock($block, new Fire(), true);
+		if($target->getId() === Block::OBSIDIAN and $player->getServer()->netherEnabled){
 			$tx = $target->getX();
 			$ty = $target->getY();
 			$tz = $target->getZ();
-			//x方向
-			$x_max = $tx;//x最大值
-			$x_min = $tx;//x最小值
+			$x_max = $tx;
+			$x_min = $tx;
 			for($x = $tx + 1; $level->getBlock($this->temporalVector->setComponents($x, $ty, $tz))->getId() == Block::OBSIDIAN; $x++){
 				$x_max++;
 			}
 			for($x = $tx - 1; $level->getBlock($this->temporalVector->setComponents($x, $ty, $tz))->getId() == Block::OBSIDIAN; $x--){
 				$x_min--;
 			}
-			$count_x = $x_max - $x_min + 1;//x方向方块
-			if($count_x >= 4 and $count_x <= 23){//4 23
-				$x_max_y = $ty;//x最大值时的y最大值
-				$x_min_y = $ty;//x最小值时的y最大值
+			$count_x = $x_max - $x_min + 1;
+			if($count_x >= 4 and $count_x <= 23){
+				$x_max_y = $ty;
+				$x_min_y = $ty;
 				for($y = $ty; $level->getBlock($this->temporalVector->setComponents($x_max, $y, $tz))->getId() == Block::OBSIDIAN; $y++){
 					$x_max_y++;
 				}
 				for($y = $ty; $level->getBlock($this->temporalVector->setComponents($x_min, $y, $tz))->getId() == Block::OBSIDIAN; $y++){
 					$x_min_y++;
 				}
-				$y_max = min($x_max_y, $x_min_y) - 1;//y最大值
-				$count_y = $y_max - $ty + 2;//方向方块
-				//Server::getInstance()->broadcastMessage("$y_max $x_max_y $x_min_y $x_max $x_min");
-				if($count_y >= 5 and $count_y <= 23){//5 23
-					$count_up = 0;//上面
+				$y_max = min($x_max_y, $x_min_y) - 1;
+				$count_y = $y_max - $ty + 2;
+				if($count_y >= 5 and $count_y <= 23){
+					$count_up = 0;
 					for($ux = $x_min; ($level->getBlock($this->temporalVector->setComponents($ux, $y_max, $tz))->getId() == Block::OBSIDIAN and $ux <= $x_max); $ux++){
 						$count_up++;
 					}
-					//Server::getInstance()->broadcastMessage("$count_up $count_x");
 					if($count_up == $count_x){
 						for($px = $x_min + 1; $px < $x_max; $px++){
 							for($py = $ty + 1; $py < $y_max; $py++){
@@ -76,10 +70,9 @@ class FlintSteel extends Tool{
 				}
 			}
 
-			//z方向
-			$z_max = $tz;//z最大值
-			$z_min = $tz;//z最小值
-			$count_z = 0;//z方向方块
+			$z_max = $tz;
+			$z_min = $tz;
+			$count_z = 0;
 			for($z = $tz + 1; $level->getBlock($this->temporalVector->setComponents($tx, $ty, $z))->getId() == Block::OBSIDIAN; $z++){
 				$z_max++;
 			}
@@ -87,23 +80,22 @@ class FlintSteel extends Tool{
 				$z_min--;
 			}
 			$count_z = $z_max - $z_min + 1;
-			if($count_z >= 4 and $count_z <= 23){//4 23
-				$z_max_y = $ty;//z最大值时的y最大值
-				$z_min_y = $ty;//z最小值时的y最大值
+			if($count_z >= 4 and $count_z <= 23){
+				$z_max_y = $ty;
+				$z_min_y = $ty;
 				for($y = $ty; $level->getBlock($this->temporalVector->setComponents($tx, $y, $z_max))->getId() == Block::OBSIDIAN; $y++){
 					$z_max_y++;
 				}
 				for($y = $ty; $level->getBlock($this->temporalVector->setComponents($tx, $y, $z_min))->getId() == Block::OBSIDIAN; $y++){
 					$z_min_y++;
 				}
-				$y_max = min($z_max_y, $z_min_y) - 1;//y最大值
-				$count_y = $y_max - $ty + 2;//方向方块
-				if($count_y >= 5 and $count_y <= 23){//5 23
-					$count_up = 0;//上面
+				$y_max = min($z_max_y, $z_min_y) - 1;
+				$count_y = $y_max - $ty + 2;
+				if($count_y >= 5 and $count_y <= 23){
+					$count_up = 0;
 					for($uz = $z_min; ($level->getBlock($this->temporalVector->setComponents($tx, $y_max, $uz))->getId() == Block::OBSIDIAN and $uz <= $z_max); $uz++){
 						$count_up++;
 					}
-					//Server::getInstance()->broadcastMessage("$count_up $count_z");
 					if($count_up == $count_z){
 						for($pz = $z_min + 1; $pz < $z_max; $pz++){
 							for($py = $ty + 1; $py < $y_max; $py++){
@@ -118,7 +110,6 @@ class FlintSteel extends Tool{
 					}
 				}
 			}
-			//return true;
 		}
 
 		if($block->getId() === self::AIR and ($target instanceof Solid)){
@@ -128,11 +119,10 @@ class FlintSteel extends Tool{
 			$block = $level->getBlock($block);
 			if($block->getSide(Vector3::SIDE_DOWN)->isTopFacingSurfaceSolid() or $block->canNeighborBurn()){
 				$level->scheduleUpdate($block, $block->getTickRate() + mt_rand(0, 10));
-				//	return true;
 			}
 
 			if($player->isSurvival()){
-				$this->useOn($block, 2);//耐久跟报废分别写在 tool 跟 level 了
+				$this->useOn($block, 2);
 				$player->getInventory()->setItemInHand($this);
 			}
 
