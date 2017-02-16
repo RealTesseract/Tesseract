@@ -4,7 +4,7 @@
 
 namespace pocketmine\item;
 
-
+use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Entity;

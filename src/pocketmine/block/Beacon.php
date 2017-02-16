@@ -4,8 +4,8 @@
  
 namespace pocketmine\block;
 
-
-
+use pocketmine\block\Block;
+use pocketmine\block\Solid;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\nbt\tag\CompoundTag;
@@ -14,9 +14,9 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\tile\Tile;
 use pocketmine\tile\Beacon as TileBeacon;
+use pocketmine\math\Vector3;
 
-
-class Beacon extends Transparent implements SolidLight{
+ class Beacon extends Transparent implements SolidLight{
  
  	protected $id = self::BEACON;
  

@@ -4,8 +4,8 @@ namespace pocketmine\command\defaults;
 
 use pocketmine\network\protocol\TransferPacket;
 use pocketmine\command\CommandSender;
-
-
+use pocketmine\command\Command;
+use pocketmine\Server;
 use pocketmine\Player;
 
 class TransferCommand extends VanillaCommand{

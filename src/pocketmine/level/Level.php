@@ -47,7 +47,7 @@ use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\Timings;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
-
+use pocketmine\item\enchantment\enchantment;
 use pocketmine\level\format\Chunk;
 use pocketmine\level\format\io\BaseLevelProvider;
 use pocketmine\level\format\io\LevelProvider;

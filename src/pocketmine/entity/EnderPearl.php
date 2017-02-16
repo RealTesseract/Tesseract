@@ -2,8 +2,10 @@
 
 namespace pocketmine\entity;
 
+use pocketmine\entity\{Entity, Projectile};
 use pocketmine\level\format\Chunk;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\network\Network;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 

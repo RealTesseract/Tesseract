@@ -9,7 +9,7 @@ use pocketmine\event\entity\EntityArmorChangeEvent;
 use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\item\Item;
-
+use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\network\protocol\ContainerSetContentPacket;
 use pocketmine\network\protocol\ContainerSetSlotPacket;

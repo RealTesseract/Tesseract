@@ -6,7 +6,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Tool;
 use pocketmine\item\Item;
-
+use pocketmine\item\enchantment\enchantment;
 
 class Podzol extends Solid{
 

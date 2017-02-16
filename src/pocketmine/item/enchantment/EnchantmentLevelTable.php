@@ -4,7 +4,7 @@
 
 namespace pocketmine\item\enchantment;
 
-
+use pocketmine\item\Armor;
 use pocketmine\item\Item;
 use pocketmine\utils\Range;
 

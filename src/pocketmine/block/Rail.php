@@ -4,8 +4,9 @@
 
 namespace pocketmine\block;
 
-
-
+use pocketmine\item\Item;
+use pocketmine\math\Vector3;
+use pocketmine\Player;
 
 class Rail extends Solid{
 

@@ -6,7 +6,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-
+use pocketmine\math\Vector3;
 
 class LitRedstoneLamp extends Solid{
 	protected $id = self::LIT_REDSTONE_LAMP;

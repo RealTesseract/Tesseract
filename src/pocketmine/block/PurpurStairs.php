@@ -4,7 +4,7 @@
 
 namespace pocketmine\block;
 
-
+use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
 class PurpurStairs extends Stair{
