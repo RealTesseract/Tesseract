@@ -5,11 +5,7 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\Player;
-use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\StringTag;
-use pocketmine\nbt\tag\IntTag;
-use pocketmine\tile\Tile;
+
 
 class DaylightDetector extends Solid{
 	protected $id = self::DAYLIGHT_SENSOR;
