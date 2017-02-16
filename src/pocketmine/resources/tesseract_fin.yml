@@ -71,8 +71,6 @@ server:
  #Tama asetus paattaa, onko rajoitettu creative kytketty peli
  #Jos arvoksi tosi tosi, sitten pelaajat ei voi pudottaa kohteita hotbar, ei voi avata arkkua, ja niin edelleen
  limited-creative: true
- #Tama asetus paattaa, jos lohko hiukkasia kun tuhota korttelin tulee kutemaan (voi aiheuttaa viiveella vanhemmissa laitteissa)
- destroy-block-particle: true
  #Tama asetus paattaa, jos splash juoma saa heitetaan
  #Jos asetus false, sitten ne ei nay kun heittaa (tapana splash joko)
  allow-splash-potion: true
