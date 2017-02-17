@@ -1545,7 +1545,6 @@ class Server{
 			$mcpe = $this->getVersion();
 			$protocol = Info::CURRENT_PROTOCOL;
 			$api = $this->getApiVersion();
-			$ip = Utils::getIP();
 			$port = "19132";//TODO
 			$ssl = $this->isExtensionInstalled("OpenSSL");
 			$mode = $this->checkAuthentication();
@@ -1558,7 +1557,7 @@ class Server{
 §e#                                                 #    §cDate: §d$date
 §e#§b   _______                                _      §e#    §cVersion: §d$version §cCodename: §d$code
 §e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe
-§e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cIP: §d$ip §cPort: §d$port
+§e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cPort: §d$port
 §e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProtocol: §d$protocol
 §e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cSSL Extension: §d$ssl
 §e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#    §cAuthentication: §d$mode
