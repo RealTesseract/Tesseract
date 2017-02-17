@@ -64,15 +64,10 @@ class WoodenButton extends Solid{
 		if($this->isActivated()) $side ^= 0x08;
 
 		$block = $this->getSide($faces[$side])->getSide(Vector3::SIDE_UP);
-		if(!$this->equals($block)){
-			$this->deactivateBlock($block);
-		}
 
 		if($side != 1){
-			$this->deactivateBlock($this->getSide($faces[$side], 2));
 		}
 
-		$this->checkTorchOff($this->getSide($faces[$side]),[$this->getOppositeSide($faces[$side])]);
 	}
 
 	public function activate(array $ignore = []){
@@ -90,16 +85,11 @@ class WoodenButton extends Solid{
 		if($this->isActivated()) $side ^= 0x08;
 
 		$block = $this->getSide($faces[$side])->getSide(Vector3::SIDE_UP);
-		if(!$this->equals($block)){
-			$this->activateBlock($block);
-		}
 
 		if($side != 1){
 			$block = $this->getSide($faces[$side], 2);
-			$this->activateBlock($block);
 		}
 
-		$this->checkTorchOn($this->getSide($faces[$side]),[$this->getOppositeSide($faces[$side])]);
 	}
 
 	public function getName() : string{
