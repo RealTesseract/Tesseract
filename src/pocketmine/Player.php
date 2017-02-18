@@ -40,6 +40,8 @@ use pocketmine\entity\Minecart;
 use pocketmine\entity\Projectile;
 use pocketmine\entity\ThrownExpBottle;
 use pocketmine\entity\ThrownPotion;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\ItemFrameDropItemEvent;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityCombustByEntityEvent;
 use pocketmine\event\entity\EntityDamageByBlockEvent;
@@ -3425,26 +3427,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 				break;
 			case ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET:
-				if($this->spawned === false or !$this->isAlive()){
-					break;
+				$tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
+				if($tile instanceof ItemFrame){
+					$block = $this->level->getBlock($tile);
+					$this->server->getPluginManager()->callEvent($ev = new BlockBreakEvent($this, $block, $this->getInventory()->getItemInHand(), true));
+					if(!$ev->isCancelled()){
+						$item = $tile->getItem();
+						$this->server->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this, $block, $tile, $item));
+						if(!$ev->isCancelled()){
+							if($item->getId() !== Item::AIR){
+								if((mt_rand(0, 10) / 10) < $tile->getItemDropChance()){
+									$this->level->dropItem($tile, $item);
+								}
+								$tile->setItem(Item::get(Item::AIR));
+								$tile->setItemRotation(0);
+							}
+						}else $tile->spawnTo($this);
+					}else $tile->spawnTo($this);
 				}
-				
-				if(($tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z))) instanceof ItemFrame){
-					if(!$tile->getItem()->equals($packet->item) and !$this->isCreative(true)){
-						$tile->spawnTo($this);
-						break;
-					}
-					
-					if(lcg_value() <= $tile->getItemDropChance() and $packet->item->getId() !== Item::AIR){
-						$this->level->dropItem($tile->getBlock(), $packet->item);
-					}
-					
-					$tile->setItem(Item::get(Item::AIR));
-					$tile->setItemRotation(0);
-				}
-
-				break;
-			default:
 				break;
 		}
 
