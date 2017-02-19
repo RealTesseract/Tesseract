@@ -331,9 +331,6 @@ abstract class Entity extends Location implements Metadatable{
 
 	protected $riding = null;
 
-	/** @var PressurePlate */
-	protected $activatedPressurePlates = [];
-
 	public $dropExp = [0, 0];
 
 
@@ -1831,8 +1828,8 @@ abstract class Entity extends Location implements Metadatable{
 			if($this->chunk !== null){
 				$this->chunk->removeEntity($this);
 			}
-			if($this->level !== null){
-				$this->level->removeEntity($this);
+			if($this->getLevel() !== null){
+				$this->getLevel()->removeEntity($this);
 			}
 		}
 

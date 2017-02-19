@@ -2500,7 +2500,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						if($enderpearl instanceof Projectile){
 							$this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($enderpearl));
 							if($projectileEv->isCancelled()){
-								$enderpearl->kill();
+								$enderpearl->close();
 								$this->teleport($enderpearl);
 							}else{
 								$enderpearl->spawnToAll();
@@ -3427,24 +3427,25 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 				break;
 			case ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET:
+				if($this->spawned === false or !$this->isAlive()){
+					break;
+				}
+				
 				$tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
 				if($tile instanceof ItemFrame){
-					$block = $this->level->getBlock($tile);
-					$this->server->getPluginManager()->callEvent($ev = new BlockBreakEvent($this, $block, $this->getInventory()->getItemInHand(), true));
-					if(!$ev->isCancelled()){
-						$item = $tile->getItem();
-						$this->server->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this, $block, $tile, $item));
-						if(!$ev->isCancelled()){
-							if($item->getId() !== Item::AIR){
-								if((mt_rand(0, 10) / 10) < $tile->getItemDropChance()){
-									$this->level->dropItem($tile, $item);
-								}
-								$tile->setItem(Item::get(Item::AIR));
-								$tile->setItemRotation(0);
-							}
-						}else $tile->spawnTo($this);
-					}else $tile->spawnTo($this);
+					if($this->isSpectator()){
+						$tile->spawnTo($this);
+						break;
+					}
+					if(lcg_value() <= $tile->getItemDropChance()){
+						$this->level->dropItem($tile->getBlock(), $tile->getItem());
+					}
+					$tile->setItem(null);
+					$tile->setItemRotation(0);
 				}
+				break;
+		
+			default:
 				break;
 		}
 
@@ -4158,7 +4159,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	public function onChunkChanged(Chunk $chunk){
-		$this->loadQueue[Level::chunkHash($chunk->getX(), $chunk->getZ())] = abs(($this->x >> 4) - $chunk->getX()) + abs(($this->z >> 4) - $chunk->getZ());
+		unset($this->usedChunks[Level::chunkHash($chunk->getX(), $chunk->getZ())]);
 	}
 
 	public function onChunkLoaded(Chunk $chunk){
