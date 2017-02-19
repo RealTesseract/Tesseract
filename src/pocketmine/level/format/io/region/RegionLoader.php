@@ -25,7 +25,6 @@ namespace pocketmine\level\format\io\region;
 
 use pocketmine\level\format\Chunk;
 use pocketmine\level\format\io\ChunkException;
-use pocketmine\level\format\io\LevelProvider;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
 
@@ -47,7 +46,7 @@ class RegionLoader{
 
 	public $lastUsed;
 
-	public function __construct(LevelProvider $level, int $regionX, int $regionZ, string $fileExtension = McRegion::REGION_FILE_EXTENSION){
+	public function __construct(McRegion $level, int $regionX, int $regionZ, string $fileExtension = McRegion::REGION_FILE_EXTENSION){
 		$this->x = $regionX;
 		$this->z = $regionZ;
 		$this->levelProvider = $level;

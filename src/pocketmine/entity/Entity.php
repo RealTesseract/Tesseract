@@ -550,6 +550,8 @@ abstract class Entity extends Location implements Metadatable{
 			$this->recalculateEffectColor();
 			return true;
 		}
+		
+		return false;
 	}
 
 	public function getEffect($effectId){
@@ -575,7 +577,7 @@ abstract class Entity extends Location implements Metadatable{
 		if(isset($this->effects[$effect->getId()])){
 			$oldEffect = $this->effects[$effect->getId()];
 			if(($effect->getAmplifier() <= ($oldEffect->getAmplifier())) and $effect->getDuration() < $oldEffect->getDuration()){
-				return;
+				return false;
 			}
 			$effect->add($this, true, $oldEffect);
 		}else{
