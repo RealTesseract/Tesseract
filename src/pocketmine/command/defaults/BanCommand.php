@@ -58,8 +58,9 @@ class BanCommand extends VanillaCommand{
 			}else{
 				$until = null;
 				$sender->getServer()->getNameBans()->addBan($name, $reason = implode(" ", $args), $until, $sender->getName());
-			}
-			
+			}	
+		} else {
+			$sender->getServer()->getNameBans()->addBan($name);
 		}
 
 
