@@ -138,7 +138,7 @@ class Nether extends Generator{
 				$biome = Biome::getBiome(Biome::HELL);
 				$chunk->setBiomeId($x, $z, $biome->getId());
 
-				for($y = 0; $y < 256; ++$y){
+				for($y = 0; $y < 128; ++$y){//The nether is still 128 blocks, #BlameMojang
 					if($y === 0 or $y === 127){
 						$chunk->setBlockId($x, $y, $z, Block::BEDROCK);
 						continue;
