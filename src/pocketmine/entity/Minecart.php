@@ -460,7 +460,7 @@ class Minecart extends Vehicle{
 		$pk->eid = $this->getId();
 		$pk->type = Minecart::NETWORK_ID;
 		$pk->x = $this->x;
-		$pk->y = $this->y;
+		$pk->y = $this->y - 2;
 		$pk->z = $this->z;
 		$pk->speedX = 0;
 		$pk->speedY = 0;
