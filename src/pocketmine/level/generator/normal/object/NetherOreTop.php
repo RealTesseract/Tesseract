@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  *  _____   _____   __   _   _   _____  __    __  _____
@@ -18,32 +17,26 @@
  * @link https://itxtech.org
  *
  */
-
-namespace pocketmine\level\generator\nether\object;
+namespace pocketmine\level\generator\normal\object;
 
 use pocketmine\level\ChunkManager;
 use pocketmine\level\generator\normal\object\OreType;
 use pocketmine\level\generator\object\Object;
 use pocketmine\math\VectorMath;
 use pocketmine\utils\Random;
-
 class NetherOreTop extends Object{
 	private $random;
 	public $type;
-
 	public function __construct(Random $random, OreType $type){
 		$this->type = $type;
 		$this->random = $random;
 	}
-
 	public function getType(){
 		return $this->type;
 	}
-
 	public function canPlaceObject(ChunkManager $level, $x, $y, $z){
 		return ($level->getBlockIdAt($x, $y, $z) === 0);
 	}
-
 	public function placeObject(ChunkManager $level, $x, $y, $z){
 		$clusterSize = (int) $this->type->clusterSize;
 		$angle = $this->random->nextFloat() * M_PI;
@@ -54,13 +47,11 @@ class NetherOreTop extends Object{
 		$z2 = $z + 8 - $offset->y;
 		$y1 = $y + $this->random->nextBoundedInt(3) + 2;
 		$y2 = $y + $this->random->nextBoundedInt(3) + 2;
-
 		for($count = 0; $count <= $clusterSize; ++$count){
 			$seedX = $x1 + ($x2 - $x1) * $count / $clusterSize;
 			$seedY = $y1 + ($y2 - $y1) * $count / $clusterSize;
 			$seedZ = $z1 + ($z2 - $z1) * $count / $clusterSize;
 			$size = ((sin($count * (M_PI / $clusterSize)) + 1) * $this->random->nextFloat() * $clusterSize / 16 + 1) / 2;
-
 			$startX = (int) ($seedX - $size);
 			$startY = (int) ($seedY - $size);
 			$startZ = (int) ($seedZ - $size);
@@ -71,17 +62,14 @@ class NetherOreTop extends Object{
 			for($x = $startX; $x <= $endX; ++$x){
 				$sizeX = ($x + 0.5 - $seedX) / $size;
 				$sizeX *= $sizeX;
-
 				if($sizeX < 1){
 					for($y = $startY; $y <= $endY; ++$y){
 						$sizeY = ($y + 0.5 - $seedY) / $size;
 						$sizeY *= $sizeY;
-
 						if($y > 0 and ($sizeX + $sizeY) < 1){
 							for($z = $startZ; $z <= $endZ; ++$z){
 								$sizeZ = ($z + 0.5 - $seedZ) / $size;
 								$sizeZ *= $sizeZ;
-
 								if(($sizeX + $sizeY + $sizeZ) < 1 and $level->getBlockIdAt($x, $y, $z) === 0){
 									$level->setBlockIdAt($x, $y, $z, $this->type->material->getId());
 									if($this->type->material->getDamage() !== 0){
@@ -97,5 +85,4 @@ class NetherOreTop extends Object{
 			}
 		}
 	}
-
 }

@@ -103,14 +103,14 @@ class Nether extends Generator{
 		$this->level = $level;
 		$this->random = $random;
 		$this->random->setSeed($this->level->getSeed());
-		$this->noiseBase = new Simplex($this->random, 4, 1 / 4, 1 / 64);
+		$this->noiseBase = new Simplex($this->random, 8, 2 / 8, 2 / 128);
 		$this->random->setSeed($this->level->getSeed());
 
 		$ores = new NetherOre();
 		$ores->setOreTypes([
-			new OreType(new NetherQuartzOre(), 20, 16, 0, 128),
-			new OreType(new SoulSand(), 5, 64, 0, 128),
-			new OreType(new Gravel(), 5, 64, 0, 128),
+			new OreType(new NetherQuartzOre(), 20, 16, 0, 126),
+			new OreType(new SoulSand(), 5, 64, 0, 126),
+			new OreType(new Gravel(), 8, 33, 0, 126),
 			new OreType(new Lava(), 1, 16, 0, $this->waterHeight),
 		]);
 		$this->populators[] = $ores;
@@ -126,7 +126,7 @@ class Nether extends Generator{
 	}
 
 	public function generateChunk($chunkX, $chunkZ){
-		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
+		$this->random->setSeed(0xdeadbeef ^ $chunkX ^ $chunkZ ^ $this->level->getSeed());
 
 		$noise = Generator::getFastNoise3D($this->noiseBase, 16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
 
@@ -138,7 +138,7 @@ class Nether extends Generator{
 				$biome = Biome::getBiome(Biome::HELL);
 				$chunk->setBiomeId($x, $z, $biome->getId());
 
-				for($y = 0; $y < 128; ++$y){
+				for($y = 0; $y < 256; ++$y){
 					if($y === 0 or $y === 127){
 						$chunk->setBlockId($x, $y, $z, Block::BEDROCK);
 						continue;
@@ -162,13 +162,13 @@ class Nether extends Generator{
 	}
 
 	public function populateChunk($chunkX, $chunkZ){
-		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
+		$this->random->setSeed(0xdeadbeef ^ $chunkX ^ $chunkZ ^ $this->level->getSeed());
 		foreach($this->populators as $populator){
 			$populator->populate($this->level, $chunkX, $chunkZ, $this->random);
 		}
 
 		$chunk = $this->level->getChunk($chunkX, $chunkZ);
-		$biome = Biome::getBiome($chunk->getBiomeId(7, 7));
+		$biome = Biome::getBiome($chunk->getBiomeId(7, 7)); // If implement more biomes and stronghold, please add here.
 		$biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
 	}
 
