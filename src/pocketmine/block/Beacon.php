@@ -110,4 +110,9 @@ use pocketmine\math\Vector3;
  
  		return true;
  	}
+	
+	public function onBreak(Item $item){
+		$this->getLevel()->setBlock($this, new Air(), true, true);
+		return true;
+	}
  }
