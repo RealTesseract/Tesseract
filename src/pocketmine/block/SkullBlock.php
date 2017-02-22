@@ -2,139 +2,138 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *    _______                                _
+ *   |__   __|                              | |
+ *      | | ___  ___ ___  ___ _ __ __ _  ___| |_
+ *      | |/ _ \/ __/ __|/ _ \  __/ _` |/ __| __|
+ *      | |  __/\__ \__ \  __/ | | (_| | (__| |_
+ *      |_|\___||___/___/\___|_|  \__,_|\___|\__|
+ *
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author Tessetact Team
+ * @link http://www.github.com/TesseractTeam/Tesseract
+ * 
  *
  */
 
-/*
- * THIS IS COPIED FROM THE PLUGIN FlowerPot MADE BY @beito123!!
- * https://github.com/beito123/PocketMine-MP-Plugins/blob/master/test%2FFlowerPot%2Fsrc%2Fbeito%2FFlowerPot%2Fomake%2FSkull.php
- *
- */
 namespace pocketmine\block;
-
+ 
 use pocketmine\item\Item;
-use pocketmine\item\Tool;
+use pocketmine\level\Level;
+use pocketmine\math\AxisAlignedBB;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
+use pocketmine\tile\Skull as SkullTile;
+use pocketmine\tile\Spawnable;
 use pocketmine\tile\Tile;
-use pocketmine\math\AxisAlignedBB;
-use pocketmine\nbt\tag\ByteTag;
-use pocketmine\tile\Skull;
 
-class SkullBlock extends Transparent{
+class SkullBlock extends Flowable {
 	
-	const SKELETON = 0;
-	const WITHER_SKELETON = 1;
-	const ZOMBIE_HEAD = 2;
-	const STEVE_HEAD = 3;
-	const CREEPER_HEAD = 4;
-
 	protected $id = self::SKULL_BLOCK;
-
-	public function __construct($meta = 0){
+	
+	public function __construct($meta = 0) {
 		$this->meta = $meta;
 	}
-
+	
 	public function getHardness() {
 		return 1;
 	}
 	
-	public function isHelmet(){
-		return true;
+	public function getName() : bool{
+		return "Mob Head";
 	}
-
-	public function isSolid(){
-		return false;
-	}
-
-	public function getBoundingBox(){
+	
+	protected function recalculateBoundingBox() {
+		$x1 = 0;
+		$x2 = 0;
+		$z1 = 0;
+		$z2 = 0;
+		if ($this->meta === 0 || $this->meta === 1) {
+			return new AxisAlignedBB(
+				$this->x + 0.25,
+				$this->y,
+				$this->z + 0.25,
+				$this->x + 0.75,
+				$this->y + 0.5,
+				$this->z + 0.75
+			);
+		} elseif ($this->meta === 2) {
+			$x1 = 0.25;
+			$x2 = 0.75;
+			$z1 = 0;
+			$z2 = 0.5;
+		} elseif ($this->meta === 3) {
+			$x1 = 0.5;
+			$x2 = 1;
+			$z1 = 0.25;
+			$z2 = 0.75;
+		} elseif ($this->meta === 4) {
+			$x1 = 0.25;
+			$x2 = 0.75;
+			$z1 = 0.5;
+			$z2 = 1;
+		} elseif ($this->meta === 5) {
+			$x1 = 0;
+			$x2 = 0.5;
+			$z1 = 0.25;
+			$z2 = 0.75;
+		}
 		return new AxisAlignedBB(
-			$this->x - 0.75,
-			$this->y - 0.5,
-			$this->z - 0.75,
-			$this->x + 0.75,
-			$this->y + 0.5,
-			$this->z + 0.75
+			$this->x + $x1,
+			$this->y + 0.25,
+			$this->z + $z1,
+			$this->x + $x2,
+			$this->y + 0.75,
+			$this->z + $z2
 		);
 	}
-
-	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		$down = $this->getSide(0);
-		if($face !== 0 && $fy > 0.5 && $target->getId() !== self::SKULL_BLOCK && !$down instanceof SkullBlock){
-			$this->getLevel()->setBlock($block, Block::get(Block::SKULL_BLOCK, 0), true, true);
-			if($face === 1){
-				$rot = new ByteTag("Rot", floor(($player->yaw * 16 / 360) + 0.5) & 0x0F);
-			}else{
-				$rot = new ByteTag("Rot", 0);
+	
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null) {
+		if ($face !== 0) {
+			$this->meta = $face;
+			if ($face === 1) {
+				$rot = floor(($player->yaw * 16 / 360) + 0.5) & 0x0F;
+			} else {
+				$rot = 0;
+			}
+			$this->getLevel()->setBlock($block, $this, true);
+			$moveMouth = false;
+			if($item->getDamage() === SkullTile::TYPE_DRAGON){
+				if(in_array($target->getId(), [Block::REDSTONE_TORCH, Block::REDSTONE_BLOCK])) $moveMouth = true; //Temp-hacking Dragon Head Mouth Move
 			}
 			$nbt = new CompoundTag("", [
 				new StringTag("id", Tile::SKULL),
-				new IntTag("x", $block->x),
-				new IntTag("y", $block->y),
-				new IntTag("z", $block->z),
 				new ByteTag("SkullType", $item->getDamage()),
-				$rot
+				new ByteTag("Rot", $rot),
+				new ByteTag("MouthMoving", (bool)$moveMouth),
+				new IntTag("x", (int)$this->x),
+				new IntTag("y", (int)$this->y),
+				new IntTag("z", (int)$this->z)
 			]);
-			
-			if($item->hasCustomBlockData()){
-			    foreach($item->getCustomBlockData() as $key => $v){
-				    $nbt->{$key} = $v;
-			    }
+			if ($item->hasCustomName()) {
+				$nbt->CustomName = new StringTag("CustomName", $item->getCustomName());
 			}
-
-			$chunk = $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4);
-			$pot = Tile::createTile(Tile::SKULL, $chunk, $nbt);
-			$this->getLevel()->setBlock($block, Block::get(Block::SKULL_BLOCK, $face), true, true);
+			Tile::createTile("Skull", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
 			return true;
 		}
 		return false;
 	}
-
-	public function getResistance(){
-		return 5;
-	}
-
-	public function getName() : string{
-		static $names = [
-			0 => "Skeleton Skull",
-			1 => "Wither Skeleton Skull",
-			2 => "Zombie Head",
-			3 => "Head",
-			4 => "Creeper Head"
-		];
-		return $names[$this->meta & 0x04];
-	}
-
-	public function getToolType(){
-		return Tool::TYPE_PICKAXE;
-	}
-
-	public function onBreak(Item $item){
-		$this->getLevel()->setBlock($this, new Air(), true, true);
-		return true;
-	}
-
-	public function getDrops(Item $item) : array {
-		/** @var Skull $tile */
-		if($this->getLevel()!=null && (($tile = $this->getLevel()->getTile($this)) instanceof Skull)){
-			return [[Item::SKULL, $tile->getSkullType(), 1]];
-		}else
-			return [[Item::SKULL, 0, 1]];
+	
+	public function getDrops(Item $item) : array{
+		$tile = $this->level->getTile($this);
+		if($tile instanceof SkullTile){
+			return [
+				[Item::MOB_HEAD, $tile->getType(), 1]
+			];
+		}
+		return [];
 	}
 }
