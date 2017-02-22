@@ -72,7 +72,7 @@ class Bed extends Transparent{
 		$isNight = ($time >= Level::TIME_NIGHT and $time < Level::TIME_SUNRISE);
 
 		if($player instanceof Player and !$isNight){
-			$player->sendMessage(new TranslationContainer(TextFormat::GRAY . "%tile.bed.noSleep"));
+			$player->sendMessage(new TranslationContainer(TextFormat::GRAY . "%message.bed.sleep.night"));
 			return true;
 		}
 
