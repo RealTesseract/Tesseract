@@ -40,8 +40,8 @@ use pocketmine\entity\Minecart;
 use pocketmine\entity\Projectile;
 use pocketmine\entity\ThrownExpBottle;
 use pocketmine\entity\ThrownPotion;
-use pocketmine\event\block\BlockBreakEvent;
-use pocketmine\event\block\ItemFrameDropItemEvent;
+
+
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityCombustByEntityEvent;
 use pocketmine\event\entity\EntityDamageByBlockEvent;
@@ -533,8 +533,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param string $name
 	 * @param bool   $value
 	 *
-	 * @return permission\PermissionAttachment
-	 */
+	 * @return bool|PermissionAttachment
+     */
 	public function addAttachment(Plugin $plugin, $name = null, $value = null){
 		if($this->perm == null) return false;
 		return $this->perm->addAttachment($plugin, $name, $value);
@@ -3702,9 +3702,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return [];
 	}
 
-	/**
-	 * Handles player data saving
-	 */
+    /**
+     * Handles player data saving
+     * @param bool $async
+     */
 	public function save($async = false){
 		if($this->closed){
 			throw new \InvalidStateException("Tried to save closed player");
@@ -4183,9 +4184,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return $this->isConnected();
 	}
 
-	/**
-	 * @param Effect
-	*/
+    /**
+     * @param Effect $effect
+     * @return bool|void
+     * @internal param $Effect
+     */
 	public function addEffect(Effect $effect){//Overwrite
 		if($effect->isBad() && $this->isCreative()){
 			return;
