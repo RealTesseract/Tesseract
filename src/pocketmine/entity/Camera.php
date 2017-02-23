@@ -23,8 +23,7 @@ namespace pocketmine\entity;
 
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-use pocketmine\event\entity\EntityDamageByEntityEvent;
-use pocketmine\item\Item as ItemItem;
+
 
 class Camera extends Living{
 	const NETWORK_ID = 62;

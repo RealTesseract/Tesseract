@@ -26,20 +26,20 @@ namespace pocketmine\tile;
 use pocketmine\block\Block;
 use pocketmine\entity\Effect;
 use pocketmine\inventory\BeaconInventory;
-use pocketmine\inventory\Inventory;
+
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
 use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Vector3;
-use pocketmine\nbt\NBT;
+
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
-use pocketmine\Server;
+
 
 class Beacon extends Spawnable implements Nameable, InventoryHolder {
 	

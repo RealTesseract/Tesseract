@@ -25,7 +25,7 @@
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
-use pocketmine\event\block\BlockBurnEvent;
+
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\level\Level;

@@ -28,7 +28,7 @@ use pocketmine\Player;
 use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\Server;
+
 
 class FishingHook extends Projectile{
 	const NETWORK_ID = 77;

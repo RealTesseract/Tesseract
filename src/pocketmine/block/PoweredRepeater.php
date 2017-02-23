@@ -22,9 +22,7 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\level\Level;
-use pocketmine\math\Vector3;
-use pocketmine\Player;
+
 
 class PoweredRepeater extends Solid {
 	protected $id = self::POWERED_REPEATER_BLOCK;

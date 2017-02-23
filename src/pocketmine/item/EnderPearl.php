@@ -20,7 +20,7 @@
 */
 
 namespace pocketmine\item;
-use pocketmine\item\Item;
+
 
 class EnderPearl extends Item{
 

@@ -27,8 +27,6 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-use pocketmine\math\Vector3;
-use pocketmine\event\entity\EntityDamageEvent;
 
 class Zombie extends Monster{
 	const NETWORK_ID = 32;
@@ -38,9 +36,6 @@ class Zombie extends Monster{
 	public $height = 1.8;
 
 	public $dropExp = [5, 5];
-	
-	public $drag = 0.2;
-	public $gravity = 0.3;
 
 	public function getName() : string{
 		return "Zombie";

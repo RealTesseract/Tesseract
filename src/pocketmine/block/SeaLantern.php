@@ -21,7 +21,7 @@
 
 namespace pocketmine\block;
 
-use pocketmine\item\Tool;
+
 use pocketmine\item\Item;
 
 class SeaLantern extends Transparent implements SolidLight{

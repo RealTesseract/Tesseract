@@ -22,11 +22,11 @@
 namespace pocketmine\entity;
 
 use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\network\protocol\MobEquipmentPacket;
+
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\Player;
 use pocketmine\item\Item as ItemItem;
-use pocketmine\item\enchantment\Enchantment;
+
 
 class PolarBear extends Monster{
 	const NETWORK_ID = 28;
