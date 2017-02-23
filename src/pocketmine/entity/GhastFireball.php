@@ -21,13 +21,13 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\level\format\FullChunk;
+use pocketmine\level\format\Chunk;
 use pocketmine\level\particle\CriticalParticle;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-use pocketmine\entity\Projectile;
-use pocketmine\entity\Entity;
+
+
 use pocketmine\level\Explosion;
 use pocketmine\event\entity\ExplosionPrimeEvent;
 
@@ -42,7 +42,7 @@ class GhastFireball extends Projectile{
 	protected $isCritical;
 	protected $canExplode = false;
 
-	public function __construct(FullChunk $chunk, CompoundTag $nbt, Entity $shootingEntity = null, bool $critical = false){
+	public function __construct(Chunk $chunk, CompoundTag $nbt, Entity $shootingEntity = null, bool $critical = false){
 		parent::__construct($chunk, $nbt, $shootingEntity);
 		$this->isCritical = $critical;
 	}
@@ -73,7 +73,7 @@ class GhastFireball extends Projectile{
 
 		if($this->age > 1200 or $this->isCollided){
 			if($this->isCollided and $this->canExplode){
-				$this->server->getPluginManager()->callEvent($ev = new ExplosionPrimeEvent($this, 2.8));
+				$this->server->getPluginManager()->callEvent($ev = new ExplosionPrimeEvent($this, 2.8, $dropItem = true));
 				if(!$ev->isCancelled()){
 					$explosion = new Explosion($this, $ev->getForce(), $this->shootingEntity);
 					if($ev->isBlockBreaking()){

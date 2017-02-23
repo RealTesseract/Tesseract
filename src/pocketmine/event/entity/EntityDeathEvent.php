@@ -62,8 +62,8 @@ class EntityDeathEvent extends EntityEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityDeathEvent";
 	}

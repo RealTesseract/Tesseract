@@ -240,9 +240,10 @@ class BinaryStream extends \stdClass{
 		return Binary::readUnsignedVarInt($this);
 	}
 
-	/**
-	 * Writes an unsigned varint32 to the stream.
-	 */
+    /**
+     * Writes an unsigned varint32 to the stream.
+     * @param $v
+     */
 	public function putUnsignedVarInt($v){
 		$this->put(Binary::writeUnsignedVarInt($v));
 	}
@@ -254,9 +255,10 @@ class BinaryStream extends \stdClass{
 		return Binary::readVarInt($this);
 	}
 
-	/**
-	 * Writes a signed varint32 to the stream.
-	 */
+    /**
+     * Writes a signed varint32 to the stream.
+     * @param $v
+     */
 	public function putVarInt($v){
 		$this->put(Binary::writeVarInt($v));
 	}

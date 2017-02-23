@@ -49,8 +49,8 @@ class EnchantInventory extends TemporaryInventory{
 	}
 
 	/**
-	 * @return EnchantTable
-	 */
+	 * @return InventoryHolder|EnchantTable
+     */
 	public function getHolder(){
 		return $this->holder;
 	}

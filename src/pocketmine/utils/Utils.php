@@ -157,18 +157,19 @@ class Utils{
 
 	}
 
-	/**
-	 * Returns the current Operating System
-	 * Windows => win
-	 * MacOS => mac
-	 * iOS => ios
-	 * Android => android
-	 * Linux => Linux
-	 * BSD => bsd
-	 * Other => other
-	 *
-	 * @return string
-	 */
+    /**
+     * Returns the current Operating System
+     * Windows => win
+     * MacOS => mac
+     * iOS => ios
+     * Android => android
+     * Linux => Linux
+     * BSD => bsd
+     * Other => other
+     *
+     * @param bool $recalculate
+     * @return string
+     */
 	public static function getOS($recalculate = false){
 		if(self::$os === null or $recalculate){
 			$uname = php_uname("s");

@@ -82,7 +82,7 @@ abstract class BaseLevelProvider implements LevelProvider{
 	}
 
 	public function getName() : string{
-		return $this->levelData["LevelName"];
+		return (string) $this->levelData["LevelName"];
 	}
 
 	public function getTime(){

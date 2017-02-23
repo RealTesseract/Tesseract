@@ -45,8 +45,8 @@ class ChunkLoadEvent extends ChunkEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "ChunkLoadEvent";
 	}

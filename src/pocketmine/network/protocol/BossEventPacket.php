@@ -24,7 +24,6 @@
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
-use pocketmine\utils\Binary;
 
 class BossEventPacket extends DataPacket{
 
@@ -44,8 +43,8 @@ class BossEventPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName
-	 */
+	 * @return PacketName|string
+     */
 	public function getName(){
 		return "BossEventPacket";
 	}

@@ -44,8 +44,8 @@ abstract class PluginEvent extends Event{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "PluginEvent";
 	}

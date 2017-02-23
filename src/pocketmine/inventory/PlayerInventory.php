@@ -26,7 +26,7 @@ use pocketmine\event\entity\EntityArmorChangeEvent;
 use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\item\Item;
-use pocketmine\nbt\NBT;
+
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\network\protocol\ContainerSetContentPacket;
 use pocketmine\network\protocol\ContainerSetSlotPacket;
@@ -93,11 +93,13 @@ class PlayerInventory extends BaseInventory{
 		return ($index >= 0 and $index < $this->getHotbarSize()) ? $this->hotbar[$index] : -1;
 	}
 
-	/**
-	 * @deprecated
-	 *
-	 * Changes the linkage of the specified hotbar slot. This should never be done unless it is requested by the client.
-	 */
+    /**
+     * @deprecated
+     *
+     * Changes the linkage of the specified hotbar slot. This should never be done unless it is requested by the client.
+     * @param $index
+     * @param $slot
+     */
 	public function setHotbarSlotIndex($index, $slot){
 		if($this->getHolder()->getServer()->getProperty("settings.deprecated-verbose") !== false){
 			trigger_error("Do not attempt to change hotbar links in plugins!", E_USER_DEPRECATED);
@@ -552,8 +554,8 @@ class PlayerInventory extends BaseInventory{
 	}
 
 	/**
-	 * @return Human|Player
-	 */
+	 * @return Human|InventoryHolder|Player
+     */
 	public function getHolder(){
 		return parent::getHolder();
 	}

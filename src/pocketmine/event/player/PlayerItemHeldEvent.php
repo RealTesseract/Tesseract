@@ -21,7 +21,7 @@
 
 namespace pocketmine\event\player;
 
-use pocketmine\Event;
+
 use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 use pocketmine\Player;
@@ -54,8 +54,8 @@ class PlayerItemHeldEvent extends PlayerEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "PlayerItemHeldEvent";
 	}

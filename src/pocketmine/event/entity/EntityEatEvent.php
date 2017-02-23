@@ -99,8 +99,8 @@ class EntityEatEvent extends EntityEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityEatEvent";
 	}

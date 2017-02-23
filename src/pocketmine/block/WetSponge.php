@@ -23,7 +23,8 @@ namespace pocketmine\block;
 
 class WetSponge extends Solid{
 
-	protected $id = self::WetSponge;
+	protected $id = self::WET_SPONGE;
+
 	public function __construct(){
 	}
 	public function getResistance(){

@@ -278,8 +278,8 @@ class EntityDamageEvent extends EntityEvent implements Cancellable{
 	}
 
 	/**
-	 * @return Item $usedArmors
-	 * notice: $usedArmors $index->$cost
+	 * @return array|Item
+     * notice: $usedArmors $index->$cost
 	 * $index: the $index of ArmorInventory
 	 * $cost:  the num of durability cost
 	 */
@@ -339,8 +339,8 @@ class EntityDamageEvent extends EntityEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityDamageEvent";
 	}

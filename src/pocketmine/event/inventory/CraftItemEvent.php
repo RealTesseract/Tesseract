@@ -72,8 +72,8 @@ class CraftItemEvent extends Event implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "CraftItemEvent";
 	}

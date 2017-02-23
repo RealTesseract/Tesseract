@@ -38,8 +38,8 @@ class ChunkRadiusUpdatedPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName
-	 */
+	 * @return PacketName|string
+     */
 	public function getName(){
 		return "ChunkRadiusUpdatedPacket";
 	}

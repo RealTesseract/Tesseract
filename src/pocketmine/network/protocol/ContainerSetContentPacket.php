@@ -75,8 +75,8 @@ class ContainerSetContentPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName
-	 */
+	 * @return PacketName|string
+     */
 	public function getName(){
 		return "ContainerSetContentPacket";
 	}

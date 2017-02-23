@@ -30,8 +30,8 @@ class BrewingInventory extends ContainerInventory{
 	}
 
 	/**
-	 * @return BrewingStand
-	 */
+	 * @return InventoryHolder|BrewingStand
+     */
 	public function getHolder(){
 		return $this->holder;
 	}

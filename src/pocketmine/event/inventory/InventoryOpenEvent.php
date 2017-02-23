@@ -49,8 +49,8 @@ class InventoryOpenEvent extends InventoryEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "InventoryOpenEvent";
 	}

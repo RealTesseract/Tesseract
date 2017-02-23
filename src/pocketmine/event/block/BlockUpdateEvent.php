@@ -31,8 +31,8 @@ class BlockUpdateEvent extends BlockEvent implements Cancellable{
 	public static $handlerList = null;
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "BlockUpdateEvent";
 	}

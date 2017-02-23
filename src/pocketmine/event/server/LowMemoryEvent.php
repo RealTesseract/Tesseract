@@ -87,8 +87,8 @@ class LowMemoryEvent extends ServerEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "LowMemoryEvent";
 	}

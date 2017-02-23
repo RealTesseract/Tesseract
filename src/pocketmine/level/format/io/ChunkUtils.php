@@ -51,14 +51,15 @@
 		}
  		return $result;
  	}
- 
- 	/**
- 	 * Re-orders a nibble array (YZX -> XZY and vice versa)
- 	 *
- 	 * @param string $array length 2048
- 	 *
- 	 * @return string length 2048
- 	 */
+
+     /**
+      * Re-orders a nibble array (YZX -> XZY and vice versa)
+      *
+      * @param string $array length 2048
+      *
+      * @param string $commonValue
+      * @return string length 2048
+      */
  	public static final function reorderNibbleArray(string $array, string $commonValue = "\x00") : string{
  		$result = str_repeat($commonValue, 2048);
 		if($array !== $result){

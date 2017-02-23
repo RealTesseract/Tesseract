@@ -62,7 +62,6 @@ class Pumpkin extends Solid{
 		$this->getLevel()->setBlock($block, $this, true, true);
 		if($player != null) {
 			$level = $this->getLevel();
-			if($player->getServer()->allowSnowGolem) {
 				$block0 = $level->getBlock($block->add(0,-1,0));
 				$block1 = $level->getBlock($block->add(0,-2,0));
 				if($block0->getId() == Item::SNOW_BLOCK and $block1->getId() == Item::SNOW_BLOCK) {
@@ -87,8 +86,6 @@ class Pumpkin extends Solid{
 					]));
 					$golem->spawnToAll();
 				}
-			}
-			if($player->getServer()->allowIronGolem) {
 				$block0 = $level->getBlock($block->add(0,-1,0));
 				$block1 = $level->getBlock($block->add(0,-2,0));
 				$block2 = $level->getBlock($block->add(-1,-1,0));
@@ -125,7 +122,6 @@ class Pumpkin extends Solid{
 					$golem->spawnToAll();
 				}
 			}
-		}
 
 		return true;
 	}

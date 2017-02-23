@@ -95,8 +95,8 @@ class EntitySpawnEvent extends EntityEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntitySpawnEvent";
 	}

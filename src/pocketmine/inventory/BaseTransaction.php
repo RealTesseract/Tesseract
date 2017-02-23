@@ -134,8 +134,8 @@ class BaseTransaction implements Transaction{
 
 	/**
 	 * Returns the change in inventory resulting from this transaction
-	 * @return Item[
-	 *				"in" => items added to the inventory
+	 * @return array|Item
+     *				"in" => items added to the inventory
 	 *				"out" => items removed from the inventory
 	 * ]
 	 */

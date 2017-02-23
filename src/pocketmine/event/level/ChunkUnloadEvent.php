@@ -31,8 +31,8 @@ class ChunkUnloadEvent extends ChunkEvent implements Cancellable{
 	public static $handlerList = null;
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "ChunkUnloadEvent";
 	}

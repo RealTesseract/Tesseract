@@ -113,9 +113,10 @@ abstract class BaseInventory implements Inventory{
 		return $this->slots;
 	}
 
-	/**
-	 * @param Item[] $items
-	 */
+    /**
+     * @param Item[] $items
+     * @param bool $send
+     */
 	public function setContents(array $items, $send = true){
 		if(count($items) > $this->size){
 			$items = array_slice($items, 0, $this->size, true);

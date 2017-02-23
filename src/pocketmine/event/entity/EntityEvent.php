@@ -36,8 +36,8 @@ abstract class EntityEvent extends Event{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityEvent";
 	}

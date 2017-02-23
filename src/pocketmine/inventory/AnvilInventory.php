@@ -37,8 +37,8 @@ class AnvilInventory extends TemporaryInventory{
 	}
 
 	/**
-	 * @return FakeBlockMenu
-	 */
+	 * @return FakeBlockMenu|InventoryHolder
+     */
 	public function getHolder(){
 		return $this->holder;
 	}

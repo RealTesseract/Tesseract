@@ -31,8 +31,8 @@ class LevelUnloadEvent extends LevelEvent implements Cancellable{
 	public static $handlerList = null;
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "LevelUnloadEvent";
 	}

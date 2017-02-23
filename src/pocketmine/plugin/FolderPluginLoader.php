@@ -22,14 +22,12 @@
 namespace pocketmine\plugin;
 
 use pocketmine\Server;
-use pocketmine\plugin\Plugin;
-use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\PluginLoader;
-use pocketmine\plugin\PluginDescription;
+
+
 use pocketmine\event\plugin\PluginDisableEvent;
 use pocketmine\event\plugin\PluginEnableEvent;
 use pocketmine\utils\MainLogger;
-use pocketmine\utils\TextFormat;
+
 
 class FolderPluginLoader implements PluginLoader{
 
@@ -102,8 +100,8 @@ class FolderPluginLoader implements PluginLoader{
 	/**
 	 * Returns the filename patterns that this loader accepts
 	 *
-	 * @return array
-	 */
+	 * @return array|string
+     */
 	public function getPluginFilters(){
 		return "/[^\\.]/";
 	}

@@ -52,8 +52,8 @@ class SpawnChangeEvent extends LevelEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "SpawnChangeEvent";
 	}

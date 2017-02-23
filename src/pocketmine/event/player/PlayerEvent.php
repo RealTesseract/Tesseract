@@ -36,8 +36,8 @@ abstract class PlayerEvent extends Event{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "PlayerEvent";
 	}

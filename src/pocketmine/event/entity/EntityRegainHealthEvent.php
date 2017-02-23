@@ -68,8 +68,8 @@ class EntityRegainHealthEvent extends EntityEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityRegainHealthEven";
 	}

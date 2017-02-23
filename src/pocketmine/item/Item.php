@@ -49,7 +49,7 @@ use pocketmine\utils\Config;
 
 class Item implements ItemIds, \JsonSerializable{
 
-	/** @var NBT */
+    /** @var NBT */
 	private static $cachedParser = null;
 
 	private static function parseCompoundTag(string $tag) : CompoundTag{

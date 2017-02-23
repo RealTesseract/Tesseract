@@ -54,8 +54,8 @@ class PlayerJoinEvent extends PlayerEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "PlayerJoinEvent";
 	}

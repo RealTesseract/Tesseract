@@ -49,7 +49,7 @@ class EndStoneBricks extends Solid{
 	public function getDrops(Item $item) : array {
 		if($item->isPickaxe() >= 1){
 			return [
-				[Item::ENDSTONE_BRICKS, $this->meta & 0x03, 1],
+				[self::END_STONE_BRICKS, $this->meta & 0x03, 1],
 			];
 		}else{
 			return [];

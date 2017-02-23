@@ -182,8 +182,8 @@ class Minecart extends Vehicle{
 	 * on.
 	 * @param RailType $railType Type of rail the minecart is on.
 	 * @param Direction $candidateDirection Direction minecart already moving, or direction player looking.
-	 * @return Direction The direction the minecart should move.
-	 */
+	 * @return int|Direction
+     */
 	private function getDirectionToMove($railType, $candidateDirection) {
 		switch($railType){
 			case Rail::STRAIGHT_NORTH_SOUTH:

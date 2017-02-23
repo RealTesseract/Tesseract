@@ -63,8 +63,8 @@ abstract class MetadataStore{
 	 * @param mixed  $subject
 	 * @param string $metadataKey
 	 *
-	 * @return MetadataValue[]
-	 *
+	 * @return MetadataValue[]|\WeakMap
+     *
 	 * @throws \Exception
 	 */
 	public function getMetadata($subject, $metadataKey){

@@ -130,8 +130,8 @@ class ParticleCommand extends VanillaCommand{
 	 * @param         $yd
 	 * @param         $zd
 	 * @param         $data
-	 * @return null|DustParticle|ItemBreakParticle|TerrainParticle
-	 */
+	 * @return Particle
+     */
 	private function getParticle($name, Vector3 $pos, $xd, $yd, $zd, $data){
 		switch($name){
 			case "explode":

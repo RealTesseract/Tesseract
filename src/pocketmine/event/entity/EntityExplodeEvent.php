@@ -92,8 +92,8 @@ class EntityExplodeEvent extends EntityEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityExplodeEvent";
 	}

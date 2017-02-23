@@ -617,8 +617,8 @@ class Server{
 	}
 
 	/**
-	 * @return MainLogger
-	 */
+	 * @return \AttachableThreadedLogger|MainLogger|\ThreadedLogger
+     */
 	public function getLogger(){
 		return $this->logger;
 	}
@@ -1441,8 +1441,6 @@ class Server{
 		$this->weatherRandomDurationMax = $this->getAdvancedProperty("level.weather-random-duration-max", 12000);
 		$this->lightningTime = $this->getAdvancedProperty("level.lightning-time", 200);
 		$this->lightningFire = $this->getAdvancedProperty("level.lightning-fire", false);
-		$this->allowSnowGolem = $this->getAdvancedProperty("server.allow-snow-golem", false);
-		$this->allowIronGolem = $this->getAdvancedProperty("server.allow-iron-golem", false);
 		$this->autoClearInv = $this->getAdvancedProperty("player.auto-clear-inventory", true);
 		$this->dserverConfig = [
 			"enable" => $this->getAdvancedProperty("dserver.enable", false),

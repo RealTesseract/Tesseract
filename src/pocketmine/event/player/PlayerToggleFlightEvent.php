@@ -41,8 +41,8 @@ class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "PlayerToggleFlightEvent";
 	}

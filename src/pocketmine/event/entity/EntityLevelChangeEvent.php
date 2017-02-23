@@ -22,7 +22,7 @@
 namespace pocketmine\event\entity;
 
 use pocketmine\entity\Entity;
-use pocketmine\Event;
+
 use pocketmine\event\Cancellable;
 use pocketmine\level\Level;
 
@@ -48,8 +48,8 @@ class EntityLevelChangeEvent extends EntityEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "EntityLevelChangeEvent";
 	}

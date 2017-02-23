@@ -50,7 +50,7 @@ class DoubleSlab extends Solid{
 			5 => "Stone Brick",
 			6 => "Quartz",
 			7 => "Nether Brick",
-			7 => "Purpur",
+			8 => "Purpur",
 		];
 		return "Double " . $names[$this->meta & 0x07] . " Slab";
 	}

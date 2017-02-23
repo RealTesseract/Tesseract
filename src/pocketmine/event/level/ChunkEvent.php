@@ -47,8 +47,8 @@ abstract class ChunkEvent extends LevelEvent{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "ChunkEvent";
 	}

@@ -32,8 +32,8 @@ class BlockFormEvent extends BlockGrowEvent implements Cancellable{
 	}
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "BlockFormEvent";
 	}

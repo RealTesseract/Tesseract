@@ -29,8 +29,8 @@ class LevelLoadEvent extends LevelEvent{
 	public static $handlerList = null;
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "LevelLoadEvent";
 	}

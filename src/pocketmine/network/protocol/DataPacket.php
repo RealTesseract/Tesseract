@@ -167,8 +167,8 @@ abstract class DataPacket extends BinaryStream{
 	}
 
 	/**
-	 * @return PacketName
-	 */
+	 * @return PacketName|string
+     */
 	public function getName(){
 		return "DataPacket";
 	}

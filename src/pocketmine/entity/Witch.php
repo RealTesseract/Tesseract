@@ -61,6 +61,7 @@ class Witch extends Monster{
 		if($cause instanceof EntityDamageByEntityEvent and $cause->getDamager() instanceof Player){
 				switch(mt_rand(2, 7)){
 					case 2:
+                        $rnd = mt_rand(1, 3);
 						$drops[] = ItemItem::get(ItemItem::POTION_WATER_BREATHING, 0, $rnd);
 						break;
 					case 3:

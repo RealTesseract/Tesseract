@@ -29,8 +29,8 @@ class ChunkPopulateEvent extends ChunkEvent{
 	public static $handlerList = null;
 
 	/**
-	 * @return EventName
-	 */
+	 * @return EventName|string
+     */
 	public function getName(){
 		return "ChunkPopulateEvent";
 	}
