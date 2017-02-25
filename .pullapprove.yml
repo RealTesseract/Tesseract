@@ -13,22 +13,17 @@ group_defaults:
       enabled: false
     
 groups:
+
   Owners:
-      
-    required: 2
-      
+    required: 1
     users:
     - AppleDevelops
-    
     teams:
     - owners
       
   Software:
-      
-      required: 3
-      
+      required: 2
       users:
       - AppleDevelops
-      
       teams:
       - software
