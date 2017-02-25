@@ -4,34 +4,26 @@ requirements:
   signed_off_by:
     required: false
     
-groups:
-  Owners:
-  
-    approve_by_comment:
+group_defaults:
+   approve_by_comment:
       approve_regex: ^Approved
       enabled: true
       reject_regex: ^Rejected
+   reset_on_push:
+      enabled: false
+    
+groups:
+  Owners:
       
     required: 2
-    
-    reset_on_push:
-      enabled: false
       
     users:
     - AppleDevelops
     
     teams:
     - owners
-
-    reset_on_reopened:
-      enabled: true
       
   Software:
-  
-    approve_by_comment:
-      approve_regex: ^Approved
-      enabled: true
-      reject_regex: ^Rejected
       
       required: 3
       
@@ -40,6 +32,3 @@ groups:
       
       teams:
       - software
-      
-      reset_on_reopened:
-        enabled: true
