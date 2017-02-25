@@ -5,7 +5,7 @@ requirements:
     required: false
     
 groups:
-  code-review:
+  owners:
   
     approve_by_comment:
       approve_regex: ^Approved
