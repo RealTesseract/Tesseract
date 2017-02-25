@@ -5,7 +5,7 @@ requirements:
     required: false
     
 groups:
-  owners:
+  Owners:
   
     approve_by_comment:
       approve_regex: ^Approved
@@ -19,8 +19,27 @@ groups:
       
     users:
     - AppleDevelops
+    
     teams:
     - owners
 
     reset_on_reopened:
       enabled: true
+      
+  Software:
+  
+    approve_by_comment:
+      approve_regex: ^Approved
+      enabled: true
+      reject_regex: ^Rejected
+      
+      required: 3
+      
+      users:
+      - AppleDevelops
+      
+      teams:
+      - software
+      
+      reset_on_reopened:
+        enabled: true
