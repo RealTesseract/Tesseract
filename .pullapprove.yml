@@ -1,6 +1,6 @@
 version: 2
 groups:
-  code-review:
+  Software:
     approve_by_comment:
       approve_regex: ^Approved
       enabled: true
