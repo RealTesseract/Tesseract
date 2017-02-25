@@ -20,7 +20,7 @@ groups:
     users:
     - AppleDevelops
     teams:
-    - software
+    - owners
 
     reset_on_reopened:
       enabled: true
