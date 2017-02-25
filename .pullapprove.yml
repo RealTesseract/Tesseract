@@ -1,14 +1,26 @@
 version: 2
+
+requirements:
+  signed_off_by:
+    required: false
+    
 groups:
-  Software:
+  code-review:
+  
     approve_by_comment:
       approve_regex: ^Approved
       enabled: true
       reject_regex: ^Rejected
+      
     required: 2
+    
     reset_on_push:
       enabled: false
+      
     users:
     - AppleDevelops
     teams:
     - Software
+
+    reset_on_reopened:
+      enabled: true
