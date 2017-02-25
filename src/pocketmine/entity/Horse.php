@@ -39,7 +39,8 @@ class Horse extends Living{
 		/*	
 		416, 417, 418, 419 only
 		*/
-		$pk = new MobArmorEquipmentPacket();		$pk->eid = $this->getId();
+		$pk = new MobArmorEquipmentPacket();
+		$pk->eid = $this->getId();
 		$pk->slots = [
 		ItemItem::get(0,0),
 		ItemItem::get($id,0),

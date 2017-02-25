@@ -29,7 +29,6 @@ use pocketmine\inventory\BeaconInventory;
 
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
-use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Vector3;
@@ -45,7 +44,7 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 	
 	private $inventory;
 	
-	public function __construct(Chunk $chunk, CompoundTag $nbt) {
+	public function __construct(Level $level, CompoundTag $nbt) {
 		if (!isset($nbt->primary)) {
 			$nbt->primary = new IntTag("primary", 0);
 		}
@@ -53,7 +52,7 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 			$nbt->secondary = new IntTag("secondary", 0);
 		}
 		$this->inventory = new BeaconInventory($this);
-		parent::__construct($chunk, $nbt);
+		parent::__construct($level, $nbt);
 		$this->scheduleUpdate();
 	}
 	

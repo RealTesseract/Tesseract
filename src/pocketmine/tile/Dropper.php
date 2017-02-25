@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\inventory\DropperInventory;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
-use pocketmine\level\format\Chunk;
+use pocketmine\level\Level;
 use pocketmine\level\particle\SmokeParticle;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NBT;
@@ -33,7 +33,6 @@ use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\entity\Item as ItemEntity;
-
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\IntTag;
@@ -47,8 +46,8 @@ class Dropper extends Spawnable implements InventoryHolder, Container, Nameable{
 
 	protected $nextUpdate = 0;
 
-	public function __construct(Chunk $chunk, CompoundTag $nbt){
-		parent::__construct($chunk, $nbt);
+	public function __construct(Level $level, CompoundTag $nbt){
+		parent::__construct($level, $nbt);
 		$this->inventory = new DropperInventory($this);
 		if(!isset($this->namedtag->Items) or !($this->namedtag->Items instanceof ListTag)){
 			$this->namedtag->Items = new ListTag("Items", []);
@@ -251,7 +250,7 @@ class Dropper extends Spawnable implements InventoryHolder, Container, Nameable{
 			]);
 
 			$f = 0.3;
-			$itemEntity = new ItemEntity($this->chunk, $nbt, $this);
+			$itemEntity = new ItemEntity($this->getLevel(), $nbt, $this);
 			$itemEntity->setMotion($itemEntity->getMotion()->multiply($f));
 			$itemEntity->spawnToAll();
 

@@ -23,6 +23,7 @@ namespace pocketmine\entity;
 
 use pocketmine\level\format\Chunk;
 
+use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 
 use pocketmine\network\protocol\AddEntityPacket;
@@ -43,8 +44,8 @@ class LeashKnot extends Entity{
 
 	private $dropItem = true;
 
-	public function __construct(Chunk $chunk, CompoundTag $nbt, bool $dropItem = true){
-		parent::__construct($chunk, $nbt);
+	public function __construct(Level $level, CompoundTag $nbt, bool $dropItem = true){
+		parent::__construct($level, $nbt);
 		$this->dropItem = $dropItem;
 	}
 

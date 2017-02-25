@@ -40,9 +40,6 @@ use pocketmine\entity\Minecart;
 use pocketmine\entity\Projectile;
 use pocketmine\entity\ThrownExpBottle;
 use pocketmine\entity\ThrownPotion;
-
-
-use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityCombustByEntityEvent;
 use pocketmine\event\entity\EntityDamageByBlockEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -1934,7 +1931,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->server->saveOfflinePlayerData($this->username, $nbt, true);
 		}
 
-		parent::__construct($this->level->getChunk($nbt["Pos"][0] >> 4, $nbt["Pos"][2] >> 4, true), $nbt);
+		parent::__construct($this->level, $nbt);
 		$this->loggedIn = true;
 		$this->server->addOnlinePlayer($this);
 
@@ -2170,7 +2167,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 				$newPos = new Vector3($packet->x, $packet->y - $this->getEyeHeight(), $packet->z);
 
-				if($newPos->distanceSquared($this) < 0.01 and ($packet->yaw % 360) === $this->yaw and ($packet->pitch % 360) === $this->pitch){ //player hasn't moved, just client spamming packets
+				if($newPos->distanceSquared($this) == 0 and ($packet->yaw % 360) === $this->yaw and ($packet->pitch % 360) === $this->pitch){ //player hasn't moved, just client spamming packets
 					break;
 				}
 
@@ -2317,7 +2314,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 								]);
 
 								$f = 0.6;
-								$this->fishingHook = new FishingHook($this->chunk, $nbt, $this);
+								$this->fishingHook = new FishingHook($this->getLevel(), $nbt, $this);
 								$this->fishingHook->setMotion($this->fishingHook->getMotion()->multiply($f));
 								$this->fishingHook->spawnToAll();
 							}
@@ -2345,7 +2342,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						]);
 
 						$f = 1.5;
-						$snowball = Entity::createEntity("Snowball", $this->chunk, $nbt, $this);
+						$snowball = Entity::createEntity("Snowball", $this->getLevel(), $nbt, $this);
 						$snowball->setMotion($snowball->getMotion()->multiply($f));
 						if($this->isSurvival()){
 							$item->setCount($item->getCount() - 1);
@@ -2381,7 +2378,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						]);
 
 						$f = 1.5;
-						$egg = Entity::createEntity("Egg", $this->chunk, $nbt, $this);
+						$egg = Entity::createEntity("Egg", $this->getLevel(), $nbt, $this);
 						$egg->setMotion($egg->getMotion()->multiply($f));
 						if($this->isSurvival()){
 							$item->setCount($item->getCount() - 1);
@@ -2417,7 +2414,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						]);
 
 						$f = 1.1;
-						$thrownExpBottle = new ThrownExpBottle($this->chunk, $nbt, $this);
+						$thrownExpBottle = new ThrownExpBottle($this->getLevel(), $nbt, $this);
 						$thrownExpBottle->setMotion($thrownExpBottle->getMotion()->multiply($f));
 						if($this->isSurvival()){
 							$item->setCount($item->getCount() - 1);
@@ -2454,7 +2451,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						]);
 
 						$f = 1.1;
-						$thrownPotion = new ThrownPotion($this->chunk, $nbt, $this);
+						$thrownPotion = new ThrownPotion($this->getLevel(), $nbt, $this);
 						$thrownPotion->setMotion($thrownPotion->getMotion()->multiply($f));
 						if($this->isSurvival()){
 							$item->setCount($item->getCount() - 1);
@@ -2490,9 +2487,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						]);
   
 						$f = 1.5;
-						$enderpearl = Entity::createEntity("EnderPearl", $this->chunk, $nbt, $this);
+						$enderpearl = Entity::createEntity("EnderPearl", $this->getLevel(), $nbt, $this);
 						$enderpearl->setMotion($enderpearl->getMotion()->multiply($f));
-						$enderpearl->setSpawner($this);
 						if($this->isSurvival()){
 							$item->setCount($item->getCount() - 1);
 							$this->inventory->setItemInHand($item->getCount() > 0 ? $item : Item::get(Item::AIR));
@@ -2591,7 +2587,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 								$diff = ($this->server->getTick() - $this->startAction);
 								$p = $diff / 20;
 								$f = min((($p ** 2) + $p * 2) / 3, 1) * 2;
-								$ev = new EntityShootBowEvent($this, $bow, Entity::createEntity("Arrow", $this->chunk, $nbt, $this, $f == 2 ? true : false), $f);
+								$ev = new EntityShootBowEvent($this, $bow, Entity::createEntity("Arrow", $this->getLevel(), $nbt, $this, $f == 2 ? true : false), $f);
 
 								if($f < 0.1 or $diff < 5){
 									$ev->setCancelled();
@@ -3397,24 +3393,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if(!$t->updateCompoundTag($nbt, $this)){
 						$t->spawnTo($this);
 					}
-				} else if ($t instanceof Sign){
-                 	 $nbt = new NBT(NBT::LITTLE_ENDIAN);
-                     $nbt->read($packet->namedtag);
-               		 $nbt = $nbt->getData();
-                     if($nbt["id"] !== Tile::SIGN){
-                		$t->spawnTo($this);
-                     }else{
-                     	$ev = new SignChangeEvent($t->getBlock(), $this, [TextFormat::clean($nbt["Text1"], $this->removeFormat), TextFormat::clean($nbt["Text2"], $this->removeFormat), TextFormat::clean($nbt["Text3"], $this->removeFormat), TextFormat::clean($nbt["Text4"], $this->removeFormat)]);
-                        if(!isset($t->namedtag->Creator) or $t->namedtag["Creator"] !== $this->getRawUniqueId()){
-                        	$ev->setCancelled();
-                        }
-                        $this->server->getPluginManager()->callEvent($ev);
-                        if(!$ev->isCancelled()){
-                        	$t->setText($ev->getLine(0), $ev->getLine(1), $ev->getLine(2), $ev->getLine(3));
-                        }else{
-                        	$t->spawnTo($this);
-                        }
-                	}
 				}
 				break;
 			case ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET:

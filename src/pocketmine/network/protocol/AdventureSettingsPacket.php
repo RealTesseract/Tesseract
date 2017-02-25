@@ -34,15 +34,16 @@ class AdventureSettingsPacket extends DataPacket{
 	const PERMISSION_AUTOMATION = 3;
 	const PERMISSION_ADMIN = 4;
 
-	public $worldImmutable;
-	public $noPvp;
-	public $noPvm;
-	public $noMvp;
+	public $worldImmutable = false;
+	public $noPvp = false;
+	public $noPvm = false;
+	public $noMvp = false;
 
-	public $autoJump;
-	public $allowFlight;
-	public $noClip;
-	public $isFlying;
+	public $autoJump = false;
+	public $allowFlight = false;
+	public $noClip = false;
+    public $worldBuilder = false;
+	public $isFlying = false;
 
 	/*
 	 bit mask | flag name
@@ -54,7 +55,7 @@ class AdventureSettingsPacket extends DataPacket{
 	0x00000020 auto_jump
 	0x00000040 allow_fly
 	0x00000080 noclip
-	0x00000100 ?
+	0x00000100 world_builder
 	0x00000200 is_flying
 	*/
 
@@ -73,7 +74,7 @@ class AdventureSettingsPacket extends DataPacket{
 		$this->autoJump       = (bool) ($this->flags & (1 << 5));
 		$this->allowFlight    = (bool) ($this->flags & (1 << 6));
 		$this->noClip         = (bool) ($this->flags & (1 << 7));
-
+        $this->worldBuilder   = (bool) ($this->flags & (1 << 8));
 		$this->isFlying       = (bool) ($this->flags & (1 << 9));
 	}
 
@@ -81,15 +82,15 @@ class AdventureSettingsPacket extends DataPacket{
 		$this->reset();
 
 		$this->flags |= ((int) $this->worldImmutable);
-		$this->flags |= ((int) $this->noPvp)       << 1;
-		$this->flags |= ((int) $this->noPvm)       << 2;
-		$this->flags |= ((int) $this->noMvp)       << 3;
+		$this->flags |= ((int) $this->noPvp)        << 1;
+		$this->flags |= ((int) $this->noPvm)        << 2;
+		$this->flags |= ((int) $this->noMvp)        << 3;
 
-		$this->flags |= ((int) $this->autoJump)    << 5;
-		$this->flags |= ((int) $this->allowFlight) << 6;
-		$this->flags |= ((int) $this->noClip)      << 7;
-
-		$this->flags |= ((int) $this->isFlying)    << 9;
+		$this->flags |= ((int) $this->autoJump)     << 5;
+		$this->flags |= ((int) $this->allowFlight)  << 6;
+		$this->flags |= ((int) $this->noClip)       << 7;
+        $this->flags |= ((int) $this->worldBuilder) << 8;
+		$this->flags |= ((int) $this->isFlying)     << 9;
 
 		$this->putUnsignedVarInt($this->flags);
 		$this->putUnsignedVarInt($this->userPermission);

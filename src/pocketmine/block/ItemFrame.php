@@ -48,7 +48,7 @@ class ItemFrame extends Flowable{
 				new FloatTag("ItemDropChance", 1.0),
 				new ByteTag("ItemRotation", 0)
 			]);
-			$tile = Tile::createTile(Tile::ITEM_FRAME, $this->level->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+			$tile = Tile::createTile(Tile::ITEM_FRAME, $this->getLevel(), $nbt);
 		}
 		if($tile->hasItem()){
 			$tile->setItemRotation(($tile->getItemRotation() + 1) % 8);
@@ -114,7 +114,7 @@ class ItemFrame extends Flowable{
 				$nbt->{$key} = $v;
 			}
 		}
-		Tile::createTile(Tile::ITEM_FRAME, $this->level->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+		Tile::createTile(Tile::ITEM_FRAME, $this->getLevel(), $nbt);
 		return true;
 	}
 	public function getDrops(Item $item) : array{

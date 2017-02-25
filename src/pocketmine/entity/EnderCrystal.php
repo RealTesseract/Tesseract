@@ -21,6 +21,7 @@
 
 namespace pocketmine\entity;
 
+use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
@@ -35,8 +36,8 @@ class EnderCrystal extends Vehicle{
 	public $gravity = 0.5;
 	public $drag = 0.1;
 
-	public function __construct(Chunk $chunk, CompoundTag $nbt){
-		parent::__construct($chunk, $nbt);
+	public function __construct(Level $level, CompoundTag $nbt){
+		parent::__construct($level, $nbt);
 	}
 
 	public function spawnTo(Player $player){

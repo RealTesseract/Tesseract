@@ -22,6 +22,7 @@
 namespace pocketmine\entity;
 
 use pocketmine\level\format\Chunk;
+use pocketmine\level\Level;
 use pocketmine\level\particle\CriticalParticle;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
@@ -42,8 +43,8 @@ class GhastFireball extends Projectile{
 	protected $isCritical;
 	protected $canExplode = false;
 
-	public function __construct(Chunk $chunk, CompoundTag $nbt, Entity $shootingEntity = null, bool $critical = false){
-		parent::__construct($chunk, $nbt, $shootingEntity);
+	public function __construct(Level $level, CompoundTag $nbt, Entity $shootingEntity = null, bool $critical = false){
+		parent::__construct($level, $nbt, $shootingEntity);
 		$this->isCritical = $critical;
 	}
 

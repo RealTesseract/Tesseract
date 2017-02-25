@@ -14,42 +14,20 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
- */
+*/
 
-namespace pocketmine\event\level;
+namespace pocketmine\block;
 
-use pocketmine\level\format\Chunk;
-use pocketmine\level\Level;
+class UnknownBlock extends Solid{
 
-/**
- * Called when a Chunk is loaded
- */
-class ChunkLoadEvent extends ChunkEvent{
+    public function isSolid(){
+        return false;
+    }
 
-	public static $handlerList = null;
-
-	private $newChunk;
-
-	public function __construct(Level $level, Chunk $chunk, bool $newChunk){
-		parent::__construct($level, $chunk);
-		$this->newChunk = $newChunk;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function isNewChunk(){
-		return $this->newChunk;
-	}
-
-	/**
-	 * @return EventName|string
-     */
-	public function getName(){
-		return "ChunkLoadEvent";
-	}
-
+    public function getHardness(){
+        return 0;
+    }
 }

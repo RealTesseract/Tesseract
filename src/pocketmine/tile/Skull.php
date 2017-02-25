@@ -21,7 +21,7 @@
 
 namespace pocketmine\tile;
 
-use pocketmine\level\format\Chunk;
+use pocketmine\level\Level;
 use pocketmine\nbt\tag\{ByteTag, CompoundTag, IntTag, StringTag};
 
 class Skull extends Spawnable{
@@ -33,9 +33,9 @@ class Skull extends Spawnable{
 	const TYPE_CREEPER = 4;
 	const TYPE_DRAGON = 5;
 
-	public function __construct(Chunk $chunk, CompoundTag $nbt){
-		if(!isset($nbt->SkullType) or !($nbt->SkullType instanceof ByteTag)){
-			$nbt->SkullType = new ByteTag("SkullType", self::TYPE_SKELETON);
+	public function __construct(Level $level, CompoundTag $nbt){
+		if(!isset($nbt->SkullType)){
+			$nbt->SkullType = new ByteTag("SkullType", 0);
 		}
 		if(!isset($nbt->Rot) or !($nbt->Rot instanceof ByteTag)) {
 			$nbt->Rot = new ByteTag("Rot", 0);
@@ -43,7 +43,7 @@ class Skull extends Spawnable{
 		if(!isset($nbt->MouthMoving)){
             $nbt->MouthMoving = new ByteTag("MouthMoving", (bool) false);
 		}
-		parent::__construct($chunk, $nbt);
+		parent::__construct($level, $nbt);
 	}
 
 	public function setType(int $type){
