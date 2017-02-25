@@ -1,0 +1,11 @@
+version: 2
+
+groups:
+  Software:
+    required: 2
+    users:
+      - AppleDevelops
+      - AnkitM252
+      - xZeroMCPE
+  Software:
+    required: 2
