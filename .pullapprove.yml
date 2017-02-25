@@ -10,3 +10,5 @@ groups:
       enabled: false
     users:
     - AppleDevelops
+    teams:
+    - Software
