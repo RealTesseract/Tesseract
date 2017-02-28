@@ -8,7 +8,10 @@ Tesseract supports packet and event debug system (for plugin developers)**
 ## Notice
 
 **Tesseract is supported to Minecraft:PE 1.0.3 (PE & Win10) <br>
-Report any issues and we will try to fix them for you.** 
+Report any issues and we will try to fix them for you.**  <br>
+
+**We have opened a vanilla server for Tesseract.<br> 
+test.tesseractteam.tk 19132**
 
 ##Builds
 
