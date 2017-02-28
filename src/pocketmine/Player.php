@@ -148,7 +148,6 @@ use pocketmine\permission\PermissionAttachment;
 use pocketmine\plugin\Plugin;
 use pocketmine\tile\ItemFrame;
 use pocketmine\tile\Spawnable;
-use pocketmine\tile\Tile;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\UUID;
 

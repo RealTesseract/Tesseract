@@ -22,7 +22,6 @@
 namespace pocketmine\tile;
 
 use pocketmine\item\Item;
-use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;

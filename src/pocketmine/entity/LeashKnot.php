@@ -21,11 +21,8 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\level\format\Chunk;
-
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
-
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 

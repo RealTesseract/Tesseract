@@ -24,7 +24,6 @@
 namespace pocketmine\block;
 
 use pocketmine\Player;
-use pocketmine\level\Level;
 use pocketmine\item\Item;
 
 class EndRod extends Flowable{

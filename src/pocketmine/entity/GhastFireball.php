@@ -21,14 +21,11 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\level\particle\CriticalParticle;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-
-
 use pocketmine\level\Explosion;
 use pocketmine\event\entity\ExplosionPrimeEvent;
 

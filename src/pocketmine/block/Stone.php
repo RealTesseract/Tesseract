@@ -23,7 +23,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
-use pocketmine\item\enchantment\enchantment;
+use pocketmine\item\enchantment\Enchantment;
 
 class Stone extends Solid{
 	const NORMAL = 0;

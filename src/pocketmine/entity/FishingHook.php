@@ -22,7 +22,6 @@
 namespace pocketmine\entity;
 
 use pocketmine\event\player\PlayerFishEvent;
-use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;

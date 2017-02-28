@@ -22,7 +22,6 @@
 namespace pocketmine\entity;
 
 use pocketmine\event\entity\ExplosionPrimeEvent;
-use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\level\particle\CriticalParticle;
 use pocketmine\nbt\tag\CompoundTag;

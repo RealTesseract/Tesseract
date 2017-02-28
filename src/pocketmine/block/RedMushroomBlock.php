@@ -22,7 +22,7 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\item\enchantment\enchantment;
+use pocketmine\item\enchantment\Enchantment;
 
 class RedMushroomBlock extends Solid{
 

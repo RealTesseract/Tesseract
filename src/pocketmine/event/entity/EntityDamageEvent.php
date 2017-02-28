@@ -27,7 +27,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\Player;
 use pocketmine\item\Item;
-use pocketmine\item\enchantment\enchantment;
+use pocketmine\item\enchantment\Enchantment;
 
 class EntityDamageEvent extends EntityEvent implements Cancellable{
 	public static $handlerList = null;

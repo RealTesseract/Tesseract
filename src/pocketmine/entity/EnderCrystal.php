@@ -25,7 +25,6 @@ use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
-use pocketmine\level\format\Chunk;
 
 class EnderCrystal extends Vehicle{
 	const NETWORK_ID = 71;
