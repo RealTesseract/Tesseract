@@ -4,8 +4,6 @@ namespace pocketmine\command\defaults;
 
 use pocketmine\network\protocol\TransferPacket;
 use pocketmine\command\CommandSender;
-
-
 use pocketmine\Player;
 
 class TransferCommand extends VanillaCommand{
@@ -21,22 +19,29 @@ class TransferCommand extends VanillaCommand{
     }
 
     public function execute(CommandSender $sender, $currentAlias, array $args){
-
+		$ip = $args[0];
+		$port = $args[1];
+		
+        if(!$this->testPermission($sender)){
+            return true;
+        }
+		
         if(!$sender instanceof Player){
-
             $sender->sendMessage("Run command in-game");
-            return;
+            return false;
         }
-        if(!isset($args[0]) || !isset($args[1])){
-
-            $sender->sendMessage("Please provide a ip and port. /transferserver <ip> <port>");
-            return;
+		
+        if(!isset($ip)){
+            $sender->sendMessage("Please provide a ip and port. /transferserver <ip> [port]");
+            return false;
         }
-
-        $sender->sendMessage("Transferring you to $args[0]".":".$args[1]);
+		
+        if(!isset($port)){ $port = 19132; }
+        $sender->sendMessage("Transferring you to ".$ip.":".$port);
         $pk = new TransferPacket();
-        $pk->address = $args[0];
-        $pk->port = $args[1];
+        $pk->address = $ip;
+        $pk->port = $port;
         $sender->dataPacket($pk);
-}
     }
+	
+}
