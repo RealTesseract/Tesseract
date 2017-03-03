@@ -1851,9 +1851,9 @@ class Server{
 	}
 
 	public function getOnlineMode(){
-		
+
 		return $this->getConfigBoolean("online-mode", false);
-					
+
 	}
 	
 	public function isExtensionInstalled($type){

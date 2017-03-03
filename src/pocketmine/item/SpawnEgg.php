@@ -70,7 +70,9 @@ class SpawnEgg extends Item{
 
 			if($entity instanceof Entity){
 				if($player->isSurvival()){
-					--$this->count;
+					$item = $player->getInventory()->getItemInHand();
+					$item->setCount($item->getCount() - 1);
+					$player->getInventory()->setItemInHand($item);
 				}
 				$entity->spawnToAll();
 				return true;
