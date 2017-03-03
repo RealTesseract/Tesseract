@@ -30,6 +30,7 @@ use pocketmine\event\entity\EntityExplodeEvent;
 use pocketmine\event\block\BlockUpdateEvent;
 use pocketmine\item\Item;
 use pocketmine\level\particle\HugeExplodeSeedParticle;
+use pocketmine\level\sound\ExplodeSound;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Math;
 use pocketmine\math\Vector3;
@@ -228,6 +229,7 @@ class Explosion{
 		$this->level->addChunkPacket($source->x >> 4, $source->z >> 4, $pk);
 
 		$this->level->addParticle(new HugeExplodeSeedParticle($source));
+		$this->level->addSound(new ExplodeSound(new Vector3($source->x, $source->y, $source->z)));
 
 		return true;
 	}
