@@ -26,6 +26,10 @@ level:
  lightning-fire: false
  #是否启用火焰蔓延
  fire-spread: false
+ #是否开启地狱，打开此选项会自动生成地狱地图
+ allow-nether: false
+ #地狱地图名
+ level-name: "nether"
   
 network:
  raklib-disable: false
@@ -43,14 +47,8 @@ player:
  keep-experience: false
  #如果玩家进入游戏时崩溃, 请设置低于10的值. 禁用 = -1
  chunk-radius: -1
- 
+ #是否开启检测玩家移动
  check-movement: true
- 
-nether:
- #是否允许地狱，打开此选项会自动生成地狱地图
- allow-nether: true
- #地狱地图名
- level-name: "nether"
  
 server:
  #是否允许生成铁傀儡
