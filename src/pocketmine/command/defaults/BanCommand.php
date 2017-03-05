@@ -51,9 +51,10 @@ class BanCommand extends VanillaCommand{
 
 		$name = array_shift($args);
 		if(isset($args[0]) and isset($args[1])){
-			$reason = $args[0];
-			if($args[1] != null and is_numeric($args[1])){
-				$until = new \DateTime('@' . ($args[1] * 86400 + time()));
+			$reason = implode(" ", $args);
+			if(is_numeric(end($args))){
+				$reason = str_replace(end($args), " ", $reason);
+				$until = new \DateTime('@' . (end($args) * 86400 + time()));
 				$sender->getServer()->getNameBans()->addBan($name, $reason, $until, $sender->getName());
 			}else{
 				$until = null;
