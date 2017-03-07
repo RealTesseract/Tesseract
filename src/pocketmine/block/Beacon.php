@@ -74,7 +74,7 @@ class Beacon extends Transparent implements SolidLight{
  			new IntTag("y", $block->y),
  			new IntTag("z", $block->z)
  		]);
- 		$pot = Tile::createTile(Tile::BEACON, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+ 		$pot = Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
  		return true;
  	}
 	
@@ -99,7 +99,7 @@ class Beacon extends Transparent implements SolidLight{
  					new IntTag("y", $this->y),
  					new IntTag("z", $this->z)
  				]);
- 				Tile::createTile(Tile::BEACON, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+ 				Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
  			}
 			
 			if($player->isCreative() and $player->getServer()->limitedCreative){
