@@ -208,6 +208,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected $username;
 	protected $iusername;
 	protected $displayName;
+	protected $deviceModel;
+	protected $deviceOS;
+	protected $gameVersion;
 	protected $startAction = -1;
 	/** @var Vector3 */
 	protected $sleeping = null;
@@ -280,6 +283,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 		return false;
 	}
+
+	public function getDeviceModel(){
+	    return $this->deviceModel;
+    }
+
+    public function getDeviceOS(){
+	    return $this->deviceOS;
+    }
+
+    public function getGameVersion(){
+        return $this->gameVersion;
+    }
 
 	public function unlinkHookFromPlayer(){
 		if($this->fishingHook instanceof FishingHook){
@@ -2075,6 +2090,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->setNameTag($this->username);
 				$this->iusername = strtolower($this->username);
 				$this->protocol = $packet->protocol;
+				$this->deviceModel = $packet->deviceModel;
+				$this->deviceOS = $packet->deviceOS;
+				$this->gameVersion = $packet->gameVersion;
 
 				if($this->server->getConfigBoolean("online-mode", false) && $packet->identityPublicKey === null){
 					$this->kick("disconnectionScreen.notAuthenticated", false);
