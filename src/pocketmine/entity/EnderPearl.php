@@ -43,21 +43,21 @@ class EnderPearl extends Projectile{
 		return $hasUpdate;
 	}
 
-	/** @return Player */
-	public function getSpawner(){
-		return $this->player;
-	}
+    /** @return Player */
+    public function getSpawner(){
+        return $this->player;
+    }
 
-	public function setSpawner(Player $player){
-		$this->player = $player;
-	}
+    public function setSpawner(Player $player){
+        $this->player = $player;
+    }
 
-	public function close(){
-		if ($this->getSpawner() instanceof Player && $this->level != null) {
-			$this->getSpawner()->teleport($this);
-		}
-		parent::close();
-	}
+    public function close(){
+        if ($this->getSpawner() instanceof Player && $this->level != null) {
+            $this->getSpawner()->teleport($this);
+        }
+        parent::close();
+    }
 
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
