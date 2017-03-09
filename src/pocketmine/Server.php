@@ -1561,8 +1561,8 @@ class Server{
 			$protocol = Info::CURRENT_PROTOCOL;
 			$api = $this->getApiVersion();
 			$ip = Utils::getIP();
-			$port = "19132";//TODO
-			$query = "0.0.0.0";//TODO
+			$port = $this->getPort();
+			$query = $this->getIp();
 			$ssl = $this->isExtensionInstalled("OpenSSL");
 			$mode = $this->checkAuthentication();
 			$lang = $this->getProperty("settings.language", "eng");
