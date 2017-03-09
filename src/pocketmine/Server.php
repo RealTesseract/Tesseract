@@ -1560,7 +1560,9 @@ class Server{
 			$mcpe = $this->getVersion();
 			$protocol = Info::CURRENT_PROTOCOL;
 			$api = $this->getApiVersion();
+			$ip = Utils::getIP();
 			$port = "19132";//TODO
+			$query = "0.0.0.0";//TODO
 			$ssl = $this->isExtensionInstalled("OpenSSL");
 			$mode = $this->checkAuthentication();
 			$lang = $this->getProperty("settings.language", "eng");
@@ -1568,19 +1570,19 @@ class Server{
 			$package = $packages;
 
 			            $this->logger->info("
-§e###################################################  §6-- Loaded: Properties and Configuration --
-§e#                                                 #    §cDate: §d$date
-§e#§b   _______                                _      §e#    §cVersion: §d$version §cCodename: §d$code
-§e#§b  |__   __|                              | |     §e#    §cMCPE: §d$mcpe
-§e#§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §e#    §cPort: §d$port
-§e#§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §e#    §cProtocol: §d$protocol
-§e#§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §e#    §cSSL Extension: §d$ssl
-§e#§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §e#    §cAuthentication: §d$mode
-§e#                                                 #  §6------------------------------------------
-§e#                                                 #    §cAPI Version: §d$api
-§e#     §bwww.github.com/TesseractTeam/Tesseract      §e#    §cLanguage: §d$lang
-§e#					          #    §cPackage: §d$package
-§e###################################################  §6------------------------------------------");
+§6┌─────────────────────────────────────────────────┐  §6-- Loaded: Properties and Configuration --
+§6│                                                 │    §cDate: §d$date
+§6│§b   _______                                _      §6│    §cVersion: §d$version §cCodename: §d$code
+§6│§b  |__   __|                              | |     §6│    §cMCPE: §d$mcpe §cProtocol: §d$protocol
+§6│§b     | | ___  ___ ___  ___ _ __ __ _  ___| |_    §6│    §cIP: §d$ip §cPort: §d$port
+§6│§b     | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|   §6│    §cQuery: §d$query
+§6│§b     | |  __/\__ \__ \  __/ | | (_| | (__| |_    §6│    §cSSL Extension: §d$ssl
+§6│§b     |_|\___||___/___/\___|_|  \__,_|\___|\__|   §6│    §cAuthentication: §d$mode
+§6│                                                 │  §6------------------------------------------
+§6│                                                 │    §cAPI Version: §d$api
+§6│   §aSupport: §bgithub.com/TesseractTeam/Tesseract   §6│    §cLanguage: §d$lang
+§6│					          │    §cPackage: §d$package
+§6└─────────────────────────────────────────────────┘  §6------------------------------------------");
 
 			$nowLang = $this->getProperty("settings.language", "eng");
 
@@ -1712,7 +1714,7 @@ class Server{
 				@cli_set_process_title($this->getName() . " " . $this->getPocketMineVersion());
 			}
 
-			$this->logger->info(TextFormat::BLUE."Everything seems to be alright. Server started!");
+			$this->logger->info(TextFormat::BLUE."Everything seems to be alright! Server started!");
 			$this->serverID = Utils::getMachineUniqueId($this->getIp() . $this->getPort());
 
 			$this->getLogger()->debug("Server unique id: " . $this->getServerUniqueId());
