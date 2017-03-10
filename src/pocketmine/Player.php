@@ -272,6 +272,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/** @var Item[] */
 	protected $personalCreativeItems = [];
 
+    protected $lastEnderPearlUse = 0;
+
 	public function linkHookToPlayer(FishingHook $entity){
 		if($entity->isAlive()){
 			$this->setFishingHook($entity);
@@ -2447,44 +2449,46 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						}else{
 							$thrownPotion->spawnToAll();
 						}
-					} elseif($item->getId() === Item::ENDER_PEARL){
-						$nbt = new CompoundTag("", [
-							"Pos" => new ListTag("Pos", [
-								new DoubleTag("", $this->x),
-								new DoubleTag("", $this->y + $this->getEyeHeight()),
-								new DoubleTag("", $this->z)
-							]),
-							"Motion" => new ListTag("Motion", [
-								new DoubleTag("", -sin($this->yaw / 180 * M_PI) * cos($this->pitch / 180 * M_PI)),
-								new DoubleTag("", -sin($this->pitch / 180 * M_PI)),
-								new DoubleTag("", cos($this->yaw / 180 * M_PI) * cos($this->pitch / 180 * M_PI))
-							]),
-							"Rotation" => new ListTag("Rotation", [
-							new FloatTag("", $this->yaw),
-								new FloatTag("", $this->pitch)
-							]),
-						]);
-  
-						$f = 1.5;
-						$enderpearl = Entity::createEntity("EnderPearl", $this->getLevel(), $nbt, $this);
-						$enderpearl->setMotion($enderpearl->getMotion()->multiply($f));
-						if($this->isSurvival()){
-							$item->setCount($item->getCount() - 1);
-							$this->inventory->setItemInHand($item->getCount() > 0 ? $item : Item::get(Item::AIR));
-						}
-						if($enderpearl instanceof Projectile){
-							$this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($enderpearl));
-							if($projectileEv->isCancelled()){
-								$enderpearl->close();
-								$this->teleport($enderpearl);
-							}else{
-								$enderpearl->spawnToAll();
-								$this->level->addSound(new LaunchSound($this), $this->getViewers());
-							}
-						}else{
-							$enderpearl->spawnToAll();
-						}
-					}
+					} elseif($item->getId() === Item::ENDER_PEARL) {
+                        if (floor(($time = microtime(true)) - $this->lastEnderPearlUse) >= 1) {
+                            $nbt = new CompoundTag("", [
+                                "Pos" => new ListTag("Pos", [
+                                    new DoubleTag("", $this->x),
+                                    new DoubleTag("", $this->y + $this->getEyeHeight()),
+                                    new DoubleTag("", $this->z)
+                                ]),
+                                "Motion" => new ListTag("Motion", [
+                                    new DoubleTag("", -sin($this->yaw / 180 * M_PI) * cos($this->pitch / 180 * M_PI)),
+                                    new DoubleTag("", -sin($this->pitch / 180 * M_PI)),
+                                    new DoubleTag("", cos($this->yaw / 180 * M_PI) * cos($this->pitch / 180 * M_PI))
+                                ]),
+                                "Rotation" => new ListTag("Rotation", [
+                                    new FloatTag("", $this->yaw),
+                                    new FloatTag("", $this->pitch)
+                                ]),
+                            ]);
+
+                            $f = 1.1;
+                            $enderpearl = Entity::createEntity("EnderPearl", $this->getLevel(), $nbt, $this);
+                            $enderpearl->setMotion($enderpearl->getMotion()->multiply($f));
+                            if ($this->isSurvival()) {
+                                $item->setCount($item->getCount() - 1);
+                                $this->inventory->setItemInHand($item->getCount() > 0 ? $item : Item::get(Item::AIR));
+                            }
+                            if ($enderpearl instanceof Projectile) {
+                                $this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($enderpearl));
+                                if ($projectileEv->isCancelled()) {
+                                    $enderpearl->kill();
+                                } else {
+                                    $enderpearl->spawnToAll();
+                                    $this->level->addSound(new LaunchSound($this), $this->getViewers());
+                                    $this->lastEnderPearlUse = $time;
+                                }
+                            } else {
+                                $enderpearl->spawnToAll();
+                            }
+                        }
+                    }
 
 					$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ACTION, true);
 					$this->startAction = $this->server->getTick();

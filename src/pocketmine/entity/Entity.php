@@ -350,7 +350,7 @@ abstract class Entity extends Location implements Metadatable{
 		$this->justCreated = true;
 		$this->namedtag = $nbt;
 
-		$this->chunk = $level->getChunk($this->namedtag["Pos"][0] >> 4, $this->namedtag["Pos"][2] >> 4);
+        $this->chunk = $level->getChunk($this->namedtag["Pos"][0] >> 4, $this->namedtag["Pos"][2] >> 4);
         assert($this->chunk !== null);
 		$this->setLevel($level);
 		$this->server = $level->getServer();
