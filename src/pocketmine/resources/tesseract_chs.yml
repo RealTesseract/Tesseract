@@ -34,6 +34,9 @@ level:
 network:
  #是否禁用raklib
  raklib-disable: false
+
+developer:
+  folder-plugin-loader: false
  
 player:
  #是否打开饥饿

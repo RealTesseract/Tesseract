@@ -29,6 +29,9 @@ level:
  
 network:
  raklib-disable: false
+
+developer:
+  folder-plugin-loader: false
  
 player:
  #是否打開飢餓

@@ -64,6 +64,8 @@ class BanCommand extends VanillaCommand{
 			$sender->getServer()->getNameBans()->addBan($name);
 		}
 
+        $player = $sender->getServer()->getPlayerExact($name);
+
 		Command::broadcastCommandMessage($sender, new TranslationContainer("%commands.ban.success", [$player !== null ? $player->getName() : $name]));
 
 		return true;

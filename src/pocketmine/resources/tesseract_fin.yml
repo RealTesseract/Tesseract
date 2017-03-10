@@ -37,6 +37,9 @@ network:
  #Tama asetus paattaa, jos haluat RakLib kaytosta, RakLib yhdistaa palvelin se ladata asiakkaan
  #Jos et tieda, mita tama, pida se on false
  raklib-disable: false
+
+developer:
+  folder-plugin-loader: false
  
 player:
  #Tama asetus paattaa, jos nalka on kaytossa peli

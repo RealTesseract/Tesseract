@@ -36,6 +36,9 @@ network:
  #RakLibを無効にするかどうかを設定します。(RakLibはサーバーに接続したクライアントを読み込みます。)
  raklib-disable: false
 
+developer:
+  folder-plugin-loader: false
+
 player:
  #空腹が有効にするかどうかを設定します。
  hunger: true

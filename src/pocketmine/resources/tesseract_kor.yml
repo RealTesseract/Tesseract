@@ -29,6 +29,9 @@ level:
  
 network:
  raklib-disable: false
+
+developer:
+  folder-plugin-loader: false
  
 player:
  #배고픔 시스템 스위치

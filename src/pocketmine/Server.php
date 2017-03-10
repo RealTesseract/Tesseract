@@ -298,6 +298,7 @@ class Server{
 	public $checkMovement = true;
 	public $antiFly = true;
 	public $allowInstabreak = false;
+	public $folderpluginloader = false;
 	
 	/**
 	 * @return string
@@ -1471,6 +1472,7 @@ class Server{
 		$this->checkMovement = $this->getAdvancedProperty("anticheat.check-movement", true);
 		$this->allowInstabreak = $this->getAdvancedProperty("anticheat.allow-instabreak", true);
 		$this->antiFly = $this->getAdvancedProperty("anticheat.anti-fly", true);
+		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", false);
 	}
 	
 	/**
@@ -1746,7 +1748,9 @@ class Server{
 			$this->pluginManager->setUseTimings($this->getProperty("settings.enable-profiling", false));
 			$this->profilingTickRate = (float) $this->getProperty("settings.profile-report-trigger", 20);
 			$this->pluginManager->registerInterface(PharPluginLoader::class);
-			$this->pluginManager->registerInterface(FolderPluginLoader::class);
+			if($this->getAdvancedProperty("developer.folder-plugin-loader") === true) {
+                $this->pluginManager->registerInterface(FolderPluginLoader::class);
+            }
 			$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 
 			//set_exception_handler([$this, "exceptionHandler"]);

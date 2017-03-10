@@ -210,6 +210,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 			$pk = null;
 			if(!$packet->isEncoded){
 				$packet->encode();
+                $packet->isEncoded = true;
 			}elseif(!$needACK){
 				if(!isset($packet->__encapsulatedPacket)){
 					$packet->__encapsulatedPacket = new CachedEncapsulatedPacket;

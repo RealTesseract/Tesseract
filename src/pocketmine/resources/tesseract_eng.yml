@@ -60,6 +60,9 @@ anticheat:
  check-movement: true
  allow-instabreak: false
  anti-fly: true
+
+developer:
+  folder-plugin-loader: false
  
 server:
  #This setting decides if the server.log file will not be made/written.
