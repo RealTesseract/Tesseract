@@ -211,6 +211,7 @@ abstract class Entity extends Location implements Metadatable{
 		Entity::registerEntity(ThrownPotion::class);
 		Entity::registerEntity(Villager::class);
 		Entity::registerEntity(Witch::class);
+		Entity::registerEntity(Wither::class);
 		Entity::registerEntity(Wolf::class);
 		Entity::registerEntity(XPOrb::class);
 		Entity::registerEntity(Zombie::class);
@@ -612,7 +613,7 @@ abstract class Entity extends Location implements Metadatable{
 			$g = ($color[1] / $count) & 0xff;
 			$b = ($color[2] / $count) & 0xff;
 
-			$this->setDataProperty(Entity::DATA_POTION_COLOR, Entity::DATA_TYPE_INT, ($r << 16) + ($g << 8) + $b);
+            $this->setDataProperty(Entity::DATA_POTION_COLOR, Entity::DATA_TYPE_INT, 0xff000000 | ($r << 16) | ($g << 8) | $b);
 			$this->setDataProperty(Entity::DATA_POTION_AMBIENT, Entity::DATA_TYPE_BYTE, $ambient ? 1 : 0);
 		}else{
 			$this->setDataProperty(Entity::DATA_POTION_COLOR, Entity::DATA_TYPE_INT, 0);
