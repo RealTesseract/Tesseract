@@ -93,10 +93,6 @@ class Normal extends Generator{
 		return "Normal";
 	}
 
-    public function getWaterHeight() : int{
-        return $this->waterHeight;
-    }
-
 	public function getSettings(){
 		return [];
 	}
@@ -155,8 +151,7 @@ class Normal extends Generator{
 			new OreType(new Gravel(), 8, 33, 0, 128),
 			new OreType(new Stone(Stone::GRANITE), 10, 33, 0, 80),
 			new OreType(new Stone(Stone::DIORITE), 10, 33, 0, 80),
-			new OreType(new Stone(Stone::ANDESITE), 10, 33, 0, 80),
-            new OreType(new Gravel(), 10, 16, 0, 128)
+			new OreType(new Stone(Stone::ANDESITE), 10, 33, 0, 80)
 		]);
 		$this->populators[] = $ores;
 	}
@@ -207,18 +202,13 @@ class Normal extends Generator{
 
 				$smoothHeight = ($maxSum - $minSum) / 2;
 
-                for($y = 127; $y >= 0; --$y){
+                for($y = 0; $y < 128; ++$y){
 					if($y === 0){
 						$chunk->setBlockId($x, $y, $z, Block::BEDROCK);
 						continue;
 					}
 
-                    $noiseAdjustment = 2 * (($maxSum - $y) / ($maxSum - $minSum)) - 1;
-
-                    $caveLevel = $minSum - 10;
-                    $distAboveCaveLevel = max(0, $y - $caveLevel);
-                    $noiseAdjustment = min($noiseAdjustment, 0.4 + ($distAboveCaveLevel / 10));
-                    $noiseValue = $noise[$x][$z][$y] + $noiseAdjustment;
+                    $noiseValue = $noise[$x][$z][$y] - 1 / $smoothHeight * ($y - $smoothHeight - $minSum);
 
 					if($noiseValue > 0){
 						$chunk->setBlockId($x, $y, $z, Block::STONE);
