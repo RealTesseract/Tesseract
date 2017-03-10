@@ -30,14 +30,12 @@ class EnderDragon extends Monster {
 
 	const NETWORK_ID = 53;
 
-	//----- This cord from Dragon.php -----//
 	public $dropExp = [500, 12,000];//TODO: Add death animation and exp drop.
 
 	public function initEntity(){
 		$this->setMaxHealth(200);
 		parent::initEntity();
 	}
-	//-------------------------------------//
 
 	public function getName() : string{
 		return "Ender Dragon";

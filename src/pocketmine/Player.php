@@ -31,6 +31,7 @@ use pocketmine\entity\Arrow;
 use pocketmine\entity\Attribute;
 use pocketmine\entity\Boat;
 use pocketmine\entity\Effect;
+use pocketmine\entity\EnderPearl;
 use pocketmine\entity\Entity;
 use pocketmine\entity\FishingHook;
 use pocketmine\entity\Human;
@@ -2469,7 +2470,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
                             ]);
 
                             $f = 1.1;
-                            $enderpearl = Entity::createEntity("EnderPearl", $this->getLevel(), $nbt, $this);
+                            $enderpearl = new EnderPearl($this->getLevel(), $nbt, $this);
                             $enderpearl->setMotion($enderpearl->getMotion()->multiply($f));
                             if ($this->isSurvival()) {
                                 $item->setCount($item->getCount() - 1);

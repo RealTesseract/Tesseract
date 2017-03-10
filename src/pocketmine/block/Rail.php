@@ -24,7 +24,7 @@ namespace pocketmine\block;
 
 
 
-class Rail extends Solid{
+class Rail extends Flowable{
 
 	protected $id = self::RAIL;
 

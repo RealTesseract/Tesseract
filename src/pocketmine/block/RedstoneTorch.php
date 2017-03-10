@@ -26,7 +26,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 
 
-class RedstoneTorch extends Flowable{
+class RedstoneTorch extends Torch{
 
 	protected $id = self::REDSTONE_TORCH;
 	protected $ignore = "";

@@ -89,7 +89,7 @@ class Normal extends Generator{
 		}
 	}
 
-	public function getName() : string {
+	public function getName(){
 		return "Normal";
 	}
 
