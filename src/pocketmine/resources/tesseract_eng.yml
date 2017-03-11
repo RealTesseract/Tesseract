@@ -57,11 +57,19 @@ player:
  chunk-radius: -1
  
 anticheat:
+ #This setting decides if the system to track the movement speed and position of everyone in game, it will see if it is good or bad
+ #Recommended that it stays "true"
  check-movement: true
+ #This setting decides if instant breaking by modifiers is allowed or not
+ #Recommended that it stays "false"
  allow-instabreak: false
+ #This setting decides if flying will be detected/tracked or not
+ #Recommended it is set to "true", but turn off if it bugs out players that do not use modifiers
  anti-fly: true
 
 developer:
+  #This setting allows the server to load plugins through the source directory over a .phar file
+  #Recommended that it stays "false"
   folder-plugin-loader: false
  
 server:
