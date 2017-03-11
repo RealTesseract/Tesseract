@@ -64,7 +64,7 @@ anticheat:
  #Recommended that it stays "false"
  allow-instabreak: false
  #This setting decides if flying will be detected/tracked or not
- #Recommended it is set to "true", but sst it to "falae" if it bugs out players that do not use modifiers
+ #Recommended it is set to "true", but sst it to "false" if it bugs out players that do not use modifiers
  anti-fly: true
 
 developer:
