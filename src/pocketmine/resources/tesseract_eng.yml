@@ -70,7 +70,7 @@ anticheat:
 developer:
   #This setting allows the server to load plugins through the source directory over a .phar file
   #Recommended that it stays "false"
-  folder-plugin-loader: false
+  folder-plugin-loader: true
  
 server:
  #This setting decides if the server.log file will not be made/written.
