@@ -12,8 +12,7 @@
 
 #Version of this file
 config:
- version: 28
-
+ version: 29
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
  weather: true
