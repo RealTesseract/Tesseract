@@ -96,7 +96,6 @@ interface ItemIds extends BlockIds{
 	const SIGN = 323;
 	const WOODEN_DOOR = 324; const OAK_DOOR = 324;
 	const BUCKET = 325;
-
 	const MINECART = 328;
 	const SADDLE = 329;
 	const IRON_DOOR = 330;
@@ -105,7 +104,6 @@ interface ItemIds extends BlockIds{
 	const SNOWBALL = 332;
 	const BOAT = 333;
 	const LEATHER = 334;
-
 	const BRICK = 336;
 	const CLAY = 337;
 	const SUGARCANE = 338; const SUGAR_CANE = 338; const SUGAR_CANES = 338;
@@ -211,14 +209,13 @@ interface ItemIds extends BlockIds{
 	const ELYTRA_WINGS = 444; 
 	const SHULKER_SHELL = 445;
 	const BEETROOT = 457;
-	const BEETROOT_SEEDS = 458; const BEETROOT_SEED = 458;
+	const BEETROOT_SEEDS = 458; 
+	const BEETROOT_SEED = 458;
 	const BEETROOT_SOUP = 459;
 	const RAW_SALMON = 460;
 	const CLOWN_FISH = 461;
 	const PUFFER_FISH = 462;
 	const COOKED_SALMON = 463;
-
 	const ENCHANTED_GOLDEN_APPLE = 466;
-
 	const CAMERA = 498; #blamemojang
 }
