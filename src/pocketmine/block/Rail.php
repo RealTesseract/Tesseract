@@ -21,7 +21,10 @@
 
 namespace pocketmine\block;
 
-
+    //temporarily
+    const STRAIGHT_NORTH_SOUTH = 0;
+    const SLOPED_ASCENDING_NORTH = 1;
+    const SLOPED_ASCENDING_SOUTH = 2;
 
 
 class Rail extends Flowable{
