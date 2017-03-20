@@ -3051,7 +3051,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				 * The result of this is anvils immediately closing when used. This is highly unusual, especially since the
 				 * container set slot packets send the correct window ID, but... eh
 				 */
-				/*elseif(!isset($this->windowIndex[$packet->windowId])){
+				/*if(!isset($this->windowIndex[$packet->windowId])){
 					$this->inventory->sendContents($this);
 					$pk = new ContainerClosePacket();
 					$pk->windowid = $packet->windowId;
@@ -3076,15 +3076,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							break;
 						}
 					}
-
 					if($recipe === null){
-						//Item renamed
-						if(!$anvilInventory->onRename($this, $packet->output[0])){
-							$this->getServer()->getLogger()->debug($this->getName()." failed to rename an item in an anvil");
-							$this->inventory->sendContents($this);
+						if($packet->output[0]->getId() > 0 && $packet->output[1] === 0){ //Item renamed
+							$anvilInventory->onRename($this, $packet->output[0]);
 						}
-					}else{
-						//TODO: Anvil crafting recipes
+						elseif($packet->output[0]->getId() > 0 && $packet->output[1] > 0){ //Enchanted Books
+							$anvilInventory->process($this, $packet->output[0], $packet->output[1]);
+						}
 					}
 					break;
 				}elseif(($recipe instanceof BigShapelessRecipe or $recipe instanceof BigShapedRecipe) and $this->craftingType === 0){

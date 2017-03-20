@@ -22,8 +22,12 @@
 namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
+use pocketmine\item\EnchantedBook;
+use pocketmine\item\enchantment\Enchantment;
 use pocketmine\level\Position;
 use pocketmine\Player;
+use pocketmine\Server;
+use pocketmine\event\inventory\AnvilProcessEvent;
 
 class AnvilInventory extends TemporaryInventory{
 
@@ -66,6 +70,34 @@ class AnvilInventory extends TemporaryInventory{
 			$player->getFloatingInventory()->addItem($resultItem);
 		}
 		return true;
+	}
+
+	public function process(Player $player, Item $target, Item $sacrifice){
+		$resultItem = clone $target;
+		if($sacrifice instanceof EnchantedBook && $sacrifice->hasEnchantments()){ //Enchanted Books!
+			foreach($sacrifice->getEnchantments() as $enchant){
+				$resultItem->addEnchantment($enchant);
+			}
+			
+			Server::getInstance()->getPluginManager()->callEvent($ev = new AnvilProcessEvent($this));
+			if($ev->isCancelled()){
+				$this->clearAll();
+				return false;
+			}
+
+			if($player->getXpLevel() < $resultItem->getRepairCost()){ //Not enough exp
+				return false;
+			}
+			$player->takeXpLevel($resultItem->getRepairCost());
+
+			$this->clearAll();
+			if(!$player->getServer()->allowInventoryCheats and !$player->isCreative()){
+				if(!$player->getFloatingInventory()->canAddItem($resultItem)){
+					return false;
+				}
+				$player->getFloatingInventory()->addItem($resultItem);
+			}
+		}
 	}
 
 	public function processSlotChange(Transaction $transaction): bool{
