@@ -5,7 +5,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\inventory\AnvilInventory;
 class AnvilProcessEvent extends InventoryEvent implements Cancellable{
 
-	private $inventory;
+	protected $inventory;
   
 	public function __construct(AnvilInventory $inventory){
 		parent::__construct($inventory);
