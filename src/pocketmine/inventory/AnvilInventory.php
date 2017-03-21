@@ -74,15 +74,14 @@ class AnvilInventory extends TemporaryInventory{
 
 	public function process(Player $player, Item $target, Item $sacrifice){
 		$resultItem = clone $target;
+		Server::getInstance()->getPluginManager()->callEvent($ev = new AnvilProcessEvent($this));
+		if($ev->isCancelled()){
+			$this->clearAll();
+			return false;
+		}
 		if($sacrifice instanceof EnchantedBook && $sacrifice->hasEnchantments()){ //Enchanted Books!
 			foreach($sacrifice->getEnchantments() as $enchant){
 				$resultItem->addEnchantment($enchant);
-			}
-			
-			Server::getInstance()->getPluginManager()->callEvent($ev = new AnvilProcessEvent($this));
-			if($ev->isCancelled()){
-				$this->clearAll();
-				return false;
 			}
 
 			if($player->getXpLevel() < $resultItem->getRepairCost()){ //Not enough exp
