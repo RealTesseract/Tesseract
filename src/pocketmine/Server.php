@@ -87,7 +87,6 @@ use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginLoadOrder;
 use pocketmine\plugin\PluginManager;
 use pocketmine\plugin\ScriptPluginLoader;
-use pocketmine\resourcepacks\ResourcePackManager;
 use pocketmine\scheduler\DServerTask;
 use pocketmine\scheduler\FileWriteTask;
 use pocketmine\scheduler\SendUsageTask;
@@ -258,9 +257,6 @@ class Server{
 	/** @var Level[] */
 	private $levels = [];
 
-	/** @var ResourcePackManager */
-	private $resourceManager;
-
 	/** @var Level */
 	private $levelDefault = null;
 
@@ -303,8 +299,6 @@ class Server{
 	public $antiFly = true;
 	public $allowInstabreak = false;
 	public $folderpluginloader = false;
-	public $forceResources = false;
-	public $resourceStack = [];
 	
 	/**
 	 * @return string
@@ -664,10 +658,6 @@ class Server{
 	public function getCraftingManager(){
 		return $this->craftingManager;
 	}
-
-	public function getResourcePackManager() : ResourcePackManager{
-	    return $this->resourceManager;
-    }
 
 	/**
 	 * @return ServerScheduler
@@ -1483,9 +1473,6 @@ class Server{
 		$this->allowInstabreak = $this->getAdvancedProperty("anticheat.allow-instabreak", true);
 		$this->antiFly = $this->getAdvancedProperty("anticheat.anti-fly", true);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", false);
-
-		$this->forceResources = $this->getAdvancedProperty("packs.force-resources", false);
-		$this->resourceStack = $this->getAdvancedProperty("packs.resource-stack", []);
 	}
 	
 	/**
@@ -1755,8 +1742,6 @@ class Server{
 			EnchantmentLevelTable::init();
 			Color::init();
 			$this->craftingManager = new CraftingManager();
-
-            $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
 
 			$this->pluginManager = new PluginManager($this, $this->commandMap);
 			$this->pluginManager->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this->consoleSender);
@@ -2461,7 +2446,9 @@ class Server{
 
 	private function checkTickUpdates($currentTick, $tickTime){
 		foreach($this->players as $p){
-			if($this->alwaysTickPlayers){
+			if(!$p->loggedIn and ($tickTime - $p->creationTime) >= 10){
+				$p->close("", "Login timeout");
+			}elseif($this->alwaysTickPlayers){
 				$p->onUpdate($currentTick);
 			}
 		}
