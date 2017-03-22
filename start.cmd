@@ -18,17 +18,11 @@ if exist Tesseract*.phar (
 	    if exist src\pocketmine\PocketMine.php (
 	        set POCKETMINE_FILE=src\pocketmine\PocketMine.php
 		) else (
-			if exist Tesseract.phar (
-				set POCKETMINE_FILE=Tesseract.phar
-			) else (
-				if exist Tesseract.phar (
-					set POCKETMINE_FILE=Tesseract_1.1.0.phar
-				) else (
-		        	echo "[ERROR] Couldn't find a valid Tesseract installation."
-		        	pause
-		        	exit 8
+		    echo "[ERROR] Couldn't find a valid Tesseract installation."
+		    pause
+		    exit 8
 		    )
-	      )
+	    )
 	)
 )
 
