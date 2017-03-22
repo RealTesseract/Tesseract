@@ -21,9 +21,12 @@ if exist Tesseract*.phar (
 			if exist Tesseract.phar (
 				set POCKETMINE_FILE=Tesseract.phar
 			) else (
-		        echo "[ERROR] Couldn't find a valid Tesseract installation."
-		        pause
-		        exit 8
+				if exist Tesseract.phar (
+					set POCKETMINE_FILE=Tesseract_1_1_0.phar
+				) else (
+		        	echo "[ERROR] Couldn't find a valid Tesseract installation."
+		        	pause
+		        	exit 8
 		    )
 	      )
 	)
