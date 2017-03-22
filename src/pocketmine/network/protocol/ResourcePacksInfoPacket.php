@@ -24,6 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 use pocketmine\resourcepacks\ResourcePackInfoEntry;
+use pocketmine\resourcepacks\ResourcePack;
 
 class ResourcePacksInfoPacket extends DataPacket{
 
@@ -43,22 +44,22 @@ class ResourcePacksInfoPacket extends DataPacket{
 		$this->reset();
 
 		$this->putBool($this->mustAccept);
-		$this->putShort(count($this->behaviorPackEntries));
+		$this->putLShort(count($this->behaviorPackEntries));
 		foreach($this->behaviorPackEntries as $entry){
 			$this->putString($entry->getPackId());
-			$this->putString($entry->getVersion());
-			$this->putLong($entry->getPackSize());
+			$this->putString($entry->getPackVersion());
+			$this->putLLong($entry->getPackSize());
 		}
-		$this->putShort(count($this->resourcePackEntries));
+		$this->putLShort(count($this->resourcePackEntries));
 		foreach($this->resourcePackEntries as $entry){
 			$this->putString($entry->getPackId());
-			$this->putString($entry->getVersion());
-			$this->putLong($entry->getPackSize());
+			$this->putString($entry->getPackVersion());
+			$this->putLLong($entry->getPackSize());
 		}
 	}
 
 	/**
-	 * @return PacketName|string
+	 * @return string
      */
 	public function getName(){
 		return "ResourcePacksInfoPacket";

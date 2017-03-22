@@ -131,7 +131,12 @@ use pocketmine\network\protocol\InteractPacket;
 use pocketmine\network\protocol\MovePlayerPacket;
 use pocketmine\network\protocol\PlayerActionPacket;
 use pocketmine\network\protocol\PlayStatusPacket;
+use pocketmine\network\protocol\ResourcePackChunkDataPacket;
+use pocketmine\network\protocol\ResourcePackChunkRequestPacket;
+use pocketmine\network\protocol\ResourcePackClientResponsePacket;
+use pocketmine\network\protocol\ResourcePackDataInfoPacket;
 use pocketmine\network\protocol\ResourcePacksInfoPacket;
+use pocketmine\network\protocol\ResourcePackStackPacket;
 use pocketmine\network\protocol\RespawnPacket;
 use pocketmine\network\protocol\SetEntityMotionPacket;
 use pocketmine\network\protocol\SetSpawnPositionPacket;
@@ -147,6 +152,7 @@ use pocketmine\permission\BanEntry;
 use pocketmine\permission\PermissibleBase;
 use pocketmine\permission\PermissionAttachment;
 use pocketmine\plugin\Plugin;
+use pocketmine\resourcepacks\ResourcePack;
 use pocketmine\tile\ItemFrame;
 use pocketmine\tile\Spawnable;
 use pocketmine\utils\TextFormat;
@@ -1794,14 +1800,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return ($dot1 - $dot) >= -$maxDiff;
 	}
 
-	public function onPlayerPreLogin(){
-		$pk = new PlayStatusPacket();
-		$pk->status = PlayStatusPacket::LOGIN_SUCCESS;
-		$this->dataPacket($pk);
-
-		$this->processLogin();
-	}
-
 	public function clearCreativeItems(){
 		$this->personalCreativeItems = [];
 	}
@@ -1925,8 +1923,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			return;
 		}
 
-		$this->dataPacket(new ResourcePacksInfoPacket());
-
 		if(!$this->hasValidSpawnPosition() and isset($this->namedtag->SpawnLevel) and ($level = $this->server->getLevelByName($this->namedtag["SpawnLevel"])) instanceof Level){
 			$this->spawnPosition = new WeakPosition($this->namedtag["SpawnX"], $this->namedtag["SpawnY"], $this->namedtag["SpawnZ"], $level);
 		}
@@ -2046,10 +2042,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
-				$pk = new PlayStatusPacket();
-				$pk->status = PlayStatusPacket::LOGIN_SUCCESS;
-				$this->dataPacket($pk);
-
 				$this->username = TextFormat::clean($packet->username);
 				$this->displayName = $this->username;
 				$this->setNameTag($this->username);
@@ -2128,11 +2120,68 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
-				if($this->isConnected()){
-					$this->onPlayerPreLogin();
-				}
+                     $statusPacket = new PlayStatusPacket();
+                     $statusPacket->status = PlayStatusPacket::LOGIN_SUCCESS;
+                     $this->dataPacket($statusPacket);
+
+                     $infoPacket = new ResourcePacksInfoPacket();
+                     $infoPacket->resourcePackEntries = $this->server->getResourcePackManager()->getResourceStack();
+                     $infoPacket->mustAccept = $this->server->forceResources;
+                     $this->dataPacket($infoPacket);
 
 				break;
+
+            case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
+                $responsePacket = new ResourcePackClientResponsePacket();
+                switch ($responsePacket->responseStatus) {
+                case ResourcePackClientResponsePacket::STATUS_REFUSED:
+                    $this->close("", "disconnectionScreen.noReason");
+                    break;
+                case ResourcePackClientResponsePacket::STATUS_SEND_PACKS:
+                    $manager = $this->server->getResourcePackManager();
+                    foreach ($responsePacket->packIds as $uuid){
+                    $resourcePack = $manager->getPackById($uuid);
+                    if (!($resourcePack instanceof ResourcePack)) {
+                        $this->close("", "disconnectionScreen.resourcePack");
+                        break;
+                    }
+
+                    $dataInfoPacket = new ResourcePackDataInfoPacket();
+                    $dataInfoPacket->packId = $resourcePack->getPackId();
+                    $dataInfoPacket->maxChunkSize = 1048576; //megabytes
+                    $dataInfoPacket->chunkCount = $resourcePack->getPackSize() / $dataInfoPacket->maxChunkSize;
+                    $dataInfoPacket->compressedPackSize = $resourcePack->getPackSize();
+                    $dataInfoPacket->sha256 = $resourcePack->getSha256();
+                    $this->dataPacket($dataInfoPacket);
+                    break;
+                }
+                break;
+                case ResourcePackClientResponsePacket::STATUS_HAVE_ALL_PACKS:
+                        $stackPacket = new ResourcePackStackPacket();
+                        $stackPacket->mustAccept = $this->server->forceResources;
+                        $stackPacket->resourcePackStack = $this->server->getResourcePackManager()->getResourceStack();
+                        $this->dataPacket($stackPacket);
+                        break;
+                        case ResourcePackClientResponsePacket::STATUS_COMPLETED:
+                        $this->processLogin();
+                        break;
+                    }
+                    break;
+            case ProtocolInfo::RESOURCE_PACK_CHUNK_REQUEST_PACKET:
+                $requestPacket = new ResourcePackChunkRequestPacket();
+                $resourcePack = $this->server->getResourcePackManager()->getPackById($requestPacket->packId);
+                if ($resourcePack == null) {
+                $this->close("", "disconnectionScreen.resourcePack");
+                break;
+            }
+
+                $dataPacket = new ResourcePackChunkDataPacket();
+                $dataPacket->packId = $resourcePack->getPackId();
+                $dataPacket->chunkIndex = $requestPacket->chunkIndex;
+                $dataPacket->data = $resourcePack->getPackChunk(1048576 * $requestPacket->chunkIndex, 1048576);
+                $dataPacket->progress = 1048576 * $requestPacket->chunkIndex;
+                $this->dataPacket($dataPacket);
+                break;
 			case ProtocolInfo::MOVE_PLAYER_PACKET:
 
 				if($this->linkedEntity instanceof Entity){
@@ -2140,11 +2189,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if($entity instanceof Boat){
 						$entity->setPosition($this->temporalVector->setComponents($packet->x, $packet->y - 0.3, $packet->z));
 					}
-					/*if($entity instanceof Minecart){
-						$entity->isFreeMoving = true;
-						$entity->motionX = -sin($packet->yaw / 180 * M_PI);
-						$entity->motionZ = cos($packet->yaw / 180 * M_PI);
-					}*/
 				}
 
 				$newPos = new Vector3($packet->x, $packet->y - $this->getEyeHeight(), $packet->z);
