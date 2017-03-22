@@ -183,7 +183,7 @@ LICENSE;
 		if($op === ""){
 			echo "[!] " . $this->lang->op_warning . "\n";
 		}else{
-			$ops = new Config(\pocketmine\DATA . "ops.txt", Config::ENUM);
+			$ops = new Config(\pocketmine\DATA . "ops.json", Config::ENUM);
 			$ops->set($op, true);
 			$ops->save();
 		}
@@ -236,7 +236,6 @@ LICENSE;
 
 	private function endWizard(){
 		echo "[*] " . $this->lang->you_have_finished . "\n";
-		echo "[*] " . $this->lang->pocketmine_plugins . "\n";
 		echo "[*] " . $this->lang->pocketmine_will_start . "\n\n\n";
 		sleep(4);
 	}
