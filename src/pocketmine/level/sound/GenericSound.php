@@ -25,13 +25,13 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\LevelEventPacket;
 
 class GenericSound extends Sound{
-	
+
 	public function __construct(Vector3 $pos, $id, $pitch = 0){
 		parent::__construct($pos->x, $pos->y, $pos->z);
 		$this->id = (int) $id;
 		$this->pitch = (float) $pitch * 1000;
 	}
-	
+
 	protected $pitch = 0;
 	protected $id;
 	

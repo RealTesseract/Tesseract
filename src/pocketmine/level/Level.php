@@ -404,9 +404,9 @@ class Level implements ChunkManager, Metadatable{
 		$this->tickRate = 1;
 
 		$this->weather = new Weather($this, 0);
-		if($this->server->netherEnabled and $this->server->netherName == $this->folderName) $this->setDimension(self::DIMENSION_NETHER);
+		if($this->server->getConfigLoader()->netherEnabled and $this->server->getConfigLoader()->netherName == $this->folderName) $this->setDimension(self::DIMENSION_NETHER);
 		else $this->setDimension(self::DIMENSION_NORMAL);
-		if($this->server->weatherEnabled and $this->getDimension() == self::DIMENSION_NORMAL){
+		if($this->server->getConfigLoader()->weatherEnabled and $this->getDimension() == self::DIMENSION_NORMAL){
 			$this->weather->setCanCalculate(true);
 		}else $this->weather->setCanCalculate(false);
 	}
