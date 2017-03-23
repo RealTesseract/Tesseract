@@ -1799,6 +1799,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$dot1 = $dV->dot(new Vector2($pos->x, $pos->z));
 		return ($dot1 - $dot) >= -$maxDiff;
 	}
+	
+	public function onPlayerPreLogin(){
+		$pk = new PlayStatusPacket();
+		$pk->status = PlayStatusPacket::LOGIN_SUCCESS;
+		$this->dataPacket($pk);
+		
+		$this->processLogin();
+	}
 
 	public function clearCreativeItems(){
 		$this->personalCreativeItems = [];
@@ -1922,6 +1930,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if(!$this->isConnected()){
 			return;
 		}
+		
+		$this->dataPacket(new ResourcePacksInfoPacket());
 
 		if(!$this->hasValidSpawnPosition() and isset($this->namedtag->SpawnLevel) and ($level = $this->server->getLevelByName($this->namedtag["SpawnLevel"])) instanceof Level){
 			$this->spawnPosition = new WeakPosition($this->namedtag["SpawnX"], $this->namedtag["SpawnY"], $this->namedtag["SpawnZ"], $level);
@@ -2118,6 +2128,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$this->close("", $ev->getKickMessage());
 
 					break;
+				}
+				
+				if($this->isConnected()){
+					$this->onPlayerPreLogin();
 				}
 
                      $statusPacket = new PlayStatusPacket();
