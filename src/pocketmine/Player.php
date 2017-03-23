@@ -2145,7 +2145,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
             case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
                 $responsePacket = new ResourcePackClientResponsePacket();
-                switch ($responsePacket-status) {
+                switch ($responsePacket->status) {
                 case ResourcePackClientResponsePacket::STATUS_REFUSED:
                     $this->close("", "disconnectionScreen.noReason");
                     break;
