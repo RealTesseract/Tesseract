@@ -1800,13 +1800,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return ($dot1 - $dot) >= -$maxDiff;
 	}
 	
-	public function onPlayerPreLogin(){
+	/*public function onPlayerPreLogin(){
 		$pk = new PlayStatusPacket();
 		$pk->status = PlayStatusPacket::LOGIN_SUCCESS;
 		$this->dataPacket($pk);
 		
 		$this->processLogin();
-	}
+	}*/
 
 	public function clearCreativeItems(){
 		$this->personalCreativeItems = [];
@@ -2128,9 +2128,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 				
-				if($this->isConnected()){
+				/*if($this->isConnected()){
 					$this->onPlayerPreLogin();
-				}
+				}*/
 
                      $statusPacket = new PlayStatusPacket();
                      $statusPacket->status = PlayStatusPacket::LOGIN_SUCCESS;
@@ -2145,7 +2145,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
             case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
                 $responsePacket = new ResourcePackClientResponsePacket();
-                switch ($responsePacket->responseStatus) {
+                switch ($responsePacket-status) {
                 case ResourcePackClientResponsePacket::STATUS_REFUSED:
                     $this->close("", "disconnectionScreen.noReason");
                     break;
