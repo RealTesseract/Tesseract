@@ -1893,12 +1893,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->setLevel($level);
 		}
 
-		if(!($nbt instanceof CompoundTag)){
-			$this->close($this->getLeaveMessage(), "Invalid data");
-
-			return;
-		}
-
 		$this->achievements = [];
 
 		/** @var ByteTag $achievement */
