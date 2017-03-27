@@ -3727,6 +3727,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->level->dropItem($this, $item);
 			}
 
+			if($this->floatingInventory !== null){
+                $this->floatingInventory->clearAll();
+            }
+
 			if($this->inventory !== null){
 				$this->inventory->clearAll();
 			}
