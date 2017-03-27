@@ -78,6 +78,7 @@ use pocketmine\event\player\PlayerUseFishingRodEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\event\player\PlayerToggleGlideEvent;
+use pocketmine\event\block\ItemFrameDropItemEvent;
 use pocketmine\event\TextContainer;
 use pocketmine\event\Timings;
 use pocketmine\event\TranslationContainer;
@@ -3270,18 +3271,28 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 				
-				$tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
-				if($tile instanceof ItemFrame){
-					if($this->isSpectator()){
-						$tile->spawnTo($this);
-						break;
-					}
-					if(lcg_value() <= $tile->getItemDropChance()){
-						$this->level->dropItem($tile->getBlock(), $tile->getItem());
-					}
-					$tile->setItem(null);
-					$tile->setItemRotation(0);
-				}
+                $tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
+                if ($tile instanceof ItemFrame) {
+                    if ($this->isSpectator()) {
+                        $tile->spawnTo($this);
+                        break;
+                    }
+                    $this->server->getPluginManager()->callEvent($ev = new PlayerInteractEvent($this, $this->getInventory()->getItemInHand(), new Vector3($packet->x, $packet->y, $packet->z), $packet->face, PlayerInteractEvent::LEFT_CLICK_BLOCK));
+                    if (!$ev->isCancelled()) {
+                        $item = $tile->getItem();
+                        $block = $this->level->getBlock($tile);
+                        $this->server->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this, $block, $tile, $item));
+                        if (!$ev->isCancelled()) {
+                            if ($item->getId() !== Item::AIR) {
+                                if (lcg_value() <= $tile->getItemDropChance()) {
+                                    $this->level->dropItem($tile->getBlock(), $tile->getItem());
+                                }
+                                $tile->setItem(null);
+                                $tile->setItemRotation(0);
+                            }
+                        } else $tile->spawnTo($this);
+                    } else $tile->spawnTo($this);
+                }
 				break;
 		
 			default:

@@ -9,14 +9,20 @@ use pocketmine\Player;
 use pocketmine\tile\ItemFrame;
 
 class ItemFrameDropItemEvent extends BlockEvent implements Cancellable{
+	
 	public static $handlerList = null;
 
 	/** @var  Player */
 	private $player;
+	
 	/** @var  Item */
 	private $item;
+	
 	/** @var  ItemFrame */
 	private $itemFrame;
+	
+	/** @var  Block */
+	private $block;
 
 	public function __construct(Player $player, Block $block, ItemFrame $itemFrame, Item $item){
 		$this->player = $player;
@@ -35,6 +41,10 @@ class ItemFrameDropItemEvent extends BlockEvent implements Cancellable{
 
 	public function getItem(){
 		return $this->item;
+	}
+	
+	public function getBlock(){
+		return $this->block;
 	}
 
 	/**
