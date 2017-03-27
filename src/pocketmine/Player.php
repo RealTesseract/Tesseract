@@ -2325,7 +2325,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
                         case Item::ENCHANTING_BOTTLE:
                             $f = 1.1;
-                            $entity = Entity::createEntity("ThrownXpBottle", $this->getLevel(), $nbt, $this);
+                            $entity = Entity::createEntity("ThrownExpBottle", $this->getLevel(), $nbt, $this);
                             $entity->setMotion($entity->getMotion()->multiply($f));
                             $this->server->getPluginManager()->callEvent($ev = new ProjectileLaunchEvent($entity));
                             if($ev->isCancelled()){

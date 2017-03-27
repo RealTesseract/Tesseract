@@ -22,7 +22,7 @@
 namespace pocketmine\block;
 
 
-class GlowingObsidian extends Solid implements SolidLight{
+class GlowingObsidian extends Solid{
 
 	protected $id = self::GLOWING_OBSIDIAN;
 
