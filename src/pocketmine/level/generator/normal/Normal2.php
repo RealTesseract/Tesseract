@@ -58,16 +58,6 @@ class Normal2 extends Normal{
 
 	private $heightOffset;
 
-    /** @var Random */
-    private $random;
-    /** @var Populator[] */
-    private $generationPopulators = [];
-    /** @var Populator[] */
-    private $populators = [];
-    /** @var BiomeSelector */
-    private $selector;
-	private $level;
-
 	private $seaHeight = 62;
 	private $seaFloorHeight = 48;
 	private $beathStartHeight = 60;
