@@ -737,7 +737,7 @@ class Server{
 	 *
 	 * @return OfflinePlayer|Player
 	 */
-	public function getOfflinePlayer($name) : CompoundTag{
+	public function getOfflinePlayer($name){
 		$name = strtolower($name);
 		$result = $this->getPlayerExact($name);
 
