@@ -2127,7 +2127,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 					break;
 				}
-
+				
 				/*if($this->isConnected()){
 					$this->onPlayerPreLogin();
 				}*/
@@ -2144,6 +2144,56 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				break;
 
             case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
+                $responsePacket = new ResourcePackClientResponsePacket();
+                switch ($responsePacket->status) {
+                case ResourcePackClientResponsePacket::STATUS_REFUSED:
+                    $this->close("", "disconnectionScreen.noReason");
+                    break;
+                case ResourcePackClientResponsePacket::STATUS_SEND_PACKS:
+                    $manager = $this->server->getResourcePackManager();
+                    foreach ($responsePacket->packIds as $uuid){
+                    $resourcePack = $manager->getPackById($uuid);
+                    if (!($resourcePack instanceof ResourcePack)) {
+                        $this->close("", "disconnectionScreen.resourcePack");
+                        break;
+                    }
+
+                    $dataInfoPacket = new ResourcePackDataInfoPacket();
+                    $dataInfoPacket->packId = $resourcePack->getPackId();
+                    $dataInfoPacket->maxChunkSize = 1048576; //megabytes
+                    $dataInfoPacket->chunkCount = $resourcePack->getPackSize() / $dataInfoPacket->maxChunkSize;
+                    $dataInfoPacket->compressedPackSize = $resourcePack->getPackSize();
+                    $dataInfoPacket->sha256 = $resourcePack->getSha256();
+                    $this->dataPacket($dataInfoPacket);
+                    break;
+                }
+                break;
+                case ResourcePackClientResponsePacket::STATUS_HAVE_ALL_PACKS:
+                        $stackPacket = new ResourcePackStackPacket();
+                        $stackPacket->mustAccept = $this->server->forceResources;
+                        $stackPacket->resourcePackStack = $this->server->getResourcePackManager()->getResourceStack();
+                        $this->dataPacket($stackPacket);
+                        break;
+                        case ResourcePackClientResponsePacket::STATUS_COMPLETED:
+                        $this->processLogin();
+                        break;
+                    }
+                    break;
+            case ProtocolInfo::RESOURCE_PACK_CHUNK_REQUEST_PACKET:
+                $requestPacket = new ResourcePackChunkRequestPacket();
+                $resourcePack = $this->server->getResourcePackManager()->getPackById($requestPacket->packId);
+                if ($resourcePack == null) {
+                $this->close("", "disconnectionScreen.resourcePack");
+                break;
+            }
+
+                $dataPacket = new ResourcePackChunkDataPacket();
+                $dataPacket->packId = $resourcePack->getPackId();
+                $dataPacket->chunkIndex = $requestPacket->chunkIndex;
+                $dataPacket->data = $resourcePack->getPackChunk(1048576 * $requestPacket->chunkIndex, 1048576);
+                $dataPacket->progress = 1048576 * $requestPacket->chunkIndex;
+                $this->dataPacket($dataPacket);
+                break;
 			case ProtocolInfo::MOVE_PLAYER_PACKET:
 
 				if($this->linkedEntity instanceof Entity){
