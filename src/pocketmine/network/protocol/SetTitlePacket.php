@@ -36,22 +36,22 @@ class SetTitlePacket extends DataPacket{
 
 	public $type;
 	public $title;
-	public $unknownVarInt1 = 0;
-	public $unknownVarInt2 = 0;
+	public $fadeInDuration = 0;
+	public $fadeOutDuration = 0;
 
 	public function decode(){
 		$this->type = $this->getVarInt();
 		$this->title = $this->getString();
-		$this->unknownVarInt1 = $this->getVarInt();
-		$this->unknownVarInt2 = $this->getVarInt();
+		$this->fadeInDuration = $this->getVarInt();
+		$this->fadeOutDuration = $this->getVarInt();
 	}
 
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->type);
 		$this->putString($this->title);
-		$this->putVarInt($this->unknownVarInt1);
-		$this->putVarInt($this->unknownVarInt2);
+		$this->putVarInt($this->fadeInDuration);
+		$this->putVarInt($this->fadeOutDuration);
 	}
 
 	/**
