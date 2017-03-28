@@ -732,12 +732,11 @@ class Server{
 		return (bool) $this->getProperty("player.save-player-data", true);
 	}
 
-	/**
-	 * @param string $name
-	 *
-	 * @return OfflinePlayer|Player
-	 */
-	public function getOfflinePlayer($name) : CompoundTag{
+    /**
+     * @param string $name
+     * @return OfflinePlayer|Player
+     */
+	public function getOfflinePlayer($name){
 		$name = strtolower($name);
 		$result = $this->getPlayerExact($name);
 

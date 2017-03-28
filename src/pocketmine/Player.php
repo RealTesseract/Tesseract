@@ -3275,7 +3275,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
                     }
                     
                     if(lcg_value() <= $tile->getItemDropChance()){
-                        $this->level->dropItem($tile->getBlock(), $tile->getItem());
+                        $this->level->dropItem($tile->add(0.5, 0.5, 0.5), $ev->getItem());
                     }
                     $tile->setItem(null);
                     $tile->setItemRotation(0);
