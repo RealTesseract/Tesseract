@@ -3446,7 +3446,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
      * @param string $subtitle
      * @return bool
      */
-	public function sendTitle($title, $subtitle = "",$fadein = 1,$fadeout = 1){
+	public function sendTitle($title, $subtitle = "",$fadein = 20,$fadeout = 20){
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
 		$pk->title = $title;
@@ -3470,7 +3470,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param $title
 	 * @return bool
 	 */
-	public function sendActionBar($title,$fadein = 1,$fadeout = 1){
+	public function sendActionBar($title,$fadein = 20,$fadeout = 20){
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_ACTION_BAR;
 		$pk->title = $title;
