@@ -137,6 +137,7 @@ use pocketmine\network\protocol\RespawnPacket;
 use pocketmine\network\protocol\SetEntityMotionPacket;
 use pocketmine\network\protocol\SetSpawnPositionPacket;
 use pocketmine\network\protocol\SetTimePacket;
+use pocketmine\network\protocol\SetTitlePacket;
 use pocketmine\network\protocol\StartGamePacket;
 use pocketmine\network\protocol\SetPlayerGameTypePacket;
 use pocketmine\network\protocol\TakeItemEntityPacket;
@@ -3362,9 +3363,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @return bool
 	 */
 	public function sendMessage($message){
-
 		if($message instanceof TextContainer){
-
 			if($message instanceof TranslationContainer){
 				$this->sendTranslation($message->getText(), $message->getParameters());
 				return false;
@@ -3438,6 +3437,40 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			return true;
 		}
 		return false;
+	}
+
+    /**
+     * Send a title text or/and with/without a sub title text to a player
+     *
+     * @param $title
+     * @param string $subtitle
+     * @return bool
+     */
+	public function sendTitle($title, $subtitle = ""){
+		$pk = new SetTitlePacket();
+		$pk->type = SetTitlePacket::TYPE_TITLE;
+		$pk->title = $title;
+		$this->dataPacket($pk);
+
+		if($subtitle !== ""){
+			$pk = new SetTitlePacket();
+			$pk->type = SetTitlePacket::TYPE_SUB_TITLE;
+			$pk->title = $subtitle;
+			$this->dataPacket($pk);
+		}
+	}
+
+	/**
+	 * Send an action bar text to a player
+	 *
+	 * @param $title
+	 * @return bool
+	 */
+	public function sendActionBar($title){
+		$pk = new SetTitlePacket();
+		$pk->type = SetTitlePacket::TYPE_ACTION_BAR;
+		$pk->title = $title;
+		$this->dataPacket($pk);
 	}
 
 	/**
