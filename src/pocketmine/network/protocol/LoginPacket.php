@@ -51,7 +51,7 @@ class LoginPacket extends DataPacket{
 	public $serverAddress;
 
 	public $skinId = null;
-	public $skin = null;
+	public $skin = "";
 
 	public function decode(){
 		$this->protocol = $this->getInt();
