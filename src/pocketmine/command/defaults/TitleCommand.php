@@ -32,8 +32,7 @@ class TitleCommand extends VanillaCommand {
 		parent::__construct(
 			$name,
 			"%pocketmine.command.title.description",
-			"%pocketmine.command.title.usage",
-			["title"]
+			"%pocketmine.command.title.usage"
 		);
 		$this->setPermission("pocketmine.command.title");
 	}
