@@ -64,13 +64,13 @@ use pocketmine\command\defaults\TellCommand;
 use pocketmine\command\defaults\TimeCommand;
 use pocketmine\command\defaults\TimingsCommand;
 use pocketmine\command\defaults\TransferCommand;
+use pocketmine\command\defaults\TitleCommand;
 use pocketmine\command\defaults\VanillaCommand;
 use pocketmine\command\defaults\VersionCommand;
 use pocketmine\command\defaults\WeatherCommand;
 use pocketmine\command\defaults\WhitelistCommand;
 use pocketmine\command\defaults\XpCommand;
 use pocketmine\command\defaults\MakePharCommand;
-use pocketmine\command\defaults\TitleCommand;
 
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
@@ -102,8 +102,6 @@ class SimpleCommandMap implements CommandMap{
 
 	private function setDefaultCommands(){
 		$this->register("pocketmine", new WeatherCommand("weather"));
-		
-		$this->register("pocketmine", new TitleCommand("title"));
 
 		$this->register("pocketmine", new BanIpByNameCommand("banipbyname"));
 		$this->register("pocketmine", new BanCidByNameCommand("bancidbyname"));
@@ -141,6 +139,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new SpawnpointCommand("spawnpoint"));
 		$this->register("pocketmine", new SetWorldSpawnCommand("setworldspawn"));
 		$this->register("pocketmine", new SummonCommand("summon"));
+		$this->register("pocketmine", new TitleCommand("title"));
 		$this->register("pocketmine", new TeleportCommand("tp"));
 		$this->register("pocketmine", new TimeCommand("time"));
 		$this->register("pocketmine", new TimingsCommand("timings"));
