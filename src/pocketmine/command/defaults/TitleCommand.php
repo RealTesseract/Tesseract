@@ -47,4 +47,6 @@ class TitleCommand extends VanillaCommand {
 				$sender->sendMessage("Usage: /title <title> <subtile> [text]");
 				return false;
 			}
+        }
     }
+}
