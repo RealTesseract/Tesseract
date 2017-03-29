@@ -107,6 +107,10 @@ class MainLogger extends \AttachableThreadedLogger{
 	public function info($message, $name = "INFO"){
 		$this->send($message, \LogLevel::INFO, $name, TextFormat::WHITE);
 	}
+	
+	public function developer($message, $name = "DEVELOPER"){
+		$this->send($message, \LogLevel::DEVELOPER, $name, TextFormat::GOLD);
+	}
 
 	public function debug($message, $name = "DEBUG"){
 		if($this->logDebug === false){

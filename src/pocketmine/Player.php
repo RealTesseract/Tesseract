@@ -1752,15 +1752,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 		$this->timings->stopTiming();
 		
-		//TODO: remove this workaround (broken client MCPE 1.0.0)
-		if(count($this->messageQueue) > 0){
-			$pk = new TextPacket();
-			$pk->type = TextPacket::TYPE_RAW;
-			$pk->message = implode("\n", $this->messageQueue);
-			$this->dataPacket($pk);
-			$this->messageQueue = [];
-		}
-
 		return true;
 	}
 
@@ -2144,10 +2135,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 
 				$newPos = new Vector3($packet->x, $packet->y - $this->getEyeHeight(), $packet->z);
-
-				if($newPos->distanceSquared($this) == 0 and ($packet->yaw % 360) === $this->yaw and ($packet->pitch % 360) === $this->pitch){ //player hasn't moved, just client spamming packets
-					break;
-				}
 
 				$revert = false;
 				if(!$this->isAlive() or $this->spawned !== true){
@@ -3353,8 +3340,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ACTION, false);
 	}
 	
-	/** @var string[] */
-	private $messageQueue = [];
 
 	/**
 	 * Sends a direct chat message to a player
@@ -3372,15 +3357,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$message = $message->getText();
 
 		}
-
-		//TODO: Remove this workaround (broken client MCPE 1.0.0)
-		$this->messageQueue[] = $this->server->getLanguage()->translateString($message);
-		/*
+		
   		$pk = new TextPacket();
   		$pk->type = TextPacket::TYPE_RAW;
   		$pk->message = $this->server->getLanguage()->translateString($message);
   		$this->dataPacket($pk);
-		*/
+		
 
 		return true;
 	}
@@ -3446,12 +3428,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
      * @param string $subtitle
      * @return bool
      */
-	public function sendTitle($title, $subtitle = "",$fadein = 20,$fadeout = 20){
+	public function sendTitle($title, $subtitle = "", $fadein = 20, $fadeout = 20, $duration = 5){
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
 		$pk->title = $title;
         $pk->fadeInDuration = $fadein;
         $pk->fadeOutDuration = $fadeout;
+		$pk->duration = $duration;
 		$this->dataPacket($pk);
 
 		if($subtitle !== ""){
@@ -3460,6 +3443,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk->title = $subtitle;
             $pk->fadeInDuration = $fadein;
             $pk->fadeOutDuration = $fadeout;
+			$pk->duration = $duration;
 			$this->dataPacket($pk);
 		}
 	}
