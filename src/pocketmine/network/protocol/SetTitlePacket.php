@@ -23,7 +23,6 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-
 class SetTitlePacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_TITLE_PACKET;
@@ -37,9 +36,9 @@ class SetTitlePacket extends DataPacket{
 
 	public $type;
 	public $title;
-	public $fadeInDuration = 0;
-	public $fadeOutDuration = 0;
-	public $duration = 0;
+	public $fadeInDuration;
+	public $fadeOutDuration;
+	public $duration;
 
 	public function decode(){
 		$this->type = $this->getVarInt();
