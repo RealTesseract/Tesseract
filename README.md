@@ -1,5 +1,6 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
-Tesseract Introduction
+
+## Tesseract Introduction
 -------------
 **Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
 Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion support is [deprecated](https://www.google.com/search?q=deprecated&oq=deprecated&aqs=chrome.0.69i59j69i61.1457j0j7&sourceid=chrome&ie=UTF-8)) <br>
@@ -13,7 +14,7 @@ Tesseract supports packet and event debug system (for plugin developers)**
 **Tesseract is supported to Minecraft:PE 1.0.5 (PE & Win10) <br>
 Report any issues and we will try to fix them for you.**  <br>
 
-##Builds
+## Builds
 
 __Travis-CI Build:__<br>
  [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)<br>
@@ -22,11 +23,11 @@ __Travis-CI Build:__<br>
 
 ## Quick Links (Instead of scrolling, click these!)
 
-__[Installation](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#installation)__ <br>
-__[Resources](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#resources)__ <br>
-__[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#acknowledgements)__ <br>
-__[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
-__[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
+__[Installation](#installation)__ <br>
+__[Resources](#resources)__ <br>
+__[Acknowledgements](#acknowledgements)__ <br>
+__[License](#license)__ <br>
+__[Third Party Libraries and Protocols Used](#ThirdpartyLibrariesProtocolsUsed)__ <br>
 
 ## Installation
 
@@ -34,7 +35,7 @@ __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Te
 Supported platforms: Linux, Windows, OS X, Raspberry Pi, and ODROID <br>
 [Installation](https://github.com/TesseractTeam/Tesseract/wiki/Installation)<br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
 
 ## Resources
@@ -44,7 +45,7 @@ Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are o
 It can be downloaded
 __[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
 
 
@@ -53,7 +54,7 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 - Tesseract is a "spoon" of **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** & **[Genisys](https://github.com/iTXTech/Genisys)**
 - Most of the original code was written by PocketMine Team and iTX Technologies. <br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__<br>
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__<br>
 
 ## License
 -------------
@@ -73,7 +74,7 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 
 __[License Page](https://github.com/TesseractTeam/Tesseract/blob/master/LICENSE)__
 <br>
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
 
 ## Third-party Libraries/Protocols Used
@@ -90,5 +91,5 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 * __[Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)__
 * __[UT3 Query Protocol](http://wiki.unrealadmin.org/UT3_query_protocol)__
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
