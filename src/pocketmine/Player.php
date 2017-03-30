@@ -3424,11 +3424,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
     /**
      * Send a title text or/and with/without a sub title text to a player
      *
-     * @param $title
+     * @param string $title
      * @param string $subtitle
+	 * @param int $fadein
+	 * @param int $duration
+	 * @param int $fadeout
      * @return bool
      */
-	public function sendTitle($title, $subtitle = "", $fadein = 20, $fadeout = 20, $duration = 5){
+	public function sendTitle($title, $subtitle = "", $fadein = 20, $duration = 5, $fadeout = 20){
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
 		$pk->title = $title;
