@@ -88,7 +88,6 @@ use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginLoadOrder;
 use pocketmine\plugin\PluginManager;
 use pocketmine\plugin\ScriptPluginLoader;
-use pocketmine\scheduler\DServerTask;
 use pocketmine\scheduler\FileWriteTask;
 use pocketmine\scheduler\SendUsageTask;
 use pocketmine\scheduler\ServerScheduler;
@@ -281,9 +280,6 @@ class Server{
 	public $playerLoginMsg = "";
 	public $playerLogoutMsg = "";
 	public $autoClearInv = true;
-	public $dserverConfig = [];
-	public $dserverPlayers = 0;
-	public $dserverAllPlayers = 0;
 	public $anvilEnabled = false;
 	public $asyncChunkRequest = true;
 	public $keepExperience = false;
@@ -1444,20 +1440,6 @@ class Server{
 		$this->lightningTime = $this->getAdvancedProperty("level.lightning-time", 200);
 		$this->lightningFire = $this->getAdvancedProperty("level.lightning-fire", false);
 		$this->autoClearInv = $this->getAdvancedProperty("player.auto-clear-inventory", true);
-		$this->dserverConfig = [
-			"enable" => $this->getAdvancedProperty("dserver.enable", false),
-			"queryAutoUpdate" => $this->getAdvancedProperty("dserver.query-auto-update", false),
-			"queryTickUpdate" => $this->getAdvancedProperty("dserver.query-tick-update", true),
-			"motdMaxPlayers" => $this->getAdvancedProperty("dserver.motd-max-players", 0),
-			"queryMaxPlayers" => $this->getAdvancedProperty("dserver.query-max-players", 0),
-			"motdAllPlayers" => $this->getAdvancedProperty("dserver.motd-all-players", false),
-			"queryAllPlayers" => $this->getAdvancedProperty("dserver.query-all-players", false),
-			"motdPlayers" => $this->getAdvancedProperty("dserver.motd-players", false),
-			"queryPlayers" => $this->getAdvancedProperty("dserver.query-players", false),
-			"timer" => $this->getAdvancedProperty("dserver.time", 40),
-			"retryTimes" => $this->getAdvancedProperty("dserver.retry-times", 3),
-			"serverList" => explode(";", $this->getAdvancedProperty("dserver.server-list", ""))
-		];
 		$this->getLogger()->setWrite(!$this->getAdvancedProperty("server.disable-log", false));
 		$this->asyncChunkRequest = $this->getAdvancedProperty("server.async-chunk-request", true);
 		$this->limitedCreative = $this->getAdvancedProperty("server.limited-creative", true);
@@ -1474,32 +1456,6 @@ class Server{
 		$this->allowInstabreak = $this->getAdvancedProperty("anticheat.allow-instabreak", true);
 		$this->antiFly = $this->getAdvancedProperty("anticheat.anti-fly", true);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", false);
-	}
-	
-	/**
-	 * @return int
-	 *
-	 * Get DServer max players
-	 */
-	public function getDServerMaxPlayers(){
-		return ($this->dserverAllPlayers + $this->getMaxPlayers());
-	}
-
-	/**
-	 * @return int
-	 *
-	 * Get DServer all online player count
-	 */
-	public function getDServerOnlinePlayers(){
-		return ($this->dserverPlayers + count($this->getOnlinePlayers()));
-	}
-
-	public function isDServerEnabled(){
-		return $this->dserverConfig["enable"];
-	}
-
-	public function updateDServerInfo(){
-		$this->scheduler->scheduleAsyncTask(new DServerTask($this->dserverConfig["serverList"], $this->dserverConfig["retryTimes"]));
 	}
 
 	public function getBuild(){
@@ -1847,12 +1803,6 @@ class Server{
 			}
 
 			$this->enablePlugins(PluginLoadOrder::POSTWORLD);
-			
-			if($this->dserverConfig["enable"] and ($this->getAdvancedProperty("dserver.server-list", "") != "")) $this->scheduler->scheduleRepeatingTask(new scheduler\CallbackTask(
-			[
-				$this, "updateDServerInfo"
-			]),
-			$this->dserverConfig["timer"]);
 
 			if($cfgVer > $advVer){
 				$this->logger->notice("Your tesseract.yml needs update (Current : $advVer -> Latest: $cfgVer)");
@@ -2670,20 +2620,6 @@ class Server{
 
 		foreach($this->players as $player){
 			$player->checkNetwork();
-		}
-
-		if(($this->tickCounter & 0b1111) === 0){
-			$this->titleTick();
-			$this->currentTPS = 20;
-			$this->currentUse = 0;
-
-			if(($this->tickCounter & 0b111111111) === 0){
-				if(($this->dserverConfig["enable"] and $this->dserverConfig["queryTickUpdate"]) or !$this->dserverConfig["enable"]){
-					$this->updateQuery();
-				}
-			}
-
-			$this->getNetwork()->updateName();
 		}
 
 		if($this->autoSave and ++$this->autoSaveTicker >= $this->autoSaveTicks){

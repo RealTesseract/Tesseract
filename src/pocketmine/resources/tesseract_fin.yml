@@ -92,33 +92,6 @@ enchantment:
  #Jos tama asetus on false, palvelin kayttaa satunnainen maara (suositeltavaa ja arvot vaihtelevat 0 ~ 15)
  count-bookshelf: false
 
-dserver:
- #Tama asetus paattaa, jos palvelin laskee kaikki monen palvelimia yhdistetaan
- #Jos et tieda, mita tama tekee, pitaa se asettaa "false"
- enable: false
- #Tama asetus paattaa palvelin paivittaa kyselyn
- query-auto-update: false
- #Tama asetus paattaa, jos palvelin kyselyn punkit paivittaa
- query-tick-update: true
- #Tama asetus nayttaa # max pelaajat MOTD. 0 = oletus
- motd-max-players: 0
- #Tama asetus nayttaa max pelaajat # kyselyssa. 0 = oletus
- query-max-players: 0
- #Tama asetus paattaa, jos palvelin nayttaa kaikki pelaajat # MOTD
- motd-all-players: false
- #Tama asetus tuo nakyviin kaikki pelaajien maara kyselyssa
- query-all-players: false
- #Tama asetus nayttaa useita online pelaajat MOTD
- motd-players: false
- #Tama asetus tuo nakyviin useita online pelaajat kyselyyn
- query-players: false
- #Tama asetus paattaa kyselyn/motd paivityksen aikavali. 20 = 1s
- time: 40
- #Tama asetus paattaa # kertaa palvelimen uudelleenyrityksia kun palvelimen ei kaynnisty. 0 = disable, 3 = oletus
- retry-times: 3
- #Tama asetus nayttaa palvelimen luettelossa, erottaa ";" , esim 1.example.com:19132;2.example.com:19133
- server-list: ""
-
 inventory:
  #Maarittaa asetuksen arvoksi true, jos sinulla on ongelmia alasimet. 
  #Tama kasittelee varastotapahtumat vanilja tavalla ilman anti-huijaukset tai tarkastus.

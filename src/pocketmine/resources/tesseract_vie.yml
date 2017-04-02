@@ -97,32 +97,6 @@ redstone:
  #Đánh số tỷ lệ hoạt động, mặc định: 1 giây
  pulse-frequency: 1
 
-dserver:
- #Tất cả các server gộp vào. Bật/tắt để hoạt động (true/false)
- enable: false
- #Query update automatically
- query-auto-update: false
- #Query update periodical
- query-tick-update: true
- #The max players' number of Motd
- motd-max-players: 0
- #The max players' number of query，0=Default
- query-max-players: 0
- #Show the number of all players on motd
- motd-all-players: false
- #Show the number of all players on Query
- query-all-players: false
- #Show the number of online players on motd
- motd-players: false
- #Show the number of online players on Query
- query-players: false
- #Update Frequency ,20=1s
- time: 40
- #Auto-retry times when failed
- retry-times: 3
- #the server list，Separate by ';'，e.g. 1.example.com:19132;2.example.com:19133
- server-list: ""
-
 inventory:
  #Set this to true if you have problems with anvils. Will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
  allow-cheats: true

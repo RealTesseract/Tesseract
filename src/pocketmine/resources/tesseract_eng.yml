@@ -102,33 +102,6 @@ enchantment:
  #If this option is false, the server will use a random count (recommended and the values range from 0~15)
  count-bookshelf: false
 
-dserver:
- #This setting decides if the server counts all multi-servers combined
- #If you do not know what this does, keep it set to "false"
- enable: false
- #This setting decides if the server will automatically update the Query
- query-auto-update: false
- #This setting decides if the server Query ticks update
- query-tick-update: true
- #This setting displays the # of max players on MOTD. 0 = Default
- motd-max-players: 0
- #This setting displays the # of max players on Query. 0 = Default
- query-max-players: 0
- #This setting decides if the server shows the # of all players on MOTD
- motd-all-players: false
- #This setting shows the number of all players on Query
- query-all-players: false
- #This setting shows the number of online players on MOTD
- motd-players: false
- #This setting shows the number of online players on Query
- query-players: false
- #This setting decides the interval for query/motd updating. 20=1s
- time: 40
- #This setting decides the # of times the server retries when the server fails to load. 0 = Disable, 3 = Default
- retry-times: 3
- #This setting displays the server list，Separate by ';'，e.g. 1.example.com:19132;2.example.com:19133
- server-list: ""
-
 inventory:
  #Set this setting to true if you have problems with anvils. 
  #This will process inventory transactions in a vanilla fashion with no anti-cheats or verification.

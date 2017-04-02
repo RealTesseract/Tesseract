@@ -97,32 +97,6 @@ redstone:
  #設定脈衝頻率, 預設: 1s
  pulse-frequency: 1
 
-dserver:
- #多服統一人數
- enable: false
- #Query自動更新
- query-auto-update: false
- #Query週期更新
- query-tick-update: true
- #Motd最大人數，0為預設
- motd-max-players: 0
- #Query最大人數，0為預設
- query-max-players: 0
- #Motd顯示總人數
- motd-all-players: false
- #Query顯示總人數
- query-all-players: false
- #Motd顯示人數
- motd-players: false
- #Query顯示人數
- query-players: false
- #更新頻率，20 = 1秒
- time: 40
- #獲取失敗自動重試次數
- retry-times: 3
- #伺服器列表，用;隔開，例如 1.example.com:19132;2.example.com:19133
- server-list: ""
-
 inventory:
  #Set this to true if you have problems with anvils. Will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
  allow-cheats: true
