@@ -3534,7 +3534,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->loadQueue = [];
 			$this->hasSpawned = [];
 			$this->spawnPosition = null;
-
 		}
 
 		if($this->perm !== null){
