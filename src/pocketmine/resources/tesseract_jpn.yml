@@ -12,7 +12,7 @@
 
 #ファイルバージョン
 config:
- version: 28
+ version: 29
 
 level:
  #天候が有効にするかどうかを設定します。(有効化すると古いデバイスではラグの原因となる可能性があります)
@@ -53,7 +53,9 @@ player:
  #ワールドの読み込むチャンク量の半径を設定します(10以上を指定すると処理過多によりクラッシュする可能性があります。-1を指定すると無効に設定します。)
  chunk-radius: -1
  
+anticheat:
  check-movement: true
+ allow-instabreak: false
 
 server:
  #サーバーのログをファイルに保存するかを設定します。
@@ -61,11 +63,6 @@ server:
  disable-log: false
  #非同期チャンクの要求がサーバーの読み込み(再起動)時に有効にするかどうかを設定します。
  async-chunk-request: true
- #プレイヤーの参加(退出)時にサーバー全体に表示するメッセージを設定します。
- #0 = Message, 1 = Tip, 2 = Popup
- player-msg-type: 0
- login-msg: "§3@player joined the game"
- logout-msg: "§3@player left the game"
  #クリエイティブゲームモード時に制限が有効にするかどうかを設定します。
  #有効化すると一部機能(ホットバーからのドロップ、チェストを開けるなど)が使用できなくなります。
  limited-creative: true
