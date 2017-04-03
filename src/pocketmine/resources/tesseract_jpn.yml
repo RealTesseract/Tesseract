@@ -54,7 +54,9 @@ player:
  chunk-radius: -1
  
 anticheat:
+ #チート防止策を講じます
  check-movement: true
+ #採掘の高速化を許可するかを設定します。
  allow-instabreak: false
 
 server:
