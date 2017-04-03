@@ -2,9 +2,7 @@
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
-use pocketmine\utils\TextFormat;
 use pocketmine\network\protocol\Info;
 
 class MakeServerCommand extends VanillaCommand{
@@ -12,10 +10,10 @@ class MakeServerCommand extends VanillaCommand{
 	public function __construct($name){
 		parent::__construct(
 			$name,
-			"Creates a PocketMine Phar",
-			"/ms (nogz)"
+			"%tesseract.command.makeserver.description",
+			"%tesseract.command.makeserver.usage"
 		);
-		$this->setPermission("pocketmine.command.makeserver");
+		$this->setPermission("tesseract.command.makeserver");
 	}
 
 	public function execute(CommandSender $sender, $commandLabel, array $args){
