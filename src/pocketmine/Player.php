@@ -3406,6 +3406,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return false;
 	}
 	
+	/**
+     * Reset titles from the client
+	 *
+     * @return bool
+     */
+	
     public function resetTitleSettings(){ //Thanks Nukkit
         $pk = new SetTitlePacket();
         $pk->type = SetTitlePacket::TYPE_RESET;
@@ -3413,13 +3419,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
     }
 
     /**
-     * Send a title text or/and with/without a sub title text to a player
+     * Send a title text with/without a sub title text to a player
+	 * -1 defines the default value used by the client
      *
      * @param $title
      * @param string $subtitle
      * @return bool
      */
-	public function sendTitle($title, $subtitle = "", $fadein = 20, $fadeout = 20, $duration = 5){
+	public function sendTitle(string $title, string $subtitle = "", int $fadein = -1, int $fadeout = -1, int $duration = -1){
 		$this->resetTitleSettings();
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
@@ -3442,16 +3449,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * Send an action bar text to a player
+	 * -1 defines the default value used by the client
 	 *
 	 * @param $title
 	 * @return bool
 	 */
-	public function sendActionBar($title,$fadein = 20,$fadeout = 20){
+	public function sendActionBar(string $title, int $fadein = -1, int $fadeout = -1, int $duration = -1){
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_ACTION_BAR;
 		$pk->title = $title;
-        $pk->fadeInDuration = $fadein;
-        $pk->fadeOutDuration = $fadeout;
+		$pk->fadeInDuration = $fadein;
+		$pk->fadeOutDuration = $fadeout;
+		$pk->duration = $duration;
 		$this->dataPacket($pk);
 	}
 
