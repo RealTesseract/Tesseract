@@ -3431,8 +3431,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
 		$pk->title = $title;
-        $pk->fadeInDuration = $fadein;
-        $pk->fadeOutDuration = $fadeout;
+		$pk->fadeInDuration = $fadein;
+		$pk->fadeOutDuration = $fadeout;
 		$pk->duration = $duration;
 		$this->dataPacket($pk);
 
@@ -3440,8 +3440,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk = new SetTitlePacket();
 			$pk->type = SetTitlePacket::TYPE_SUB_TITLE;
 			$pk->title = $subtitle;
-            $pk->fadeInDuration = $fadein;
-            $pk->fadeOutDuration = $fadeout;
+			$pk->fadeInDuration = $fadein;
+			$pk->fadeOutDuration = $fadeout;
 			$pk->duration = $duration;
 			$this->dataPacket($pk);
 		}
