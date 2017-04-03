@@ -3405,6 +3405,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 		return false;
 	}
+	
+    public function resetTitleSettings(){ //Thanks Nukkit
+        $pk = new SetTitlePacket();
+        $pk->type = SetTitlePacket::TYPE_RESET;
+        $this->dataPacket($pk);
+    }
 
     /**
      * Send a title text or/and with/without a sub title text to a player
@@ -3414,6 +3420,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
      * @return bool
      */
 	public function sendTitle($title, $subtitle = "", $fadein = 20, $fadeout = 20, $duration = 5){
+		$this->resetTitleSettings();
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
 		$pk->title = $title;
