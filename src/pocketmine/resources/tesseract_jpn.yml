@@ -36,6 +36,7 @@ network:
  #RakLibを無効にするかどうかを設定します。(RakLibはサーバーに接続したクライアントを読み込みます。)
  raklib-disable: false
 
+ #フォルダープラグインを読み込むかどうかを設定します。
 developer:
   folder-plugin-loader: false
 
@@ -81,7 +82,6 @@ enchantment:
  #本棚をエンティティとしてカウントするかを設定します。(有効化すると古いデバイスではラグの原因となる可能性があります)
  #無効にするとエンチャント時にサーバーがランダムな数(0から15)を使用します。
  count-bookshelf: false
-
 
 inventory:
  #インベントリ管理を行うかどうかを設定します。
