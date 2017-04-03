@@ -3422,7 +3422,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/**
 	 * This code must be changed in the future but currently, send 2 packets fixes the subtitle bug... 
     */
- 	public function prepareTitle(string $title, string $subtitle = "", int $fadein = -1, int $fadeout = -1, int $duration = -1){
+ 	private function prepareTitle(string $title, string $subtitle = "", int $fadein = -1, int $fadeout = -1, int $duration = -1){
 		$pk = new SetTitlePacket();
 		$pk->type = SetTitlePacket::TYPE_TITLE;
 		$pk->title = $title;
@@ -3430,17 +3430,16 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->fadeOutDuration = $fadeout;
 		$pk->duration = $duration;
 		$this->dataPacket($pk);
-
+		
 		if($subtitle !== ""){
-          $pk = new SetTitlePacket();
-		  $pk->type = SetTitlePacket::TYPE_SUB_TITLE;
-		  $pk->title = $subtitle;
-		  $pk->fadeInDuration = $fadein;
-		  $pk->fadeOutDuration = $fadeout;
-		  $pk->duration = $duration;
-		  $this->dataPacket($pk);
-        }
-    }
+			$pk = new SetTitlePacket();
+			$pk->type = SetTitlePacket::TYPE_SUB_TITLE;
+			$pk->title = $subtitle;
+			$pk->fadeInDuration = $fadein;
+			$pk->fadeOutDuration = $fadeout;
+			$pk->duration = $duration;$this->dataPacket($pk);
+		}
+	}
 
 	/**
 	 * Send an action bar text to a player
