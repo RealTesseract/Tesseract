@@ -67,7 +67,7 @@ use pocketmine\item\WoodenHoe;
 use pocketmine\item\WoodenPickaxe;
 use pocketmine\item\WoodenShovel;
 use pocketmine\item\WoodenSword;
-use pocketmine\Server;
+use pocketmine\Server
 
 class Enchantment{
 
@@ -135,7 +135,7 @@ class Enchantment{
 
 
 	/** @var Enchantment[] */
-	protected static $enchantments;
+	public static $enchantments;
 
 	public static function init(){
 		self::$enchantments = new \SplFixedArray(256);
@@ -180,16 +180,6 @@ class Enchantment{
 		}
 		return new Enchantment(self::TYPE_INVALID, "unknown", 0, 0, 0);
 	}
-	
-	public static function registerEnchantment($id, $name, $rarity, $activationType, $slot){
-		if(isset(self::$enchantments[$id])){
-			Server::getInstance()->getLogger()->debug("Unable to register enchantment with id $id.");
-			return new Enchantment(self::TYPE_INVALID, "unknown", 0, 0, 0);
-		}
-		self::$enchantments[$id] = new Enchantment($id, $name, $rarity, $activationType, $slot);
-		return new Enchantment($id, $name, $rarity, $activationType, $slot); 
-	}
-		
 
 	public static function getEnchantmentByName($name){
 		if(defined(Enchantment::class . "::TYPE_" . strtoupper($name))){
@@ -333,15 +323,26 @@ class Enchantment{
 	private $rarity;
 	private $activationType;
 	private $slot;
-
-	private function __construct($id, $name, $rarity, $activationType, $slot){
+    private $nickname;
+	private $isCustomVar;
+	
+	public function __construct($id, $name, $rarity, $activationType, $slot, $nickname = "", $custom = false){
 		$this->id = (int) $id;
 		$this->name = (string) $name;
 		$this->rarity = (int) $rarity;
 		$this->activationType = (int) $activationType;
 		$this->slot = (int) $slot;
+		$this->nickname = $nickname;
+		$this->isCustomVar = $custom;
 	}
-
+    
+	public function getNickName() {
+		return $this->nickname;
+	}
+	
+	public function isCustom() {
+		return (bool) $this->isCustomVar;
+	}
 	public function getId(){
 		return $this->id;
 	}
