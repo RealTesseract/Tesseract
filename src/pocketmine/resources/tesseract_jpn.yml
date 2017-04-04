@@ -83,6 +83,32 @@ enchantment:
  #無効にするとエンチャント時にサーバーがランダムな数(0から15)を使用します。
  count-bookshelf: false
 
+dserver:
+ #複数の鯖稼働時にサーバー数をカウントするかを設定します。(無効化を推奨します。)
+ enable: false
+ #サーバーが自動的にクエリを更新するかどうかを設定します。
+ query-auto-update: false
+ #サーバークエリを更新するかどうかを設定します。
+ query-tick-update: true
+ #MOTDの最大プレーヤー数を設定します。(既定値: 0)
+ motd-max-players: 0
+ #クエリの最大プレーヤー数を設定します。(既定値: 0)
+ query-max-players: 0
+ #サーバーのMOTDに全プレイヤー数を表示するかどうかを設定します。
+ motd-all-players: false
+ #クエリの全プレイヤー数を表示するかどうかを決定します。
+ query-all-players: false
+ #MOTDにオンラインプレイヤー数を表示するかどうかを設定します。
+ motd-players: false
+ #This setting shows the number of online players on Query
+ query-players: false
+ #クエリにオンラインプレイヤー数を表示するかどうかを設定します。
+ time: 40
+ #サーバーが読み込みに失敗した時に再試行を行う回数を設定します。(無効: 0 既定値: 3)
+ retry-times: 3
+ #サーバーの一覧を表示するかどうかを決定します。(";"の部分でサーバー指定を区切ります。例: 1.example.com:19132; 2.example.com:19133)
+ server-list: ""
+
 inventory:
  #インベントリ管理を行うかどうかを設定します。
  #無効にするとサーバーの在庫トランザクションを使用して処理します。

@@ -77,6 +77,32 @@ enchantment:
  #만약 이 옵션이 false인 경우, 서버는 랜덤 카운트를 사용할 것 입니다 (0~15)
  count-bookshelf: false
 
+dserver:
+ #모든 멀티 (다중) 서버의 수 통합
+ enable: false
+ #자동으로 쿼리 업데이트
+ query-auto-update: false
+ #쿼리 업데이트 주기
+ query-tick-update: true
+ #Motd 최대 플레이어 숫자
+ motd-max-players: 0
+ #쿼리 최대 플레이어 숫자，0=기본
+ query-max-players: 0
+ #motd에서 모든 플레이어의 숫자 표시
+ motd-all-players: false
+ #쿼리에서 모든 플레이어의 숫자 표시
+ query-all-players: false
+ #motd에서 온라인 플레이어의 숫자 표시
+ motd-players: false
+ #쿼리에서 온라인 플레이어의 숫자 표시
+ query-players: false
+ #업데이트 주기, 20=1초
+ time: 40
+ #실패한 경우 다시 시도할 빈도
+ retry-times: 3
+ #서버 목록，';'를 사용하여 분리하세요，예시: 1.example.com:19132;2.example.com:19133
+ server-list: ""
+
 inventory:
  #모루와 관련된 문제가 있는 경우 true로 설정하세요. 인벤토리 처리를 vanila fashion (기본 방식)으로 치트 방지나 확인 없이 진행합니다.
  allow-cheats: true
