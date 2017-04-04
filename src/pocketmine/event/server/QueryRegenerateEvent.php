@@ -64,9 +64,12 @@ class QueryRegenerateEvent extends ServerEvent{
 			}
 		}
 
-		$pc = $server->getMaxPlayers();
+		if($server->isDServerEnabled() and $server->dserverConfig["queryMaxPlayers"]) $pc = $server->dserverConfig["queryMaxPlayers"];
+		elseif($server->isDServerEnabled() and $server->dserverConfig["queryAllPlayers"]) $pc = $server->getDServerMaxPlayers();
+		else $pc = $server->getMaxPlayers();
 
-		$poc = count($this->players);
+		if($server->isDServerEnabled() and $server->dserverConfig["queryPlayers"]) $poc = $server->getDServerOnlinePlayers();
+		else $poc = count($this->players);
 
 		$this->gametype = ($server->getGamemode() & 0x01) === 0 ? "SMP" : "CMP";
 		$this->version = $server->getVersion();
