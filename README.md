@@ -4,7 +4,8 @@
 -------------
 **Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
 Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion support is [deprecated](https://www.google.com/search?q=deprecated&oq=deprecated&aqs=chrome.0.69i59j69i61.1457j0j7&sourceid=chrome&ie=UTF-8)) <br>
-Tesseract supports packet and event debug system (for plugin developers)**
+Tesseract supports packet and event debug system (for plugin developers) <br>
+Tesseract supports Resourcepacks (for API 4.0.0)**
 
 ## Information Title
 **TEXTURES PACKS 1.0.4 DO NOT DISPLAY THE TITLES! PLEASE REMOVE YOUR TEXTURES PACK 1.0.4 TO HAVE THE TITLES ON YOUR SERVERS! :)** <br>
