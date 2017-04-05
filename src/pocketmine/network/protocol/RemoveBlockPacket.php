@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class RemoveBlockPacket extends DataPacket{
 
 	const NETWORK_ID = Info::REMOVE_BLOCK_PACKET;
@@ -47,4 +49,7 @@ class RemoveBlockPacket extends DataPacket{
 		return "RemoveBlockPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleRemoveBlock($this);
+    }
 }

@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class MoveEntityPacket extends DataPacket{
 
 	const NETWORK_ID = Info::MOVE_ENTITY_PACKET;
@@ -60,4 +62,7 @@ class MoveEntityPacket extends DataPacket{
 		return "MoveEntityPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleMoveEntity($this);
+    }
 }

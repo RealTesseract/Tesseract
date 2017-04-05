@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class SetPlayerGameTypePacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_PLAYER_GAME_TYPE_PACKET;
@@ -46,4 +48,7 @@ class SetPlayerGameTypePacket extends DataPacket{
 		return "SetPlayerGameTypePacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleSetPlayerGameType($this);
+    }
 }

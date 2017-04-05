@@ -24,6 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 use pocketmine\item\Item;
+use pocketmine\network\NetworkSession;
 
 class ContainerSetSlotPacket extends DataPacket{
 
@@ -60,4 +61,7 @@ class ContainerSetSlotPacket extends DataPacket{
 		return "ContainerSetSlotPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleContainerSetSlot($this);
+    }
 }

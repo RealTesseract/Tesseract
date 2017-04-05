@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class SetDifficultyPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_DIFFICULTY_PACKET;
@@ -46,5 +48,7 @@ class SetDifficultyPacket extends DataPacket{
 		return "SetDifficultyPacket";
 	}
 
-
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleSetDifficulty($this);
+    }
 }

@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class PlayerActionPacket extends DataPacket{
 
 	const NETWORK_ID = Info::PLAYER_ACTION_PACKET;
@@ -76,4 +78,7 @@ class PlayerActionPacket extends DataPacket{
 		return "PlayerActionPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handlePlayerAction($this);
+    }
 }

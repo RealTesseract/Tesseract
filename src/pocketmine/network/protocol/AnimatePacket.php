@@ -23,6 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
 
 class AnimatePacket extends DataPacket{
 
@@ -43,10 +44,13 @@ class AnimatePacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName|string
+	 * @return AnimatePacket|string
      */
 	public function getName(){
 		return "AnimatePacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleAnimate($this);
+    }
 }

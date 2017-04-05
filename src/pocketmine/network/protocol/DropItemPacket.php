@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class DropItemPacket extends DataPacket{
 
 	const NETWORK_ID = Info::DROP_ITEM_PACKET;
@@ -47,4 +49,7 @@ class DropItemPacket extends DataPacket{
 		return "DropItemPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleDropItem($this);
+    }
 }

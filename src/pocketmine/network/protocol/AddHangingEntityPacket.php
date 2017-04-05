@@ -23,6 +23,8 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
+
 class AddHangingEntityPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ADD_HANGING_ENTITY_PACKET;
@@ -53,4 +55,7 @@ class AddHangingEntityPacket extends DataPacket{
 		return "AddHangingEntityPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleAddHangingEntity($this);
+    }
 }

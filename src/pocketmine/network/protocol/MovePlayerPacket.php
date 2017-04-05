@@ -23,6 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
 
 class MovePlayerPacket extends DataPacket{
 
@@ -75,4 +76,7 @@ class MovePlayerPacket extends DataPacket{
 		return "MovePlayerPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleMovePlayer($this);
+    }
 }

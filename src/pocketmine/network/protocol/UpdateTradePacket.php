@@ -2,6 +2,8 @@
 
 namespace pocketmine\network\protocol;
 
+use pocketmine\network\NetworkSession;
+
 class UpdateTradePacket extends DataPacket{
 	
 	const NETWORK_ID = Info::UPDATE_TRADE_PACKET;
@@ -40,4 +42,8 @@ class UpdateTradePacket extends DataPacket{
 		$this->putString($this->displayName);
 		$this->put($this->offers);
 	}
+
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleUpdateTrade($this);
+    }
 }

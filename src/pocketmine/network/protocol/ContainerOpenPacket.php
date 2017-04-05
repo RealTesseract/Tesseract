@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class ContainerOpenPacket extends DataPacket{
 
 	const NETWORK_ID = Info::CONTAINER_OPEN_PACKET;
@@ -56,4 +58,7 @@ class ContainerOpenPacket extends DataPacket{
 		return "ContainerOpenPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleContainerOpen($this);
+    }
 }

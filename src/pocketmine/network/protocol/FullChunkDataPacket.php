@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class FullChunkDataPacket extends DataPacket{
 
 	const NETWORK_ID = Info::FULL_CHUNK_DATA_PACKET;
@@ -50,4 +52,7 @@ class FullChunkDataPacket extends DataPacket{
 		return "FullChunkDataPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleFullChunkData($this);
+    }
 }

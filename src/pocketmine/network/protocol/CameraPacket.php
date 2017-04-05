@@ -25,6 +25,8 @@
 namespace pocketmine\network\protocol;
 
 
+use pocketmine\network\NetworkSession;
+
 class CameraPacket extends DataPacket{
 	
 	const NETWORK_ID = Info::CAMERA_PACKET;
@@ -40,10 +42,13 @@ class CameraPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName|string
+	 * @return CameraPacket|string
      */
 	public function getName(){
-		return "BossEventPacket";
+		return "CameraPacket";
 	}
 
+    /*public function handle(NetworkSession $session) : bool{
+        return $session->handleCamera($this);
+    }*/
 }

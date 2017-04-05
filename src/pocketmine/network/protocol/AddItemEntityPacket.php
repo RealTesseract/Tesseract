@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class AddItemEntityPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ADD_ITEM_ENTITY_PACKET;
@@ -57,4 +59,7 @@ class AddItemEntityPacket extends DataPacket{
 		return "AddItemEntityPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleAddItemEntity($this);
+    }
 }

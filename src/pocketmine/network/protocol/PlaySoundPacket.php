@@ -25,6 +25,8 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
+
 class PlaySoundPacket extends DataPacket{
 
 	const NETWORK_ID = Info::PLAY_SOUND_PACKET;
@@ -58,4 +60,7 @@ class PlaySoundPacket extends DataPacket{
 		return "PlaySoundPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handlePlaySound($this);
+    }
 }

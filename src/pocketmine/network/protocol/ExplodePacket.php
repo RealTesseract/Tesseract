@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class ExplodePacket extends DataPacket{
 
 	const NETWORK_ID = Info::EXPLODE_PACKET;
@@ -62,4 +64,7 @@ class ExplodePacket extends DataPacket{
 		return "ExplodePacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleExplode($this);
+    }
 }

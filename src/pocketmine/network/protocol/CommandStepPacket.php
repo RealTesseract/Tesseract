@@ -23,6 +23,8 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
+
 class CommandStepPacket extends DataPacket{
 
 	const NETWORK_ID = Info::COMMAND_STEP_PACKET;
@@ -73,4 +75,7 @@ class CommandStepPacket extends DataPacket{
 		return "CommandStepPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleCommandStep($this);
+    }
 }

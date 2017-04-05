@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class ContainerSetDataPacket extends DataPacket{
 
 	const NETWORK_ID = Info::CONTAINER_SET_DATA_PACKET;
@@ -50,4 +52,7 @@ class ContainerSetDataPacket extends DataPacket{
 		return "ContainerSetDataPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleContainerSetData($this);
+    }
 }

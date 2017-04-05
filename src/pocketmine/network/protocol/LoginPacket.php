@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class LoginPacket extends DataPacket{
 
 	const NETWORK_ID = Info::LOGIN_PACKET;
@@ -187,4 +189,7 @@ class LoginPacket extends DataPacket{
 		return "LoginPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleLogin($this);
+    }
 }

@@ -23,6 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
 use pocketmine\resourcepacks\ResourcePackInfoEntry;
 
 class ResourcePacksInfoPacket extends DataPacket{
@@ -64,4 +65,7 @@ class ResourcePacksInfoPacket extends DataPacket{
 		return "ResourcePacksInfoPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleResourcePacksInfo($this);
+    }
 }

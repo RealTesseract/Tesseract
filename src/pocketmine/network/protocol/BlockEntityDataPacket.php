@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class BlockEntityDataPacket extends DataPacket{
 
 	const NETWORK_ID = Info::BLOCK_ENTITY_DATA_PACKET;
@@ -45,10 +47,13 @@ class BlockEntityDataPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName|string
+	 * @return BlockEntityDataPacket|string
      */
 	public function getName(){
 		return "BlockEntityDataPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleBlockEntityData($this);
+    }
 }

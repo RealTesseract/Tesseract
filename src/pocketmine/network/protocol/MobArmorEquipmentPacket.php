@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class MobArmorEquipmentPacket extends DataPacket{
 
 	const NETWORK_ID = Info::MOB_ARMOR_EQUIPMENT_PACKET;
@@ -55,4 +57,7 @@ class MobArmorEquipmentPacket extends DataPacket{
 		return "MobArmorEquipmentPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleMobArmorEquipment($this);
+    }
 }

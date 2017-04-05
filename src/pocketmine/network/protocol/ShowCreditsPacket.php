@@ -23,6 +23,8 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
+
 class ShowCreditsPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SHOW_CREDITS_PACKET;
@@ -47,4 +49,7 @@ class ShowCreditsPacket extends DataPacket{
 		return "ShowCreditsPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleShowCredits($this);
+    }
 }

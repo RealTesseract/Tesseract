@@ -21,6 +21,8 @@
 
 namespace pocketmine\network\protocol;
 
+use pocketmine\network\NetworkSession;
+
 class AddPlayerPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ADD_PLAYER_PACKET;
@@ -60,10 +62,13 @@ class AddPlayerPacket extends DataPacket{
 	}
 
 	/**
-	 * @return PacketName|string
+	 * @return AddPlayerPacket|string
      */
 	public function getName(){
 		return "AddPlayerPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleAddPlayer($this);
+    }
 }

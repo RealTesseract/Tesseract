@@ -23,6 +23,8 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\NetworkSession;
+
 class LevelSoundEventPacket extends DataPacket{
 
 	const NETWORK_ID = Info::LEVEL_SOUND_EVENT_PACKET;
@@ -155,4 +157,7 @@ class LevelSoundEventPacket extends DataPacket{
 		return "LevelSoundEventPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleLevelSoundEvent($this);
+    }
 }

@@ -26,6 +26,8 @@ namespace pocketmine\network\protocol;
 
 
 
+use pocketmine\network\NetworkSession;
+
 class SetTimePacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_TIME_PACKET;
@@ -50,4 +52,7 @@ class SetTimePacket extends DataPacket{
 		return "SetTimePacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleSetTime($this);
+    }
 }

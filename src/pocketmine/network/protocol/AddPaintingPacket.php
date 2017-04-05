@@ -24,6 +24,8 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
+use pocketmine\network\NetworkSession;
+
 class AddPaintingPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ADD_PAINTING_PACKET;
@@ -55,4 +57,7 @@ class AddPaintingPacket extends DataPacket{
 		return "AddPaintingPacket";
 	}
 
+    public function handle(NetworkSession $session) : bool{
+        return $session->handleAddPainting($this);
+    }
 }
