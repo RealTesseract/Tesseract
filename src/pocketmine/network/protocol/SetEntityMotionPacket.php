@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class SetEntityMotionPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_ENTITY_MOTION_PACKET;
@@ -57,7 +55,4 @@ class SetEntityMotionPacket extends DataPacket{
 		return "SetEntityMotionPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSetEntityMotion($this);
-    }
 }

@@ -28,7 +28,6 @@ use pocketmine\inventory\FurnaceRecipe;
 use pocketmine\inventory\ShapedRecipe;
 use pocketmine\inventory\ShapelessRecipe;
 use pocketmine\item\Item;
-use pocketmine\network\NetworkSession;
 use pocketmine\utils\BinaryStream;
 
 class CraftingDataPacket extends DataPacket{
@@ -206,7 +205,4 @@ class CraftingDataPacket extends DataPacket{
 		return "CraftingDataPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleCraftingData($this);
-    }
 }

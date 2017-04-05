@@ -22,8 +22,6 @@
 namespace pocketmine\network\protocol;
 
 
-use pocketmine\network\NetworkSession;
-
 class ChunkRadiusUpdatedPacket extends DataPacket{
 
 	const NETWORK_ID = Info::CHUNK_RADIUS_UPDATED_PACKET;
@@ -46,7 +44,4 @@ class ChunkRadiusUpdatedPacket extends DataPacket{
 		return "ChunkRadiusUpdatedPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleChunkRadiusUpdated($this);
-    }
 }

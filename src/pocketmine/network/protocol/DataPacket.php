@@ -25,7 +25,6 @@ namespace pocketmine\network\protocol;
 
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
-use pocketmine\network\NetworkSession;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\Utils;
 
@@ -174,7 +173,4 @@ abstract class DataPacket extends BinaryStream{
 		return "DataPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleDataPacket($this);
-    }
 }

@@ -2,8 +2,6 @@
 
 namespace pocketmine\network\protocol;
 
-use pocketmine\network\NetworkSession;
-
 class TransferPacket extends DataPacket{
 
     const NETWORK_ID = Info::TRANSFER_PACKET;
@@ -19,9 +17,5 @@ class TransferPacket extends DataPacket{
         $this->reset();
         $this->putString($this->address);
         $this->putLShort($this->port);
-    }
-
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleTransfer($this);
     }
 }

@@ -4,8 +4,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class SpawnExperienceOrbPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SPAWN_EXPERIENCE_ORB_PACKET;
@@ -32,7 +30,4 @@ class SpawnExperienceOrbPacket extends DataPacket{
 		return "SpawnExperienceOrbPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSpawnExperienceOrb($this);
-    }
 }

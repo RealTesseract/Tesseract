@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class UpdateBlockPacket extends DataPacket{
 
 	const NETWORK_ID = Info::UPDATE_BLOCK_PACKET;
@@ -64,7 +62,4 @@ class UpdateBlockPacket extends DataPacket{
 		return "UpdateBlockPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleUpdateBlock($this);
-    }
 }

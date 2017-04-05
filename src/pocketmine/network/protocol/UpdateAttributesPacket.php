@@ -22,7 +22,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 use pocketmine\entity\Attribute;
-use pocketmine\network\NetworkSession;
 
 
 class UpdateAttributesPacket extends DataPacket{
@@ -58,7 +57,4 @@ class UpdateAttributesPacket extends DataPacket{
 		return "UpdateAttributesPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleUpdateAttributes($this);
-    }
 }

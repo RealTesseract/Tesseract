@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class StartGamePacket extends DataPacket{
 
 	const NETWORK_ID = Info::START_GAME_PACKET;
@@ -88,7 +86,4 @@ class StartGamePacket extends DataPacket{
 		return "StartGamePacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleStartGame($this);
-    }
 }

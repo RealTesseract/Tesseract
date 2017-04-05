@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class TakeItemEntityPacket extends DataPacket{
 
 	const NETWORK_ID = Info::TAKE_ITEM_ENTITY_PACKET;
@@ -50,7 +48,4 @@ class TakeItemEntityPacket extends DataPacket{
 		return "TakeItemEntityPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleTakeItemEntity($this);
-    }
 }

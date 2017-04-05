@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class BlockPickRequestPacket extends DataPacket{
 
 	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
@@ -45,13 +43,10 @@ class BlockPickRequestPacket extends DataPacket{
 	}
 
 	/**
-	 * @return BlockPickRequestPacket|string
+	 * @return PacketName|string
      */
 	public function getName(){
 		return "BlockPickRequestPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleBlockPickRequest($this);
-    }
 }

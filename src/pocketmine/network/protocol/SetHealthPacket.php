@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class SetHealthPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_HEALTH_PACKET;
@@ -48,7 +46,4 @@ class SetHealthPacket extends DataPacket{
 		return "SetHealthPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSetHealth($this);
-    }
 }

@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class InteractPacket extends DataPacket{
 
 	const NETWORK_ID = Info::INTERACT_PACKET;
@@ -57,7 +55,4 @@ class InteractPacket extends DataPacket{
 		return "InteractPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleInteract($this);
-    }
 }

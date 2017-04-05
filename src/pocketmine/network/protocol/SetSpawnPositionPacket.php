@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class SetSpawnPositionPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_SPAWN_POSITION_PACKET;
@@ -54,7 +52,4 @@ class SetSpawnPositionPacket extends DataPacket{
 		return "SetSpawnPositionPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSetSpawnPosition($this);
-    }
 }

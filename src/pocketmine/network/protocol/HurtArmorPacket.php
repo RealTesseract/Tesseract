@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class HurtArmorPacket extends DataPacket{
 
 	const NETWORK_ID = Info::HURT_ARMOR_PACKET;
@@ -48,7 +46,4 @@ class HurtArmorPacket extends DataPacket{
 		return "HurtArmorPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleHurtArmor($this);
-    }
 }

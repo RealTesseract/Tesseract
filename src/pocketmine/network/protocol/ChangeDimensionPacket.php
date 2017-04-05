@@ -23,8 +23,6 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-use pocketmine\network\NetworkSession;
-
 class ChangeDimensionPacket extends DataPacket{
 
 	const NETWORK_ID = Info::CHANGE_DIMENSION_PACKET;
@@ -51,13 +49,10 @@ class ChangeDimensionPacket extends DataPacket{
 	}
 
 	/**
-	 * @return ChangeDimensionPacket|string
+	 * @return PacketName|string
      */
 	public function getName(){
 		return "ChangeDimensionPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleChangeDimension($this);
-    }
 }

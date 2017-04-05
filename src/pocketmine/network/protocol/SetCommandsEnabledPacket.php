@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class SetCommandsEnabledPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_COMMANDS_ENABLED_PACKET;
@@ -48,7 +46,4 @@ class SetCommandsEnabledPacket extends DataPacket{
 		return "SetCommandsEnabledPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSetCommandsEnabled($this);
-    }
 }

@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class DisconnectPacket extends DataPacket{
 
 	const NETWORK_ID = Info::DISCONNECT_PACKET;
@@ -51,7 +49,4 @@ class DisconnectPacket extends DataPacket{
 		return "DisconnectPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleDisconnect($this);
-    }
 }

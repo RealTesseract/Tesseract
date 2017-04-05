@@ -25,7 +25,6 @@ namespace pocketmine\network\protocol;
 
 #ifndef COMPILE
 use pocketmine\entity\Attribute;
-use pocketmine\network\NetworkSession;
 
 #endif
 
@@ -83,7 +82,4 @@ class AddEntityPacket extends DataPacket{
 		return "AddEntityPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-	    return $session->handleAddEntity($this);
-    }
 }

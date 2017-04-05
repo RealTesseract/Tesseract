@@ -21,8 +21,6 @@
 
 namespace pocketmine\network\protocol;
 
-use pocketmine\network\NetworkSession;
-
 class SetEntityDataPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_ENTITY_DATA_PACKET;
@@ -47,7 +45,4 @@ class SetEntityDataPacket extends DataPacket{
 		return "SetEntityDataPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSetEntityData($this);
-    }
 }

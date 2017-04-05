@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class AdventureSettingsPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ADVENTURE_SETTINGS_PACKET;
@@ -105,7 +103,4 @@ class AdventureSettingsPacket extends DataPacket{
 		return "AdventureSettingsPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleAdventureSettings($this);
-    }
 }

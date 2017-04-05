@@ -25,8 +25,6 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-use pocketmine\network\NetworkSession;
-
 class BossEventPacket extends DataPacket{
 
 	const NETWORK_ID = Info::BOSS_EVENT_PACKET;
@@ -45,13 +43,10 @@ class BossEventPacket extends DataPacket{
 	}
 
 	/**
-	 * @return BossEventPacket|string
+	 * @return PacketName|string
      */
 	public function getName(){
 		return "BossEventPacket";
 	}
 
-    /*public function handle(NetworkSession $session) : bool{
-        return $session->handleBossbar($this);
-    }*/
 }

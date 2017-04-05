@@ -23,8 +23,6 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-use pocketmine\network\NetworkSession;
-
 class SetTitlePacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_TITLE_PACKET;
@@ -66,7 +64,4 @@ class SetTitlePacket extends DataPacket{
 		return "SetTitlePacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleSetTitle($this);
-    }
 }

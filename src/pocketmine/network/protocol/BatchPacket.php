@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class BatchPacket extends DataPacket{
 
 	const NETWORK_ID = Info::BATCH_PACKET;
@@ -48,7 +46,4 @@ class BatchPacket extends DataPacket{
 		return "BatchPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handle($this);
-    }
 }

@@ -24,8 +24,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-use pocketmine\network\NetworkSession;
-
 class RemoveEntityPacket extends DataPacket{
 
 	const NETWORK_ID = Info::REMOVE_ENTITY_PACKET;
@@ -48,7 +46,4 @@ class RemoveEntityPacket extends DataPacket{
 		return "RemoveEntityPacket";
 	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleRemoveEntity($this);
-    }
 }

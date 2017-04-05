@@ -23,34 +23,29 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-use pocketmine\network\NetworkSession;
-
 class ItemFrameDropItemPacket extends DataPacket{
 
-    const NETWORK_ID = Info::ITEM_FRAME_DROP_ITEM_PACKET;
+	const NETWORK_ID = Info::ITEM_FRAME_DROP_ITEM_PACKET;
 
-    public $x;
-    public $y;
-    public $z;
-    //public $item;
+	public $x;
+	public $y;
+	public $z;
+	//public $item;
 
-    public function decode(){
-        $this->getBlockCoords($this->x, $this->y, $this->z);
-        //$this->item = $this->getSlot();
-    }
+	public function decode(){
+		$this->getBlockCoords($this->x, $this->y, $this->z);
+		//$this->item = $this->getSlot();
+	}
 
-    public function encode(){
+	public function encode(){
 
-    }
+	}
 
-    /**
-     * @return PacketName|string
+	/**
+	 * @return PacketName|string
      */
-    public function getName(){
-        return "ItemFrameDropItemPacket";
-    }
+	public function getName(){
+		return "ItemFrameDropItemPacket";
+	}
 
-    public function handle(NetworkSession $session) : bool{
-        return $session->handleItemFrameDropItem($this);
-    }
 }
