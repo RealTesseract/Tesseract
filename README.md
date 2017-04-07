@@ -47,7 +47,8 @@ __[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
 
 __[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
-
+## Requests
+We have opened up to requests! You can fill out a form here and we will try ti meet your request!
 
 ## Acknowledgements
 
