@@ -23,7 +23,6 @@ namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
 use pocketmine\item\EnchantedBook;
-use pocketmine\item\enchantment\Enchantment;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\Server;
@@ -52,7 +51,7 @@ class AnvilInventory extends TemporaryInventory{
 	}
 
 	public function onRename(Player $player, Item $resultItem) : bool{
-		if(!$resultItem->deepEquals($this->getItem(self::TARGET), true, false, true)){
+		if(!$resultItem->equals($this->getItem(self::TARGET), true, false, true)){
 			//Item does not match target item. Everything must match except the tags.
 			return false;
 		}

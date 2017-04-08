@@ -19,23 +19,34 @@
  *
 */
 
-namespace pocketmine\block;
+namespace pocketmine\network\protocol;
+
+#include <rules/DataPacket.h>
 
 
-class GlowingObsidian extends Solid{
+class BlockPickRequestPacket extends DataPacket{
 
-	protected $id = self::GLOWING_OBSIDIAN;
+	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
 
-	public function __construct($meta = 0){
-		$this->meta = $meta;
+	public $x;
+	public $y;
+	public $z;
+	public $unknown;
+
+	public function decode(){
+		$this->getBlockCoords($this->x, $this->y, $this->z);
+		$this->unknown = $this->getByte();
 	}
 
-	public function getName() : string{
-		return "Glowing Obsidian";
+	public function encode(){
+
 	}
 
-	public function getLightLevel(){
-		return 12;
+	/**
+	 * @return PacketName|string
+     */
+	public function getName(){
+		return "BlockPickRequestPacket";
 	}
 
 }

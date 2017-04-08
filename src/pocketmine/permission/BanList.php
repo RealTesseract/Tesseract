@@ -105,9 +105,7 @@ class BanList{
 
 		$this->list[$entry->getName()] = $entry;
 		$this->save();
-		if(($player = Server::getInstance()->getPlayerExact($target)) instanceof Player){
-        	$player->kick($reason);
-		}
+		
 		return $entry;
 	}
 

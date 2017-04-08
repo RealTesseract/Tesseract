@@ -51,7 +51,7 @@ class FolderPluginLoader implements PluginLoader{
 	public function loadPlugin($file){
 		if(is_dir($file) and file_exists($file . "/plugin.yml") and file_exists($file . "/src/")){
 			if(($description = $this->getPluginDescription($file)) instanceof PluginDescription){
-				MainLogger::getLogger()->info("Loading (Source) " . $description->getFullName());
+				MainLogger::getLogger()->developer("Loading plugin: " . $description->getFullName());
 				$dataFolder = dirname($file) . DIRECTORY_SEPARATOR . $description->getName();
 				if(file_exists($dataFolder) and !is_dir($dataFolder)){
 					trigger_error("Projected dataFolder '" . $dataFolder . "' for " . $description->getName() . " exists and is not a directory", E_USER_WARNING);
@@ -122,7 +122,7 @@ class FolderPluginLoader implements PluginLoader{
 	 */
 	public function enablePlugin(Plugin $plugin){
 		if($plugin instanceof PluginBase and !$plugin->isEnabled()){
-			MainLogger::getLogger()->info("Enabling " . $plugin->getDescription()->getFullName());
+			MainLogger::getLogger()->developer("Enabling " . $plugin->getDescription()->getFullName());
 
 			$plugin->setEnabled(true);
 
@@ -135,7 +135,7 @@ class FolderPluginLoader implements PluginLoader{
 	 */
 	public function disablePlugin(Plugin $plugin){
 		if($plugin instanceof PluginBase and $plugin->isEnabled()){
-			MainLogger::getLogger()->info("Disabling " . $plugin->getDescription()->getFullName());
+			MainLogger::getLogger()->developer("Disabling " . $plugin->getDescription()->getFullName());
 
 			Server::getInstance()->getPluginManager()->callEvent(new PluginDisableEvent($plugin));
 

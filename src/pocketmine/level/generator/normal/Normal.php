@@ -37,6 +37,7 @@ use pocketmine\level\generator\biome\BiomeSelector;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\noise\Simplex;
 use pocketmine\level\generator\normal\object\OreType;
+use pocketmine\level\generator\normal\populator\Cave;
 use pocketmine\level\generator\normal\populator\GroundCover;
 use pocketmine\level\generator\normal\populator\Ore;
 use pocketmine\level\generator\populator\Populator;
@@ -47,21 +48,21 @@ use pocketmine\utils\Random;
 class Normal extends Generator{
 
 	/** @var Populator[] */
-	private $populators = [];
+	protected $populators = [];
 	/** @var ChunkManager */
-	private $level;
+	protected $level;
 	/** @var Random */
-	private $random;
-	private $waterHeight = 62;
-	private $bedrockDepth = 5;
+	protected $random;
+	protected $waterHeight = 62;
+	protected $bedrockDepth = 5;
 
 	/** @var Populator[] */
-	private $generationPopulators = [];
+	protected $generationPopulators = [];
 	/** @var Simplex */
-	private $noiseBase;
+	protected $noiseBase;
 
 	/** @var BiomeSelector */
-	private $selector;
+	protected $selector;
 
 	private static $GAUSSIAN_KERNEL = null;
 	private static $SMOOTH_SIZE = 2;
@@ -93,7 +94,11 @@ class Normal extends Generator{
 		return "Normal";
 	}
 
-	public function getSettings(){
+	public function getWaterHeight(): int{
+        return $this->waterHeight;
+    }
+
+    public function getSettings(){
 		return [];
 	}
 
@@ -139,6 +144,9 @@ class Normal extends Generator{
 		$cover = new GroundCover();
 		$this->generationPopulators[] = $cover;
 
+		$cave = new Cave();
+		$this->populators[] = $cave;
+
 		$ores = new Ore();
 		$ores->setOreTypes([
 			new OreType(new CoalOre(), 20, 17, 0, 128),
@@ -148,16 +156,16 @@ class Normal extends Generator{
 			new OreType(new GoldOre(), 2, 9, 0, 32),
 			new OreType(new DiamondOre(), 1, 8, 0, 16),
 			new OreType(new Dirt(), 10, 33, 0, 128),
-			new OreType(new Gravel(), 8, 33, 0, 128),
-			new OreType(new Stone(Stone::GRANITE), 10, 33, 0, 80),
-			new OreType(new Stone(Stone::DIORITE), 10, 33, 0, 80),
-			new OreType(new Stone(Stone::ANDESITE), 10, 33, 0, 80)
+            new OreType(new Stone(Stone::GRANITE), 10, 33, 0, 80),
+            new OreType(new Stone(Stone::DIORITE), 10, 33, 0, 80),
+            new OreType(new Stone(Stone::ANDESITE), 10, 33, 0, 80),
+			new OreType(new Gravel(), 8, 33, 0, 128)
 		]);
 		$this->populators[] = $ores;
 	}
 
 	public function generateChunk($chunkX, $chunkZ){
-		$this->random->setSeed(0xdeadbeef ^ $chunkX ^ $chunkZ ^ $this->level->getSeed());
+		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
 		$noise = Generator::getFastNoise3D($this->noiseBase, 16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
 
@@ -200,19 +208,25 @@ class Normal extends Generator{
 				$minSum /= $weightSum;
 				$maxSum /= $weightSum;
 
-				$smoothHeight = ($maxSum - $minSum) / 2;
+				$solidLand = false;
 
-                for($y = 0; $y < 128; ++$y){
+                for($y = 127; $y >= 0; --$y){
 					if($y === 0){
 						$chunk->setBlockId($x, $y, $z, Block::BEDROCK);
 						continue;
 					}
 
-                    $noiseValue = $noise[$x][$z][$y] - 1 / $smoothHeight * ($y - $smoothHeight - $minSum);
+                    $noiseAdjustment = 2 * (($maxSum - $y) / ($maxSum - $minSum)) - 1;
+
+                    $caveLevel = $minSum - 10;
+                    $distAboveCaveLevel = max(0, $y - $caveLevel);
+
+                    $noiseAdjustment = min($noiseAdjustment, 0.4 + ($distAboveCaveLevel / 10));
+                    $noiseValue = $noise[$x][$z][$y] + $noiseAdjustment;
 
 					if($noiseValue > 0){
 						$chunk->setBlockId($x, $y, $z, Block::STONE);
-					}elseif($y <= $this->waterHeight){
+					}elseif($y <= $this->waterHeight && $solidLand == false){
 						$chunk->setBlockId($x, $y, $z, Block::STILL_WATER);
 					}
 				}
@@ -225,9 +239,9 @@ class Normal extends Generator{
 	}
 
 	public function populateChunk($chunkX, $chunkZ){
-		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 16) ^ ($chunkZ << 16) ^ $this->level->getSeed());
+		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 		foreach($this->populators as $populator){
-			$populator->populate($this->level, ($chunkX << 16), ($chunkZ << 16), $this->random);
+			$populator->populate($this->level, $chunkX, $chunkZ, $this->random);
 		}
 
 		$chunk = $this->level->getChunk($chunkX, $chunkZ);

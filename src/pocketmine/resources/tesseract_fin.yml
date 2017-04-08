@@ -12,7 +12,7 @@
 
 #Version of this file
 config:
- version: 28
+ version: 29
 
 level:
  #Tama settting paattaa, jos saa on kaytossa peli (sade voi aiheuttaa viiveella vanhemmissa laitteissa)
@@ -59,18 +59,15 @@ player:
  #Myos poistaa kaytosta asettamalla "-1" arvo
  chunk-radius: -1
  
+anticheat:
  check-movement: true
+ allow-instabreak: false
  
 server:
  #Tama asetus paattaa, jos server.log-tiedosto ei ole tehty ja kirjoittaneet.
  disable-log: false
  #Tama asetus paattaa, jos asynkroninen paloina pyynto on kaytossa kun lastaus/uudelleenkaynnistysta palvelin
  async-chunk-request: true
- #Tama asetus valitsee miten Muistuta pelaajat kun joku liittyy pelin
- #0 = viesti, 1 = karki, 2 = Popup
- player-msg-type: 0
- login-msg: "§3@player joined the game"
- logout-msg: "§3@player left the game"
  #Tama asetus paattaa, onko rajoitettu creative kytketty peli
  #Jos arvoksi tosi tosi, sitten pelaajat ei voi pudottaa kohteita hotbar, ei voi avata arkkua, ja niin edelleen
  limited-creative: true

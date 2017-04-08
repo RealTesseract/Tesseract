@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\math\AxisAlignedBB;
 
-class EndPortalFrame extends Solid implements SolidLight{
+class EndPortalFrame extends Solid{
 
 	protected $id = self::END_PORTAL_FRAME;
 

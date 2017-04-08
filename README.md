@@ -1,29 +1,33 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
-Tesseract Introduction
+
+## Tesseract Introduction
 -------------
 **Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
-Tesseract supports only the world type of Anvil or PMAnvil. (MCRegion support is [deprecated](https://www.google.com/search?q=deprecated&oq=deprecated&aqs=chrome.0.69i59j69i61.1457j0j7&sourceid=chrome&ie=UTF-8)) <br>
-Tesseract supports packet and event debug system (for plugin developers)**
+Tesseract supports packet and event debug system (for plugin developers) <br>
+Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_medium=link&utm_campaign=ios-share-link) for support**
+
+## Information Title
+**TEXTURES PACKS 1.0.4 DO NOT DISPLAY THE TITLES! PLEASE REMOVE YOUR TEXTURES PACK 1.0.4 TO HAVE THE TITLES ON YOUR SERVERS! :)** <br>
 
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0.4 (PE & Win10) <br>
+**Tesseract is supported to Minecraft:PE 1.0.5 & [1.1.0 beta](https://github.com/TesseractTeam/Tesseract/tree/MCPE-1.1-Beta)  (PE & Win10) <br>
 Report any issues and we will try to fix them for you.**  <br>
 
-##Builds
-
+## Builds
 __Travis-CI Build:__<br>
  [![Travis-CI](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://travis-ci.org/TesseractTeam/Tesseract)<br>
- __Jenkins Build:__<br>
-[![Jenkins](https://travis-ci.org/TesseractTeam/Tesseract.svg?branch=master)](https://jenkins.imgcl.co/job/Tesseract/)
+ __CircleCI Build__<br>
+[![CircleCI](https://circleci.com/gh/circleci/mongofinil.svg?&style=shield&circle-token=8678c9589c2e09b659783b4d7a65365fa982127e/)](https://circleci.com/gh/TesseractTeam/Tesseract)
 
+You can get the latest .phar from [here](https://circleci-tkn.rhcloud.com/api/v1/project/TesseractTeam/Tesseract/tree/master/latest/artifacts/Tesseract_1.2.0.phar)
 ## Quick Links (Instead of scrolling, click these!)
 
-__[Installation](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#installation)__ <br>
-__[Resources](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#resources)__ <br>
-__[Acknowledgements](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#acknowledgements)__ <br>
-__[License](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#license)__ <br>
-__[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#ThirdpartyLibrariesProtocolsUsed)__ <br>
+__[Installation](#installation)__ <br>
+__[Resources](#resources)__ <br>
+__[Acknowledgements](#acknowledgements)__ <br>
+__[License](#license)__ <br>
+__[Third Party Libraries and Protocols Used](#ThirdpartyLibrariesProtocolsUsed)__ <br>
 
 ## Installation
 
@@ -31,7 +35,7 @@ __[Third Party Libraries and Protocols Used](https://github.com/TesseractTeam/Te
 Supported platforms: Linux, Windows, OS X, Raspberry Pi, and ODROID <br>
 [Installation](https://github.com/TesseractTeam/Tesseract/wiki/Installation)<br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
 
 ## Resources
@@ -41,16 +45,15 @@ Your Tesseract Server needs Visual Studio C++ Redistributable 2015 (If you are o
 It can be downloaded
 __[here](https://www.microsoft.com/en-us/download/details.aspx?id=48145)__ <br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
-
 
 ## Acknowledgements
 
 - Tesseract is a "spoon" of **[Pocketmine-MP](http://github.com/pmmp/PocketMine-MP/)** & **[Genisys](https://github.com/iTXTech/Genisys)**
 - Most of the original code was written by PocketMine Team and iTX Technologies. <br>
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__<br>
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__<br>
 
 ## License
 -------------
@@ -70,7 +73,7 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 
 __[License Page](https://github.com/TesseractTeam/Tesseract/blob/master/LICENSE)__
 <br>
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>
 
 ## Third-party Libraries/Protocols Used
@@ -87,5 +90,5 @@ __[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/RE
 * __[Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)__
 * __[UT3 Query Protocol](http://wiki.unrealadmin.org/UT3_query_protocol)__
 
-__[Back to QuickLinks](https://github.com/TesseractTeam/Tesseract/blob/master/README.md#quick-links-instead-of-scrolling-click-these)__
+__[Back to QuickLinks](#quick-links-instead-of-scrolling-click-these)__
 <br>

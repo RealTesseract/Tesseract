@@ -13,6 +13,7 @@
 #Version of this file
 config:
  version: 29
+ 
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
  weather: true
@@ -62,9 +63,12 @@ anticheat:
  #This setting decides if instant breaking by modifiers is allowed or not
  #Recommended that it stays "false"
  allow-instabreak: false
+<<<<<<< HEAD
  #This setting decides if flying will be detected/tracked or not
  #Recommended it is set to "true", but sst it to "false" if it bugs out players that do not use modifiers
  anti-fly: true
+=======
+>>>>>>> master
 
 developer:
   #This setting allows the server to load plugins through the source directory over a .phar file
@@ -76,11 +80,6 @@ server:
  disable-log: false
  #This setting decides if the async chunks request will be enabled upon server loading/rebooting
  async-chunk-request: true
- #This setting chooses how to remind players when someone joins the game
- #0 = Message, 1 = Tip, 2 = Popup
- player-msg-type: 0
- login-msg: "§3@player joined the game"
- logout-msg: "§3@player left the game"
  #This setting decides if limited creative is enabled in game
  #If set to true true, then players cannot drop items from hotbar, cannot open chests, and so on
  limited-creative: true

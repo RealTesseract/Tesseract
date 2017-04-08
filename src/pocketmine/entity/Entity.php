@@ -177,7 +177,7 @@ abstract class Entity extends Location implements Metadatable{
 		Entity::registerEntity(DroppedItem::class);
 		Entity::registerEntity(Egg::class);
 		Entity::registerEntity(Enderman::class);
-		Entity::registerEntity(EnderDragon::class);
+		//Entity::registerEntity(EnderDragon::class);
 		Entity::registerEntity(EnderPearl::class);
 		Entity::registerEntity(FallingSand::class);
 		Entity::registerEntity(FishingHook::class);
@@ -807,14 +807,17 @@ abstract class Entity extends Location implements Metadatable{
 		}
 	}
 
-	/**
-	 * @param Player $player
-	 */
-	public function despawnFrom(Player $player){
+    /**
+     * @param Player $player
+     * @param bool $send
+     */
+	public function despawnFrom(Player $player, bool $send = true){
 		if(isset($this->hasSpawned[$player->getLoaderId()])){
-			$pk = new RemoveEntityPacket();
-			$pk->eid = $this->id;
-			$player->dataPacket($pk);
+            if($send) {
+                $pk = new RemoveEntityPacket();
+                $pk->eid = $this->id;
+                $player->dataPacket($pk);
+            }
 			unset($this->hasSpawned[$player->getLoaderId()]);
 		}
 	}

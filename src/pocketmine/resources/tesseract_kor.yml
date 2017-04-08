@@ -12,7 +12,7 @@
 
 #Version 파일의 버전
 config:
- version: 28
+ version: 29
 
 level:
  #날씨 시스템을 켜는 경우 설정하세요
@@ -26,6 +26,10 @@ level:
  lightning-fire: false
  #불이 번지는 것을 활성화 하려는 경우 설정하세요
  fire-spread: false
+ #지옥이 허용된 경우 고르세요. 지옥 레벨이 자동으로 생성됩니다.
+ allow-nether: true
+ #지옥 레벨의 이름
+ level-name: "nether"
  
 network:
  raklib-disable: false
@@ -47,28 +51,16 @@ player:
  #플레이어들이 참여했을때 크래시가 발생하는 경우, 이 값을 10 이하로 설정하세요. 비활성화=-1
  chunk-radius: -1
  
+anticheat:
  check-movement: true
-
-nether:
- #지옥이 허용된 경우 고르세요. 지옥 레벨이 자동으로 생성됩니다.
- allow-nether: true
- #지옥 레벨의 이름
- level-name: "nether"
+ 
+ allow-instabreak: false
  
 server:
- #철 골램을 생성하는 것이 허용된 경우 고르세요
- allow-iron-golem: false
- #눈 골렘을 생성하는 것이 허용된 경우 고르세요
- allow-snow-golem: false
  #server.log를 비활성화 하는 경우 고르세요
  disable-log: false
  #비동기 청크 요청을 활성화 하는 경우 고르세요
  async-chunk-request: true
- #플레이어가 참여할 때 뜨는 메시지를 고릅니다
- #0 = 메시지, 1 = 팁, 2 = 팝업
- player-msg-type: 0
- login-msg: "§3@player님이 게임에 참여했습니다"
- logout-msg: "§3@player님이 게임을 떠났습니다"
  #제한된 크리에이티브를 활성화 하는 경우 설정하세요 (아이템 드롭 불가, 상자 열기 불가 등)
  limited-creative: true
  #투척용 포션을 활성화 하는 경우 고르세요
@@ -84,18 +76,6 @@ enchantment:
  #책장의 수를 세려는 경우 활성화 하세요. 서버 랙을 유발할 수도 있습니다.
  #만약 이 옵션이 false인 경우, 서버는 랜덤 카운트를 사용할 것 입니다 (0~15)
  count-bookshelf: false
-
-redstone:
- ################################################
- ######레드스톤 시스템이 허용된 경우 고르세요#######
- ################################################
- #만약 true가 아닌 경우 레드스톤이 작동하지 않습니다#
- ################################################
- enable: false
- #주파수 펄스를 허용하는 경우 고르세요
- frequency-pulse: false
- #펄스 주파수 설정, 기본: 1초
- pulse-frequency: 1
 
 dserver:
  #모든 멀티 (다중) 서버의 수 통합

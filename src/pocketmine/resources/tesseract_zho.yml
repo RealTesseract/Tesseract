@@ -12,7 +12,7 @@
 
 #設定檔案版本
 config:
- version: 28
+ version: 29
 
 level:
  #設定是否變換天氣
@@ -26,6 +26,10 @@ level:
  lightning-fire: false
  #設定是否火焰蔓延
  fire-spread: false
+ #Bật/tắt nếu muốn thêm địa ngục vào server, khi bật server hệ thống sẽ tự tạo thế giới địa ngục (true/false)
+ allow-nether: true
+ #Đặt tên cho thế giới địa ngục của bạn.
+ level-name: "nether"
  
 network:
  raklib-disable: false
@@ -47,27 +51,16 @@ player:
  #如果玩家進入遊戲時崩潰, 請設置該值低於10. 禁用 = -1
  chunk-radius: -1
  
+anticheat:
  check-movement: true
+ allow-instabreak: false
 
-nether:
- #是否允許地獄，打開此選項會自動生成地獄地圖
- allow-nether: true
- #地獄地圖名
- level-name: "nether"
  
 server:
- #是否允許生成鐵傀儡
- allow-iron-golem: false
- #是否允許生成雪傀儡
- allow-snow-golem: false
  #是否停用server.log
  disable-log: false
  #是否啟用異步發送區塊
  async-chunk-request: true
- #玩家進出伺服器訊息提醒方式。0為Message，1為Tip，2為Popup
- player-msg-type: 0
- login-msg: "§3@player 加入了遊戲"
- logout-msg: "§3@player 離開了遊戲"
  #是否限制創造某些功能(禁止丟物品, 禁止操作箱子等等)
  limited-creative: true
  #是否啟用噴濺型藥水
@@ -83,19 +76,6 @@ enchantment:
  #是否啟用計算附魔等級(計算書架數量)，可能造成伺服器延遲
  #如果不啟用本項, 附魔等級將在0-15間隨機選取
  count-bookshelf: false
-
-
-redstone:
- ##############################
- #######是否開啟紅石系統#######
- ##############################
- #如果不改為true將無法使用紅石#
- ##############################
- enable: false
- #是否允許頻率脈衝
- frequency-pulse: false
- #設定脈衝頻率, 預設: 1s
- pulse-frequency: 1
 
 dserver:
  #多服統一人數

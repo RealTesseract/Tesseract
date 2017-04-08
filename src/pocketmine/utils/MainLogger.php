@@ -35,7 +35,7 @@ class MainLogger extends \AttachableThreadedLogger{
 	public static $logger = null;
 	
 	private $consoleCallback;
-
+	
 	/** Extra Settings */
 	protected $write = false;
 
@@ -106,6 +106,10 @@ class MainLogger extends \AttachableThreadedLogger{
 
 	public function info($message, $name = "INFO"){
 		$this->send($message, \LogLevel::INFO, $name, TextFormat::WHITE);
+	}
+	
+	public function developer($message, $name = "DEVELOPER"){
+		$this->send($message, \LogLevel::DEVELOPER, $name, TextFormat::GOLD);
 	}
 
 	public function debug($message, $name = "DEBUG"){
@@ -200,7 +204,8 @@ class MainLogger extends \AttachableThreadedLogger{
 
 	protected function send($message, $level, $prefix, $color){
 		$now = time();
-
+        $time = date("g:i a", strtotime(date("H:i:s", $now)));
+  
 		$thread = \Thread::getCurrentThread();
 		if($thread === null){
 			$threadName = "Server thread";
@@ -218,7 +223,7 @@ class MainLogger extends \AttachableThreadedLogger{
 			}
 		}
 
-    $message = TextFormat::toANSI(TextFormat::GREEN . "[Tesseract] " . TextFormat::RESET . TextFormat::AQUA . "[" . date("H:i:s", $now) . "] " . $color . $prefix . "> " . $message . TextFormat::RESET);
+     $message = TextFormat::toANSI(TextFormat::GRAY ."[". TextFormat::RED ."Tesseract". TextFormat::GRAY ."] " . TextFormat::RESET . TextFormat::GRAY . "[" . TextFormat::AQUA . $time . TextFormat::GRAY . "] " . $color . $prefix . "> " . $message . TextFormat::RESET);
 	//$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s") . "] ". TextFormat::RESET . $color ."<".$prefix . ">" . " " . $message . TextFormat::RESET);
 		$cleanMessage = TextFormat::clean($message);
 
