@@ -179,6 +179,15 @@ class Enchantment{
 		}
 		return new Enchantment(self::TYPE_INVALID, "unknown", 0, 0, 0);
 	}
+	
+	public static function registerEnchantment($id, $name, $rarity, $activationType, $slot){
+		if(isset(self::$enchantments[$id])){
+			Server::getInstance()->getLogger()->debug("Unable to register enchantment with id $id.");
+			return new Enchantment(self::TYPE_INVALID, "unknown", 0, 0, 0);
+		}
+		self::$enchantments[$id] = new Enchantment($id, $name, $rarity, $activationType, $slot);
+		return new Enchantment($id, $name, $rarity, $activationType, $slot); 
+	}
 
 	public static function getEnchantmentByName($name){
 		if(defined(Enchantment::class . "::TYPE_" . strtoupper($name))){
