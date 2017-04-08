@@ -36,10 +36,6 @@ network:
 
 developer:
   folder-plugin-loader: false
-
-packs:
-  force-resources: false
-  resource-stack: []
  
 player:
  #Bật/tắt nếu muốn thêm chế độ đói (true/false)
