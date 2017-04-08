@@ -37,6 +37,10 @@ network:
  #This setting decides if you want RakLib to be disabled, RakLib connects a server for it to load for a client
  #If you do not know what this does, keep it set to false
  raklib-disable: false
+
+packs:
+  force-resources: false
+  resource-stack: []
  
 player:
  #This setting decides if hunger will be enabled in game
