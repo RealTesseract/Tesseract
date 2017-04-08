@@ -35,7 +35,7 @@ class MainLogger extends \AttachableThreadedLogger{
 	public static $logger = null;
 	
 	private $consoleCallback;
-
+	
 	/** Extra Settings */
 	protected $write = false;
 
