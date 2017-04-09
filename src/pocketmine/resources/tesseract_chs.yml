@@ -67,6 +67,10 @@ developer:
   #推荐保持 "false"
   folder-plugin-loader: true
 
+packs:
+  force-resources: false
+  resource-stack: []
+
 server:
  #是否禁用server.log
  disable-log: false

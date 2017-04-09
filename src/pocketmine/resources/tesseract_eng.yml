@@ -37,6 +37,10 @@ network:
  #This setting decides if you want RakLib to be disabled, RakLib connects a server for it to load for a client
  #If you do not know what this does, keep it set to false
  raklib-disable: false
+
+packs:
+  force-resources: false
+  resource-stack: []
  
 player:
  #This setting decides if hunger will be enabled in game
@@ -63,6 +67,12 @@ anticheat:
  #This setting decides if instant breaking by modifiers is allowed or not
  #Recommended that it stays "false"
  allow-instabreak: false
+<<<<<<< HEAD
+ #This setting decides if flying will be detected/tracked or not
+ #Recommended it is set to "true", but sst it to "false" if it bugs out players that do not use modifiers
+ anti-fly: true
+=======
+>>>>>>> master
 
 developer:
   #This setting allows the server to load plugins through the source directory over a .phar file
