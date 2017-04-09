@@ -67,12 +67,9 @@ anticheat:
  #This setting decides if instant breaking by modifiers is allowed or not
  #Recommended that it stays "false"
  allow-instabreak: false
-<<<<<<< HEAD
  #This setting decides if flying will be detected/tracked or not
  #Recommended it is set to "true", but sst it to "false" if it bugs out players that do not use modifiers
  anti-fly: true
-=======
->>>>>>> master
 
 developer:
   #This setting allows the server to load plugins through the source directory over a .phar file
