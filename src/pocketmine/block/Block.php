@@ -221,6 +221,8 @@ class Block extends Position implements BlockIds, Metadatable{
 
 			self::$list[self::TRAPPED_CHEST] = TrappedChest::class;
 			self::$list[self::REDSTONE_BLOCK] = Redstone::class;
+			
+			self::$list[self::COMMAND_BLOCK] = CommandBlock::class;
 
 			self::$list[self::QUARTZ_BLOCK] = Quartz::class;
 			self::$list[self::QUARTZ_STAIRS] = QuartzStairs::class;
