@@ -22,6 +22,7 @@ level:
  weather-random-duration-min: 6000
  weather-random-duration-max: 12000
  #This setting controls the interval of lightning strikes in game，default 200 as 10s, 0 = disable
+ #This setting will only take effect when lightning weather is active in the world
  lightning-time: 200
  #This setting will decide if lightning strikes have fire after they strike
  lightning-fire: false
