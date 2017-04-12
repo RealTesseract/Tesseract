@@ -36,10 +36,6 @@ network:
 
 developer:
   folder-plugin-loader: false
-
-packs:
-  force-resources: false
-  resource-stack: []
  
 player:
  #是否打開飢餓

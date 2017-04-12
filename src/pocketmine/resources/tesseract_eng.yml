@@ -1,19 +1,19 @@
 #
-#  _______                                _   
-# |__   __|                              | |  
-#    | | ___  ___ ___  ___ _ __ __ _  ___| |_ 
+#  _______                                _
+# |__   __|                              | |
+#    | | ___  ___ ___  ___ _ __ __ _  ___| |_
 #    | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|
-#    | |  __/\__ \__ \  __/ | | (_| | (__| |_ 
+#    | |  __/\__ \__ \  __/ | | (_| | (__| |_
 #    |_|\___||___/___/\___|_|  \__,_|\___|\__|
-#                                             
-#                                             
+#
+#
 #
 #The advanced configuration for Tesseract
 
 #Version of this file
 config:
  version: 29
- 
+
 level:
  #This settting decides if weather is enabled in game (rain may cause lag to older devices)
  weather: true
@@ -39,10 +39,6 @@ network:
  #If you do not know what this does, keep it set to false
  raklib-disable: false
 
-packs:
-  force-resources: false
-  resource-stack: []
- 
 player:
  #This setting decides if hunger will be enabled in game
  #If set to false, hunger wont drop
@@ -60,7 +56,7 @@ player:
  #This may cause lag if set to high values, if you experience crashes, put it below 10
  #It can also be disabled by setting "-1" for the value
  chunk-radius: -1
- 
+
 anticheat:
  #This setting decides if the system tracks the movement speed and position of everyone in game, it will see if it is good or bad
  #Recommended that it stays "true", but set it to "false" if it bugs out players that do not use modifiers
@@ -68,6 +64,7 @@ anticheat:
  #This setting decides if instant breaking by modifiers is allowed or not
  #Recommended that it stays "false"
  allow-instabreak: false
+
  #This setting decides if flying will be detected/tracked or not
  #Recommended it is set to "true", but sst it to "false" if it bugs out players that do not use modifiers
  anti-fly: true
@@ -76,7 +73,7 @@ developer:
   #This setting allows the server to load plugins through the source directory over a .phar file
   #Recommended that it stays "false"
   folder-plugin-loader: true
- 
+
 server:
  #This setting decides if the server.log file will not be made/written.
  disable-log: false
@@ -131,7 +128,7 @@ dserver:
  server-list: ""
 
 inventory:
- #Set this setting to true if you have problems with anvils. 
+ #Set this setting to true if you have problems with anvils.
  #This will process inventory transactions in a vanilla fashion with no anti-cheats or verification.
  #If enchants do not work on PE or Windows 10, please enable cheats.
  allow-cheats: false

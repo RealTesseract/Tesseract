@@ -40,10 +40,6 @@ network:
 
 developer:
   folder-plugin-loader: false
-
-packs:
-  force-resources: false
-  resource-stack: []
  
 player:
  #Tama asetus paattaa, jos nalka on kaytossa peli
