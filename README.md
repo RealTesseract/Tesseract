@@ -20,7 +20,7 @@ __Travis-CI Build:__<br>
  __CircleCI Build__<br>
 [![CircleCI](https://circleci.com/gh/circleci/mongofinil.svg?&style=shield&circle-token=8678c9589c2e09b659783b4d7a65365fa982127e/)](https://circleci.com/gh/TesseractTeam/Tesseract)
 
-You can get the latest .phar from [here](https://circleci-tkn.rhcloud.com/api/v1/project/TesseractTeam/Tesseract/tree/master/latest/artifacts/Tesseract_1.2.0.phar)
+Phars have been temporarily disabled as we are experiencing errors when compiling, for now run from the src!
 ## Quick Links (Instead of scrolling, click these!)
 
 __[Installation](#installation)__ <br>
