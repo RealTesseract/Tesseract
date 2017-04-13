@@ -11,7 +11,7 @@ Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_
 
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0.6 & [1.1.0 beta](https://github.com/TesseractTeam/Tesseract/tree/MCPE-1.1-Beta)  (PE & Win10) <br>
+**Tesseract is supported to Minecraft:PE 1.0.5, 1.0.6 & [1.1.0 beta](https://github.com/TesseractTeam/Tesseract/tree/MCPE-1.1-Beta)  (PE & Win10) <br>
 Report any issues and we will try to fix them for you.**  <br>
 
 ## Builds
