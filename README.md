@@ -7,7 +7,7 @@ Tesseract supports packet and event debug system (for plugin developers) <br>
 Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_medium=link&utm_campaign=ios-share-link) for support**
 
 ## Information Title
-**TEXTURES PACKS CURRENTLY ARE IN BETA, PLEASE REPORT ANY BUGS!** <br>
+**ANYONE WHO MAKES AN ISSUE ABOUT LOGIN TIMEOUT WILL BE BANNED FOR SPAM!** <br>
 
 ## Notice
 
