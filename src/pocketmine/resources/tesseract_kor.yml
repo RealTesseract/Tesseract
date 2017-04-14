@@ -37,6 +37,10 @@ network:
 developer:
   folder-plugin-loader: false
  
+packs:
+  force-resources: false
+  resource-stack: []
+
 player:
  #배고픔 시스템 스위치
  hunger: true

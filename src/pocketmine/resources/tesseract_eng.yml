@@ -39,6 +39,10 @@ network:
  #If you do not know what this does, keep it set to false
  raklib-disable: false
 
+packs:
+  force-resources: false
+  resource-stack: []
+ 
 player:
  #This setting decides if hunger will be enabled in game
  #If set to false, hunger wont drop
@@ -64,7 +68,6 @@ anticheat:
  #This setting decides if instant breaking by modifiers is allowed or not
  #Recommended that it stays "false"
  allow-instabreak: false
-
  #This setting decides if flying will be detected/tracked or not
  #Recommended it is set to "true", but sst it to "false" if it bugs out players that do not use modifiers
  anti-fly: true
