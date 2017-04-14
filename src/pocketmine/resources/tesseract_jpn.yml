@@ -40,10 +40,6 @@ network:
 developer:
   folder-plugin-loader: false
 
-packs:
-  force-resources: false
-  resource-stack: []
-
 player:
  #空腹を有効にするかどうかを設定します。
  hunger: true
