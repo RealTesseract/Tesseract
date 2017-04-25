@@ -121,8 +121,8 @@ class MobSpawner extends Spawnable{
 		$hasPlayer = false;
 		$count = 0;
 		foreach($this->getLevel()->getEntities() as $e){
-			if($e instanceof Player){
-				if($e->distance($this->getBlock()) <= 15) $hasPlayer = true;
+			if(!empty($this->getLevel()->getChunkPlayers($this->getX(), $this->getZ()))){
+				$hasPlayer = true;
 			}
 			if($e::NETWORK_ID == $this->getEntityId()){
 				$count++;
