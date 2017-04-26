@@ -764,7 +764,7 @@ class Item implements ItemIds, \JsonSerializable{
 		return [];
 	}
 	public function setLore(array $lines){
-		$tag = $this->getNamedTag();
+		$tag = $this->getNamedTag() ?? new CompoundTag("", []);
 		if(!isset($tag->display)){
 			$tag->display = new CompoundTag("display", []);
 		}
@@ -774,6 +774,7 @@ class Item implements ItemIds, \JsonSerializable{
 		foreach($lines as $line){
 			$tag->display->Lore[$count++] = new StringTag("", $line);
 		}
+		$this->setNamedTag($tag);
 	}
 		
 
