@@ -130,7 +130,12 @@ use pocketmine\network\protocol\InteractPacket;
 use pocketmine\network\protocol\MovePlayerPacket;
 use pocketmine\network\protocol\PlayerActionPacket;
 use pocketmine\network\protocol\PlayStatusPacket;
+use pocketmine\network\protocol\ResourcePackChunkDataPacket;
+use pocketmine\network\protocol\ResourcePackChunkRequestPacket;
+use pocketmine\network\protocol\ResourcePackClientResponsePacket;
+use pocketmine\network\protocol\ResourcePackDataInfoPacket;
 use pocketmine\network\protocol\ResourcePacksInfoPacket;
+use pocketmine\network\protocol\ResourcePackStackPacket;
 use pocketmine\network\protocol\RespawnPacket;
 use pocketmine\network\protocol\SetEntityMotionPacket;
 use pocketmine\network\protocol\SetSpawnPositionPacket;
@@ -148,6 +153,7 @@ use pocketmine\permission\BanEntry;
 use pocketmine\permission\PermissibleBase;
 use pocketmine\permission\PermissionAttachment;
 use pocketmine\plugin\Plugin;
+use pocketmine\resourcepacks\ResourcePack;
 use pocketmine\tile\ItemFrame;
 use pocketmine\tile\Spawnable;
 use pocketmine\utils\TextFormat;
@@ -345,6 +351,16 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function getClientId(){
 		return $this->randomClientId;
 	}
+
+    public static function isValidUserName(string $name) : bool{
+        $lname = strtolower($name);
+        $len = strlen($name);
+        return $lname !== "rcon" and $lname !== "console" and $len >= 1 and $len <= 16 and preg_match("[^A-Za-z0-9_]", $name) === 0;
+    }
+
+    public static function isValidSkin(string $skin) : bool{
+        return strlen($skin) === 64 * 64 * 4 or strlen($skin) === 64 * 32 * 4;
+    }
 
 	public function getClientSecret(){
 		return $this->clientSecret;
@@ -1636,6 +1652,16 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 	}
 
+	public function sendPlayStatus(int $status, bool $immediate = false){
+        $pk = new PlayStatusPacket();
+        $pk->status = $status;
+        if($immediate){
+            $this->directDataPacket($pk);
+        }else{
+            $this->dataPacket($pk);
+        }
+    }
+
 	public function onUpdate($currentTick){
 		if(!$this->loggedIn){
 			return false;
@@ -1774,13 +1800,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return ($dot1 - $dot) >= -$maxDiff;
 	}
 	
-	public function onPlayerPreLogin(){
+	/*public function onPlayerPreLogin(){
 		$pk = new PlayStatusPacket();
 		$pk->status = PlayStatusPacket::LOGIN_SUCCESS;
 		$this->dataPacket($pk);
 		
 		$this->processLogin();
-	}
+	}*/
 
 	public function clearCreativeItems(){
 		$this->personalCreativeItems = [];
@@ -2018,6 +2044,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
+                $this->sendPlayStatus(PlayStatusPacket::LOGIN_SUCCESS);
+
+                $infoPacket = new ResourcePacksInfoPacket();
+                $this->dataPacket($infoPacket);
+
 				$this->username = TextFormat::clean($packet->username);
 				$this->displayName = $this->username;
 				$this->setNameTag($this->username);
@@ -2040,15 +2071,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if($packet->protocol < ProtocolInfo::CURRENT_PROTOCOL){
 						$message = "disconnectionScreen.outdatedClient";
 
-						$pk = new PlayStatusPacket();
-						$pk->status = PlayStatusPacket::LOGIN_FAILED_CLIENT;
-						$this->directDataPacket($pk);
+                        $this->sendPlayStatus(PlayStatusPacket::LOGIN_FAILED_CLIENT, true);
 					}else{
 						$message = "disconnectionScreen.outdatedServer";
 
-						$pk = new PlayStatusPacket();
-						$pk->status = PlayStatusPacket::LOGIN_FAILED_SERVER;
-						$this->directDataPacket($pk);
+                        $this->sendPlayStatus(PlayStatusPacket::LOGIN_FAILED_SERVER, true);
 					}
 					$this->close("", $message, false);
 
@@ -2060,28 +2087,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->uuid = UUID::fromString($packet->clientUUID);
 				$this->rawUUID = $this->uuid->toBinary();
 
-				$valid = true;
-				$len = strlen($packet->username);
-				if($len > 16 or $len < 3){
-					$valid = false;
-				}
-				for($i = 0; $i < $len and $valid; ++$i){
-					$c = ord($packet->username{$i});
-					if(($c >= ord("a") and $c <= ord("z")) or ($c >= ord("A") and $c <= ord("Z")) or ($c >= ord("0") and $c <= ord("9")) or $c === ord("_")){
-						continue;
-					}
-
-					$valid = false;
-					break;
-				}
-
-				if(!$valid or $this->iusername === "rcon" or $this->iusername === "console"){
+				if(!Player::isValidUserName($packet->username)){
 					$this->close("", "disconnectionScreen.invalidName");
 
 					break;
 				}
 
-				if((strlen($packet->skin) != 64 * 64 * 4) and (strlen($packet->skin) != 64 * 32 * 4)){
+				if(!Player::isValidSkin($packet->skin)){
 					$this->close("", "disconnectionScreen.invalidSkin");
 
 					break;
@@ -2096,15 +2108,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
-				$pk = new PlayStatusPacket();
-				$pk->status = PlayStatusPacket::LOGIN_SUCCESS;
-				$this->directDataPacket($pk);
-
-                $this->dataPacket(new ResourcePacksInfoPacket());
-				
-				if($this->isConnected()){
-					$this->onPlayerPreLogin();
-				}
+                $this->processLogin();
 				break;
 
 			case ProtocolInfo::MOVE_PLAYER_PACKET:
