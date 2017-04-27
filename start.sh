@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # This is the start.sh file for Genisys
