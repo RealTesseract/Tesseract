@@ -1,6 +1,6 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
 
-## Ill be adding all working files over the next few days with a .phar file
+## Ill be adding all working files over the next few days with a .phar file.
 
 ## Tesseract Introduction
 -------------
@@ -17,8 +17,6 @@ Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_
 Report any issues and we will try to fix them for you.**  <br>
 
 ## Builds
-__Travis-CI Build:__<br>
- [![Travis-CI](https://travis-ci.org/RealTesseract/Tesseract.svg?branch=master)](https://travis-ci.org/RealTesseract/Tesseract)<br>
  __CircleCI Build__<br>
 [![CircleCI](https://circleci.com/gh/RealTesseract/Tesseract.svg?style=svg)](https://circleci.com/gh/RealTesseract/Tesseract)
 
