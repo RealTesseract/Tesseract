@@ -1,6 +1,6 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
 
-## Ill be adding all working files over the next few days with a .phar file.
+## Ill be adding all working files over the next few days with a .phar file
 
 ## Tesseract Introduction
 -------------
