@@ -1,4 +1,3 @@
-
 test:
   post:
     - git submodule sync
