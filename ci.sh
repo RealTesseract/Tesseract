@@ -1,4 +1,3 @@
-
 #!/bin/bash
 echo Running lint...
 shopt -s globstar
