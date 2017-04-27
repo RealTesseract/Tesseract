@@ -1,4 +1,3 @@
-
 @echo off
 TITLE Tesseract server software for Minecraft: Pocket Edition
 cd /d %~dp0
