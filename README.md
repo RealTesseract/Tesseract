@@ -1,7 +1,5 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
 
-## Ill be adding all working files over the next few days with a .phar file.
-
 ## Tesseract Introduction
 -------------
 **Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
@@ -13,7 +11,7 @@ Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_
 
 ## Notice
 
-**Tesseract is supported to Minecraft:PE 1.0.7 & [1.1.0 beta](https://github.com/TesseractTeam/Tesseract/tree/MCPE-1.1-Beta)  (PE & Win10) <br>
+**Tesseract is supported to Minecraft:PE 1.0.8 & [1.1.0 beta](https://github.com/TesseractTeam/Tesseract/tree/MCPE-1.1-Beta)  (PE & Win10) <br>
 Report any issues and we will try to fix them for you.**  <br>
 
 ## Builds
