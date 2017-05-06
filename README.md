@@ -7,7 +7,7 @@ Tesseract supports packet and event debug system (for plugin developers) <br>
 Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_medium=link&utm_campaign=ios-share-link) for support**
 
 ## Information Title
-**WE DON'T SUPPORT TEXTURES PACKS YET.** 
+**WE DON'T SUPPORT TEXTURES PACKS YET.** <br>
 **Sounds is currently broken please report any other bugs for we can fix. <br>
 
 ## Notice
