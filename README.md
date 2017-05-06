@@ -8,7 +8,7 @@ Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_
 
 ## Information Title
 **WE DON'T SUPPORT TEXTURES PACKS YET.** <br>
-**Sounds is currently broken please report any other bugs for we can fix. <br>
+**Sounds is currently broken please report any other bugs for we can fix.**<br>
 
 ## Notice
 
