@@ -4,24 +4,22 @@
  __CircleCI Build__<br>
 [![CircleCI](https://circleci.com/gh/RealTesseract/Tesseract.svg?style=svg)](https://circleci.com/gh/RealTesseract/Tesseract)
 
-## Tesseract Introduction
--------------
-**Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
-Tesseract supports packet and event debug system (for plugin developers) <br>
-Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_medium=link&utm_campaign=ios-share-link) for support**
-
-## Information Title
-**WE DON'T SUPPORT TEXTURES PACKS YET.** <br>
-**Sounds is currently broken please report any other bugs for we can fix.**<br>
 
 ## Notice
 
 **Tesseract is supported to Minecraft:PE 1.0.8 & [1.1.0 beta](https://github.com/TesseractTeam/Tesseract/tree/MCPE-1.1-Beta)  (PE & Win10) <br>
 Report any issues and we will try to fix them for you.**  <br>
 
-## Builds
- __CircleCI Build__<br>
-[![CircleCI](https://circleci.com/gh/RealTesseract/Tesseract.svg?style=svg)](https://circleci.com/gh/RealTesseract/Tesseract)
+## Information Title
+**WE DON'T SUPPORT TEXTURES PACKS YET.** <br>
+**Sounds is currently broken please report any other bugs for we can fix.**<br>
+
+## Tesseract Introduction
+-------------
+**Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
+Tesseract supports packet and event debug system (for plugin developers) <br>
+Contact us on [Gitter](https://gitter.im/TesseractTeam/Lobby?utm_source=ios&utm_medium=link&utm_campaign=ios-share-link) for support**
+
 
 ## Quick Links (Instead of scrolling, click these!)
 
