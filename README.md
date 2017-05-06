@@ -1,5 +1,9 @@
 ![Tesseract](http://i.imgur.com/1ga0ATy.jpg)
 
+## Builds
+ __CircleCI Build__<br>
+[![CircleCI](https://circleci.com/gh/RealTesseract/Tesseract.svg?style=svg)](https://circleci.com/gh/RealTesseract/Tesseract)
+
 ## Tesseract Introduction
 -------------
 **Tesseract is the advanced server software based on PocketMine-MP and Genisys! <br>
